@@ -2233,6 +2233,40 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             </div>
           </div>
         </div>
+        <!-- 商务角色专属筛选 -->
+        <div id="contentBizFilters" style="display:none;">
+          <div class="form-row form-row-3">
+            <div class="form-item">
+              <label>物料审核状态</label>
+              <select id="contentFilterBizMatStatus" onchange="renderContentTable()">
+                <option value="">全部</option>
+                <option value="待分配审核">待分配审核</option>
+                <option value="审核中">审核中</option>
+                <option value="审核通过">审核通过</option>
+                <option value="审核驳回">审核驳回</option>
+              </select>
+            </div>
+            <div class="form-item">
+              <label>正片审核状态</label>
+              <select id="contentFilterBizEpStatus" onchange="renderContentTable()">
+                <option value="">全部</option>
+                <option value="待分配审核">待分配审核</option>
+                <option value="审核中">审核中</option>
+                <option value="审核通过">审核通过</option>
+                <option value="审核驳回">审核驳回</option>
+              </select>
+            </div>
+            <div class="form-item">
+              <label>渠道上线状态</label>
+              <select id="contentFilterBizLaunchStatus" onchange="renderContentTable()">
+                <option value="">全部</option>
+                <option value="已上线">已上线</option>
+                <option value="未上线">未上线</option>
+                <option value="驳回">驳回</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
               <!-- 渠道负责人专属筛选（单行全部筛选项） -->
         <div id="contentChannelLeadFilters" style="display:none;">
@@ -7321,6 +7355,11 @@ function switchContentRole() {
   if (clFilters) {
     clFilters.style.display = (currentContentRole === 'channel_lead') ? 'block' : 'none';
   }
+  // 商务角色专属筛选显隐
+  var bizFilters = document.getElementById('contentBizFilters');
+  if (bizFilters) {
+    bizFilters.style.display = (currentContentRole === 'biz') ? 'block' : 'none';
+  }
   // 渠道负责人角色时隐藏通用筛选行（供应商/合集名称已合并到渠道负责人筛选区）
   var commonFilters = document.getElementById('contentCommonFilters');
   if (commonFilters) {
@@ -7494,18 +7533,26 @@ function getChannelOpsDisplay(channelOps) {
 
 // 渠道上线状态按渠道分别展示（商务角色用）
 function getOverallChannelLaunchStatus(item) {
-  if (!item.channelLaunchStatus) {
+  // 收集所有渠道（channelOps + channelLaunchStatus）
+  var allChannels = {};
+  if (item.channelOps && typeof item.channelOps === 'object') {
+    for (var ch in item.channelOps) { allChannels[ch] = true; }
+  }
+  if (item.channelLaunchStatus) {
+    for (var ch2 in item.channelLaunchStatus) { allChannels[ch2] = true; }
+  }
+  var channelList = Object.keys(allChannels);
+  if (channelList.length === 0) {
     if (item.overallStatus === '已上线') return '<span style="color:#52c41a;">已上线</span>';
     return '<span style="color:var(--text-tertiary);">--</span>';
   }
   var parts = [];
-  for (var ch in item.channelLaunchStatus) {
-    var st = item.channelLaunchStatus[ch] || '未上线';
+  channelList.forEach(function(ch) {
+    var st = (item.channelLaunchStatus && item.channelLaunchStatus[ch]) || '未上线';
     var color = st === '已上线' ? '#52c41a' : (st === '驳回' ? '#f53f3f' : 'var(--text-tertiary)');
     var label = st === '驳回' ? '已驳回' : st;
     parts.push('<span style="white-space:nowrap;">' + ch + ': <span style="color:' + color + ';font-weight:600;">' + label + '</span></span>');
-  }
-  if (parts.length === 0) return '<span style="color:var(--text-tertiary);">--</span>';
+  });
   return parts.join('<br>');
 }
 
@@ -7608,6 +7655,10 @@ function renderContentTable() {
   var coLaunchStatusFilter = role === 'channel_ops' ? (document.getElementById('contentFilterCoLaunchStatus') || {}).value || '' : '';
   var coLaunchFromFilter = role === 'channel_ops' ? (document.getElementById('contentFilterCoLaunchFrom') || {}).value || '' : '';
   var coLaunchToFilter = role === 'channel_ops' ? (document.getElementById('contentFilterCoLaunchTo') || {}).value || '' : '';
+  // 商务角色专属筛选
+  var bizMatStatusFilter = role === 'biz' ? (document.getElementById('contentFilterBizMatStatus') || {}).value || '' : '';
+  var bizEpStatusFilter = role === 'biz' ? (document.getElementById('contentFilterBizEpStatus') || {}).value || '' : '';
+  var bizLaunchStatusFilter = role === 'biz' ? (document.getElementById('contentFilterBizLaunchStatus') || {}).value || '' : '';
 
   // Filter by role
   var filtered = contentData.filter(function(item) {
@@ -7714,6 +7765,27 @@ function renderContentTable() {
     if (coLaunchToFilter && item.launchTime && item.launchTime > coLaunchToFilter) return false;
     if (coLaunchFromFilter && !item.launchTime) return false;
     if (coLaunchToFilter && !item.launchTime) return false;
+    // 商务角色：物料审核状态筛选
+    if (bizMatStatusFilter && item.materialStatus !== bizMatStatusFilter) return false;
+    // 商务角色：正片审核状态筛选
+    if (bizEpStatusFilter && item.episodeStatus !== bizEpStatusFilter) return false;
+    // 商务角色：渠道上线状态筛选
+    if (bizLaunchStatusFilter) {
+      var bizHasMatchingChannel = false;
+      // 收集所有渠道（channelOps + channelLaunchStatus）
+      var bizAllChannels = {};
+      if (item.channelOps && typeof item.channelOps === 'object') {
+        for (var bch in item.channelOps) { bizAllChannels[bch] = true; }
+      }
+      if (item.channelLaunchStatus) {
+        for (var bch2 in item.channelLaunchStatus) { bizAllChannels[bch2] = true; }
+      }
+      for (var bch3 in bizAllChannels) {
+        var bizSt = (item.channelLaunchStatus && item.channelLaunchStatus[bch3]) || '未上线';
+        if (bizSt === bizLaunchStatusFilter) { bizHasMatchingChannel = true; break; }
+      }
+      if (!bizHasMatchingChannel) return false;
+    }
     return true;
   });
 

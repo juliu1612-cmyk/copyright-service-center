@@ -1195,7 +1195,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           <div class="panel-header"><h4>正片视频信息</h4></div>
           <div class="panel-body">
             <div style="background:#E8F4FD;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:#1677FF;">
-              📌 请批量上传剧集视频文件，系统将根据视频标题自动排序（升序），支持拖动调整顺序；上传集数与物料集数一致时方可提交审核
+              📌 请批量上传剧集视频文件，系统将根据视频标题自动排序（升序），支持拖动调整顺序；提交审核时需确保上传集数与物料集数一致
             </div>
             <!-- 批量上传区 -->
             <div id="step2BatchUploadArea" style="margin-bottom:16px;">
@@ -3801,7 +3801,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
     </div>
     <div class="modal-body">
       <div style="background:#E8F4FD;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:#1677FF;">
-        📌 请批量上传剧集视频文件，系统将根据视频标题自动排序（升序），支持拖动调整顺序；上传集数与物料集数一致时方可提交审核
+        📌 请批量上传剧集视频文件，系统将根据视频标题自动排序（升序），支持拖动调整顺序；提交审核时需确保上传集数与物料集数一致
       </div>
       <!-- 批量上传区 -->
       <div id="batchUploadArea" style="margin-bottom:16px;">
@@ -4444,13 +4444,10 @@ function goToEditStep(step) {
 
 function nextEditStep() {
   if (currentEditStep === 1) {
-    // 物料信息页直接进入下一步，无需校验填写完整性
+    // 合集信息编辑页：直接进入下一步，无需校验
     goToEditStep(2);
   } else if (currentEditStep === 2) {
-    // 校验：上传集数需与剧集集数一致
-    var total = parseInt(document.getElementById('step1EditCollCount').value) || 0;
-    if (step2Episodes.length === 0) { alert('请上传剧集视频文件'); return; }
-    if (step2Episodes.length < total) { alert('已上传 ' + step2Episodes.length + ' 集，需上传 ' + total + ' 集方可提交审核'); return; }
+    // 正片视频信息编辑页：直接进入下一步，无需校验上传集数与物料集数是否一致
     goToEditStep(3);
   }
 }
@@ -4855,7 +4852,24 @@ function submitEditReview() {
       exitCollectionEditPage();
     }
   } else {
-    // 完整三步流程
+    // 完整三步流程：校验物料必填项 + 正片集数一致性
+    var firstDate = document.getElementById('step1EditCollFirstDate').value;
+    var shortIntro = document.getElementById('step1MatShortIntro').value.trim();
+    var producerVal = document.getElementById('step1EditCollProducer').value.trim();
+    var tagVals = getMultiSelectValues('step1EditCollTagsDropdown');
+    var channelVals = getMultiSelectValues('step1EditCollChannelDropdown');
+    var typeVal = document.getElementById('step1EditCollType').value;
+    var roundVal = document.getElementById('step1EditCollRound').value;
+    if (!firstDate) { alert('请填写剧集首发时间'); return; }
+    if (!shortIntro) { alert('请填写10字以内剧集简介'); return; }
+    if (tagVals.length === 0) { alert('请选择剧集标签'); return; }
+    if (!producerVal) { alert('请填写制片人真实姓名'); return; }
+    if (channelVals.length === 0) { alert('请选择发行渠道'); return; }
+    if (!typeVal) { alert('请选择剧集类型'); return; }
+    if (!roundVal) { alert('请选择发行轮次'); return; }
+    var total = parseInt(document.getElementById('step1EditCollCount').value) || 0;
+    if (step2Episodes.length === 0) { alert('请上传剧集视频文件'); return; }
+    if (step2Episodes.length < total) { alert('已上传 ' + step2Episodes.length + ' 集，需上传 ' + total + ' 集方可提交审核'); return; }
     if (confirm('确认提交「' + name + '」的物料信息与正片剧集进入审核流程？\n提交后不可修改，请确认信息无误。')) {
       alert('✅ 已提交审核！合集「' + name + '」已进入审核流程。');
       exitCollectionEditPage();

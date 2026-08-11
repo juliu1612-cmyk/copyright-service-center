@@ -787,6 +787,22 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                     <span class="input-suffix">%</span>
                   </div>
                 </div>
+                <div class="form-item" data-col="BJ"><label>真人短剧成本配置比例报告 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">平台提供模板给供应商</div>
+                  <div class="upload-zone" data-upload="step1RealCostReport">
+                    <div class="plus">+</div>
+                    <div class="text">点击或拖拽文件到此上传</div>
+                  </div>
+                  <div class="file-list" id="step1RealCostReportList"></div>
+                </div>
+                <div class="form-item" data-col="BK"><label>动画短剧成本情况报告 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">平台提供模板给供应商</div>
+                  <div class="upload-zone" data-upload="step1AnimeCostReport">
+                    <div class="plus">+</div>
+                    <div class="text">点击或拖拽文件到此上传</div>
+                  </div>
+                  <div class="file-list" id="step1AnimeCostReportList"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -992,14 +1008,21 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </div>
                   <div class="file-list" id="step1SrtFileList"></div>
                 </div>
+                <div class="form-item full" data-col="BI"><label>分销素材 <span style="color:#e74c3c;">*</span></label>
+                  <div class="upload-zone" data-upload="step1DistributionMaterial">
+                    <div class="plus">+</div>
+                    <div class="text">点击或拖拽文件到此上传</div>
+                  </div>
+                  <div class="file-list" id="step1DistributionMaterialList"></div>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- 6. 成本片酬 -->
-          <div class="mat-section-card" id="mat-sec-cost">
+          <!-- 7. 合规文件 -->
+          <div class="mat-section-card" id="mat-sec-compliance">
             <div class="mat-section-title">
-              <div class="sec-icon" style="background:#E8FFEA;color:#00B42A;">💰</div> 成本片酬
+              <div class="sec-icon" style="background:#FFECE8;color:#F53F3F;">📄</div> 合规文件
             </div>
             <div class="mat-section-body">
               <div class="form-row">
@@ -1024,40 +1047,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </div>
                   <div class="file-list" id="step1MaterialScreenshotList"></div>
                 </div>
-                <div class="form-item full" data-col="BI"><label>分销素材 <span style="color:#e74c3c;">*</span></label>
-                  <div class="upload-zone" data-upload="step1DistributionMaterial">
-                    <div class="plus">+</div>
-                    <div class="text">点击或拖拽文件到此上传</div>
-                  </div>
-                  <div class="file-list" id="step1DistributionMaterialList"></div>
-                </div>
-                <div class="form-item" data-col="BJ"><label>真人短剧成本配置比例报告 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">平台提供模板给供应商</div>
-                  <div class="upload-zone" data-upload="step1RealCostReport">
-                    <div class="plus">+</div>
-                    <div class="text">点击或拖拽文件到此上传</div>
-                  </div>
-                  <div class="file-list" id="step1RealCostReportList"></div>
-                </div>
-                <div class="form-item" data-col="BK"><label>动画短剧成本情况报告 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">平台提供模板给供应商</div>
-                  <div class="upload-zone" data-upload="step1AnimeCostReport">
-                    <div class="plus">+</div>
-                    <div class="text">点击或拖拽文件到此上传</div>
-                  </div>
-                  <div class="file-list" id="step1AnimeCostReportList"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 7. 合规文件 -->
-          <div class="mat-section-card" id="mat-sec-compliance">
-            <div class="mat-section-title">
-              <div class="sec-icon" style="background:#FFECE8;color:#F53F3F;">📄</div> 合规文件
-            </div>
-            <div class="mat-section-body">
-              <div class="form-row">
                 <div class="form-item" data-col="BO"><label>制作合同（有或无） <span style="color:#e74c3c;">*</span></label>
                   <div class="form-tip">真人剧除TT外必需；漫剧上支付宝必需</div>
                   <div class="opt-group" data-name="mat-制作合同">
@@ -1187,7 +1176,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <li><a data-target="mat-sec-role">角色资料</a></li>
               <li><a data-target="mat-sec-crew">主创团队</a></li>
               <li><a data-target="mat-sec-material">成片素材</a></li>
-              <li><a data-target="mat-sec-cost">成本片酬</a></li>
               <li><a data-target="mat-sec-compliance">合规文件</a></li>
             </ul>
           </div>
@@ -1332,7 +1320,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
         <div class="detail-tab" onclick="switchDetailTab('detail-tab-role',this)">角色资料</div>
         <div class="detail-tab" onclick="switchDetailTab('detail-tab-crew',this)">主创团队</div>
         <div class="detail-tab" onclick="switchDetailTab('detail-tab-material',this)">成片素材</div>
-        <div class="detail-tab" onclick="switchDetailTab('detail-tab-cost',this)">成本片酬</div>
         <div class="detail-tab" onclick="switchDetailTab('detail-tab-compliance',this)">合规文件</div>
       </div>
 
@@ -1441,6 +1428,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item"><label>剧集制作成本</label><input type="text" id="detailMatCost" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>演员总片酬占比</label><input type="text" id="detailMatActorRatio" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>主要演员片酬占比</label><input type="text" id="detailMatMainActorRatio" disabled style="background:#f5f5f5;color:#999;"></div>
+              <div class="form-item full"><label>真人短剧成本配置比例报告</label><div id="detailMatRealCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>动画短剧成本情况报告</label><div id="detailMatAnimeCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
             </div>
           </div>
         </div>
@@ -1507,22 +1496,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item"><label>AI具体集数</label><input type="text" id="detailMatAIEpisodes" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>净版无字幕成片</label><div id="detailMatCleanVideo" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>SRT 字幕文件</label><div id="detailMatSrtFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ===== Tab: 成本片酬 ===== -->
-      <div id="detail-tab-cost" style="display:none;">
-        <div class="panel">
-          <div class="panel-header"><h4>成本片酬</h4></div>
-          <div class="panel-body" style="padding:16px;">
-            <div class="form-row">
-              <div class="form-item full"><label>4张片段剪辑工程文件</label><div id="detailMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>物料截图文件</label><div id="detailMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>分销素材</label><div id="detailMatDistributionMaterial" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>真人短剧成本配置比例报告</label><div id="detailMatRealCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>动画短剧成本情况报告</label><div id="detailMatAnimeCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
             </div>
           </div>
         </div>
@@ -1534,6 +1508,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           <div class="panel-header"><h4>合规文件</h4></div>
           <div class="panel-body" style="padding:16px;">
             <div class="form-row">
+              <div class="form-item full"><label>4张片段剪辑工程文件</label><div id="detailMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>物料截图文件</label><div id="detailMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item"><label>制作合同</label><input type="text" id="detailMatContract" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>片酬承诺书</label><div id="detailMatSalaryCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>版权文件</label><div id="detailMatCopyrightFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -2499,7 +2475,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
         <div class="detail-tab" onclick="switchPltDetailTab('plt-detail-tab-role',this)">角色资料</div>
         <div class="detail-tab" onclick="switchPltDetailTab('plt-detail-tab-crew',this)">主创团队</div>
         <div class="detail-tab" onclick="switchPltDetailTab('plt-detail-tab-material',this)">成片素材</div>
-        <div class="detail-tab" onclick="switchPltDetailTab('plt-detail-tab-cost',this)">成本片酬</div>
         <div class="detail-tab" onclick="switchPltDetailTab('plt-detail-tab-compliance',this)">合规文件</div>
       </div>
 
@@ -2614,6 +2589,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item"><label>剧集制作成本</label><input type="text" id="pltDetailMatCost" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>演员总片酬占比</label><input type="text" id="pltDetailMatActorRatio" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>主要演员片酬占比</label><input type="text" id="pltDetailMatMainActorRatio" disabled style="background:#f5f5f5;color:#999;"></div>
+              <div class="form-item full"><label>真人短剧成本配置比例报告</label><div id="pltDetailMatRealCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>动画短剧成本情况报告</label><div id="pltDetailMatAnimeCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
             </div>
           </div>
         </div>
@@ -2680,22 +2657,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item"><label>AI具体集数</label><input type="text" id="pltDetailMatAIEpisodes" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>净版无字幕成片</label><div id="pltDetailMatCleanVideo" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>SRT 字幕文件</label><div id="pltDetailMatSrtFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab: 成本片酬 -->
-      <div id="plt-detail-tab-cost" style="display:none;">
-        <div class="panel">
-          <div class="panel-header"><h4>成本片酬</h4></div>
-          <div class="panel-body" style="padding:16px;">
-            <div class="form-row">
-              <div class="form-item full"><label>4张片段剪辑工程文件</label><div id="pltDetailMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>物料截图文件</label><div id="pltDetailMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>分销素材</label><div id="pltDetailMatDistributionMaterial" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>真人短剧成本配置比例报告</label><div id="pltDetailMatRealCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>动画短剧成本情况报告</label><div id="pltDetailMatAnimeCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
             </div>
           </div>
         </div>
@@ -2707,6 +2669,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           <div class="panel-header"><h4>合规文件</h4></div>
           <div class="panel-body" style="padding:16px;">
             <div class="form-row">
+              <div class="form-item full"><label>4张片段剪辑工程文件</label><div id="pltDetailMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>物料截图文件</label><div id="pltDetailMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item"><label>制作合同</label><input type="text" id="pltDetailMatContract" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>片酬承诺书</label><div id="pltDetailMatSalaryCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>版权文件</label><div id="pltDetailMatCopyrightFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -2799,6 +2763,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-item"><label>剧集制作成本</label><input type="text" id="pltViewMatCost" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>演员总片酬占比</label><input type="text" id="pltViewMatActorRatio" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>主要演员片酬占比</label><input type="text" id="pltViewMatMainActorRatio" disabled style="background:#f5f5f5;color:#999;"></div>
+                  <div class="form-item full"><label>真人短剧成本配置比例报告</label><div id="pltViewMatRealCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>动画短剧成本情况报告</label><div id="pltViewMatAnimeCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                 </div>
               </div>
             </div>
@@ -2859,20 +2825,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-item"><label>AI具体集数</label><input type="text" id="pltViewMatAIEpisodes" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>净版无字幕成片</label><div id="pltViewMatCleanVideo" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>SRT 字幕文件</label><div id="pltViewMatSrtFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 6. 成本片酬 -->
-            <div class="mat-section-card" id="pltViewMat-sec-cost">
-              <div class="mat-section-title"><div class="sec-icon" style="background:#E8FFEA;color:#00B42A;">💰</div> 成本片酬</div>
-              <div class="mat-section-body">
-                <div class="form-row">
-                  <div class="form-item full"><label>4张片段剪辑工程文件</label><div id="pltViewMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>物料截图文件</label><div id="pltViewMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>分销素材</label><div id="pltViewMatDistributionMaterial" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>真人短剧成本配置比例报告</label><div id="pltViewMatRealCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>动画短剧成本情况报告</label><div id="pltViewMatAnimeCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                 </div>
               </div>
             </div>
@@ -2882,6 +2835,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="mat-section-title"><div class="sec-icon" style="background:#FFECE8;color:#F53F3F;">📄</div> 合规文件</div>
               <div class="mat-section-body">
                 <div class="form-row">
+                  <div class="form-item full"><label>4张片段剪辑工程文件</label><div id="pltViewMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>物料截图文件</label><div id="pltViewMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item"><label>制作合同</label><input type="text" id="pltViewMatContract" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>片酬承诺书</label><div id="pltViewMatSalaryCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>版权文件</label><div id="pltViewMatCopyrightFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -3001,6 +2956,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-item"><label>剧集制作成本</label><input type="text" id="crMatCost" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>演员总片酬占比</label><input type="text" id="crMatActorRatio" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>主要演员片酬占比</label><input type="text" id="crMatMainActorRatio" disabled style="background:#f5f5f5;color:#999;"></div>
+                  <div class="form-item full"><label>真人短剧成本配置比例报告</label><div id="crMatRealCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>动画短剧成本情况报告</label><div id="crMatAnimeCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                 </div>
               </div>
             </div>
@@ -3061,20 +3018,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-item"><label>AI具体集数</label><input type="text" id="crMatAIEpisodes" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>净版无字幕成片</label><div id="crMatCleanVideo" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>SRT 字幕文件</label><div id="crMatSrtFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 6. 成本片酬 -->
-            <div class="mat-section-card" id="crMat-sec-cost">
-              <div class="mat-section-title"><div class="sec-icon" style="background:#E8FFEA;color:#00B42A;">💰</div> 成本片酬</div>
-              <div class="mat-section-body">
-                <div class="form-row">
-                  <div class="form-item full"><label>4张片段剪辑工程文件</label><div id="crMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>物料截图文件</label><div id="crMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>分销素材</label><div id="crMatDistributionMaterial" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>真人短剧成本配置比例报告</label><div id="crMatRealCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>动画短剧成本情况报告</label><div id="crMatAnimeCostReport" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                 </div>
               </div>
             </div>
@@ -3084,6 +3028,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="mat-section-title"><div class="sec-icon" style="background:#FFECE8;color:#F53F3F;">📄</div> 合规文件</div>
               <div class="mat-section-body">
                 <div class="form-row">
+                  <div class="form-item full"><label>4张片段剪辑工程文件</label><div id="crMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>物料截图文件</label><div id="crMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item"><label>制作合同</label><input type="text" id="crMatContract" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>片酬承诺书</label><div id="crMatSalaryCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>版权文件</label><div id="crMatCopyrightFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -3129,7 +3075,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
         <button class="qn-item" data-target="crMat-sec-role" onclick="scrollToCrMatSection('crMat-sec-role', this)">角色资料</button>
         <button class="qn-item" data-target="crMat-sec-crew" onclick="scrollToCrMatSection('crMat-sec-crew', this)">主创团队</button>
         <button class="qn-item" data-target="crMat-sec-material" onclick="scrollToCrMatSection('crMat-sec-material', this)">成片素材</button>
-        <button class="qn-item" data-target="crMat-sec-cost" onclick="scrollToCrMatSection('crMat-sec-cost', this)">成本片酬</button>
         <button class="qn-item" data-target="crMat-sec-compliance" onclick="scrollToCrMatSection('crMat-sec-compliance', this)">合规文件</button>
       </div>
     </div>
@@ -4180,7 +4125,7 @@ function updateMatFieldVisibility() {
   // 区块显隐
   var sectionMap = {
     'mat-sec-basic': null, 'mat-sec-script': null, 'mat-sec-record': null, 'mat-sec-role': null,
-    'mat-sec-crew': null, 'mat-sec-material': null, 'mat-sec-cost': null,
+    'mat-sec-crew': null, 'mat-sec-material': null,
     'mat-sec-compliance': null
   };
   Object.keys(sectionMap).forEach(function(secId) {
@@ -4718,6 +4663,8 @@ function fillStep3Summary() {
   html += s3Item('剧集制作成本', dash(val('step1MatCost')));
   html += s3Item('演员总片酬占比', dash(val('step1MatActorRatio') ? val('step1MatActorRatio') + '%' : ''));
   html += s3Item('主要演员片酬占比', dash(val('step1MatMainActorRatio') ? val('step1MatMainActorRatio') + '%' : ''));
+  html += s3ItemFull('真人短剧成本配置比例报告', fileNames('step1RealCostReport'));
+  html += s3ItemFull('动画短剧成本情况报告', fileNames('step1AnimeCostReport'));
   html += '</div></div></div>';
 
   // 3. 角色资料
@@ -4765,19 +4712,13 @@ function fillStep3Summary() {
   html += s3Item('AI具体集数', dash(val('step1MatAIEpisodes')));
   html += s3ItemFull('净版无字幕成片', fileNames('step1CleanVideo'));
   html += s3ItemFull('SRT 字幕文件', fileNames('step1SrtFile'));
-  html += '</div></div></div>';
-
-  // 6. 成本片酬
-  html += '<div class="mat-section-card" style="margin-bottom:12px;"><div class="mat-section-title"><div class="sec-icon" style="background:#E8FFEA;color:#00B42A;">💰</div> 成本片酬</div><div class="mat-section-body"><div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;">';
-  html += s3ItemFull('4张片段剪辑工程文件', fileNames('step1ProjectFile'));
-  html += s3ItemFull('物料截图文件', fileNames('step1MaterialScreenshot'));
   html += s3ItemFull('分销素材', fileNames('step1DistributionMaterial'));
-  html += s3ItemFull('真人短剧成本配置比例报告', fileNames('step1RealCostReport'));
-  html += s3ItemFull('动画短剧成本情况报告', fileNames('step1AnimeCostReport'));
   html += '</div></div></div>';
 
   // 7. 合规文件
   html += '<div class="mat-section-card" style="margin-bottom:0;"><div class="mat-section-title"><div class="sec-icon" style="background:#FFECE8;color:#F53F3F;">📄</div> 合规文件</div><div class="mat-section-body"><div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;">';
+  html += s3ItemFull('4张片段剪辑工程文件', fileNames('step1ProjectFile'));
+  html += s3ItemFull('物料截图文件', fileNames('step1MaterialScreenshot'));
   var s3ContractType = getOptTagVal('mat-制作合同');
   html += s3Item('制作合同', dash(s3ContractType));
   html += s3ItemFull('片酬承诺书', fileNames('step1SalaryCommitment'));
@@ -4944,7 +4885,7 @@ function submitEditReview() {
 
 // Detail page tab switching
 function switchDetailTab(tabId, el) {
-  var tabIds = ['detail-tab-episodes', 'detail-tab-basic', 'detail-tab-script', 'detail-tab-record', 'detail-tab-role', 'detail-tab-crew', 'detail-tab-material', 'detail-tab-cost', 'detail-tab-compliance'];
+  var tabIds = ['detail-tab-episodes', 'detail-tab-basic', 'detail-tab-script', 'detail-tab-record', 'detail-tab-role', 'detail-tab-crew', 'detail-tab-material', 'detail-tab-compliance'];
   tabIds.forEach(function(id) {
     var node = document.getElementById(id);
     if (node) node.style.display = (id === tabId) ? '' : 'none';
@@ -4975,7 +4916,7 @@ function switchPlatformPage(pageId, el) {
 var pltDetailTargetId = '';
 
 function switchPltDetailTab(tabId, el) {
-  var tabIds = ['plt-detail-tab-episodes', 'plt-detail-tab-basic', 'plt-detail-tab-script', 'plt-detail-tab-record', 'plt-detail-tab-role', 'plt-detail-tab-crew', 'plt-detail-tab-material', 'plt-detail-tab-cost', 'plt-detail-tab-compliance'];
+  var tabIds = ['plt-detail-tab-episodes', 'plt-detail-tab-basic', 'plt-detail-tab-script', 'plt-detail-tab-record', 'plt-detail-tab-role', 'plt-detail-tab-crew', 'plt-detail-tab-material', 'plt-detail-tab-compliance'];
   tabIds.forEach(function(id) {
     var node = document.getElementById(id);
     if (node) node.style.display = (id === tabId) ? '' : 'none';
@@ -5074,6 +5015,8 @@ function renderPltDetailMaterial(id, item) {
   // 3. 角色资料
   setVal('pltDetailMatActorRatio', mat.actorRatio);
   setVal('pltDetailMatMainActorRatio', mat.mainActorRatio);
+  setFileDisplay('pltDetailMatRealCostReport', mat.realCostReport);
+  setFileDisplay('pltDetailMatAnimeCostReport', mat.animeCostReport);
   setVal('pltDetailMatMaleActorName', mat.maleActorName);
   setVal('pltDetailMatMaleRoleName', mat.maleRoleName);
   setVal('pltDetailMatMaleIntro', mat.maleIntro);
@@ -5106,13 +5049,10 @@ function renderPltDetailMaterial(id, item) {
   setVal('pltDetailMatAIEpisodes', mat.aiEpisodes);
   setFileDisplay('pltDetailMatCleanVideo', mat.cleanVideo);
   setFileDisplay('pltDetailMatSrtFile', mat.srtFile);
-  // 6. 成本片酬
+  setFileDisplay('pltDetailMatDistributionMaterial', mat.distributionMaterial);
+  // 7. 合规文件
   setFileDisplay('pltDetailMatProjectFile', mat.projectFile);
   setFileDisplay('pltDetailMatMaterialScreenshot', mat.materialScreenshot);
-  setFileDisplay('pltDetailMatDistributionMaterial', mat.distributionMaterial);
-  setFileDisplay('pltDetailMatRealCostReport', mat.realCostReport);
-  setFileDisplay('pltDetailMatAnimeCostReport', mat.animeCostReport);
-  // 7. 合规文件
   setVal('pltDetailMatContract', mat.contract);
   setFileDisplay('pltDetailMatSalaryCommitment', mat.salaryCommitment);
   setFileDisplay('pltDetailMatCopyrightFile', mat.copyrightFile);
@@ -5178,6 +5118,8 @@ function renderSupDetailMaterial(collId, item) {
   // 3. 角色资料
   setVal('detailMatActorRatio', mat.actorRatio);
   setVal('detailMatMainActorRatio', mat.mainActorRatio);
+  setFileDisplay('detailMatRealCostReport', mat.realCostReport);
+  setFileDisplay('detailMatAnimeCostReport', mat.animeCostReport);
   setVal('detailMatMaleActorName', mat.maleActorName);
   setVal('detailMatMaleRoleName', mat.maleRoleName);
   setVal('detailMatMaleIntro', mat.maleIntro);
@@ -5210,13 +5152,10 @@ function renderSupDetailMaterial(collId, item) {
   setVal('detailMatAIEpisodes', mat.aiEpisodes);
   setFileDisplay('detailMatCleanVideo', mat.cleanVideo);
   setFileDisplay('detailMatSrtFile', mat.srtFile);
-  // 6. 成本片酬
+  setFileDisplay('detailMatDistributionMaterial', mat.distributionMaterial);
+  // 7. 合规文件
   setFileDisplay('detailMatProjectFile', mat.projectFile);
   setFileDisplay('detailMatMaterialScreenshot', mat.materialScreenshot);
-  setFileDisplay('detailMatDistributionMaterial', mat.distributionMaterial);
-  setFileDisplay('detailMatRealCostReport', mat.realCostReport);
-  setFileDisplay('detailMatAnimeCostReport', mat.animeCostReport);
-  // 7. 合规文件
   setVal('detailMatContract', mat.contract);
   setFileDisplay('detailMatSalaryCommitment', mat.salaryCommitment);
   setFileDisplay('detailMatCopyrightFile', mat.copyrightFile);
@@ -5347,6 +5286,8 @@ function openPltVersionView() {
   // 3. 角色资料
   setVal('pltViewMatActorRatio', mat.actorRatio);
   setVal('pltViewMatMainActorRatio', mat.mainActorRatio);
+  setFileDisplay('pltViewMatRealCostReport', mat.realCostReport);
+  setFileDisplay('pltViewMatAnimeCostReport', mat.animeCostReport);
   setVal('pltViewMatMaleActorName', mat.maleActorName);
   setVal('pltViewMatMaleRoleName', mat.maleRoleName);
   setVal('pltViewMatMaleIntro', mat.maleIntro);
@@ -5379,13 +5320,10 @@ function openPltVersionView() {
   setVal('pltViewMatAIEpisodes', mat.aiEpisodes);
   setFileDisplay('pltViewMatCleanVideo', mat.cleanVideo);
   setFileDisplay('pltViewMatSrtFile', mat.srtFile);
-  // 6. 成本片酬
+  setFileDisplay('pltViewMatDistributionMaterial', mat.distributionMaterial);
+  // 7. 合规文件
   setFileDisplay('pltViewMatProjectFile', mat.projectFile);
   setFileDisplay('pltViewMatMaterialScreenshot', mat.materialScreenshot);
-  setFileDisplay('pltViewMatDistributionMaterial', mat.distributionMaterial);
-  setFileDisplay('pltViewMatRealCostReport', mat.realCostReport);
-  setFileDisplay('pltViewMatAnimeCostReport', mat.animeCostReport);
-  // 7. 合规文件
   setVal('pltViewMatContract', mat.contract);
   setFileDisplay('pltViewMatSalaryCommitment', mat.salaryCommitment);
   setFileDisplay('pltViewMatCopyrightFile', mat.copyrightFile);
@@ -8338,6 +8276,8 @@ function openContentReview(id, type) {
     // 3. 角色资料
     setVal('crMatActorRatio', mat.actorRatio);
     setVal('crMatMainActorRatio', mat.mainActorRatio);
+    setFileDisplay('crMatRealCostReport', mat.realCostReport);
+    setFileDisplay('crMatAnimeCostReport', mat.animeCostReport);
     setVal('crMatMaleActorName', mat.maleActorName);
     setVal('crMatMaleRoleName', mat.maleRoleName);
     setVal('crMatMaleIntro', mat.maleIntro);
@@ -8370,13 +8310,10 @@ function openContentReview(id, type) {
     setVal('crMatAIEpisodes', mat.aiEpisodes);
     setFileDisplay('crMatCleanVideo', mat.cleanVideo);
     setFileDisplay('crMatSrtFile', mat.srtFile);
-    // 6. 成本片酬
+    setFileDisplay('crMatDistributionMaterial', mat.distributionMaterial);
+    // 7. 合规文件
     setFileDisplay('crMatProjectFile', mat.projectFile);
     setFileDisplay('crMatMaterialScreenshot', mat.materialScreenshot);
-    setFileDisplay('crMatDistributionMaterial', mat.distributionMaterial);
-    setFileDisplay('crMatRealCostReport', mat.realCostReport);
-    setFileDisplay('crMatAnimeCostReport', mat.animeCostReport);
-    // 7. 合规文件
     setVal('crMatContract', mat.contract);
     setFileDisplay('crMatSalaryCommitment', mat.salaryCommitment);
     setFileDisplay('crMatCopyrightFile', mat.copyrightFile);
@@ -8693,7 +8630,7 @@ function scrollToCrMatSection(secId, btn) {
 
 function initCrMatScrollSpy() {
   if (crMatScrollListener) { window.removeEventListener('scroll', crMatScrollListener); }
-  var sectionIds = ['crMat-sec-basic','crMat-sec-script','crMat-sec-record','crMat-sec-role','crMat-sec-crew','crMat-sec-material','crMat-sec-cost','crMat-sec-compliance'];
+  var sectionIds = ['crMat-sec-basic','crMat-sec-script','crMat-sec-record','crMat-sec-role','crMat-sec-crew','crMat-sec-material','crMat-sec-compliance'];
   crMatScrollListener = function() {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     var currentId = sectionIds[0];

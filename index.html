@@ -4921,6 +4921,8 @@ function switchDetailTab(tabId, el) {
 }
 
 function switchPlatformPage(pageId, el) {
+  // 离开物料审核页时清理滚动监听
+  if (crMatScrollListener) { window.removeEventListener('scroll', crMatScrollListener); crMatScrollListener = null; }
   document.querySelectorAll('#platformLayout .page').forEach(p => p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   document.querySelectorAll('#platformLayout .nav-item').forEach(i => i.classList.remove('active'));
@@ -8608,38 +8610,33 @@ var crMatScrollListener = null;
 function scrollToCrMatSection(secId, btn) {
   var el = document.getElementById(secId);
   if (!el) return;
-  var panelBody = document.querySelector('#plt-review-material .review-material-panel .panel-body');
-  var offsetTop = 0;
-  var node = el;
-  while (node && node !== panelBody) { offsetTop += node.offsetTop; node = node.offsetParent; }
-  if (panelBody) {
-    panelBody.scrollTop = offsetTop - 12;
-  } else {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  var rect = el.getBoundingClientRect();
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  var targetTop = rect.top + scrollTop - 80;
+  window.scrollTo({ top: targetTop, behavior: 'smooth' });
   // 更新高亮
   document.querySelectorAll('#reviewQuickNav .qn-item').forEach(function(b) { b.classList.remove('active'); });
   if (btn) btn.classList.add('active');
 }
 
 function initCrMatScrollSpy() {
-  var panelBody = document.querySelector('#plt-review-material .review-material-panel .panel-body');
-  if (!panelBody) return;
-  if (crMatScrollListener) { panelBody.removeEventListener('scroll', crMatScrollListener); }
+  if (crMatScrollListener) { window.removeEventListener('scroll', crMatScrollListener); }
   var sectionIds = ['crMat-sec-basic','crMat-sec-script','crMat-sec-record','crMat-sec-role','crMat-sec-crew','crMat-sec-material','crMat-sec-cost','crMat-sec-compliance'];
   crMatScrollListener = function() {
-    var scrollTop = panelBody.scrollTop;
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     var currentId = sectionIds[0];
     for (var i = 0; i < sectionIds.length; i++) {
       var el = document.getElementById(sectionIds[i]);
       if (!el) continue;
-      if (el.offsetTop - 60 <= scrollTop) { currentId = sectionIds[i]; }
+      var rect = el.getBoundingClientRect();
+      var elTop = rect.top + scrollTop;
+      if (elTop - 100 <= scrollTop) { currentId = sectionIds[i]; }
     }
     document.querySelectorAll('#reviewQuickNav .qn-item').forEach(function(b) {
       b.classList.toggle('active', b.getAttribute('data-target') === currentId);
     });
   };
-  panelBody.addEventListener('scroll', crMatScrollListener);
+  window.addEventListener('scroll', crMatScrollListener);
   crMatScrollListener();
 }
 

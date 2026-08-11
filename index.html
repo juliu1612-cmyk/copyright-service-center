@@ -1981,7 +1981,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
       <!-- 筛选栏 -->
       <div class="panel">
         <div class="panel-body">
-          <div class="form-row form-row-3" style="margin-bottom:0;">
+          <div class="form-row form-row-4" style="margin-bottom:0;">
             <div class="form-item">
               <label>供应商名称</label>
               <select id="evalFilterSupplier" onchange="filterEvalList()">
@@ -1994,6 +1994,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             <div class="form-item">
               <label>合集名称搜索</label>
               <input type="text" id="evalFilterDrama" placeholder="请输入合集名称关键词" oninput="filterEvalList()">
+            </div>
+            <div class="form-item">
+              <label>综合结果</label>
+              <select id="evalFilterOverall" onchange="filterEvalList()">
+                <option value="">全部</option>
+                <option value="pass">通过</option>
+                <option value="reject">驳回</option>
+                <option value="pending">待审核</option>
+              </select>
             </div>
             <div class="form-item">
               <label>最近提交时间</label>
@@ -9299,15 +9308,19 @@ function getStatusDisplay(review) {
 }
 
 function getOverallResult(item) {
+  var s = getOverallStatus(item);
+  if (s === 'pass') return '<span class="tag tag-pass">通过</span>';
+  if (s === 'reject') return '<span class="tag tag-reject">驳回</span>';
+  return '<span style="color:var(--text-tertiary);">--</span>';
+}
+
+function getOverallStatus(item) {
   var statuses = [item.reviewA.status, item.reviewB.status, item.reviewC.status];
   var allPass = statuses.every(function(s) { return s === 'pass'; });
   var hasPending = statuses.some(function(s) { return s === 'pending'; });
-  var hasReject = statuses.some(function(s) { return s === 'reject'; });
-
-  if (allPass) return '<span class="tag tag-pass">通过</span>';
-  if (hasPending) return '<span style="color:var(--text-tertiary);">--</span>';
-  if (hasReject) return '<span class="tag tag-reject">驳回</span>';
-  return '<span style="color:var(--text-tertiary);">--</span>';
+  if (allPass) return 'pass';
+  if (hasPending) return 'pending';
+  return 'reject';
 }
 
 function hasActions(item) {
@@ -9323,12 +9336,14 @@ function renderEvalList() {
 
   var supplierFilter = document.getElementById('evalFilterSupplier').value;
   var dramaFilter = document.getElementById('evalFilterDrama').value.trim().toLowerCase();
+  var overallFilter = document.getElementById('evalFilterOverall').value;
   var dateFrom = document.getElementById('evalFilterDateFrom').value;
   var dateTo = document.getElementById('evalFilterDateTo').value;
 
   var filtered = evaluationData.filter(function(item) {
     if (supplierFilter && item.supplier !== supplierFilter) return false;
     if (dramaFilter && item.dramaName.toLowerCase().indexOf(dramaFilter) === -1) return false;
+    if (overallFilter && getOverallStatus(item) !== overallFilter) return false;
     if (dateFrom && item.submitTime < dateFrom) return false;
     if (dateTo && item.submitTime > dateTo + ' 23:59') return false;
     return true;

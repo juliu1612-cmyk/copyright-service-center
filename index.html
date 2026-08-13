@@ -905,54 +905,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </div>
                   <div class="file-list" id="step1AnimeFemalePhotoList"></div>
                 </div>
-
-                <div class="form-item full subgroup-banner" data-subgroup-cols="CA,CB,CC,CD" style="background:#FFF7E6;color:#D46B08;">导演信息</div>
-                <div class="form-item" data-col="CA"><label>导演姓名 <span style="color:#e74c3c;">*</span></label>
-                  <input type="text" id="step1MatDirectorName" placeholder="请输入导演姓名">
-                </div>
-                <div class="form-item" data-col="CB"><label>导演性别 <span style="color:#e74c3c;">*</span></label>
-                  <select id="step1MatDirectorGender" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;background:#fff;">
-                    <option value="">请选择</option>
-                    <option value="男">男</option>
-                    <option value="女">女</option>
-                  </select>
-                </div>
-                <div class="form-item full" data-col="CC"><label>导演照片 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">正面、不遮挡五官，500x500像素，JPG/PNG格式</div>
-                  <div class="upload-zone" data-upload="step1DirectorInfoPhoto">
-                    <div class="plus">+</div>
-                    <div class="text">点击或拖拽文件到此上传</div>
-                    <div class="sub">支持 JPG / PNG，单个文件不超过 10MB</div>
-                  </div>
-                  <div class="file-list" id="step1DirectorInfoPhotoList"></div>
-                </div>
-                <div class="form-item full" data-col="CD"><label>导演简介</label>
-                  <textarea id="step1MatDirectorIntro" rows="2" placeholder="非必填" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
-                </div>
-
-                <div class="form-item full subgroup-banner" data-subgroup-cols="CE,CF,CG,CH" style="background:#FFF7E6;color:#D46B08;">编剧信息</div>
-                <div class="form-item" data-col="CE"><label>编剧姓名 <span style="color:#e74c3c;">*</span></label>
-                  <input type="text" id="step1MatScreenwriterName" placeholder="请输入编剧姓名">
-                </div>
-                <div class="form-item" data-col="CF"><label>编剧性别 <span style="color:#e74c3c;">*</span></label>
-                  <select id="step1MatScreenwriterGender" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;background:#fff;">
-                    <option value="">请选择</option>
-                    <option value="男">男</option>
-                    <option value="女">女</option>
-                  </select>
-                </div>
-                <div class="form-item full" data-col="CG"><label>编剧照片 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">正面、不遮挡五官，500x500像素，JPG/PNG格式</div>
-                  <div class="upload-zone" data-upload="step1ScreenwriterInfoPhoto">
-                    <div class="plus">+</div>
-                    <div class="text">点击或拖拽文件到此上传</div>
-                    <div class="sub">支持 JPG / PNG，单个文件不超过 10MB</div>
-                  </div>
-                  <div class="file-list" id="step1ScreenwriterInfoPhotoList"></div>
-                </div>
-                <div class="form-item full" data-col="CH"><label>编剧简介</label>
-                  <textarea id="step1MatScreenwriterIntro" rows="2" placeholder="非必填" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
-                </div>
               </div>
             </div>
           </div>
@@ -1508,16 +1460,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item"><label>动漫女主角名</label><input type="text" id="detailMatAnimeFemaleName" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>动漫男主简介</label><textarea id="detailMatAnimeMaleIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
               <div class="form-item full"><label>动漫女主简介</label><textarea id="detailMatAnimeFemaleIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
-              <div class="form-item full subgroup-banner" style="background:#FFF7E6;color:#D46B08;">导演信息</div>
-              <div class="form-item"><label>导演姓名</label><input type="text" id="detailMatDirectorName" disabled style="background:#f5f5f5;color:#999;"></div>
-              <div class="form-item"><label>导演性别</label><input type="text" id="detailMatDirectorGender" disabled style="background:#f5f5f5;color:#999;"></div>
-              <div class="form-item full"><label>导演照片</label><div id="detailMatDirectorInfoPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>导演简介</label><textarea id="detailMatDirectorIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
-              <div class="form-item full subgroup-banner" style="background:#FFF7E6;color:#D46B08;">编剧信息</div>
-              <div class="form-item"><label>编剧姓名</label><input type="text" id="detailMatScreenwriterName" disabled style="background:#f5f5f5;color:#999;"></div>
-              <div class="form-item"><label>编剧性别</label><input type="text" id="detailMatScreenwriterGender" disabled style="background:#f5f5f5;color:#999;"></div>
-              <div class="form-item full"><label>编剧照片</label><div id="detailMatScreenwriterInfoPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>编剧简介</label><textarea id="detailMatScreenwriterIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
             </div>
           </div>
         </div>
@@ -2679,16 +2621,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item"><label>动漫女主角名</label><input type="text" id="pltDetailMatAnimeFemaleName" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>动漫男主简介</label><textarea id="pltDetailMatAnimeMaleIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
               <div class="form-item full"><label>动漫女主简介</label><textarea id="pltDetailMatAnimeFemaleIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
-              <div class="form-item full subgroup-banner" style="background:#FFF7E6;color:#D46B08;">导演信息</div>
-              <div class="form-item"><label>导演姓名</label><input type="text" id="pltDetailMatDirectorName" disabled style="background:#f5f5f5;color:#999;"></div>
-              <div class="form-item"><label>导演性别</label><input type="text" id="pltDetailMatDirectorGender" disabled style="background:#f5f5f5;color:#999;"></div>
-              <div class="form-item full"><label>导演照片</label><div id="pltDetailMatDirectorInfoPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>导演简介</label><textarea id="pltDetailMatDirectorIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
-              <div class="form-item full subgroup-banner" style="background:#FFF7E6;color:#D46B08;">编剧信息</div>
-              <div class="form-item"><label>编剧姓名</label><input type="text" id="pltDetailMatScreenwriterName" disabled style="background:#f5f5f5;color:#999;"></div>
-              <div class="form-item"><label>编剧性别</label><input type="text" id="pltDetailMatScreenwriterGender" disabled style="background:#f5f5f5;color:#999;"></div>
-              <div class="form-item full"><label>编剧照片</label><div id="pltDetailMatScreenwriterInfoPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>编剧简介</label><textarea id="pltDetailMatScreenwriterIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
             </div>
           </div>
         </div>
@@ -2861,16 +2793,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-item"><label>动漫女主角名</label><input type="text" id="pltViewMatAnimeFemaleName" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>动漫男主简介</label><textarea id="pltViewMatAnimeMaleIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
                   <div class="form-item full"><label>动漫女主简介</label><textarea id="pltViewMatAnimeFemaleIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
-                  <div class="form-item full subgroup-banner" style="background:#FFF7E6;color:#D46B08;">导演信息</div>
-                  <div class="form-item"><label>导演姓名</label><input type="text" id="pltViewMatDirectorName" disabled style="background:#f5f5f5;color:#999;"></div>
-                  <div class="form-item"><label>导演性别</label><input type="text" id="pltViewMatDirectorGender" disabled style="background:#f5f5f5;color:#999;"></div>
-                  <div class="form-item full"><label>导演照片</label><div id="pltViewMatDirectorInfoPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>导演简介</label><textarea id="pltViewMatDirectorIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
-                  <div class="form-item full subgroup-banner" style="background:#FFF7E6;color:#D46B08;">编剧信息</div>
-                  <div class="form-item"><label>编剧姓名</label><input type="text" id="pltViewMatScreenwriterName" disabled style="background:#f5f5f5;color:#999;"></div>
-                  <div class="form-item"><label>编剧性别</label><input type="text" id="pltViewMatScreenwriterGender" disabled style="background:#f5f5f5;color:#999;"></div>
-                  <div class="form-item full"><label>编剧照片</label><div id="pltViewMatScreenwriterInfoPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>编剧简介</label><textarea id="pltViewMatScreenwriterIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
                 </div>
               </div>
             </div>
@@ -3064,16 +2986,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-item"><label>动漫女主角名</label><input type="text" id="crMatAnimeFemaleName" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>动漫男主简介</label><textarea id="crMatAnimeMaleIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
                   <div class="form-item full"><label>动漫女主简介</label><textarea id="crMatAnimeFemaleIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
-                  <div class="form-item full subgroup-banner" style="background:#FFF7E6;color:#D46B08;">导演信息</div>
-                  <div class="form-item"><label>导演姓名</label><input type="text" id="crMatDirectorName" disabled style="background:#f5f5f5;color:#999;"></div>
-                  <div class="form-item"><label>导演性别</label><input type="text" id="crMatDirectorGender" disabled style="background:#f5f5f5;color:#999;"></div>
-                  <div class="form-item full"><label>导演照片</label><div id="crMatDirectorInfoPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>导演简介</label><textarea id="crMatDirectorIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
-                  <div class="form-item full subgroup-banner" style="background:#FFF7E6;color:#D46B08;">编剧信息</div>
-                  <div class="form-item"><label>编剧姓名</label><input type="text" id="crMatScreenwriterName" disabled style="background:#f5f5f5;color:#999;"></div>
-                  <div class="form-item"><label>编剧性别</label><input type="text" id="crMatScreenwriterGender" disabled style="background:#f5f5f5;color:#999;"></div>
-                  <div class="form-item full"><label>编剧照片</label><div id="crMatScreenwriterInfoPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>编剧简介</label><textarea id="crMatScreenwriterIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
                 </div>
               </div>
             </div>
@@ -4786,16 +4698,6 @@ function fillStep3Summary() {
   html += s3ItemFull('动漫女主简介', dash(val('step1MatAnimeFemaleIntro')));
   html += s3ItemFull('动漫男主角色照片', fileNames('step1AnimeMalePhoto'));
   html += s3ItemFull('动漫女主角色图', fileNames('step1AnimeFemalePhoto'));
-  html += s3SubBanner('导演信息');
-  html += s3Item('导演姓名', dash(val('step1MatDirectorName')));
-  html += s3Item('导演性别', dash(document.getElementById('step1MatDirectorGender') ? document.getElementById('step1MatDirectorGender').value : ''));
-  html += s3ItemFull('导演照片', fileNames('step1DirectorInfoPhoto'));
-  html += s3ItemFull('导演简介', dash(val('step1MatDirectorIntro')));
-  html += s3SubBanner('编剧信息');
-  html += s3Item('编剧姓名', dash(val('step1MatScreenwriterName')));
-  html += s3Item('编剧性别', dash(document.getElementById('step1MatScreenwriterGender') ? document.getElementById('step1MatScreenwriterGender').value : ''));
-  html += s3ItemFull('编剧照片', fileNames('step1ScreenwriterInfoPhoto'));
-  html += s3ItemFull('编剧简介', dash(val('step1MatScreenwriterIntro')));
   html += '</div></div></div>';
 
   // 4. 主创团队
@@ -4950,20 +4852,6 @@ function submitEditReview() {
     if (channelVals.length === 0) { alert('请选择发行渠道'); return; }
     if (!typeVal) { alert('请选择剧集类型'); return; }
     if (!roundVal) { alert('请选择发行轮次'); return; }
-    // 导演信息校验
-    var directorNameVal = document.getElementById('step1MatDirectorName').value.trim();
-    var directorGenderVal = document.getElementById('step1MatDirectorGender').value;
-    var directorPhotoNames = getFileListNames('step1DirectorInfoPhoto');
-    if (!directorNameVal) { alert('请填写导演姓名'); return; }
-    if (!directorGenderVal) { alert('请选择导演性别'); return; }
-    if (!directorPhotoNames) { alert('请上传导演照片'); return; }
-    // 编剧信息校验
-    var screenwriterNameVal = document.getElementById('step1MatScreenwriterName').value.trim();
-    var screenwriterGenderVal = document.getElementById('step1MatScreenwriterGender').value;
-    var screenwriterPhotoNames = getFileListNames('step1ScreenwriterInfoPhoto');
-    if (!screenwriterNameVal) { alert('请填写编剧姓名'); return; }
-    if (!screenwriterGenderVal) { alert('请选择编剧性别'); return; }
-    if (!screenwriterPhotoNames) { alert('请上传编剧照片'); return; }
     if (confirm('确认提交「' + name + '」的物料信息进入审核流程？\n提交后不可修改，请确认信息无误。')) {
       alert('✅ 物料信息已提交审核！合集「' + name + '」的物料已进入审核流程。');
       exitCollectionEditPage();
@@ -4993,20 +4881,6 @@ function submitEditReview() {
     if (channelVals.length === 0) { alert('请选择发行渠道'); return; }
     if (!typeVal) { alert('请选择剧集类型'); return; }
     if (!roundVal) { alert('请选择发行轮次'); return; }
-    // 导演信息校验
-    var directorNameVal = document.getElementById('step1MatDirectorName').value.trim();
-    var directorGenderVal = document.getElementById('step1MatDirectorGender').value;
-    var directorPhotoNames = getFileListNames('step1DirectorInfoPhoto');
-    if (!directorNameVal) { alert('请填写导演姓名'); return; }
-    if (!directorGenderVal) { alert('请选择导演性别'); return; }
-    if (!directorPhotoNames) { alert('请上传导演照片'); return; }
-    // 编剧信息校验
-    var screenwriterNameVal = document.getElementById('step1MatScreenwriterName').value.trim();
-    var screenwriterGenderVal = document.getElementById('step1MatScreenwriterGender').value;
-    var screenwriterPhotoNames = getFileListNames('step1ScreenwriterInfoPhoto');
-    if (!screenwriterNameVal) { alert('请填写编剧姓名'); return; }
-    if (!screenwriterGenderVal) { alert('请选择编剧性别'); return; }
-    if (!screenwriterPhotoNames) { alert('请上传编剧照片'); return; }
     var total = parseInt(document.getElementById('step1EditCollCount').value) || 0;
     if (step2Episodes.length === 0) { alert('请上传剧集视频文件'); return; }
     if (step2Episodes.length < total) { alert('已上传 ' + step2Episodes.length + ' 集，需上传 ' + total + ' 集方可提交审核'); return; }
@@ -5169,14 +5043,6 @@ function renderPltDetailMaterial(id, item) {
   setVal('pltDetailMatAnimeFemaleName', mat.animeFemaleName);
   setVal('pltDetailMatAnimeMaleIntro', mat.animeMaleIntro);
   setVal('pltDetailMatAnimeFemaleIntro', mat.animeFemaleIntro);
-  setVal('pltDetailMatDirectorName', mat.directorName);
-  setVal('pltDetailMatDirectorGender', mat.directorGender);
-  setFileDisplay('pltDetailMatDirectorInfoPhoto', mat.directorInfoPhoto);
-  setVal('pltDetailMatDirectorIntro', mat.directorIntro);
-  setVal('pltDetailMatScreenwriterName', mat.screenwriterName);
-  setVal('pltDetailMatScreenwriterGender', mat.screenwriterGender);
-  setFileDisplay('pltDetailMatScreenwriterInfoPhoto', mat.screenwriterInfoPhoto);
-  setVal('pltDetailMatScreenwriterIntro', mat.screenwriterIntro);
   // 4. 主创团队
   setVal('pltDetailMatProductionCompany', mat.productionCompany);
   setVal('pltDetailMatDirector', mat.director);
@@ -5281,14 +5147,6 @@ function renderSupDetailMaterial(collId, item) {
   setVal('detailMatAnimeFemaleName', mat.animeFemaleName);
   setVal('detailMatAnimeMaleIntro', mat.animeMaleIntro);
   setVal('detailMatAnimeFemaleIntro', mat.animeFemaleIntro);
-  setVal('detailMatDirectorName', mat.directorName);
-  setVal('detailMatDirectorGender', mat.directorGender);
-  setFileDisplay('detailMatDirectorInfoPhoto', mat.directorInfoPhoto);
-  setVal('detailMatDirectorIntro', mat.directorIntro);
-  setVal('detailMatScreenwriterName', mat.screenwriterName);
-  setVal('detailMatScreenwriterGender', mat.screenwriterGender);
-  setFileDisplay('detailMatScreenwriterInfoPhoto', mat.screenwriterInfoPhoto);
-  setVal('detailMatScreenwriterIntro', mat.screenwriterIntro);
   // 4. 主创团队
   setVal('detailMatProductionCompany', mat.productionCompany);
   setVal('detailMatDirector', mat.director);
@@ -5458,14 +5316,6 @@ function openPltVersionView() {
   setVal('pltViewMatAnimeFemaleName', mat.animeFemaleName);
   setVal('pltViewMatAnimeMaleIntro', mat.animeMaleIntro);
   setVal('pltViewMatAnimeFemaleIntro', mat.animeFemaleIntro);
-  setVal('pltViewMatDirectorName', mat.directorName);
-  setVal('pltViewMatDirectorGender', mat.directorGender);
-  setFileDisplay('pltViewMatDirectorInfoPhoto', mat.directorInfoPhoto);
-  setVal('pltViewMatDirectorIntro', mat.directorIntro);
-  setVal('pltViewMatScreenwriterName', mat.screenwriterName);
-  setVal('pltViewMatScreenwriterGender', mat.screenwriterGender);
-  setFileDisplay('pltViewMatScreenwriterInfoPhoto', mat.screenwriterInfoPhoto);
-  setVal('pltViewMatScreenwriterIntro', mat.screenwriterIntro);
   // 4. 主创团队
   setVal('pltViewMatProductionCompany', mat.productionCompany);
   setVal('pltViewMatDirector', mat.director);
@@ -8457,14 +8307,6 @@ function openContentReview(id, type) {
     setVal('crMatAnimeFemaleName', mat.animeFemaleName);
     setVal('crMatAnimeMaleIntro', mat.animeMaleIntro);
     setVal('crMatAnimeFemaleIntro', mat.animeFemaleIntro);
-    setVal('crMatDirectorName', mat.directorName);
-    setVal('crMatDirectorGender', mat.directorGender);
-    setFileDisplay('crMatDirectorInfoPhoto', mat.directorInfoPhoto);
-    setVal('crMatDirectorIntro', mat.directorIntro);
-    setVal('crMatScreenwriterName', mat.screenwriterName);
-    setVal('crMatScreenwriterGender', mat.screenwriterGender);
-    setFileDisplay('crMatScreenwriterInfoPhoto', mat.screenwriterInfoPhoto);
-    setVal('crMatScreenwriterIntro', mat.screenwriterIntro);
     // 4. 主创团队
     setVal('crMatProductionCompany', mat.productionCompany);
     setVal('crMatDirector', mat.director);

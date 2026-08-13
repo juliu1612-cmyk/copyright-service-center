@@ -924,6 +924,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-tip">法定姓名，多名导演中间用英文符号"间隔</div>
                   <input type="text" id="step1MatDirector" placeholder="请输入导演姓名">
                 </div>
+                <div class="form-item" data-col="CA"><label>导演性别</label>
+                  <select id="step1MatDirectorGender" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;background:#fff;">
+                    <option value="">请选择</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                  </select>
+                </div>
                 <div class="form-item" data-col="AU"><label>导演照片 <span style="color:#e74c3c;">*</span></label>
                   <div class="form-tip">正面、不遮挡五官，500x500像素，JPG格式</div>
                   <div class="upload-zone" data-upload="step1DirectorPhoto">
@@ -932,8 +939,28 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </div>
                   <div class="file-list" id="step1DirectorPhotoList"></div>
                 </div>
+                <div class="form-item full" data-col="CB"><label>导演简介</label>
+                  <textarea id="step1MatDirectorIntro" rows="2" placeholder="请输入导演简介" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
+                </div>
                 <div class="form-item" data-col="AV"><label>编剧真实姓名 <span style="color:#e74c3c;">*</span></label>
                   <input type="text" id="step1MatScreenwriter" placeholder="请输入编剧姓名">
+                </div>
+                <div class="form-item" data-col="CC"><label>编剧性别</label>
+                  <select id="step1MatScreenwriterGender" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;background:#fff;">
+                    <option value="">请选择</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                  </select>
+                </div>
+                <div class="form-item" data-col="CD"><label>编剧照片</label>
+                  <div class="upload-zone" data-upload="step1ScreenwriterPhoto">
+                    <div class="plus">+</div>
+                    <div class="text">点击或拖拽文件到此上传</div>
+                  </div>
+                  <div class="file-list" id="step1ScreenwriterPhotoList"></div>
+                </div>
+                <div class="form-item full" data-col="CE"><label>编剧简介</label>
+                  <textarea id="step1MatScreenwriterIntro" rows="2" placeholder="请输入编剧简介" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item" data-col="AW"><label>制片人真实姓名 <span style="color:#e74c3c;">*</span></label>
                   <input type="text" id="step1EditCollProducer" placeholder="请输入制片人真实姓名">
@@ -1473,9 +1500,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             <div class="form-row">
               <div class="form-item full"><label>承制公司</label><input type="text" id="detailMatProductionCompany" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>导演真实姓名</label><input type="text" id="detailMatDirector" disabled style="background:#f5f5f5;color:#999;"></div>
+              <div class="form-item"><label>导演性别</label><input type="text" id="detailMatDirectorGender" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>编剧真实姓名</label><input type="text" id="detailMatScreenwriter" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>制片人真实姓名</label><input type="text" id="detailMatProducer" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>导演照片</label><div id="detailMatDirectorPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>导演简介</label><textarea id="detailMatDirectorIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
+              <div class="form-item"><label>编剧性别</label><input type="text" id="detailMatScreenwriterGender" disabled style="background:#f5f5f5;color:#999;"></div>
+              <div class="form-item full"><label>编剧照片</label><div id="detailMatScreenwriterPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>编剧简介</label><textarea id="detailMatScreenwriterIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
             </div>
           </div>
         </div>
@@ -2634,9 +2666,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             <div class="form-row">
               <div class="form-item full"><label>承制公司</label><input type="text" id="pltDetailMatProductionCompany" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>导演真实姓名</label><input type="text" id="pltDetailMatDirector" disabled style="background:#f5f5f5;color:#999;"></div>
+              <div class="form-item"><label>导演性别</label><input type="text" id="pltDetailMatDirectorGender" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>编剧真实姓名</label><input type="text" id="pltDetailMatScreenwriter" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>制片人真实姓名</label><input type="text" id="pltDetailMatProducer" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>导演照片</label><div id="pltDetailMatDirectorPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>导演简介</label><textarea id="pltDetailMatDirectorIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
+              <div class="form-item"><label>编剧性别</label><input type="text" id="pltDetailMatScreenwriterGender" disabled style="background:#f5f5f5;color:#999;"></div>
+              <div class="form-item full"><label>编剧照片</label><div id="pltDetailMatScreenwriterPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>编剧简介</label><textarea id="pltDetailMatScreenwriterIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
             </div>
           </div>
         </div>
@@ -2804,9 +2841,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <div class="form-row">
                   <div class="form-item full"><label>承制公司</label><input type="text" id="pltViewMatProductionCompany" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>导演真实姓名</label><input type="text" id="pltViewMatDirector" disabled style="background:#f5f5f5;color:#999;"></div>
+                  <div class="form-item"><label>导演性别</label><input type="text" id="pltViewMatDirectorGender" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>编剧真实姓名</label><input type="text" id="pltViewMatScreenwriter" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>制片人真实姓名</label><input type="text" id="pltViewMatProducer" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>导演照片</label><div id="pltViewMatDirectorPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>导演简介</label><textarea id="pltViewMatDirectorIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
+                  <div class="form-item"><label>编剧性别</label><input type="text" id="pltViewMatScreenwriterGender" disabled style="background:#f5f5f5;color:#999;"></div>
+                  <div class="form-item full"><label>编剧照片</label><div id="pltViewMatScreenwriterPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>编剧简介</label><textarea id="pltViewMatScreenwriterIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
                 </div>
               </div>
             </div>
@@ -2997,9 +3039,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <div class="form-row">
                   <div class="form-item full"><label>承制公司</label><input type="text" id="crMatProductionCompany" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>导演真实姓名</label><input type="text" id="crMatDirector" disabled style="background:#f5f5f5;color:#999;"></div>
+                  <div class="form-item"><label>导演性别</label><input type="text" id="crMatDirectorGender" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>编剧真实姓名</label><input type="text" id="crMatScreenwriter" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>制片人真实姓名</label><input type="text" id="crMatProducer" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>导演照片</label><div id="crMatDirectorPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>导演简介</label><textarea id="crMatDirectorIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
+                  <div class="form-item"><label>编剧性别</label><input type="text" id="crMatScreenwriterGender" disabled style="background:#f5f5f5;color:#999;"></div>
+                  <div class="form-item full"><label>编剧照片</label><div id="crMatScreenwriterPhoto" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>编剧简介</label><textarea id="crMatScreenwriterIntro" rows="2" disabled style="background:#f5f5f5;color:#666;resize:none;width:100%;"></textarea></div>
                 </div>
               </div>
             </div>
@@ -3949,13 +3996,14 @@ var MAT_TYPE_RESTRICTIONS = {
   "AX":"无限制","AY":"无限制","AZ":"无限制","BA":"无限制","BB":"无限制","BC":"无限制","BD":"国内真人",
   "BE":"无限制","BF":"无限制","BG":"国内漫剧、海外本土漫剧","BH":"国内真人","BI":"无限制","BJ":"国内真人","BK":"国内漫剧",
   "BL":"无限制","BM":"无限制","BN":"无限制","BO":"无限制","BP":"无限制","BQ":"国内漫剧、海外本土漫剧",
-  "BR":"国内漫剧","BS":"国内漫剧","BT":"无限制","BU":"无限制","BV":"无限制","BW":"无限制","BX":"国内漫剧","BY":"国内漫剧"
+  "BR":"国内漫剧","BS":"国内漫剧","BT":"无限制","BU":"无限制","BV":"无限制","BW":"无限制","BX":"国内漫剧","BY":"国内漫剧",
+  "CA":"国内真人、国内漫剧","CB":"国内真人、国内漫剧","CC":"国内真人、国内漫剧","CD":"国内真人、国内漫剧","CE":"国内真人、国内漫剧"
 };
 
 // 渠道字段映射
 var MAT_CHANNEL_FIELDS = {
-  "国内全渠道":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC","AD","AE","AF","AG","AH","AI","AJ","AK","AL","AM","AN","AO","AP","AQ","AR","AS","AT","AU","AV","AW","AX","AY","AZ","BA","BB","BC","BD","BG","BH","BJ","BK","BL","BM","BN","BO","BP","BQ","BR","BS","BT","BU","BV","BW","BX","BY"],
-  "字节系（红果和抖音）":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","V","W","X","Y","Z","AA","AB","AC","AD","AE","AF","AG","AH","AI","AJ","AK","AL","AM","AN","AO","AP","AQ","AR","AS","AT","AV","AW","AX","AY","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ","BU","BY"],
+  "国内全渠道":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC","AD","AE","AF","AG","AH","AI","AJ","AK","AL","AM","AN","AO","AP","AQ","AR","AS","AT","AU","AV","AW","AX","AY","AZ","BA","BB","BC","BD","BG","BH","BJ","BK","BL","BM","BN","BO","BP","BQ","BR","BS","BT","BU","BV","BW","BX","BY","CA","CB","CC","CD","CE"],
+  "字节系（红果和抖音）":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","V","W","X","Y","Z","AA","AB","AC","AD","AE","AF","AG","AH","AI","AJ","AK","AL","AM","AN","AO","AP","AQ","AR","AS","AT","AU","AV","AW","AX","AY","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ","BU","BY","CA","CB","CC","CD","CE"],
   "拼多多":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","U","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BA","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ","BR"],
   "美团":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AG","AH","AI","AJ","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BA","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "爱奇艺":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AU","AV","AW","AX","BA","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
@@ -4704,9 +4752,20 @@ function fillStep3Summary() {
   html += '<div class="mat-section-card" style="margin-bottom:12px;"><div class="mat-section-title"><div class="sec-icon" style="background:#F5F0FF;color:#7B61FF;">🎬</div> 主创团队</div><div class="mat-section-body"><div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;">';
   html += s3ItemFull('承制公司', dash(val('step1MatProductionCompany')));
   html += s3Item('导演真实姓名', dash(val('step1MatDirector')));
+  html += s3Item('导演性别', dash(document.getElementById('step1MatDirectorGender') ? document.getElementById('step1MatDirectorGender').value : ''));
   html += s3Item('编剧真实姓名', dash(val('step1MatScreenwriter')));
   html += s3Item('制片人真实姓名', dash(val('step1EditCollProducer')));
   html += s3ItemFull('导演照片', fileNames('step1DirectorPhoto'));
+  // 新增字段：剧集类型为国内真人/国内漫剧 且 渠道含 国内全渠道/字节系（红果和抖音）时展示
+  var s3CrewType = getOptTagVal('mat-剧集类型');
+  var s3CrewChannels = getMultiSelectValues('step1EditCollChannelDropdown');
+  var s3CrewExtra = (s3CrewType === '国内真人' || s3CrewType === '国内漫剧') && (s3CrewChannels.indexOf('国内全渠道') !== -1 || s3CrewChannels.indexOf('字节系（红果和抖音）') !== -1);
+  if (s3CrewExtra) {
+    html += s3ItemFull('导演简介', dash(val('step1MatDirectorIntro')));
+    html += s3Item('编剧性别', dash(document.getElementById('step1MatScreenwriterGender') ? document.getElementById('step1MatScreenwriterGender').value : ''));
+    html += s3ItemFull('编剧照片', fileNames('step1ScreenwriterPhoto'));
+    html += s3ItemFull('编剧简介', dash(val('step1MatScreenwriterIntro')));
+  }
   html += '</div></div></div>';
 
   // 5. 成片素材
@@ -5046,9 +5105,14 @@ function renderPltDetailMaterial(id, item) {
   // 4. 主创团队
   setVal('pltDetailMatProductionCompany', mat.productionCompany);
   setVal('pltDetailMatDirector', mat.director);
+  setVal('pltDetailMatDirectorGender', mat.directorGender);
   setVal('pltDetailMatScreenwriter', mat.screenwriter);
   setVal('pltDetailMatProducer', mat.producer);
   setFileDisplay('pltDetailMatDirectorPhoto', mat.directorPhoto);
+  setVal('pltDetailMatDirectorIntro', mat.directorIntro);
+  setVal('pltDetailMatScreenwriterGender', mat.screenwriterGender);
+  setFileDisplay('pltDetailMatScreenwriterPhoto', mat.screenwriterPhoto);
+  setVal('pltDetailMatScreenwriterIntro', mat.screenwriterIntro);
   // 5. 成片素材
   setFileDisplay('pltDetailMatAllEpisodes', mat.allEpisodes || (mat.authFile ? mat.authFile + ' (' + (mat.authFileSize || '') + ')' : ''));
   setVal('pltDetailMatHongguoLink', mat.hongguoLink);
@@ -5084,6 +5148,13 @@ function renderPltDetailMaterial(id, item) {
   toggleParentDisplay('pltDetailMatAnimeNoContract', mat.contract === '无制作合同');
   toggleParentDisplay('pltDetailMatPddDeclaration', mat.contract === '无制作合同');
   toggleParentDisplay('pltDetailMatHuaweiCommitment', mat.contract === '无制作合同');
+  // 主创团队新增字段：国内真人/国内漫剧 + 国内全渠道/字节系渠道时展示
+  var pltDetailCrewExtra = isCrewExtraVisible(mat);
+  toggleParentDisplay('pltDetailMatDirectorGender', pltDetailCrewExtra);
+  toggleParentDisplay('pltDetailMatDirectorIntro', pltDetailCrewExtra);
+  toggleParentDisplay('pltDetailMatScreenwriterGender', pltDetailCrewExtra);
+  toggleParentDisplay('pltDetailMatScreenwriterPhoto', pltDetailCrewExtra);
+  toggleParentDisplay('pltDetailMatScreenwriterIntro', pltDetailCrewExtra);
 }
 
 // ===== 供应商端合集详情页：物料信息（7区块）渲染 =====
@@ -5150,9 +5221,14 @@ function renderSupDetailMaterial(collId, item) {
   // 4. 主创团队
   setVal('detailMatProductionCompany', mat.productionCompany);
   setVal('detailMatDirector', mat.director);
+  setVal('detailMatDirectorGender', mat.directorGender);
   setVal('detailMatScreenwriter', mat.screenwriter);
   setVal('detailMatProducer', mat.producer);
   setFileDisplay('detailMatDirectorPhoto', mat.directorPhoto);
+  setVal('detailMatDirectorIntro', mat.directorIntro);
+  setVal('detailMatScreenwriterGender', mat.screenwriterGender);
+  setFileDisplay('detailMatScreenwriterPhoto', mat.screenwriterPhoto);
+  setVal('detailMatScreenwriterIntro', mat.screenwriterIntro);
   // 5. 成片素材
   setFileDisplay('detailMatAllEpisodes', mat.allEpisodes || (mat.authFile ? mat.authFile + ' (' + (mat.authFileSize || '') + ')' : ''));
   setVal('detailMatHongguoLink', mat.hongguoLink);
@@ -5188,6 +5264,13 @@ function renderSupDetailMaterial(collId, item) {
   toggleParentDisplay('detailMatAnimeNoContract', mat.contract === '无制作合同');
   toggleParentDisplay('detailMatPddDeclaration', mat.contract === '无制作合同');
   toggleParentDisplay('detailMatHuaweiCommitment', mat.contract === '无制作合同');
+  // 主创团队新增字段：国内真人/国内漫剧 + 国内全渠道/字节系渠道时展示
+  var detailCrewExtra = isCrewExtraVisible(mat);
+  toggleParentDisplay('detailMatDirectorGender', detailCrewExtra);
+  toggleParentDisplay('detailMatDirectorIntro', detailCrewExtra);
+  toggleParentDisplay('detailMatScreenwriterGender', detailCrewExtra);
+  toggleParentDisplay('detailMatScreenwriterPhoto', detailCrewExtra);
+  toggleParentDisplay('detailMatScreenwriterIntro', detailCrewExtra);
 }
 
 // 渲染版本发布状态和操作按钮
@@ -5319,9 +5402,14 @@ function openPltVersionView() {
   // 4. 主创团队
   setVal('pltViewMatProductionCompany', mat.productionCompany);
   setVal('pltViewMatDirector', mat.director);
+  setVal('pltViewMatDirectorGender', mat.directorGender);
   setVal('pltViewMatScreenwriter', mat.screenwriter);
   setVal('pltViewMatProducer', mat.producer);
   setFileDisplay('pltViewMatDirectorPhoto', mat.directorPhoto);
+  setVal('pltViewMatDirectorIntro', mat.directorIntro);
+  setVal('pltViewMatScreenwriterGender', mat.screenwriterGender);
+  setFileDisplay('pltViewMatScreenwriterPhoto', mat.screenwriterPhoto);
+  setVal('pltViewMatScreenwriterIntro', mat.screenwriterIntro);
   // 5. 成片素材
   setFileDisplay('pltViewMatAllEpisodes', mat.allEpisodes || (mat.authFile ? mat.authFile + ' (' + (mat.authFileSize || '') + ')' : ''));
   setVal('pltViewMatHongguoLink', mat.hongguoLink);
@@ -5357,6 +5445,13 @@ function openPltVersionView() {
   toggleParentDisplay('pltViewMatAnimeNoContract', mat.contract === '无制作合同');
   toggleParentDisplay('pltViewMatPddDeclaration', mat.contract === '无制作合同');
   toggleParentDisplay('pltViewMatHuaweiCommitment', mat.contract === '无制作合同');
+  // 主创团队新增字段：国内真人/国内漫剧 + 国内全渠道/字节系渠道时展示
+  var pltViewCrewExtra = isCrewExtraVisible(mat);
+  toggleParentDisplay('pltViewMatDirectorGender', pltViewCrewExtra);
+  toggleParentDisplay('pltViewMatDirectorIntro', pltViewCrewExtra);
+  toggleParentDisplay('pltViewMatScreenwriterGender', pltViewCrewExtra);
+  toggleParentDisplay('pltViewMatScreenwriterPhoto', pltViewCrewExtra);
+  toggleParentDisplay('pltViewMatScreenwriterIntro', pltViewCrewExtra);
 
   // ===== 正片视频信息 =====
   var episodes = contentEpisodes[id] || [];
@@ -8196,6 +8291,14 @@ function toggleParentDisplay(id, show) {
   var parent = el.closest('.form-item');
   if (parent) parent.style.display = show ? '' : 'none';
 }
+// 主创团队新增字段展示条件：剧集类型为国内真人/国内漫剧 且 渠道含 国内全渠道/字节系（红果和抖音）
+function isCrewExtraVisible(mat) {
+  if (!mat || !mat.type) return false;
+  var typeOk = mat.type.indexOf('国内真人') === 0 || mat.type.indexOf('国内漫剧') === 0;
+  var chs = mat.channels || [];
+  var channelOk = chs.indexOf('国内全渠道') !== -1 || chs.indexOf('字节系（红果和抖音）') !== -1 || chs.indexOf('字节系') !== -1;
+  return typeOk && channelOk;
+}
 function setFileDisplay(id, val) {
   var el = document.getElementById(id);
   if (el) {
@@ -8310,9 +8413,14 @@ function openContentReview(id, type) {
     // 4. 主创团队
     setVal('crMatProductionCompany', mat.productionCompany);
     setVal('crMatDirector', mat.director);
+    setVal('crMatDirectorGender', mat.directorGender);
     setVal('crMatScreenwriter', mat.screenwriter);
     setVal('crMatProducer', mat.producer);
     setFileDisplay('crMatDirectorPhoto', mat.directorPhoto);
+    setVal('crMatDirectorIntro', mat.directorIntro);
+    setVal('crMatScreenwriterGender', mat.screenwriterGender);
+    setFileDisplay('crMatScreenwriterPhoto', mat.screenwriterPhoto);
+    setVal('crMatScreenwriterIntro', mat.screenwriterIntro);
     // 5. 成片素材
     setFileDisplay('crMatAllEpisodes', mat.allEpisodes || (mat.authFile ? mat.authFile + ' (' + (mat.authFileSize || '') + ')' : ''));
     setVal('crMatHongguoLink', mat.hongguoLink);
@@ -8350,6 +8458,13 @@ function openContentReview(id, type) {
     toggleParentDisplay('crMatAnimeNoContract', crContract === '无制作合同');
     toggleParentDisplay('crMatPddDeclaration', crContract === '无制作合同');
     toggleParentDisplay('crMatHuaweiCommitment', crContract === '无制作合同');
+    // 主创团队新增字段：国内真人/国内漫剧 + 国内全渠道/字节系渠道时展示
+    var crCrewExtra = isCrewExtraVisible(mat);
+    toggleParentDisplay('crMatDirectorGender', crCrewExtra);
+    toggleParentDisplay('crMatDirectorIntro', crCrewExtra);
+    toggleParentDisplay('crMatScreenwriterGender', crCrewExtra);
+    toggleParentDisplay('crMatScreenwriterPhoto', crCrewExtra);
+    toggleParentDisplay('crMatScreenwriterIntro', crCrewExtra);
     switchPlatformPage('plt-review-material', document.querySelector('[data-page=plt-content]'));
     setTimeout(initCrMatScrollSpy, 50);
   } else {

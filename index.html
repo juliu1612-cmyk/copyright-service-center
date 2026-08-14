@@ -165,6 +165,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .input-suffix-wrap .suffix-input { flex: 1; width: 100%; height: 100%; border: none; border-radius: 0; padding: 0 10px; font-size: 14px; outline: none; background: transparent; }
 .input-suffix-wrap .input-suffix { display: flex; align-items: center; padding: 0 12px; font-size: 14px; color: var(--text-tertiary); background: #f5f5f5; border-left: 1px solid var(--border); }
 
+/* 内容评估-合集名称命名规范 */
+.eval-name-hint { font-size: 12px; color: var(--text-tertiary); line-height: 1.7; margin-top: 6px; }
+.eval-name-error { font-size: 12px; color: var(--danger); margin-top: 4px; min-height: 17px; line-height: 1.5; }
+.eval-name-input-error { border-color: var(--danger) !important; }
+.eval-name-input-error:focus { border-color: var(--danger) !important; }
+
 /* Review Cards */
 .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .review-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
@@ -3596,7 +3602,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
     </div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-item"><label><span class="required">*</span>合集名称</label><input type="text" id="evalSubmitName" placeholder="请输入合集名称"></div>
+        <div class="form-item"><label><span class="required">*</span>合集名称</label><input type="text" id="evalSubmitName" placeholder="请输入合集名称" oninput="validateEvalNameLive('evalSubmitName')">
+          <div class="eval-name-hint">命名规范：禁止书名号《》；名称首尾禁止符号 ! : " # @ &amp; ( ) + / * ， 。 ? % 等，名称中间禁止符号 、 # @ &amp; ( ) + / 。 ? % 等；禁用敏感词汇；提交后仅审核问题可修改，其余场景不支持更名。</div>
+          <div class="eval-name-error" id="evalSubmitNameError"></div>
+        </div>
         <div class="form-item"><label><span class="required">*</span>集数</label><input type="number" id="evalSubmitEpisodes" placeholder="请输入集数"></div>
         <div class="form-item full"><label><span class="required">*</span>一卡链接</label><input type="url" id="evalSubmitCardLink" placeholder="请输入一卡链接"></div>
       </div>
@@ -3621,14 +3630,17 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
         <span style="color:var(--danger);font-size:13px;">故事逻辑不清，请补充主线剧情说明后重新提交</span>
       </div>
       <div class="form-row">
-        <div class="form-item"><label>合集名称</label><input type="text" value="山海谣"></div>
+        <div class="form-item"><label>合集名称</label><input type="text" id="evalEditName" value="山海谣" oninput="validateEvalNameLive('evalEditName')">
+          <div class="eval-name-hint">命名规范同提交页：禁止书名号《》、首尾及中间禁用的符号、禁用敏感词汇。</div>
+          <div class="eval-name-error" id="evalEditNameError"></div>
+        </div>
         <div class="form-item"><label>集数</label><input type="number" value="30"></div>
         <div class="form-item full"><label>一卡链接</label><input type="url" value="https://yika.example.com/drama/shy"></div>
       </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-outline" onclick="closeModal('evalEditModal')">取消</button>
-      <button class="btn btn-primary" onclick="closeModal('evalEditModal')">重新提交</button>
+      <button class="btn btn-primary" onclick="submitEvalEdit()">重新提交</button>
     </div>
   </div>
 </div>
@@ -5640,11 +5652,60 @@ function resetEvalFilter() {
   filterEvalList();
 }
 
+// ===== 合集名称命名校验 =====
+var NAME_BAN_BOOKMARKS = '《》';
+var NAME_BAN_EDGE_CHARS = '!:"#@&()+/*，。?%！：？“”，。％＃＠＆＋／＊,.';
+var NAME_BAN_MID_CHARS = '、#@&()+/。?%（）：？％＃＠＆＋／.';
+var NAME_BAN_WORDS = ['霸总','总裁','心机','网暴','中老年','跪','打脸','血腥','首富','富豪','百亿','千亿','万亿','禁欲','引诱','惹火','撩','诱人','把持不住','金莲','西门庆','在上','在下','女房客','一夜情','欲','一夜','不行','身体','娇软','出轨','美女上司','美女师姐','海王','强制爱','强宠','保姆豪门','恶婆婆','小妈','嫂子','小姨子','防老','仇','杀疯了','屠你全家','撕碎','灭门','狂虐','手撕','嘎嘎乱杀','天价','撩汉'];
+
+function validateCollectionName(name) {
+  name = (name || '').trim();
+  if (!name) return '';
+  // 1. 禁止书名号
+  for (var b = 0; b < NAME_BAN_BOOKMARKS.length; b++) {
+    if (name.indexOf(NAME_BAN_BOOKMARKS.charAt(b)) !== -1) {
+      return '名称不能包含书名号「' + NAME_BAN_BOOKMARKS.charAt(b) + '」';
+    }
+  }
+  // 2. 首尾禁止符号
+  var first = name.charAt(0);
+  var last = name.charAt(name.length - 1);
+  if (NAME_BAN_EDGE_CHARS.indexOf(first) !== -1) return '名称不能以符号「' + first + '」开头';
+  if (NAME_BAN_EDGE_CHARS.indexOf(last) !== -1) return '名称不能以符号「' + last + '」结尾';
+  // 3. 中间禁止符号（不含首尾）
+  var mid = name.slice(1, -1);
+  for (var i = 0; i < mid.length; i++) {
+    var ch = mid.charAt(i);
+    if (NAME_BAN_MID_CHARS.indexOf(ch) !== -1) return '名称中间不能包含符号「' + ch + '」';
+  }
+  // 4. 敏感词汇
+  for (var w = 0; w < NAME_BAN_WORDS.length; w++) {
+    if (name.indexOf(NAME_BAN_WORDS[w]) !== -1) return '名称包含敏感词汇「' + NAME_BAN_WORDS[w] + '」，请更换后再提交';
+  }
+  return '';
+}
+
+function validateEvalNameLive(inputId) {
+  var input = document.getElementById(inputId);
+  if (!input) return;
+  var errEl = document.getElementById(inputId + 'Error');
+  var msg = validateCollectionName(input.value);
+  if (msg) {
+    if (errEl) errEl.textContent = msg;
+    input.classList.add('eval-name-input-error');
+  } else {
+    if (errEl) errEl.textContent = '';
+    input.classList.remove('eval-name-input-error');
+  }
+}
+
 function submitEval() {
   var name = document.getElementById('evalSubmitName').value.trim();
   var episodes = document.getElementById('evalSubmitEpisodes').value.trim();
   var cardLink = document.getElementById('evalSubmitCardLink').value.trim();
   if (!name) { alert('请输入合集名称'); return; }
+  var nameMsg = validateCollectionName(name);
+  if (nameMsg) { alert(nameMsg); return; }
   if (!episodes) { alert('请输入集数'); return; }
   if (!cardLink) { alert('请输入一卡链接'); return; }
 
@@ -5688,6 +5749,17 @@ function submitEval() {
   document.getElementById('evalSubmitCardLink').value = '';
   closeModal('evalSubmitModal');
   alert('《' + name + '》已提交评估，等待平台审核');
+}
+
+function submitEvalEdit() {
+  var nameInput = document.getElementById('evalEditName');
+  if (!nameInput) { closeModal('evalEditModal'); return; }
+  var name = nameInput.value.trim();
+  if (!name) { alert('请输入合集名称'); return; }
+  var nameMsg = validateCollectionName(name);
+  if (nameMsg) { alert(nameMsg); return; }
+  closeModal('evalEditModal');
+  alert('「' + name + '」已重新提交，等待平台审核');
 }
 
 // Content management filter

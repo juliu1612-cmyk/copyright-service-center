@@ -173,10 +173,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 /* 问号 icon 与命名规范 tooltip */
 .eval-name-tip { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; margin-left: 5px; border-radius: 50%; background: #c0c4cc; color: #fff; font-size: 11px; font-weight: 600; line-height: 1; cursor: help; vertical-align: middle; }
 .eval-name-tip:hover { background: var(--primary); }
-.eval-name-tip-content { display: none; position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); width: 300px; padding: 10px 12px; background: #fff; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); font-size: 12px; font-weight: 400; color: var(--text-secondary); line-height: 1.9; text-align: left; white-space: normal; z-index: 200; }
-.eval-name-tip-content::after { content: ''; position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #fff; border-bottom: none; }
-.eval-name-tip-content::before { content: ''; position: absolute; left: 50%; bottom: -7px; transform: translateX(-50%); border: 7px solid transparent; border-top-color: var(--border); border-bottom: none; }
-.eval-name-tip:hover .eval-name-tip-content { display: block; }
+.eval-name-tip-content { display: none; position: fixed; z-index: 9999; width: 280px; padding: 10px 12px; background: rgba(0,0,0,0.85); border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.35); font-size: 12px; font-weight: 400; color: #fff; line-height: 1.9; text-align: left; white-space: normal; }
+.eval-name-tip-content.arrow-up::after { content: ''; position: absolute; left: 50%; top: 100%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: rgba(0,0,0,0.85); }
+.eval-name-tip-content.arrow-down::after { content: ''; position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%); border: 6px solid transparent; border-bottom-color: rgba(0,0,0,0.85); }
 
 /* Review Cards */
 .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -6642,6 +6641,35 @@ function submitCollectionReview() {
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('click', function(e) {
     if (e.target === this) this.classList.remove('active');
+  });
+});
+
+// 合集名称问号 icon tooltip：fixed 定位 + 视口边界自适应，避免被弹窗 overflow 裁剪
+document.querySelectorAll('.eval-name-tip').forEach(function(tip) {
+  var content = tip.querySelector('.eval-name-tip-content');
+  if (!content) return;
+  tip.addEventListener('mouseenter', function() {
+    content.style.display = 'block';
+    var r = tip.getBoundingClientRect();
+    var cw = content.offsetWidth;
+    var ch = content.offsetHeight;
+    var left = Math.round(r.left + r.width / 2 - cw / 2);
+    if (left < 8) left = 8;
+    if (left + cw + 8 > window.innerWidth) left = window.innerWidth - cw - 8;
+    var top = Math.round(r.top - ch - 10);
+    if (top < 8) {
+      content.classList.remove('arrow-up');
+      content.classList.add('arrow-down');
+      top = Math.round(r.bottom + 10);
+    } else {
+      content.classList.remove('arrow-down');
+      content.classList.add('arrow-up');
+    }
+    content.style.left = left + 'px';
+    content.style.top = top + 'px';
+  });
+  tip.addEventListener('mouseleave', function() {
+    content.style.display = 'none';
   });
 });
 

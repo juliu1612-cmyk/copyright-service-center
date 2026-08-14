@@ -366,6 +366,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .upload-zone .text { font-size: 13px; color: var(--text-secondary); }
 .upload-zone .sub { font-size: 12px; color: var(--text-tertiary); margin-top: 3px; }
 
+/* radio 单选（用于不可修改的转免时间等） */
+.radio-group { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.radio-group.disabled { opacity: 0.85; cursor: not-allowed; }
+.radio-item { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-secondary); cursor: pointer; user-select: none; }
+.radio-group.disabled .radio-item { cursor: not-allowed; }
+.radio-item input[type="radio"] { width: 14px; height: 14px; margin: 0; accent-color: var(--primary); cursor: inherit; }
+.radio-group.disabled .radio-item input[type="radio"] { cursor: not-allowed; opacity: 0.7; }
+
 .file-list { margin-top: 10px; }
 .file-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: #fafafa; border-radius: 6px; margin-bottom: 8px; border: 1px solid #f0f0f0; }
 .file-item .left { display: flex; align-items: center; gap: 10px; }
@@ -612,24 +620,26 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <div class="form-item" data-col="L"><label>剧集集数</label><input type="number" id="step1EditCollCount" disabled style="background:#E8E8E8;color:#999;cursor:not-allowed;"></div>
 
                 <div class="form-item" data-col="C"><label>剧集类型 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">剧集所属类型分类</div>
                   <div class="opt-group" data-name="mat-剧集类型" id="step1MatTypeGroup">
-                    <span class="opt-tag" data-val="国内真人">国内真人</span>
-                    <span class="opt-tag" data-val="国内漫剧">国内漫剧</span>
-                    <span class="opt-tag" data-val="海外本土真人">海外本土真人</span>
-                    <span class="opt-tag" data-val="海外本土漫剧">海外本土漫剧</span>
+                    <span class="opt-tag" data-val="国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）">国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）</span>
+                    <span class="opt-tag" data-val="国内真人剧（真人实拍）">国内真人剧（真人实拍）</span>
+                    <span class="opt-tag" data-val="海外本土漫剧（AI真人剧集、沙雕漫、3D、2D漫）">海外本土漫剧（AI真人剧集、沙雕漫、3D、2D漫）</span>
+                    <span class="opt-tag" data-val="海外本土真人剧（真人实拍）">海外本土真人剧（真人实拍）</span>
                   </div>
                   <input type="hidden" id="step1EditCollType">
                 </div>
                 <div class="form-item" data-col="D"><label>发行轮次 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">剧集的发行轮次</div>
                   <div class="opt-group" data-name="mat-发行轮次" id="step1MatRoundGroup">
-                    <span class="opt-tag" data-val="首轮">首轮</span>
+                    <span class="opt-tag" data-val="首发">首发</span>
                     <span class="opt-tag" data-val="二轮">二轮</span>
                   </div>
                   <input type="hidden" id="step1EditCollRound">
                 </div>
 
                 <div class="form-item" data-col="E"><label>全网首发时间 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">二轮发行时必填</div>
+                  <div class="form-tip">二轮发行时必填；格式要求：YYYY/MM/DD</div>
                   <input type="datetime-local" class="form-item-input" id="step1EditCollFirstDate" style="width:100%;height:38px;border:1px solid var(--border);border-radius:6px;padding:0 10px;font-size:14px;">
                 </div>
                 <div class="form-item" data-col="F"><label>发行渠道 <span style="color:#e74c3c;">*</span></label>
@@ -675,60 +685,79 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 </div>
 
                 <div class="form-item" data-col="G"><label>对接商务 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">对接商务人员</div>
                   <select id="step1MatBizContact" style="width:100%;height:38px;border:1px solid var(--border);border-radius:6px;padding:0 10px;font-size:14px;background:#fff;">
                     <option value="">请选择对接商务</option>
-                    <option value="张三">张三</option>
-                    <option value="李四">李四</option>
-                    <option value="王五">王五</option>
-                    <option value="赵六">赵六</option>
-                    <option value="孙七">孙七</option>
+                    <option value="乔乔">乔乔</option>
+                    <option value="瑰夏">瑰夏</option>
+                    <option value="包子">包子</option>
+                    <option value="王云">王云</option>
+                    <option value="郭渲棋">郭渲棋</option>
+                    <option value="次泽兵">次泽兵</option>
+                    <option value="邬涵艳">邬涵艳</option>
+                    <option value="高江彤">高江彤</option>
+                    <option value="Nico">Nico</option>
+                    <option value="桂铭">桂铭</option>
+                    <option value="俊谊">俊谊</option>
+                    <option value="婷婷">婷婷</option>
+                    <option value="汪盼">汪盼</option>
+                    <option value="晶晶">晶晶</option>
+                    <option value="cheers">cheers</option>
+                    <option value="其他">其他</option>
                   </select>
                 </div>
 
                 <div class="form-item" data-col="H"><label>漫剧类型</label>
-                  <div class="form-tip">仅漫剧类型需要填写</div>
+                  <div class="form-tip">漫剧细分类型；仅漫剧类型需要填写</div>
                   <div class="opt-group" data-name="mat-漫剧类型">
-                    <span class="opt-tag" data-val="二维动画">二维动画</span>
-                    <span class="opt-tag" data-val="三维动画">三维动画</span>
-                    <span class="opt-tag" data-val="动态漫画">动态漫画</span>
+                    <span class="opt-tag" data-val="小说漫解">小说漫解</span>
+                    <span class="opt-tag" data-val="仿真人动态漫">仿真人动态漫</span>
+                    <span class="opt-tag" data-val="2D动态漫">2D动态漫</span>
+                    <span class="opt-tag" data-val="仿真人漫解">仿真人漫解</span>
+                    <span class="opt-tag" data-val="3D动态漫">3D动态漫</span>
                   </div>
                 </div>
 
                 <div class="form-item" data-col="J"><label>合作方名称 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">填写授权书上的版权方主体名称</div>
+                  <div class="form-tip">授权书内完整版权主体名称</div>
                   <input type="text" id="step1MatPartner" placeholder="请输入合作方名称">
                 </div>
                 <div class="form-item" data-col="K"><label>剧集首发时间 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">已确认请选择「确认时间」；未确认请选择「预估时间」</div>
-                  <input type="date" id="step1MatFirstTime" style="width:100%;height:38px;border:1px solid var(--border);border-radius:6px;padding:0 10px;font-size:14px;">
+                  <div class="form-tip">1.已确定档期：[确认时间]YYYY年MM月DD日HH时SS分，档期变更需在对接群@运营+对应商务同步更新；2.未敲定档期由平台自动排期：[预估时间]YYYY年MM月DD日HH时</div>
+                  <input type="datetime-local" id="step1MatFirstTime" style="width:100%;height:38px;border:1px solid var(--border);border-radius:6px;padding:0 10px;font-size:14px;">
                 </div>
 
                 <div class="form-item" data-col="N"><label>剧集付费集数 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">第xx集免费，第xx集付费（一卡付费点、二卡付费点、三卡付费点）</div>
                   <input type="text" id="step1MatPaidEpisodes" placeholder="请输入付费集数">
                 </div>
-                <div class="form-item" data-col="O"><label>转免时间 <span style="color:#e74c3c;">*</span></label>
-                  <input type="date" id="step1MatFreeDate">
-                </div>
-
-                <div class="form-item" data-col="P"><label>剧集平均单集时长 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">精确到分秒，如 02:30</div>
-                  <input type="text" id="step1EditCollAvgDuration" placeholder="如 02:30">
-                </div>
-                <div class="form-item" data-col="Q"><label>男女频 <span style="color:#e74c3c;">*</span></label>
-                  <div class="opt-group" data-name="mat-男女频">
-                    <span class="opt-tag" data-val="男频">男频</span>
-                    <span class="opt-tag" data-val="女频">女频</span>
+                <div class="form-item" data-col="O"><label>转免时间</label>
+                  <div class="radio-group disabled">
+                    <label class="radio-item"><input type="radio" name="matFreeDate" value="付免同跑" checked disabled> 默认付免同跑</label>
                   </div>
                 </div>
 
-                <div class="form-item" data-col="R"><label>是否涉及投流 <span style="color:#e74c3c;">*</span></label>
+                <div class="form-item" data-col="P"><label>剧集平均单集时长 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">超过30秒按1分钟计算，不足30秒不计入</div>
+                  <div class="input-suffix-wrap">
+                    <input type="text" id="step1EditCollAvgDuration" class="suffix-input" placeholder="请输入单集时长" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'')">
+                    <span class="input-suffix">分钟</span>
+                  </div>
+                </div>
+                <div class="form-item" data-col="Q"><label>男女频 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">剧集面向性别</div>
+                  <div class="opt-group" data-name="mat-男女频">
+                    <span class="opt-tag" data-val="男频">男频</span>
+                    <span class="opt-tag" data-val="女频">女频</span>
+                    <span class="opt-tag" data-val="无性别">无性别</span>
+                  </div>
+                </div>
+
+                <div class="form-item" data-col="R"><label>是否涉及投流（待定） <span style="color:#e74c3c;">*</span></label>
                   <div class="opt-group" data-name="mat-投流">
                     <span class="opt-tag" data-val="是">是</span>
                     <span class="opt-tag" data-val="否">否</span>
                   </div>
-                </div>
-                <div class="form-item" data-col="S"><label>备案号</label>
-                  <input type="text" id="step1MatRecordNo" placeholder="非必填，如有请填写">
                 </div>
               </div>
             </div>
@@ -742,21 +771,23 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             <div class="mat-section-body">
               <div class="form-row">
                 <div class="form-item full" data-col="T"><label>10字以内剧集简介 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">不支持输入空格，支持中文、英文及标点</div>
+                  <div class="form-tip">输入限制：不可含空格；仅支持中文、英文、标点：，。；""?、一《》!()-；违规字符将导致系统识别失败</div>
                   <input type="text" id="step1MatShortIntro" maxlength="10" placeholder="10字以内">
                 </div>
                 <div class="form-item full" data-col="U"><label>550-1000字剧集梗概 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">不支持输入空格</div>
+                  <div class="form-tip">输入限制：不可含空格；仅支持中文、英文、标点：，。；"?、一《》!()-；违规字符将导致系统识别失败</div>
                   <textarea id="step1MatSynopsis" rows="5" placeholder="请输入550-1000字梗概" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;min-height:120px;"></textarea>
                 </div>
                 <div class="form-item full" data-col="V"><label>100-200字剧集梗概 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">输入限制：不可含空格；仅支持中文、英文、标点：，。；""?、一《》!()-；违规字符将导致系统识别失败</div>
                   <textarea id="step1MatSynopsisShort" rows="3" placeholder="请输入100-200字梗概" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item full" data-col="W"><label>剧集推荐文案 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">示例：第1集：高光剧情描述；第5集：高光剧情描述</div>
+                  <div class="form-tip">高光集数及推荐理由；示例：第1集：XXX高光剧情描述；第5集：XXX高光剧情描述</div>
                   <textarea id="step1MatRecommend" rows="3" placeholder="请输入推荐文案" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item full" data-col="X"><label>剧集标签 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">限制最多选3个，最少选1个</div>
                   <div class="multi-select-dropdown" id="step1EditCollTagsDropdown">
                     <div class="multi-select-trigger" onclick="toggleMultiDropdown('step1EditCollTagsDropdown')">
                       <div class="selected-tags"></div>
@@ -769,10 +800,73 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                       <label><input type="checkbox" value="甜宠" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 甜宠</label>
                       <label><input type="checkbox" value="闪婚" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 闪婚</label>
                       <label><input type="checkbox" value="复仇" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 复仇</label>
+                      <label><input type="checkbox" value="重生" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 重生</label>
                       <label><input type="checkbox" value="悬疑" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 悬疑</label>
                       <label><input type="checkbox" value="逆袭" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 逆袭</label>
                       <label><input type="checkbox" value="家庭情感" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 家庭情感</label>
                       <label><input type="checkbox" value="宫斗宅斗" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 宫斗宅斗</label>
+                      <label><input type="checkbox" value="穿越" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 穿越</label>
+                      <label><input type="checkbox" value="种田经商" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 种田经商</label>
+                      <label><input type="checkbox" value="科幻" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 科幻</label>
+                      <label><input type="checkbox" value="其他" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 其他</label>
+                      <label><input type="checkbox" value="古装" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 古装</label>
+                      <label><input type="checkbox" value="乡村" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 乡村</label>
+                      <label><input type="checkbox" value="都市" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 都市</label>
+                      <label><input type="checkbox" value="校园" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 校园</label>
+                      <label><input type="checkbox" value="职场" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 职场</label>
+                      <label><input type="checkbox" value="年代" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 年代</label>
+                      <label><input type="checkbox" value="历史" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 历史</label>
+                      <label><input type="checkbox" value="仙侠" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 仙侠</label>
+                      <label><input type="checkbox" value="武侠" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 武侠</label>
+                      <label><input type="checkbox" value="神医" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 神医</label>
+                      <label><input type="checkbox" value="成功人士" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 成功人士</label>
+                      <label><input type="checkbox" value="赘婿" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 赘婿</label>
+                      <label><input type="checkbox" value="萌宝" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 萌宝</label>
+                      <label><input type="checkbox" value="打脸虐渣" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 打脸虐渣</label>
+                      <label><input type="checkbox" value="神豪" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 神豪</label>
+                      <label><input type="checkbox" value="马甲" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 马甲</label>
+                      <label><input type="checkbox" value="末世" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 末世</label>
+                      <label><input type="checkbox" value="奶爸" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 奶爸</label>
+                      <label><input type="checkbox" value="团宠" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 团宠</label>
+                      <label><input type="checkbox" value="系统" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 系统</label>
+                      <label><input type="checkbox" value="替身" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 替身</label>
+                      <label><input type="checkbox" value="言情" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 言情</label>
+                      <label><input type="checkbox" value="大女主" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 大女主</label>
+                      <label><input type="checkbox" value="千金" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 千金</label>
+                      <label><input type="checkbox" value="异能" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 异能</label>
+                      <label><input type="checkbox" value="豪门" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 豪门</label>
+                      <label><input type="checkbox" value="心动拉扯" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 心动拉扯</label>
+                      <label><input type="checkbox" value="出轨" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 出轨</label>
+                      <label><input type="checkbox" value="商战" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 商战</label>
+                      <label><input type="checkbox" value="三角恋" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 三角恋</label>
+                      <label><input type="checkbox" value="年龄差" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 年龄差</label>
+                      <label><input type="checkbox" value="都市职场反渣商战爽剧" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 都市职场反渣商战爽剧</label>
+                      <label><input type="checkbox" value="犯罪/悬疑/大女主" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 犯罪/悬疑/大女主</label>
+                      <label><input type="checkbox" value="大女主 | 婚姻犯罪 | 悬疑 | 智斗复仇" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 大女主 | 婚姻犯罪 | 悬疑 | 智斗复仇</label>
+                      <label><input type="checkbox" value="逆袭/职场/大女主" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 逆袭/职场/大女主</label>
+                      <label><input type="checkbox" value="悬疑、职场、科幻" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 悬疑、职场、科幻</label>
+                      <label><input type="checkbox" value="女性悬疑/身份互换/豪门阴谋" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 女性悬疑/身份互换/豪门阴谋</label>
+                      <label><input type="checkbox" value="都市情感/家庭救赎/女性成长/社会治愈" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 都市情感/家庭救赎/女性成长/社会治愈</label>
+                      <label><input type="checkbox" value="亲情" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 亲情</label>
+                      <label><input type="checkbox" value="民间故事、漫剧" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 民间故事、漫剧</label>
+                      <label><input type="checkbox" value="大女主逆袭" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 大女主逆袭</label>
+                      <label><input type="checkbox" value="年代逆袭" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 年代逆袭</label>
+                      <label><input type="checkbox" value="家庭伦理" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 家庭伦理</label>
+                      <label><input type="checkbox" value="通用家庭伦理" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 通用家庭伦理</label>
+                      <label><input type="checkbox" value="女频年代逆袭" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 女频年代逆袭</label>
+                      <label><input type="checkbox" value="女频乡村逆袭" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 女频乡村逆袭</label>
+                      <label><input type="checkbox" value="逆袭、打脸" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 逆袭、打脸</label>
+                      <label><input type="checkbox" value="家庭、婚姻" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 家庭、婚姻</label>
+                      <label><input type="checkbox" value="传统民俗" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 传统民俗</label>
+                      <label><input type="checkbox" value="青春校园" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 青春校园</label>
+                      <label><input type="checkbox" value="女频家庭伦理" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 女频家庭伦理</label>
+                      <label><input type="checkbox" value="银发大女主" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 银发大女主</label>
+                      <label><input type="checkbox" value="农村大女主" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 农村大女主</label>
+                      <label><input type="checkbox" value="大女主爽剧" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 大女主爽剧</label>
+                      <label><input type="checkbox" value="爽剧萌宝" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 爽剧萌宝</label>
+                      <label><input type="checkbox" value="苦情萌宝" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 苦情萌宝</label>
+                      <label><input type="checkbox" value="甜宠轻喜" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 甜宠轻喜</label>
+                      <label><input type="checkbox" value="年代大女主" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 年代大女主</label>
                     </div>
                   </div>
                 </div>
@@ -787,8 +881,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             </div>
             <div class="mat-section-body">
               <div class="form-row">
+                <div class="form-item" data-col="S"><label>广电备案号</label>
+                  <div class="form-tip">示例：(总局或属地省份简称)网微剧审字(年份)第xxx号</div>
+                  <input type="text" id="step1MatRecordNo" placeholder="满足条件时必填">
+                </div>
                 <div class="form-item" data-col="M"><label>剧集制作成本 <span style="color:#e74c3c;">*</span></label>
-                  <input type="text" id="step1MatCost" placeholder="请输入制作成本">
+                  <div class="input-suffix-wrap">
+                    <input type="text" id="step1MatCost" class="suffix-input" placeholder="请输入制作成本" inputmode="decimal" oninput="this.value=this.value.replace(/[^\d.]/g,'').replace(/(\..*)\./g,'$1');updateMatFieldVisibility()">
+                    <span class="input-suffix">万</span>
+                  </div>
                 </div>
                 <div class="form-item" data-col="Y"><label>演员总片酬占比 <span style="color:#e74c3c;">*</span></label>
                   <div class="input-suffix-wrap">
@@ -804,6 +905,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 </div>
                 <div class="form-item" data-col="BJ"><label>真人短剧成本配置比例报告 <span style="color:#e74c3c;">*</span></label>
                   <div class="form-tip">平台提供模板给供应商</div>
+                  <a href="javascript:void(0)" onclick="downloadTemplate('真人短剧成本配置比例报告')" style="font-size:13px;color:var(--primary);text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;gap:4px;">📎 下载模版</a>
                   <div class="upload-zone" data-upload="step1RealCostReport">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -812,6 +914,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 </div>
                 <div class="form-item" data-col="BK"><label>动画短剧成本情况报告 <span style="color:#e74c3c;">*</span></label>
                   <div class="form-tip">平台提供模板给供应商</div>
+                  <a href="javascript:void(0)" onclick="downloadTemplate('动画短剧成本情况报告')" style="font-size:13px;color:var(--primary);text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;gap:4px;">📎 下载模版</a>
                   <div class="upload-zone" data-upload="step1AnimeCostReport">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -831,22 +934,30 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-row">
                 <div class="form-item full subgroup-banner" data-subgroup-cols="AA,AB,AC,AD,AE,AF" style="background:#FFF7E6;color:#D46B08;">男主角信息</div>
                 <div class="form-item" data-col="AA"><label>男主真实姓名 <span style="color:#e74c3c;">*</span></label>
-                  <input type="text" id="step1MatMaleActorName" placeholder="法定中文姓名">
+                  <div class="form-tip">先选择是否入驻红果：选「是」填写红果姓名（与红果站内一致）；选「否」填写真实法定姓名；真实姓名必须为法定中文姓名</div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <select id="step1MatMaleActorOnHg" onchange="toggleActorNamePlaceholder('male')" style="width:150px;height:38px;border:1px solid var(--border);border-radius:6px;padding:0 10px;font-size:14px;background:#fff;flex:none;">
+                      <option value="">是否入驻红果</option>
+                      <option value="是">是</option>
+                      <option value="否">否</option>
+                    </select>
+                    <input type="text" id="step1MatMaleActorName" placeholder="请先选择是否入驻红果" style="flex:1;display:none;">
+                  </div>
                 </div>
                 <div class="form-item" data-col="AC"><label>男主饰演角色名 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">需与剧中人名保持一致</div>
+                  <div class="form-tip">要求：与剧中人物名称完全统一</div>
                   <input type="text" id="step1MatMaleRoleName" placeholder="请输入角色名">
                 </div>
                 <div class="form-item full" data-col="AB"><label>男主简介 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">格式：中国内地演员，出生于xx，毕业于xxx，代表作有：……</div>
+                  <div class="form-tip">示例模板：中国内地演员，出生于XX，毕业于XX，代表作：XXX；输入禁止空格，支持字符：中文、英文、，。;"?、一《》!（）-</div>
                   <textarea id="step1MatMaleIntro" rows="2" placeholder="请输入男主简介" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item full" data-col="AD"><label>男主饰演角色简介</label>
-                  <div class="form-tip">类似人物小传，100字以内</div>
+                  <div class="form-tip">类似人物小传，100字以内，无特殊格式要求</div>
                   <textarea id="step1MatMaleRoleIntro" rows="2" placeholder="非必填" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item full" data-col="AE"><label>男主照片 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">清晰正脸照，比例1:1，无水印</div>
+                  <div class="form-tip">清晰正脸，能明显看出与剧中主演为同一人；无水印；无暴露着装（包括但不限于：①有明显露点痕迹、露出内衣内裤等 ②低俗擦边倾向地展示脚/腿/腹等、有明显性行为暗示）；无第三方水印</div>
                   <div class="upload-zone" data-upload="step1MalePhoto">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -855,6 +966,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1MalePhotoList"></div>
                 </div>
                 <div class="form-item full" data-col="AF"><label>男主演剧照</label>
+                  <div class="form-tip">单张剧照备注「演员姓名-饰演角色」；剧内角色真实照片，需与演员和角色一一对应；画面清晰无拉伸、无广告边框水印；不涉及色情暴力等敏感元素，主体展示完整、居中大小适宜；人物正脸完整无遮挡，禁止合照、侧脸、背影等难突出主体的图片；背景简洁，避免亮度过高的背景</div>
                   <div class="upload-zone" data-upload="step1MaleStill">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -865,18 +977,30 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 
                 <div class="form-item full subgroup-banner" data-subgroup-cols="AG,AH,AI,AJ,AK,AL" style="background:#FFF7E6;color:#D46B08;">女主角信息</div>
                 <div class="form-item" data-col="AG"><label>女主真实姓名 <span style="color:#e74c3c;">*</span></label>
-                  <input type="text" id="step1MatFemaleActorName" placeholder="法定中文姓名">
+                  <div class="form-tip">规则同男主真实姓名：先选择是否入驻红果，选「是」填写红果姓名（与红果站内一致），选「否」填写真实法定姓名</div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <select id="step1MatFemaleActorOnHg" onchange="toggleActorNamePlaceholder('female')" style="width:150px;height:38px;border:1px solid var(--border);border-radius:6px;padding:0 10px;font-size:14px;background:#fff;flex:none;">
+                      <option value="">是否入驻红果</option>
+                      <option value="是">是</option>
+                      <option value="否">否</option>
+                    </select>
+                    <input type="text" id="step1MatFemaleActorName" placeholder="请先选择是否入驻红果" style="flex:1;display:none;">
+                  </div>
                 </div>
                 <div class="form-item" data-col="AI"><label>女主饰演角色名 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">需与剧中人物名称完全统一</div>
                   <input type="text" id="step1MatFemaleRoleName" placeholder="请输入角色名">
                 </div>
                 <div class="form-item full" data-col="AH"><label>女主简介 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">模板：中国内地演员，出生于XX，毕业于XX，代表作：XXX；输入禁止空格，支持字符：中文、英文、，。;"?、一《》!（）-</div>
                   <textarea id="step1MatFemaleIntro" rows="2" placeholder="请输入女主简介" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item full" data-col="AJ"><label>女主饰演角色简介</label>
+                  <div class="form-tip">类似人物小传，100字以内，无特殊格式要求</div>
                   <textarea id="step1MatFemaleRoleIntro" rows="2" placeholder="非必填" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item full" data-col="AK"><label>女主照片 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">清晰正脸，能明显看出与剧中主演为同一人；无水印；无暴露着装（包括但不限于：①有明显露点痕迹、露出内衣内裤等 ②低俗擦边倾向地展示脚/腿/腹等）</div>
                   <div class="upload-zone" data-upload="step1FemalePhoto">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -885,6 +1009,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1FemalePhotoList"></div>
                 </div>
                 <div class="form-item full" data-col="AL"><label>女主演剧照</label>
+                  <div class="form-tip">单张剧照备注「演员姓名-饰演角色」；剧内角色真实照片；画面清晰无拉伸、无广告边框水印；不涉及色情暴力等敏感元素，主体展示完整、居中大小适宜；人物正脸完整无遮挡，禁止合照、侧脸、背影等；背景简洁，避免亮度过高</div>
                   <div class="upload-zone" data-upload="step1FemaleStill">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -893,7 +1018,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1FemaleStillList"></div>
                 </div>
 
-                <div class="form-item full subgroup-banner" data-subgroup-cols="AM,AN,AO,AP,AQ,AR" data-subgroup-type="国内漫剧,海外本土漫剧" style="background:#FFF7E6;color:#D46B08;">漫剧角色信息（仅漫剧类型填写）</div>
+                <div class="form-item full subgroup-banner" data-subgroup-cols="AM,AN,AO,AP,AQ,AR" data-subgroup-type="国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）,海外本土漫剧（AI真人剧集、沙雕漫、3D、2D漫）" style="background:#FFF7E6;color:#D46B08;">漫剧角色信息（仅漫剧类型填写）</div>
                 <div class="form-item" data-col="AM"><label>动漫男主角名</label>
                   <input type="text" id="step1MatAnimeMaleName" placeholder="请输入动漫男主角名">
                 </div>
@@ -932,11 +1057,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             <div class="mat-section-body">
               <div class="form-row">
                 <div class="form-item full" data-col="AS"><label>承制公司 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">请填写完整公司名称（营业执照上的名称）</div>
+                  <div class="form-tip">与营业执照登记名称完全一致</div>
                   <input type="text" id="step1MatProductionCompany" placeholder="请输入承制公司全称">
                 </div>
                 <div class="form-item" data-col="AT"><label>导演真实姓名 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">法定姓名，多名导演中间用英文符号"间隔</div>
                   <input type="text" id="step1MatDirector" placeholder="请输入导演姓名">
                 </div>
                 <div class="form-item" data-col="CA"><label>导演性别</label>
@@ -947,7 +1071,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </select>
                 </div>
                 <div class="form-item" data-col="AU"><label>导演照片 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">正面、不遮挡五官，500x500像素，JPG格式</div>
+                  <div class="form-tip">1. 格式与大小：支持jpg、png格式，要求1:1（剪裁），单个文件大小限制50K~5M，推荐2M；<br>2. 人物主体展现完整、居中大小适宜，须展示人物正脸，避免侧面、背面、大合照或遮挡图</div>
                   <div class="upload-zone" data-upload="step1DirectorPhoto">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -955,7 +1079,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1DirectorPhotoList"></div>
                 </div>
                 <div class="form-item full" data-col="CB"><label>导演简介</label>
-                  <textarea id="step1MatDirectorIntro" rows="2" placeholder="请输入导演简介" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
+                  <textarea id="step1MatDirectorIntro" rows="2" placeholder="1. 可填写10~100个字符&#10;2. 填写内容可参考：生日、星座、籍贯、身高、毕业院校、历史/代表作品、获奖信息、成就等（以上要素需至少满足3项或涵盖任一要素且超过10字）" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item" data-col="AV"><label>编剧真实姓名 <span style="color:#e74c3c;">*</span></label>
                   <input type="text" id="step1MatScreenwriter" placeholder="请输入编剧姓名">
@@ -968,6 +1092,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </select>
                 </div>
                 <div class="form-item" data-col="CD"><label>编剧照片</label>
+                  <div class="form-tip">1. 格式与大小：支持jpg、png格式，要求1:1（剪裁），单个文件大小限制50K~5M，推荐2M；<br>2. 人物主体展现完整、居中大小适宜，须展示人物正脸，避免侧面、背面、大合照或遮挡图</div>
                   <div class="upload-zone" data-upload="step1ScreenwriterPhoto">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -975,9 +1100,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1ScreenwriterPhotoList"></div>
                 </div>
                 <div class="form-item full" data-col="CE"><label>编剧简介</label>
+                  <div class="form-tip">1. 格式与大小：支持jpg、png格式，要求1:1（剪裁），单个文件大小限制50K~5M，推荐2M；<br>2. 人物主体展现完整、居中大小适宜，须展示人物正脸，避免侧面、背面、大合照或遮挡图</div>
                   <textarea id="step1MatScreenwriterIntro" rows="2" placeholder="请输入编剧简介" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item" data-col="AW"><label>制片人真实姓名 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">法定身份证真实中文姓名；多位制片人用英文双引号"分隔</div>
                   <input type="text" id="step1EditCollProducer" placeholder="请输入制片人真实姓名">
                 </div>
               </div>
@@ -992,32 +1119,23 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             <div class="mat-section-body">
               <div class="form-row">
                 <div class="form-item full" data-col="AX"><label>全集资源 <span style="color:#e74c3c;">*</span></label>
-                  <div class="upload-zone" data-upload="step1AllEpisodes">
-                    <div class="plus">+</div>
-                    <div class="text">点击或拖拽文件到此上传</div>
-                    <div class="sub">无水印，1080P，AAC音频，单集≥40秒，全集≥30集</div>
-                  </div>
-                  <div class="hint-box">
-                    <strong>注意：</strong>链接时长请选择365天，否则部分渠道无法上线；视频分辨率不能低于1080P；音频格式必须是AAC。以上必须注意，否则影响上线，导致无收益。
-                  </div>
+                  <div class="form-tip">硬性素材标准（不达标无法上线、无渠道收益）：1.链接分享有效期设置365天；2.视频分辨率≥1080P:1920P、帧率≥24FPS、平均码率大于10MB；3.音频编码统一AAC；4.3分钟＞单集时长≥40秒，全集总集数≥30集，禁止重复填充片段凑时长；5.拼多多渠道预审强制要求此项，全集无水印</div>
+                  <input type="text" id="step1AllEpisodes" placeholder="请输入网盘链接">
                 </div>
                 <div class="form-item full" data-col="AY"><label>红果链接 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">网盘文件夹需包含：全集成片、横版封面图、竖版封面图、无BGM版本（如有）；封面规范：1.画幅3:4、4:3、2:3，文件大小1-10MB，剧名放置画面上方；2.IP改编标注：若改编自番茄小说，封面需标注「改编自番茄小说《作品名》，作者：XXX」；成片单文件限制：单集视频≤300MB</div>
                   <input type="text" id="step1MatHongguoLink" placeholder="请输入百度云盘链接">
                 </div>
                 <div class="form-item full" data-col="AZ"><label>试看链接 <span style="color:#e74c3c;">*</span></label>
-                  <input type="text" id="step1MatPreviewLink" placeholder="一卡即可">
+                  <div class="form-tip">要求：提供一卡付费节点前试看素材网盘链接</div>
+                  <input type="text" id="step1MatPreviewLink" placeholder="请输入网盘链接">
                 </div>
                 <div class="form-item full" data-col="BA"><label>高光素材视频 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">提供5个高光素材视频</div>
-                  <div class="upload-zone" data-upload="step1HighlightVideo">
-                    <div class="plus">+</div>
-                    <div class="text">点击或拖拽文件到此上传</div>
-                    <div class="sub">可一次上传多个视频</div>
-                  </div>
-                  <div class="file-list" id="step1HighlightVideoList"></div>
+                  <div class="form-tip">提供5个高光素材视频；美团强制提交，拼多多/腾讯/爱奇艺引流场景按需上传，提交网盘链接即可</div>
+                  <input type="text" id="step1HighlightVideo" placeholder="请输入网盘链接">
                 </div>
                 <div class="form-item full" data-col="BB"><label>横版剧集海报 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">横屏：1920x1080、500x400；海报字体不可侵权，有PSD请一并提供</div>
+                  <div class="form-tip">尺寸：1920*1080、500*400；尽量附PSD文件（方便二次改尺寸）；全渠道必备横版海报；风险提示：海报字体需商用授权，侵权平台将追责索赔</div>
                   <div class="upload-zone" data-upload="step1HorizontalPoster">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1025,7 +1143,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1HorizontalPosterList"></div>
                 </div>
                 <div class="form-item full" data-col="BC"><label>竖版剧集海报 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">竖屏：770x1080、720x1280、1200x1600、1080x1080、1600x1200</div>
+                  <div class="form-tip">尺寸：770*1080、720*1280、1200*1600、1080*1080、1600*1200；火龙漫剧2450*800；尽量附PSD文件；风险提示：海报字体需商用授权，侵权平台将追责索赔</div>
                   <div class="upload-zone" data-upload="step1VerticalPoster">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1033,29 +1151,20 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1VerticalPosterList"></div>
                 </div>
                 <div class="form-item" data-col="BD"><label>AI具体集数 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">填写规范：如实填报，数据不实会影响平台上线保底审核结果</div>
                   <input type="text" id="step1MatAIEpisodes" placeholder="标注使用AI的具体集数">
                 </div>
                 <div class="form-item full" data-col="BE"><label>净版无字幕成片 <span style="color:#e74c3c;">*</span></label>
-                  <div class="upload-zone" data-upload="step1CleanVideo">
-                    <div class="plus">+</div>
-                    <div class="text">点击或拖拽文件到此上传</div>
-                  </div>
-                  <div class="file-list" id="step1CleanVideoList"></div>
+                  <div class="form-tip">授权海外渠道必填，可提供百度网盘链接</div>
+                  <input type="text" id="step1CleanVideo" placeholder="请输入网盘链接">
                 </div>
                 <div class="form-item full" data-col="BF"><label>SRT 字幕文件 <span style="color:#e74c3c;">*</span></label>
-                  <div class="upload-zone" data-upload="step1SrtFile">
-                    <div class="plus">+</div>
-                    <div class="text">点击或拖拽文件到此上传</div>
-                    <div class="sub">请上传SRT格式字幕文件</div>
-                  </div>
-                  <div class="file-list" id="step1SrtFileList"></div>
+                  <div class="form-tip">授权海外渠道必填，可提供百度网盘链接</div>
+                  <input type="text" id="step1SrtFile" placeholder="请输入网盘链接">
                 </div>
-                <div class="form-item full" data-col="BI"><label>分销素材 <span style="color:#e74c3c;">*</span></label>
-                  <div class="upload-zone" data-upload="step1DistributionMaterial">
-                    <div class="plus">+</div>
-                    <div class="text">点击或拖拽文件到此上传</div>
-                  </div>
-                  <div class="file-list" id="step1DistributionMaterialList"></div>
+                <div class="form-item full" data-col="BI"><label>分销素材</label>
+                  <div class="form-tip">分销素材（海外小程序）；填写百度网盘</div>
+                  <input type="text" id="step1DistributionMaterial" placeholder="请输入百度网盘链接">
                 </div>
               </div>
             </div>
@@ -1068,11 +1177,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             </div>
             <div class="mat-section-body">
               <div class="form-row">
-                <div class="form-item" data-col="BO"><label>制作合同（有或无） <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">真人剧除TT外必需；漫剧上支付宝必需</div>
+                <div class="form-item" data-col="BO"><label>有无制作合同 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">1.真人剧：除TT渠道外全部渠道必须提供；2.漫剧：上线支付宝渠道必须提供；3.如需先上线其他渠道可按照无制作合同情况处理：此类情况需提前同步对接商务备案，否则影响结算回款</div>
                   <div class="opt-group" data-name="mat-制作合同">
-                    <span class="opt-tag" data-val="有制作合同">有制作合同</span>
-                    <span class="opt-tag" data-val="无制作合同">无制作合同</span>
+                    <span class="opt-tag" data-val="有">有</span>
+                    <span class="opt-tag" data-val="无">无</span>
                   </div>
                 </div>
                 <div class="form-item full" data-col="BG"><label>4张片段剪辑工程文件 <span style="color:#e74c3c;">*</span></label>
@@ -1090,6 +1199,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </div>
                 </div>
                 <div class="form-item full" data-col="BH"><label>物料截图文件 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">1.材料要求：真人剧集提供短剧工程文件，漫剧：工程文件和AI生成提示词；2.短剧工程文件：需提供4张带有制作分轨、剪辑点的工程文件截图和AI生成提示词的截图</div>
                   <div class="upload-zone" data-upload="step1MaterialScreenshot">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1106,7 +1216,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <a href="javascript:void(0)" onclick="downloadTemplate('片酬承诺书')" style="font-size:13px;color:var(--primary);text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;gap:4px;">📎 下载模版</a>
                 </div>
                 <div class="form-item full" data-col="BP"><label>版权文件 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">红果、拼多多等渠道报审需要；关键信息可打码，印章需清晰完整，注意骑缝章</div>
+                  <div class="form-tip">文件清单（骑缝章完整加盖，关键信息可打码、公章清晰）：1.短剧版权授权书（主协议下的附件授权书）；2.授权版权方甲方与承制方制作合同（仅供参考示例）；补充材料：授权合同与成片剧名或集数不一致时，剧名不一致补充《剧集更名声明函》、集数不一致（直接下载填写）；渠道格式区分：拼多多渠道提交高清分页拍照PDF，字节系渠道提交扫描PDF，双渠道同步上线需同时提供两种版本</div>
                   <div class="upload-zone" data-upload="step1CopyrightFile">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1124,7 +1234,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <a href="javascript:void(0)" onclick="downloadTemplate('漫剧无合同替代材料')" style="font-size:13px;color:var(--primary);text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;gap:4px;">📎 下载模版</a>
                 </div>
                 <div class="form-item" data-col="BR"><label>拼多多渠道权利声明 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">严格按照上线剧名以及集数填写</div>
+                  <div class="form-tip">严格按照上线剧名以及集数来</div>
                   <div class="upload-zone" data-upload="step1PddDeclaration">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1167,6 +1277,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <a href="javascript:void(0)" onclick="downloadTemplate('权利声明及不侵权承诺（微信模板）')" style="font-size:13px;color:var(--primary);text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;gap:4px;">📎 下载模版</a>
                 </div>
                 <div class="form-item" data-col="BU"><label>权利声明及不侵权承诺函（红果模版） <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">投流主体固定为杭州阅视网络技术有限公司，仅修改制作方信息；扫描PDF提交</div>
                   <div class="upload-zone" data-upload="step1HongguoDeclaration">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1190,17 +1301,30 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1KuaishouAuthList"></div>
                   <a href="javascript:void(0)" onclick="downloadTemplate('快手自建站授权书')" style="font-size:13px;color:var(--primary);text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;gap:4px;">📎 下载模版</a>
                 </div>
-                <div class="form-item" data-col="BX"><label>腾讯火龙漫剧配套文件 <span style="color:#e74c3c;">*</span></label>
+                <div class="form-item" data-col="BX"><label>腾讯火龙漫剧（缺一不可） <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">提供3份模板链接</div>
                   <div class="upload-zone" data-upload="step1TencentAnime">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
                   </div>
                   <div class="file-list" id="step1TencentAnimeList"></div>
-                  <a href="javascript:void(0)" onclick="downloadTemplate('腾讯火龙漫剧配套文件')" style="font-size:13px;color:var(--primary);text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;gap:4px;">📎 下载模版</a>
+                  <a href="javascript:void(0)" onclick="downloadTemplate('腾讯火龙漫剧（缺一不可）')" style="font-size:13px;color:var(--primary);text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;gap:4px;">📎 下载模版</a>
                 </div>
                 <div class="form-item full" data-col="BY"><label>关联 AIGC 工具 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">若给定选项无，可自定义输入</div>
-                  <input type="text" id="step1MatAIGCTool" placeholder="请选择或输入关联的AIGC工具">
+                  <div class="form-tip">若无对应选项可选择“自定义”并在后方输入框填写</div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <select id="step1MatAIGCTool" style="width:200px;height:38px;border:1px solid var(--border);border-radius:6px;padding:0 10px;font-size:14px;background:#fff;flex-shrink:0;" onchange="toggleAIGCCustomInput()">
+                      <option value="">请选择关联的AIGC工具</option>
+                      <option value="红果漫剧创作Agent">红果漫剧创作Agent</option>
+                      <option value="即梦">即梦</option>
+                      <option value="小云雀">小云雀</option>
+                      <option value="Seko">Seko</option>
+                      <option value="Vidu">Vidu</option>
+                      <option value="巨日禄">巨日禄</option>
+                      <option value="自定义">自定义</option>
+                    </select>
+                    <input type="text" id="step1MatAIGCToolCustom" placeholder="选“自定义”时请输入AIGC工具名称" style="flex:1;">
+                  </div>
                 </div>
               </div>
             </div>
@@ -1435,7 +1559,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item"><label>合作方名称</label><input type="text" id="detailMatPartner" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>剧集首发时间</label><input type="text" id="detailMatFirstTime" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>剧集付费集数</label><input type="text" id="detailMatPaidEpisodes" disabled style="background:#f5f5f5;color:#999;"></div>
-              <div class="form-item"><label>转免时间</label><input type="text" id="detailMatFreeDate" disabled style="background:#f5f5f5;color:#999;"></div>
+              <div class="form-item"><label>转免时间</label>
+                <div class="radio-group disabled"><label class="radio-item"><input type="radio" checked disabled> 默认付免同跑</label></div>
+              </div>
               <div class="form-item"><label>剧集平均单集时长</label><input type="text" id="detailMatAvgDuration" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>男女频</label><input type="text" id="detailMatGenderFreq" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>是否涉及投流</label><input type="text" id="detailMatAdFlow" disabled style="background:#f5f5f5;color:#999;"></div>
@@ -2601,7 +2727,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item"><label>合作方名称</label><input type="text" id="pltDetailMatPartner" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>剧集首发时间</label><input type="text" id="pltDetailMatFirstTime" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>剧集付费集数</label><input type="text" id="pltDetailMatPaidEpisodes" disabled style="background:#f5f5f5;color:#999;"></div>
-              <div class="form-item"><label>转免时间</label><input type="text" id="pltDetailMatFreeDate" disabled style="background:#f5f5f5;color:#999;"></div>
+              <div class="form-item"><label>转免时间</label>
+                <div class="radio-group disabled"><label class="radio-item"><input type="radio" checked disabled> 默认付免同跑</label></div>
+              </div>
               <div class="form-item"><label>剧集平均单集时长</label><input type="text" id="pltDetailMatAvgDuration" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>男女频</label><input type="text" id="pltDetailMatGenderFreq" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item"><label>是否涉及投流</label><input type="text" id="pltDetailMatAdFlow" disabled style="background:#f5f5f5;color:#999;"></div>
@@ -2784,7 +2912,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-item"><label>合作方名称</label><input type="text" id="pltViewMatPartner" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>剧集首发时间</label><input type="text" id="pltViewMatFirstTime" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>剧集付费集数</label><input type="text" id="pltViewMatPaidEpisodes" disabled style="background:#f5f5f5;color:#999;"></div>
-                  <div class="form-item"><label>转免时间</label><input type="text" id="pltViewMatFreeDate" disabled style="background:#f5f5f5;color:#999;"></div>
+                  <div class="form-item"><label>转免时间</label>
+                    <div class="radio-group disabled"><label class="radio-item"><input type="radio" checked disabled> 默认付免同跑</label></div>
+                  </div>
                   <div class="form-item"><label>剧集平均单集时长</label><input type="text" id="pltViewMatAvgDuration" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>男女频</label><input type="text" id="pltViewMatGenderFreq" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>是否涉及投流</label><input type="text" id="pltViewMatAdFlow" disabled style="background:#f5f5f5;color:#999;"></div>
@@ -2982,7 +3112,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-item"><label>合作方名称</label><input type="text" id="crMatPartner" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>剧集首发时间</label><input type="text" id="crMatFirstTime" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>剧集付费集数</label><input type="text" id="crMatPaidEpisodes" disabled style="background:#f5f5f5;color:#999;"></div>
-                  <div class="form-item"><label>转免时间</label><input type="text" id="crMatFreeDate" disabled style="background:#f5f5f5;color:#999;"></div>
+                  <div class="form-item"><label>转免时间</label>
+                    <div class="radio-group disabled"><label class="radio-item"><input type="radio" checked disabled> 默认付免同跑</label></div>
+                  </div>
                   <div class="form-item"><label>剧集平均单集时长</label><input type="text" id="crMatAvgDuration" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>男女频</label><input type="text" id="crMatGenderFreq" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item"><label>是否涉及投流</label><input type="text" id="crMatAdFlow" disabled style="background:#f5f5f5;color:#999;"></div>
@@ -3686,10 +3818,73 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <label><input type="checkbox" value="甜宠" onchange="updateMultiSelect('editCollTagsDropdown')"> 甜宠</label>
                 <label><input type="checkbox" value="闪婚" onchange="updateMultiSelect('editCollTagsDropdown')"> 闪婚</label>
                 <label><input type="checkbox" value="复仇" onchange="updateMultiSelect('editCollTagsDropdown')"> 复仇</label>
+                <label><input type="checkbox" value="重生" onchange="updateMultiSelect('editCollTagsDropdown')"> 重生</label>
                 <label><input type="checkbox" value="悬疑" onchange="updateMultiSelect('editCollTagsDropdown')"> 悬疑</label>
                 <label><input type="checkbox" value="逆袭" onchange="updateMultiSelect('editCollTagsDropdown')"> 逆袭</label>
                 <label><input type="checkbox" value="家庭情感" onchange="updateMultiSelect('editCollTagsDropdown')"> 家庭情感</label>
                 <label><input type="checkbox" value="宫斗宅斗" onchange="updateMultiSelect('editCollTagsDropdown')"> 宫斗宅斗</label>
+                <label><input type="checkbox" value="穿越" onchange="updateMultiSelect('editCollTagsDropdown')"> 穿越</label>
+                <label><input type="checkbox" value="种田经商" onchange="updateMultiSelect('editCollTagsDropdown')"> 种田经商</label>
+                <label><input type="checkbox" value="科幻" onchange="updateMultiSelect('editCollTagsDropdown')"> 科幻</label>
+                <label><input type="checkbox" value="其他" onchange="updateMultiSelect('editCollTagsDropdown')"> 其他</label>
+                <label><input type="checkbox" value="古装" onchange="updateMultiSelect('editCollTagsDropdown')"> 古装</label>
+                <label><input type="checkbox" value="乡村" onchange="updateMultiSelect('editCollTagsDropdown')"> 乡村</label>
+                <label><input type="checkbox" value="都市" onchange="updateMultiSelect('editCollTagsDropdown')"> 都市</label>
+                <label><input type="checkbox" value="校园" onchange="updateMultiSelect('editCollTagsDropdown')"> 校园</label>
+                <label><input type="checkbox" value="职场" onchange="updateMultiSelect('editCollTagsDropdown')"> 职场</label>
+                <label><input type="checkbox" value="年代" onchange="updateMultiSelect('editCollTagsDropdown')"> 年代</label>
+                <label><input type="checkbox" value="历史" onchange="updateMultiSelect('editCollTagsDropdown')"> 历史</label>
+                <label><input type="checkbox" value="仙侠" onchange="updateMultiSelect('editCollTagsDropdown')"> 仙侠</label>
+                <label><input type="checkbox" value="武侠" onchange="updateMultiSelect('editCollTagsDropdown')"> 武侠</label>
+                <label><input type="checkbox" value="神医" onchange="updateMultiSelect('editCollTagsDropdown')"> 神医</label>
+                <label><input type="checkbox" value="成功人士" onchange="updateMultiSelect('editCollTagsDropdown')"> 成功人士</label>
+                <label><input type="checkbox" value="赘婿" onchange="updateMultiSelect('editCollTagsDropdown')"> 赘婿</label>
+                <label><input type="checkbox" value="萌宝" onchange="updateMultiSelect('editCollTagsDropdown')"> 萌宝</label>
+                <label><input type="checkbox" value="打脸虐渣" onchange="updateMultiSelect('editCollTagsDropdown')"> 打脸虐渣</label>
+                <label><input type="checkbox" value="神豪" onchange="updateMultiSelect('editCollTagsDropdown')"> 神豪</label>
+                <label><input type="checkbox" value="马甲" onchange="updateMultiSelect('editCollTagsDropdown')"> 马甲</label>
+                <label><input type="checkbox" value="末世" onchange="updateMultiSelect('editCollTagsDropdown')"> 末世</label>
+                <label><input type="checkbox" value="奶爸" onchange="updateMultiSelect('editCollTagsDropdown')"> 奶爸</label>
+                <label><input type="checkbox" value="团宠" onchange="updateMultiSelect('editCollTagsDropdown')"> 团宠</label>
+                <label><input type="checkbox" value="系统" onchange="updateMultiSelect('editCollTagsDropdown')"> 系统</label>
+                <label><input type="checkbox" value="替身" onchange="updateMultiSelect('editCollTagsDropdown')"> 替身</label>
+                <label><input type="checkbox" value="言情" onchange="updateMultiSelect('editCollTagsDropdown')"> 言情</label>
+                <label><input type="checkbox" value="大女主" onchange="updateMultiSelect('editCollTagsDropdown')"> 大女主</label>
+                <label><input type="checkbox" value="千金" onchange="updateMultiSelect('editCollTagsDropdown')"> 千金</label>
+                <label><input type="checkbox" value="异能" onchange="updateMultiSelect('editCollTagsDropdown')"> 异能</label>
+                <label><input type="checkbox" value="豪门" onchange="updateMultiSelect('editCollTagsDropdown')"> 豪门</label>
+                <label><input type="checkbox" value="心动拉扯" onchange="updateMultiSelect('editCollTagsDropdown')"> 心动拉扯</label>
+                <label><input type="checkbox" value="出轨" onchange="updateMultiSelect('editCollTagsDropdown')"> 出轨</label>
+                <label><input type="checkbox" value="商战" onchange="updateMultiSelect('editCollTagsDropdown')"> 商战</label>
+                <label><input type="checkbox" value="三角恋" onchange="updateMultiSelect('editCollTagsDropdown')"> 三角恋</label>
+                <label><input type="checkbox" value="年龄差" onchange="updateMultiSelect('editCollTagsDropdown')"> 年龄差</label>
+                <label><input type="checkbox" value="都市职场反渣商战爽剧" onchange="updateMultiSelect('editCollTagsDropdown')"> 都市职场反渣商战爽剧</label>
+                <label><input type="checkbox" value="犯罪/悬疑/大女主" onchange="updateMultiSelect('editCollTagsDropdown')"> 犯罪/悬疑/大女主</label>
+                <label><input type="checkbox" value="大女主 | 婚姻犯罪 | 悬疑 | 智斗复仇" onchange="updateMultiSelect('editCollTagsDropdown')"> 大女主 | 婚姻犯罪 | 悬疑 | 智斗复仇</label>
+                <label><input type="checkbox" value="逆袭/职场/大女主" onchange="updateMultiSelect('editCollTagsDropdown')"> 逆袭/职场/大女主</label>
+                <label><input type="checkbox" value="悬疑、职场、科幻" onchange="updateMultiSelect('editCollTagsDropdown')"> 悬疑、职场、科幻</label>
+                <label><input type="checkbox" value="女性悬疑/身份互换/豪门阴谋" onchange="updateMultiSelect('editCollTagsDropdown')"> 女性悬疑/身份互换/豪门阴谋</label>
+                <label><input type="checkbox" value="都市情感/家庭救赎/女性成长/社会治愈" onchange="updateMultiSelect('editCollTagsDropdown')"> 都市情感/家庭救赎/女性成长/社会治愈</label>
+                <label><input type="checkbox" value="亲情" onchange="updateMultiSelect('editCollTagsDropdown')"> 亲情</label>
+                <label><input type="checkbox" value="民间故事、漫剧" onchange="updateMultiSelect('editCollTagsDropdown')"> 民间故事、漫剧</label>
+                <label><input type="checkbox" value="大女主逆袭" onchange="updateMultiSelect('editCollTagsDropdown')"> 大女主逆袭</label>
+                <label><input type="checkbox" value="年代逆袭" onchange="updateMultiSelect('editCollTagsDropdown')"> 年代逆袭</label>
+                <label><input type="checkbox" value="家庭伦理" onchange="updateMultiSelect('editCollTagsDropdown')"> 家庭伦理</label>
+                <label><input type="checkbox" value="通用家庭伦理" onchange="updateMultiSelect('editCollTagsDropdown')"> 通用家庭伦理</label>
+                <label><input type="checkbox" value="女频年代逆袭" onchange="updateMultiSelect('editCollTagsDropdown')"> 女频年代逆袭</label>
+                <label><input type="checkbox" value="女频乡村逆袭" onchange="updateMultiSelect('editCollTagsDropdown')"> 女频乡村逆袭</label>
+                <label><input type="checkbox" value="逆袭、打脸" onchange="updateMultiSelect('editCollTagsDropdown')"> 逆袭、打脸</label>
+                <label><input type="checkbox" value="家庭、婚姻" onchange="updateMultiSelect('editCollTagsDropdown')"> 家庭、婚姻</label>
+                <label><input type="checkbox" value="传统民俗" onchange="updateMultiSelect('editCollTagsDropdown')"> 传统民俗</label>
+                <label><input type="checkbox" value="青春校园" onchange="updateMultiSelect('editCollTagsDropdown')"> 青春校园</label>
+                <label><input type="checkbox" value="女频家庭伦理" onchange="updateMultiSelect('editCollTagsDropdown')"> 女频家庭伦理</label>
+                <label><input type="checkbox" value="银发大女主" onchange="updateMultiSelect('editCollTagsDropdown')"> 银发大女主</label>
+                <label><input type="checkbox" value="农村大女主" onchange="updateMultiSelect('editCollTagsDropdown')"> 农村大女主</label>
+                <label><input type="checkbox" value="大女主爽剧" onchange="updateMultiSelect('editCollTagsDropdown')"> 大女主爽剧</label>
+                <label><input type="checkbox" value="爽剧萌宝" onchange="updateMultiSelect('editCollTagsDropdown')"> 爽剧萌宝</label>
+                <label><input type="checkbox" value="苦情萌宝" onchange="updateMultiSelect('editCollTagsDropdown')"> 苦情萌宝</label>
+                <label><input type="checkbox" value="甜宠轻喜" onchange="updateMultiSelect('editCollTagsDropdown')"> 甜宠轻喜</label>
+                <label><input type="checkbox" value="年代大女主" onchange="updateMultiSelect('editCollTagsDropdown')"> 年代大女主</label>
               </div>
             </div>
           </div>
@@ -4009,20 +4204,20 @@ var step2DragSrcIndex = null;
 
 // 字段类型限制
 var MAT_TYPE_RESTRICTIONS = {
-  "C":"无限制","D":"无限制","E":"无限制","F":"无限制","G":"无限制","H":"国内漫剧、海外本土漫剧",
+  "C":"无限制","D":"无限制","E":"无限制","F":"无限制","G":"无限制","H":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）,海外本土漫剧（AI真人剧集、沙雕漫、3D、2D漫）",
   "I":"无限制","J":"无限制","K":"无限制","L":"无限制","M":"无限制","N":"无限制","O":"无限制",
   "P":"无限制","Q":"无限制","R":"无限制","S":"无限制","T":"无限制","U":"无限制","V":"无限制",
   "W":"无限制","X":"无限制",
-  "Y":"国内真人、海外本土真人","Z":"国内真人、海外本土真人","AA":"国内真人、海外本土真人",
-  "AB":"国内真人","AC":"国内真人","AD":"国内真人","AE":"国内真人","AF":"国内真人",
-  "AG":"国内真人、海外本土真人","AH":"国内真人","AI":"国内真人","AJ":"国内真人","AK":"国内真人","AL":"国内真人",
-  "AM":"国内漫剧、海外本土漫剧","AN":"国内漫剧、海外本土漫剧","AO":"国内漫剧","AP":"国内漫剧","AQ":"国内漫剧","AR":"国内漫剧",
-  "AS":"无限制","AT":"无限制","AU":"国内真人","AV":"无限制","AW":"无限制",
-  "AX":"无限制","AY":"无限制","AZ":"无限制","BA":"无限制","BB":"无限制","BC":"无限制","BD":"国内真人",
-  "BE":"无限制","BF":"无限制","BG":"国内漫剧、海外本土漫剧","BH":"国内真人","BI":"无限制","BJ":"国内真人","BK":"国内漫剧",
-  "BL":"无限制","BM":"无限制","BN":"无限制","BO":"无限制","BP":"无限制","BQ":"国内漫剧、海外本土漫剧",
-  "BR":"国内漫剧","BS":"国内漫剧","BT":"无限制","BU":"无限制","BV":"无限制","BW":"无限制","BX":"国内漫剧","BY":"国内漫剧",
-  "CA":"国内真人、国内漫剧","CB":"国内真人、国内漫剧","CC":"国内真人、国内漫剧","CD":"国内真人、国内漫剧","CE":"国内真人、国内漫剧"
+  "Y":"国内真人剧（真人实拍）,海外本土真人剧（真人实拍）","Z":"国内真人剧（真人实拍）,海外本土真人剧（真人实拍）","AA":"国内真人剧（真人实拍）,海外本土真人剧（真人实拍）",
+  "AB":"国内真人剧（真人实拍）","AC":"国内真人剧（真人实拍）","AD":"国内真人剧（真人实拍）","AE":"国内真人剧（真人实拍）","AF":"国内真人剧（真人实拍）",
+  "AG":"国内真人剧（真人实拍）,海外本土真人剧（真人实拍）","AH":"国内真人剧（真人实拍）","AI":"国内真人剧（真人实拍）","AJ":"国内真人剧（真人实拍）","AK":"国内真人剧（真人实拍）","AL":"国内真人剧（真人实拍）",
+  "AM":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）,海外本土漫剧（AI真人剧集、沙雕漫、3D、2D漫）","AN":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）,海外本土漫剧（AI真人剧集、沙雕漫、3D、2D漫）","AO":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）","AP":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）","AQ":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）","AR":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）",
+  "AS":"无限制","AT":"无限制","AU":"国内真人剧（真人实拍）","AV":"无限制","AW":"无限制",
+  "AX":"无限制","AY":"无限制","AZ":"无限制","BA":"无限制","BB":"无限制","BC":"无限制","BD":"国内真人剧（真人实拍）",
+  "BE":"无限制","BF":"无限制","BG":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）,海外本土漫剧（AI真人剧集、沙雕漫、3D、2D漫）","BH":"国内真人剧（真人实拍）","BI":"无限制","BJ":"国内真人剧（真人实拍）","BK":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）",
+  "BL":"无限制","BM":"无限制","BN":"无限制","BO":"无限制","BP":"无限制","BQ":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）,海外本土漫剧（AI真人剧集、沙雕漫、3D、2D漫）",
+  "BR":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）","BS":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）","BT":"无限制","BU":"无限制","BV":"无限制","BW":"无限制","BX":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）","BY":"国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）",
+  "CA":"国内真人剧（真人实拍）,国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）","CB":"国内真人剧（真人实拍）,国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）","CC":"国内真人剧（真人实拍）,国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）","CD":"国内真人剧（真人实拍）,国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）","CE":"国内真人剧（真人实拍）,国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）"
 };
 
 // 渠道字段映射
@@ -4107,8 +4302,24 @@ function checkMatTypeRestriction(col, dramaType) {
   var restriction = MAT_TYPE_RESTRICTIONS[col];
   if (!restriction || restriction === '无限制') return true;
   if (!dramaType) return true;
-  var allowedTypes = restriction.split('、').map(function(t){return t.trim();});
+  var allowedTypes = restriction.split(',').map(function(t){return t.trim();});
   return allowedTypes.indexOf(dramaType) !== -1;
+}
+
+// 解析当前编辑页的制作成本数值
+function getMatCostNum() {
+  var costInput = document.getElementById('step1MatCost');
+  var costVal = costInput ? costInput.value : '';
+  return parseFloat(costVal.replace(/[^0-9.]/g, '')) || 0;
+}
+
+// 备案号展示/必填条件：国内漫剧>30w 或 国内真人>100w
+function isRecordNoRequired() {
+  var dramaType = getMatSelectedDramaType();
+  var cost = getMatCostNum();
+  if (dramaType.indexOf('国内漫剧') === 0 && cost > 30) return true;
+  if (dramaType.indexOf('国内真人') === 0 && cost > 100) return true;
+  return false;
 }
 
 function updateMatFieldVisibility() {
@@ -4138,30 +4349,54 @@ function updateMatFieldVisibility() {
         return;
       }
     }
-    // 4张片段剪辑工程文件：仅"有制作合同"时显示
+    // 4张片段剪辑工程文件：仅"有"时显示
     if (col === 'BG') {
-      if (contractType !== '有制作合同') {
+      if (contractType !== '有') {
         item.style.display = 'none';
         item.classList.add('mat-field-hidden');
         return;
       }
     }
-    // 版权文件：仅"有制作合同"时显示
+    // 版权文件：仅"有"时显示
     if (col === 'BP') {
-      if (contractType !== '有制作合同') {
+      if (contractType !== '有') {
         item.style.display = 'none';
         item.classList.add('mat-field-hidden');
         return;
       }
     }
-    // 漫剧无合同替代材料/拼多多渠道权利声明/华为渠道承诺函：仅"无制作合同"时显示
+    // 漫剧无合同替代材料/拼多多渠道权利声明/华为渠道承诺函：仅"无"时显示
     if (col === 'BQ' || col === 'BR' || col === 'BS') {
-      if (contractType !== '无制作合同') {
+      if (contractType !== '无') {
         item.style.display = 'none';
         item.classList.add('mat-field-hidden');
         return;
       }
     }
+    // 备案号：国内漫剧成本>30w 或 国内真人成本>100w 时展示并必填
+    if (col === 'S') {
+      var costNum = getMatCostNum();
+      var needRecord = isRecordNoRequired();
+      var labelEl = item.querySelector('label');
+      var inputEl = item.querySelector('input#step1MatRecordNo');
+      if (needRecord) {
+        item.style.display = '';
+        item.classList.remove('mat-field-hidden');
+        if (labelEl) labelEl.innerHTML = '广电备案号 <span style="color:#e74c3c;">*</span>';
+        if (inputEl) inputEl.placeholder = '请输入备案号';
+        return;
+      } else {
+        item.style.display = 'none';
+        item.classList.add('mat-field-hidden');
+        if (labelEl) labelEl.innerHTML = '广电备案号';
+        if (inputEl) {
+          inputEl.value = '';
+          inputEl.placeholder = '满足条件时必填';
+        }
+        return;
+      }
+    }
+
     var typeOk = checkMatTypeRestriction(col, dramaType);
     var channelOk = !hasChannelFilter || channelFields[col];
     var visible = typeOk && channelOk;
@@ -4252,6 +4487,34 @@ function initMatOptTags() {
       });
     });
   });
+}
+
+// 男主/女主「是否入驻红果」选择框：联动真实姓名输入框（未选择时隐藏）
+function toggleActorNamePlaceholder(gender) {
+  var isMale = gender === 'male';
+  var sel = document.getElementById(isMale ? 'step1MatMaleActorOnHg' : 'step1MatFemaleActorOnHg');
+  var nameInput = document.getElementById(isMale ? 'step1MatMaleActorName' : 'step1MatFemaleActorName');
+  if (!sel || !nameInput) return;
+  nameInput.value = '';
+  if (!sel.value) {
+    nameInput.style.display = 'none';
+    return;
+  }
+  nameInput.style.display = '';
+  nameInput.placeholder = sel.value === '是' ? '请输入红果姓名（与红果站内一致）' : '请输入真实法定姓名';
+}
+
+// 关联AIGC工具：选择「自定义」时联动后方输入框提示
+function toggleAIGCCustomInput() {
+  var sel = document.getElementById('step1MatAIGCTool');
+  var custom = document.getElementById('step1MatAIGCToolCustom');
+  if (!sel || !custom) return;
+  if (sel.value === '自定义') {
+    custom.placeholder = '请输入自定义AIGC工具名称';
+  } else {
+    custom.placeholder = '选“自定义”时请输入AIGC工具名称';
+    custom.value = '';
+  }
 }
 
 // upload-zone 交互初始化
@@ -4747,11 +5010,14 @@ function fillStep3Summary() {
   html += s3Item('合作方名称', dash(val('step1MatPartner')));
   html += s3Item('剧集首发时间', dash(val('step1MatFirstTime')));
   html += s3Item('剧集付费集数', dash(val('step1MatPaidEpisodes')));
-  html += s3Item('转免时间', dash(val('step1MatFreeDate')));
-  html += s3Item('剧集平均单集时长', dash(val('step1EditCollAvgDuration')));
+  html += s3Item('转免时间', '默认付免同跑');
+  var s3AvgDuration = val('step1EditCollAvgDuration');
+  html += s3Item('剧集平均单集时长', s3AvgDuration ? s3AvgDuration + ' 分钟' : dash(s3AvgDuration));
   html += s3Item('男女频', dash(getOptTagVal('mat-男女频')));
   html += s3Item('是否涉及投流', dash(getOptTagVal('mat-投流')));
-  html += s3ItemFull('备案号', dash(val('step1MatRecordNo')));
+  if (isRecordNoRequired()) {
+    html += s3ItemFull('备案号', dash(val('step1MatRecordNo')));
+  }
   html += '</div></div></div>';
 
   // 2. 剧情文案
@@ -4765,7 +5031,8 @@ function fillStep3Summary() {
 
   // 备案信息
   html += '<div class="mat-section-card" style="margin-bottom:12px;"><div class="mat-section-title"><div class="sec-icon" style="background:#F0F5FF;color:#3F6EE0;">📋</div> 备案信息</div><div class="mat-section-body"><div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;">';
-  html += s3Item('剧集制作成本', dash(val('step1MatCost')));
+  var s3Cost = val('step1MatCost');
+  html += s3Item('剧集制作成本', s3Cost ? s3Cost + ' 万' : dash(s3Cost));
   html += s3Item('演员总片酬占比', dash(val('step1MatActorRatio') ? val('step1MatActorRatio') + '%' : ''));
   html += s3Item('主要演员片酬占比', dash(val('step1MatMainActorRatio') ? val('step1MatMainActorRatio') + '%' : ''));
   html += s3ItemFull('真人短剧成本配置比例报告', fileNames('step1RealCostReport'));
@@ -4775,14 +5042,14 @@ function fillStep3Summary() {
   // 3. 角色资料
   html += '<div class="mat-section-card" style="margin-bottom:12px;"><div class="mat-section-title"><div class="sec-icon" style="background:#FFF7E6;color:#FF7D00;">🎭</div> 角色资料</div><div class="mat-section-body"><div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;">';
   html += s3SubBanner('男主角信息');
-  html += s3Item('男主真实姓名', dash(val('step1MatMaleActorName')));
+  html += s3Item('男主真实姓名', dash(((document.getElementById('step1MatMaleActorOnHg') || {}).value === '是' ? '（入驻红果）' : '') + val('step1MatMaleActorName')));
   html += s3Item('男主饰演角色名', dash(val('step1MatMaleRoleName')));
   html += s3ItemFull('男主简介', dash(val('step1MatMaleIntro')));
   html += s3ItemFull('男主饰演角色简介', dash(val('step1MatMaleRoleIntro')));
   html += s3ItemFull('男主照片', fileNames('step1MalePhoto'));
   html += s3ItemFull('男主演剧照', fileNames('step1MaleStill'));
   html += s3SubBanner('女主角信息');
-  html += s3Item('女主真实姓名', dash(val('step1MatFemaleActorName')));
+  html += s3Item('女主真实姓名', dash(((document.getElementById('step1MatFemaleActorOnHg') || {}).value === '是' ? '（入驻红果）' : '') + val('step1MatFemaleActorName')));
   html += s3Item('女主饰演角色名', dash(val('step1MatFemaleRoleName')));
   html += s3ItemFull('女主简介', dash(val('step1MatFemaleIntro')));
   html += s3ItemFull('女主饰演角色简介', dash(val('step1MatFemaleRoleIntro')));
@@ -4808,7 +5075,7 @@ function fillStep3Summary() {
   // 新增字段：剧集类型为国内真人/国内漫剧 且 渠道含 国内全渠道/字节系（红果和抖音）时展示
   var s3CrewType = getOptTagVal('mat-剧集类型');
   var s3CrewChannels = getMultiSelectValues('step1EditCollChannelDropdown');
-  var s3CrewExtra = (s3CrewType === '国内真人' || s3CrewType === '国内漫剧') && (s3CrewChannels.indexOf('国内全渠道') !== -1 || s3CrewChannels.indexOf('字节系（红果和抖音）') !== -1);
+  var s3CrewExtra = ((s3CrewType || '').indexOf('国内真人') === 0 || (s3CrewType || '').indexOf('国内漫剧') === 0) && (s3CrewChannels.indexOf('国内全渠道') !== -1 || s3CrewChannels.indexOf('字节系（红果和抖音）') !== -1);
   if (s3CrewExtra) {
     html += s3ItemFull('导演简介', dash(val('step1MatDirectorIntro')));
     html += s3Item('编剧性别', dash(document.getElementById('step1MatScreenwriterGender') ? document.getElementById('step1MatScreenwriterGender').value : ''));
@@ -4819,31 +5086,31 @@ function fillStep3Summary() {
 
   // 5. 成片素材
   html += '<div class="mat-section-card" style="margin-bottom:12px;"><div class="mat-section-title"><div class="sec-icon" style="background:#FFF3E8;color:#FF9A45;">🎞️</div> 成片素材</div><div class="mat-section-body"><div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;">';
-  html += s3ItemFull('全集资源', fileNames('step1AllEpisodes'));
+  html += s3ItemFull('全集资源', dash(val('step1AllEpisodes')));
   html += s3ItemFull('红果链接', dash(val('step1MatHongguoLink')));
   html += s3ItemFull('试看链接', dash(val('step1MatPreviewLink')));
-  html += s3ItemFull('高光素材视频', fileNames('step1HighlightVideo'));
+  html += s3ItemFull('高光素材视频', dash(val('step1HighlightVideo')));
   html += s3ItemFull('横版剧集海报', fileNames('step1HorizontalPoster'));
   html += s3ItemFull('竖版剧集海报', fileNames('step1VerticalPoster'));
   html += s3Item('AI具体集数', dash(val('step1MatAIEpisodes')));
-  html += s3ItemFull('净版无字幕成片', fileNames('step1CleanVideo'));
-  html += s3ItemFull('SRT 字幕文件', fileNames('step1SrtFile'));
-  html += s3ItemFull('分销素材', fileNames('step1DistributionMaterial'));
+  html += s3ItemFull('净版无字幕成片', dash(val('step1CleanVideo')));
+  html += s3ItemFull('SRT 字幕文件', dash(val('step1SrtFile')));
+  html += s3ItemFull('分销素材', dash(val('step1DistributionMaterial')));
   html += '</div></div></div>';
 
   // 7. 合规文件
   html += '<div class="mat-section-card" style="margin-bottom:0;"><div class="mat-section-title"><div class="sec-icon" style="background:#FFECE8;color:#F53F3F;">📄</div> 合规文件</div><div class="mat-section-body"><div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;">';
   var s3ContractType = getOptTagVal('mat-制作合同');
   html += s3Item('制作合同', dash(s3ContractType));
-  if (s3ContractType === '有制作合同') {
+  if (s3ContractType === '有') {
     html += s3ItemFull('4张片段剪辑工程文件', fileNames('step1ProjectFile'));
   }
   html += s3ItemFull('物料截图文件', fileNames('step1MaterialScreenshot'));
   html += s3ItemFull('片酬承诺书', fileNames('step1SalaryCommitment'));
-  if (s3ContractType === '有制作合同') {
+  if (s3ContractType === '有') {
     html += s3ItemFull('版权文件', fileNames('step1CopyrightFile'));
   }
-  if (s3ContractType === '无制作合同') {
+  if (s3ContractType === '无') {
     html += s3ItemFull('漫剧无合同替代材料', fileNames('step1AnimeNoContract'));
     html += s3ItemFull('拼多多渠道权利声明', fileNames('step1PddDeclaration'));
     html += s3ItemFull('华为渠道承诺函', fileNames('step1HuaweiCommitment'));
@@ -4854,8 +5121,10 @@ function fillStep3Summary() {
   html += s3ItemFull('权利声明及不侵权承诺函（红果模版）', fileNames('step1HongguoDeclaration'));
   html += s3ItemFull('支付宝承诺函', fileNames('step1AlipayCommitment'));
   html += s3ItemFull('快手自建站授权书', fileNames('step1KuaishouAuth'));
-  html += s3ItemFull('腾讯火龙漫剧配套文件', fileNames('step1TencentAnime'));
-  html += s3ItemFull('关联 AIGC 工具', dash(val('step1MatAIGCTool')));
+  html += s3ItemFull('腾讯火龙漫剧（缺一不可）', fileNames('step1TencentAnime'));
+  var s3AIGCVal = val('step1MatAIGCTool');
+  var s3AIGCCustom = val('step1MatAIGCToolCustom');
+  html += s3ItemFull('关联 AIGC 工具', dash(s3AIGCVal === '自定义' ? (s3AIGCCustom || '自定义') : s3AIGCVal));
   html += '</div></div></div>';
 
   html += '</div>';
@@ -4920,10 +5189,12 @@ function submitMatReview() {
   if (!firstDate) { alert('请填写剧集首发时间'); return; }
   if (!shortIntro) { alert('请填写10字以内剧集简介'); return; }
   if (tagVals.length === 0) { alert('请选择剧集标签'); return; }
+  if (tagVals.length > 3) { alert('剧集标签最多选择3个'); return; }
   if (!producerVal) { alert('请填写制片人真实姓名'); return; }
   if (channelVals.length === 0) { alert('请选择发行渠道'); return; }
   if (!typeVal) { alert('请选择剧集类型'); return; }
   if (!roundVal) { alert('请选择发行轮次'); return; }
+  if (isRecordNoRequired() && !document.getElementById('step1MatRecordNo').value.trim()) { alert('请填写备案号'); return; }
   if (confirm('确认提交「' + name + '」的物料信息进入审核流程？\n提交后不可修改，请确认信息无误。')) {
     alert('✅ 物料信息已提交审核！合集「' + name + '」的物料已进入审核流程。');
     exitCollectionEditPage();
@@ -4956,10 +5227,12 @@ function submitEditReview() {
     if (!firstDate) { alert('请填写剧集首发时间'); return; }
     if (!shortIntro) { alert('请填写10字以内剧集简介'); return; }
     if (tagVals.length === 0) { alert('请选择剧集标签'); return; }
+    if (tagVals.length > 3) { alert('剧集标签最多选择3个'); return; }
     if (!producerVal) { alert('请填写制片人真实姓名'); return; }
     if (channelVals.length === 0) { alert('请选择发行渠道'); return; }
     if (!typeVal) { alert('请选择剧集类型'); return; }
     if (!roundVal) { alert('请选择发行轮次'); return; }
+    if (isRecordNoRequired() && !document.getElementById('step1MatRecordNo').value.trim()) { alert('请填写备案号'); return; }
     if (confirm('确认提交「' + name + '」的物料信息进入审核流程？\n提交后不可修改，请确认信息无误。')) {
       alert('✅ 物料信息已提交审核！合集「' + name + '」的物料已进入审核流程。');
       exitCollectionEditPage();
@@ -4985,10 +5258,12 @@ function submitEditReview() {
     if (!firstDate) { alert('请填写剧集首发时间'); return; }
     if (!shortIntro) { alert('请填写10字以内剧集简介'); return; }
     if (tagVals.length === 0) { alert('请选择剧集标签'); return; }
+    if (tagVals.length > 3) { alert('剧集标签最多选择3个'); return; }
     if (!producerVal) { alert('请填写制片人真实姓名'); return; }
     if (channelVals.length === 0) { alert('请选择发行渠道'); return; }
     if (!typeVal) { alert('请选择剧集类型'); return; }
     if (!roundVal) { alert('请选择发行轮次'); return; }
+    if (isRecordNoRequired() && !document.getElementById('step1MatRecordNo').value.trim()) { alert('请填写备案号'); return; }
     var total = parseInt(document.getElementById('step1EditCollCount').value) || 0;
     if (step2Episodes.length === 0) { alert('请上传剧集视频文件'); return; }
     if (step2Episodes.length < total) { alert('已上传 ' + step2Episodes.length + ' 集，需上传 ' + total + ' 集方可提交审核'); return; }
@@ -5122,11 +5397,11 @@ function renderPltDetailMaterial(id, item) {
   setVal('pltDetailMatFirstTime', mat.firstTime);
   setVal('pltDetailMatCost', mat.cost);
   setVal('pltDetailMatPaidEpisodes', mat.paidEpisodes);
-  setVal('pltDetailMatFreeDate', mat.freeDate);
   setVal('pltDetailMatAvgDuration', mat.avgDuration ? mat.avgDuration + ' 分钟' : '');
   setVal('pltDetailMatGenderFreq', mat.genderFreq);
   setVal('pltDetailMatAdFlow', mat.adFlow);
   setVal('pltDetailMatRecordNo', mat.recordNo);
+  toggleParentDisplay('pltDetailMatRecordNo', isRecordNoVisible(mat));
   // 2. 剧情文案
   setVal('pltDetailMatShortIntro', mat.shortIntro || mat.intro || '');
   setVal('pltDetailMatSynopsis', mat.synopsis);
@@ -5199,11 +5474,11 @@ function renderPltDetailMaterial(id, item) {
   setVal('pltDetailMatAIGCTool', mat.aigcTool);
   // 条件字段显隐
   toggleParentDisplay('pltDetailMatFirstDate', mat.round === '二轮');
-  toggleParentDisplay('pltDetailMatProjectFile', mat.contract === '有制作合同');
-  toggleParentDisplay('pltDetailMatCopyrightFile', mat.contract === '有制作合同');
-  toggleParentDisplay('pltDetailMatAnimeNoContract', mat.contract === '无制作合同');
-  toggleParentDisplay('pltDetailMatPddDeclaration', mat.contract === '无制作合同');
-  toggleParentDisplay('pltDetailMatHuaweiCommitment', mat.contract === '无制作合同');
+  toggleParentDisplay('pltDetailMatProjectFile', mat.contract === '有');
+  toggleParentDisplay('pltDetailMatCopyrightFile', mat.contract === '有');
+  toggleParentDisplay('pltDetailMatAnimeNoContract', mat.contract === '无');
+  toggleParentDisplay('pltDetailMatPddDeclaration', mat.contract === '无');
+  toggleParentDisplay('pltDetailMatHuaweiCommitment', mat.contract === '无');
   // 主创团队新增字段：国内真人/国内漫剧 + 国内全渠道/字节系渠道时展示
   var pltDetailCrewExtra = isCrewExtraVisible(mat);
   toggleParentDisplay('pltDetailMatDirectorGender', pltDetailCrewExtra);
@@ -5236,11 +5511,11 @@ function renderSupDetailMaterial(collId, item) {
   setVal('detailMatFirstTime', mat.firstTime);
   setVal('detailMatCost', mat.cost);
   setVal('detailMatPaidEpisodes', mat.paidEpisodes);
-  setVal('detailMatFreeDate', mat.freeDate);
   setVal('detailMatAvgDuration', mat.avgDuration ? mat.avgDuration + ' 分钟' : '');
   setVal('detailMatGenderFreq', mat.genderFreq);
   setVal('detailMatAdFlow', mat.adFlow);
   setVal('detailMatRecordNo', mat.recordNo);
+  toggleParentDisplay('detailMatRecordNo', isRecordNoVisible(mat));
   // 2. 剧情文案
   setVal('detailMatShortIntro', mat.shortIntro || mat.intro || '');
   setVal('detailMatSynopsis', mat.synopsis);
@@ -5315,11 +5590,11 @@ function renderSupDetailMaterial(collId, item) {
   setVal('detailMatAIGCTool', mat.aigcTool);
   // 条件字段显隐
   toggleParentDisplay('detailMatFirstDate', mat.round === '二轮');
-  toggleParentDisplay('detailMatProjectFile', mat.contract === '有制作合同');
-  toggleParentDisplay('detailMatCopyrightFile', mat.contract === '有制作合同');
-  toggleParentDisplay('detailMatAnimeNoContract', mat.contract === '无制作合同');
-  toggleParentDisplay('detailMatPddDeclaration', mat.contract === '无制作合同');
-  toggleParentDisplay('detailMatHuaweiCommitment', mat.contract === '无制作合同');
+  toggleParentDisplay('detailMatProjectFile', mat.contract === '有');
+  toggleParentDisplay('detailMatCopyrightFile', mat.contract === '有');
+  toggleParentDisplay('detailMatAnimeNoContract', mat.contract === '无');
+  toggleParentDisplay('detailMatPddDeclaration', mat.contract === '无');
+  toggleParentDisplay('detailMatHuaweiCommitment', mat.contract === '无');
   // 主创团队新增字段：国内真人/国内漫剧 + 国内全渠道/字节系渠道时展示
   var detailCrewExtra = isCrewExtraVisible(mat);
   toggleParentDisplay('detailMatDirectorGender', detailCrewExtra);
@@ -5419,11 +5694,11 @@ function openPltVersionView() {
   setVal('pltViewMatFirstTime', mat.firstTime);
   setVal('pltViewMatCost', mat.cost);
   setVal('pltViewMatPaidEpisodes', mat.paidEpisodes);
-  setVal('pltViewMatFreeDate', mat.freeDate);
   setVal('pltViewMatAvgDuration', mat.avgDuration ? mat.avgDuration + ' 分钟' : '');
   setVal('pltViewMatGenderFreq', mat.genderFreq);
   setVal('pltViewMatAdFlow', mat.adFlow);
   setVal('pltViewMatRecordNo', mat.recordNo);
+  toggleParentDisplay('pltViewMatRecordNo', isRecordNoVisible(mat));
   // 2. 剧情文案
   setVal('pltViewMatShortIntro', mat.shortIntro || mat.intro || '');
   setVal('pltViewMatSynopsis', mat.synopsis);
@@ -5496,11 +5771,11 @@ function openPltVersionView() {
   setVal('pltViewMatAIGCTool', mat.aigcTool);
   // 条件字段显隐
   toggleParentDisplay('pltViewMatFirstDate', mat.round === '二轮');
-  toggleParentDisplay('pltViewMatProjectFile', mat.contract === '有制作合同');
-  toggleParentDisplay('pltViewMatCopyrightFile', mat.contract === '有制作合同');
-  toggleParentDisplay('pltViewMatAnimeNoContract', mat.contract === '无制作合同');
-  toggleParentDisplay('pltViewMatPddDeclaration', mat.contract === '无制作合同');
-  toggleParentDisplay('pltViewMatHuaweiCommitment', mat.contract === '无制作合同');
+  toggleParentDisplay('pltViewMatProjectFile', mat.contract === '有');
+  toggleParentDisplay('pltViewMatCopyrightFile', mat.contract === '有');
+  toggleParentDisplay('pltViewMatAnimeNoContract', mat.contract === '无');
+  toggleParentDisplay('pltViewMatPddDeclaration', mat.contract === '无');
+  toggleParentDisplay('pltViewMatHuaweiCommitment', mat.contract === '无');
   // 主创团队新增字段：国内真人/国内漫剧 + 国内全渠道/字节系渠道时展示
   var pltViewCrewExtra = isCrewExtraVisible(mat);
   toggleParentDisplay('pltViewMatDirectorGender', pltViewCrewExtra);
@@ -6032,6 +6307,10 @@ function saveCollectionEdit() {
   var avgDuration = document.getElementById('editCollAvgDuration').value;
   if (!channel || !type || !round || !resell || !producer || !firstDate || !intro || !tags || !avgDuration) {
     alert('请完善所有必填字段');
+    return;
+  }
+  if (tags.split('、').filter(Boolean).length > 3) {
+    alert('剧集标签最多选择3个');
     return;
   }
   // Save resell fields
@@ -7471,20 +7750,20 @@ function autoGetChannelLead(collectionId) {
 
 // 物料数据（按合集 ID 映射）
 var contentMaterials = {
-  'C001': { intro: '一个关于成长与梦想的都市故事，讲述了年轻人在繁华都市中追寻自我、探索人生的心路历程。', tags: ['甜宠', '逆袭', '家庭情感'], avgDuration: 2, producer: '陈大明', authFile: '星辰大海_授权书_v1.pdf', authFileSize: '2.3MB', posterImg: '星辰大海_竖版海报_终稿.jpg', posterImgSize: '4.1MB', posterSrc: '星辰大海_海报源文件.psd', posterSrcSize: '28.6MB', channels: ['字节系', '腾讯视频', '快手'], firstDate: '2026-08-15', type: '国内真人剧（真人实拍）', round: '首发', resell: '是' },
-  'C002': { intro: '一桩离奇案件引发连环追踪，警探与罪犯之间展开一场智力与勇气的博弈。', tags: ['悬疑', '复仇'], avgDuration: 3, producer: '李志强', authFile: '暗夜追光_授权书_signed.pdf', authFileSize: '1.8MB', posterImg: '暗夜追光_海报.jpg', posterImgSize: '3.5MB', posterSrc: '暗夜追光_海报源文件.psd', posterSrcSize: '22.1MB', channels: ['爱奇艺', '优酷视频', '芒果TV'], firstDate: '2026-07-28', type: '国内真人剧（真人实拍）', round: '首发', resell: '是' },
-  'C003': { intro: '山海之间，跨越千年的传说与现代都市的奇幻交织，谱写一曲荡气回肠的爱恨情仇。', tags: ['玄幻异能', '虐恋'], avgDuration: 2, producer: '王建国', authFile: '山海谣_授权书_final.pdf', authFileSize: '2.1MB', posterImg: '山海谣_海报.jpg', posterImgSize: '4.8MB', posterSrc: '山海谣_海报源文件.ai', posterSrcSize: '35.2MB', channels: ['字节系', '拼多多', '快手', '百度'], firstDate: '2026-08-01', type: '国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）', round: '二轮', resell: '否' },
-  'C004': { intro: '校园里的小故事，青春岁月中的欢笑与泪水。', tags: ['甜宠', '闪婚'], avgDuration: 1, producer: '赵小花', authFile: '青春纪事_授权书.pdf', authFileSize: '1.5MB', posterImg: '青春纪事_海报.jpg', posterImgSize: '2.9MB', posterSrc: '', posterSrcSize: '', channels: ['字节系'], firstDate: '2026-07-15', type: '国内真人剧（真人实拍）', round: '首发', resell: '是' },
-  'C005': { intro: '都市深夜的温暖故事，几个陌生人的命运在深夜便利店交汇。', tags: ['家庭情感', '悬疑'], avgDuration: 2, producer: '钱大伟', authFile: '都市夜话_授权书_signed_v2.pdf', authFileSize: '2.7MB', posterImg: '都市夜话_海报.jpg', posterImgSize: '3.3MB', posterSrc: '都市夜话_海报源文件.psd', posterSrcSize: '19.8MB', channels: ['腾讯视频', '爱奇艺'], firstDate: '2026-06-20', type: '国内真人剧（真人实拍）', round: '首发', resell: '是' },
-  'C006': { intro: '回忆像一首老歌，在岁月的长河中回荡。', tags: ['家庭情感'], avgDuration: 2, producer: '陈文轩', authFile: '岁月长歌_授权书.pdf', authFileSize: '1.9MB', posterImg: '岁月长歌_海报.jpg', posterImgSize: '4.2MB', posterSrc: '', posterSrcSize: '', channels: ['字节系', '快手'], firstDate: '2026-08-05', type: '国内真人剧（真人实拍）', round: '首发', resell: '否' },
-  'C007': { intro: '仰望星空的人，心中自有光芒万丈。', tags: ['逆袭', '复仇'], avgDuration: 1, producer: '马天宇', authFile: '星光不负赶路人_授权书.pdf', authFileSize: '2.0MB', posterImg: '星光不负赶路人_海报.jpg', posterImgSize: '3.7MB', posterSrc: '星光不负赶路人_海报源文件.psd', posterSrcSize: '24.3MB', channels: ['爱奇艺', '芒果TV', '优酷视频'], firstDate: '2026-07-25', type: '国内真人剧（真人实拍）', round: '首发', resell: '是' },
-  'C008': { intro: '在钢筋水泥的城市森林中，每个灵魂都在寻找属于自己的方向。', tags: ['都市', '逆袭'], avgDuration: 2, producer: '杨若兮', authFile: '迷失之城_授权书_v1.pdf', authFileSize: '2.4MB', posterImg: '迷失之城_海报.jpg', posterImgSize: '3.9MB', posterSrc: '迷失之城_海报源文件.psd', posterSrcSize: '26.1MB', channels: ['字节系', '腾讯视频', '百度'], firstDate: '2026-08-10', type: '国内真人剧（真人实拍）', round: '首发', resell: '是' },
-  'C009': { intro: '当末日的阴霾笼罩大地，幸存者们在绝望中寻找希望。', tags: ['科幻', '悬疑'], avgDuration: 3, producer: '周铁军', authFile: '末日代码_授权书_final.pdf', authFileSize: '1.7MB', posterImg: '末日代码_海报.jpg', posterImgSize: '5.1MB', posterSrc: '末日代码_海报源文件.ai', posterSrcSize: '40.2MB', channels: ['爱奇艺', '优酷视频', '快手'], firstDate: '2026-07-30', type: '国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）', round: '二轮', resell: '否' },
-  'C010': { intro: '刀光剑影间，侠客们的身影在江湖中留下传奇。', tags: ['玄幻异能', '复仇'], avgDuration: 2, producer: '郑长剑', authFile: '剑影江湖_授权书.pdf', authFileSize: '2.2MB', posterImg: '剑影江湖_海报.jpg', posterImgSize: '4.5MB', posterSrc: '', posterSrcSize: '', channels: ['字节系', '拼多多'], firstDate: '2026-08-20', type: '国内真人剧（真人实拍）', round: '首发', resell: '是' },
-  'C011': { intro: '大唐盛世背后的风云变幻，宫廷中的权谋与爱情故事。', tags: ['宫斗宅斗', '虐恋'], avgDuration: 2, producer: '唐婉儿', authFile: '大唐风云录_授权书_signed.pdf', authFileSize: '2.5MB', posterImg: '大唐风云录_海报.jpg', posterImgSize: '4.7MB', posterSrc: '大唐风云录_海报源文件.psd', posterSrcSize: '31.5MB', channels: ['腾讯视频', '芒果TV', '爱奇艺'], firstDate: '2026-07-18', type: '国内真人剧（真人实拍）', round: '首发', resell: '是' },
-  'C012': { intro: '一幅幅传世画作背后隐藏的惊天秘密，艺术与犯罪的交织。', tags: ['悬疑', '复仇'], avgDuration: 2, producer: '林艺谋', authFile: '猎罪图鉴_授权书.pdf', authFileSize: '1.8MB', posterImg: '猎罪图鉴_海报.jpg', posterImgSize: '3.6MB', posterSrc: '猎罪图鉴_海报源文件.ai', posterSrcSize: '33.8MB', channels: ['字节系', '快手', '百度', '拼多多'], firstDate: '2026-08-12', type: '国内真人剧（真人实拍）', round: '首发', resell: '是' },
-  'C013': { intro: '一个看似简单的案件，背后却隐藏着不为人知的真相。', tags: ['悬疑', '家庭情感'], avgDuration: 3, producer: '姜文轩', authFile: '沉默的真相_授权书_v2.pdf', authFileSize: '2.0MB', posterImg: '沉默的真相_海报.jpg', posterImgSize: '4.0MB', posterSrc: '', posterSrcSize: '', channels: ['爱奇艺', '优酷视频'], firstDate: '2026-08-08', type: '国内真人剧（真人实拍）', round: '二轮', resell: '否' },
-  'C014': { intro: '迷雾笼罩的小镇上，接连发生的离奇事件让警探陷入重重谜团。', tags: ['悬疑', '科幻', '复仇'], avgDuration: 2, producer: '何刑警', authFile: '迷雾追踪_授权书_final.pdf', authFileSize: '2.3MB', posterImg: '迷雾追踪_海报.jpg', posterImgSize: '3.8MB', posterSrc: '迷雾追踪_海报源文件.psd', posterSrcSize: '27.4MB', channels: ['腾讯视频', '快手', '字节系'], firstDate: '2026-07-22', type: '国内真人剧（真人实拍）', round: '首发', resell: '是' }
+  'C001': { intro: '一个关于成长与梦想的都市故事，讲述了年轻人在繁华都市中追寻自我、探索人生的心路历程。', tags: ['甜宠', '逆袭', '家庭情感'], avgDuration: 2, producer: '陈大明', authFile: '星辰大海_授权书_v1.pdf', authFileSize: '2.3MB', posterImg: '星辰大海_竖版海报_终稿.jpg', posterImgSize: '4.1MB', posterSrc: '星辰大海_海报源文件.psd', posterSrcSize: '28.6MB', channels: ['字节系', '腾讯视频', '快手'], firstDate: '2026-08-15', type: '国内真人剧（真人实拍）', round: '首发', resell: '是', contract: '有', aigcTool: '无' },
+  'C002': { intro: '一桩离奇案件引发连环追踪，警探与罪犯之间展开一场智力与勇气的博弈。', tags: ['悬疑', '复仇'], avgDuration: 3, producer: '李志强', authFile: '暗夜追光_授权书_signed.pdf', authFileSize: '1.8MB', posterImg: '暗夜追光_海报.jpg', posterImgSize: '3.5MB', posterSrc: '暗夜追光_海报源文件.psd', posterSrcSize: '22.1MB', channels: ['爱奇艺', '优酷视频', '芒果TV'], firstDate: '2026-07-28', type: '国内真人剧（真人实拍）', round: '首发', resell: '是', contract: '有', aigcTool: '无' },
+  'C003': { intro: '山海之间，跨越千年的传说与现代都市的奇幻交织，谱写一曲荡气回肠的爱恨情仇。', tags: ['玄幻异能', '虐恋'], avgDuration: 2, producer: '王建国', authFile: '山海谣_授权书_final.pdf', authFileSize: '2.1MB', posterImg: '山海谣_海报.jpg', posterImgSize: '4.8MB', posterSrc: '山海谣_海报源文件.ai', posterSrcSize: '35.2MB', channels: ['字节系', '拼多多', '快手', '百度'], firstDate: '2026-08-01', type: '国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）', round: '二轮', resell: '否', contract: '有', aigcTool: '红果漫剧创作Agent' },
+  'C004': { intro: '校园里的小故事，青春岁月中的欢笑与泪水。', tags: ['甜宠', '闪婚'], avgDuration: 1, producer: '赵小花', authFile: '青春纪事_授权书.pdf', authFileSize: '1.5MB', posterImg: '青春纪事_海报.jpg', posterImgSize: '2.9MB', posterSrc: '', posterSrcSize: '', channels: ['字节系'], firstDate: '2026-07-15', type: '国内真人剧（真人实拍）', round: '首发', resell: '是', contract: '有', aigcTool: '无' },
+  'C005': { intro: '都市深夜的温暖故事，几个陌生人的命运在深夜便利店交汇。', tags: ['家庭情感', '悬疑'], avgDuration: 2, producer: '钱大伟', authFile: '都市夜话_授权书_signed_v2.pdf', authFileSize: '2.7MB', posterImg: '都市夜话_海报.jpg', posterImgSize: '3.3MB', posterSrc: '都市夜话_海报源文件.psd', posterSrcSize: '19.8MB', channels: ['腾讯视频', '爱奇艺'], firstDate: '2026-06-20', type: '国内真人剧（真人实拍）', round: '首发', resell: '是', contract: '有', aigcTool: '无' },
+  'C006': { intro: '回忆像一首老歌，在岁月的长河中回荡。', tags: ['家庭情感'], avgDuration: 2, producer: '陈文轩', authFile: '岁月长歌_授权书.pdf', authFileSize: '1.9MB', posterImg: '岁月长歌_海报.jpg', posterImgSize: '4.2MB', posterSrc: '', posterSrcSize: '', channels: ['字节系', '快手'], firstDate: '2026-08-05', type: '国内真人剧（真人实拍）', round: '首发', resell: '否', contract: '有', aigcTool: '无' },
+  'C007': { intro: '仰望星空的人，心中自有光芒万丈。', tags: ['逆袭', '复仇'], avgDuration: 1, producer: '马天宇', authFile: '星光不负赶路人_授权书.pdf', authFileSize: '2.0MB', posterImg: '星光不负赶路人_海报.jpg', posterImgSize: '3.7MB', posterSrc: '星光不负赶路人_海报源文件.psd', posterSrcSize: '24.3MB', channels: ['爱奇艺', '芒果TV', '优酷视频'], firstDate: '2026-07-25', type: '国内真人剧（真人实拍）', round: '首发', resell: '是', contract: '无', aigcTool: '无' },
+  'C008': { intro: '在钢筋水泥的城市森林中，每个灵魂都在寻找属于自己的方向。', tags: ['都市', '逆袭'], avgDuration: 2, producer: '杨若兮', authFile: '迷失之城_授权书_v1.pdf', authFileSize: '2.4MB', posterImg: '迷失之城_海报.jpg', posterImgSize: '3.9MB', posterSrc: '迷失之城_海报源文件.psd', posterSrcSize: '26.1MB', channels: ['字节系', '腾讯视频', '百度'], firstDate: '2026-08-10', type: '国内真人剧（真人实拍）', round: '首发', resell: '是', contract: '有', aigcTool: '无' },
+  'C009': { intro: '当末日的阴霾笼罩大地，幸存者们在绝望中寻找希望。', tags: ['科幻', '悬疑'], avgDuration: 3, producer: '周铁军', authFile: '末日代码_授权书_final.pdf', authFileSize: '1.7MB', posterImg: '末日代码_海报.jpg', posterImgSize: '5.1MB', posterSrc: '末日代码_海报源文件.ai', posterSrcSize: '40.2MB', channels: ['爱奇艺', '优酷视频', '快手'], firstDate: '2026-07-30', type: '国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）', round: '二轮', resell: '否', contract: '有', aigcTool: '即梦' },
+  'C010': { intro: '刀光剑影间，侠客们的身影在江湖中留下传奇。', tags: ['玄幻异能', '复仇'], avgDuration: 2, producer: '郑长剑', authFile: '剑影江湖_授权书.pdf', authFileSize: '2.2MB', posterImg: '剑影江湖_海报.jpg', posterImgSize: '4.5MB', posterSrc: '', posterSrcSize: '', channels: ['字节系', '拼多多'], firstDate: '2026-08-20', type: '国内真人剧（真人实拍）', round: '首发', resell: '是', contract: '无', aigcTool: '无' },
+  'C011': { intro: '大唐盛世背后的风云变幻，宫廷中的权谋与爱情故事。', tags: ['宫斗宅斗', '虐恋'], avgDuration: 2, producer: '唐婉儿', authFile: '大唐风云录_授权书_signed.pdf', authFileSize: '2.5MB', posterImg: '大唐风云录_海报.jpg', posterImgSize: '4.7MB', posterSrc: '大唐风云录_海报源文件.psd', posterSrcSize: '31.5MB', channels: ['腾讯视频', '芒果TV', '爱奇艺'], firstDate: '2026-07-18', type: '国内真人剧（真人实拍）', round: '首发', resell: '是', contract: '有', aigcTool: '无' },
+  'C012': { intro: '一幅幅传世画作背后隐藏的惊天秘密，艺术与犯罪的交织。', tags: ['悬疑', '复仇'], avgDuration: 2, producer: '林艺谋', authFile: '猎罪图鉴_授权书.pdf', authFileSize: '1.8MB', posterImg: '猎罪图鉴_海报.jpg', posterImgSize: '3.6MB', posterSrc: '猎罪图鉴_海报源文件.ai', posterSrcSize: '33.8MB', channels: ['字节系', '快手', '百度', '拼多多'], firstDate: '2026-08-12', type: '国内真人剧（真人实拍）', round: '首发', resell: '是', contract: '有', aigcTool: '无' },
+  'C013': { intro: '一个看似简单的案件，背后却隐藏着不为人知的真相。', tags: ['悬疑', '家庭情感'], avgDuration: 3, producer: '姜文轩', authFile: '沉默的真相_授权书_v2.pdf', authFileSize: '2.0MB', posterImg: '沉默的真相_海报.jpg', posterImgSize: '4.0MB', posterSrc: '', posterSrcSize: '', channels: ['爱奇艺', '优酷视频'], firstDate: '2026-08-08', type: '国内真人剧（真人实拍）', round: '二轮', resell: '否', contract: '无', aigcTool: '无' },
+  'C014': { intro: '迷雾笼罩的小镇上，接连发生的离奇事件让警探陷入重重谜团。', tags: ['悬疑', '科幻', '复仇'], avgDuration: 2, producer: '何刑警', authFile: '迷雾追踪_授权书_final.pdf', authFileSize: '2.3MB', posterImg: '迷雾追踪_海报.jpg', posterImgSize: '3.8MB', posterSrc: '迷雾追踪_海报源文件.psd', posterSrcSize: '27.4MB', channels: ['腾讯视频', '快手', '字节系'], firstDate: '2026-07-22', type: '国内真人剧（真人实拍）', round: '首发', resell: '是', contract: '有', aigcTool: '无' }
 };
 
 function getReviewerName() {
@@ -8454,6 +8733,18 @@ function toggleParentDisplay(id, show) {
   var parent = el.closest('.form-item');
   if (parent) parent.style.display = show ? '' : 'none';
 }
+
+// 备案号展示条件：国内漫剧成本>30w 或 国内真人成本>100w
+function isRecordNoVisible(mat) {
+  if (!mat || !mat.type) return false;
+  var cost = 0;
+  if (mat.cost !== undefined && mat.cost !== null && mat.cost !== '') {
+    cost = parseFloat(String(mat.cost).replace(/[^0-9.]/g, '')) || 0;
+  }
+  if (mat.type.indexOf('国内漫剧') === 0 && cost > 30) return true;
+  if (mat.type.indexOf('国内真人') === 0 && cost > 100) return true;
+  return false;
+}
 // 主创团队新增字段展示条件：剧集类型为国内真人/国内漫剧 且 渠道含 国内全渠道/字节系（红果和抖音）
 function isCrewExtraVisible(mat) {
   if (!mat || !mat.type) return false;
@@ -8537,11 +8828,11 @@ function openContentReview(id, type) {
     setVal('crMatFirstTime', mat.firstTime);
     setVal('crMatCost', mat.cost);
     setVal('crMatPaidEpisodes', mat.paidEpisodes);
-    setVal('crMatFreeDate', mat.freeDate);
     setVal('crMatAvgDuration', mat.avgDuration ? mat.avgDuration + ' 分钟' : '');
     setVal('crMatGenderFreq', mat.genderFreq);
     setVal('crMatAdFlow', mat.adFlow);
     setVal('crMatRecordNo', mat.recordNo);
+    toggleParentDisplay('crMatRecordNo', isRecordNoVisible(mat));
     // 2. 剧情文案
     setVal('crMatShortIntro', mat.shortIntro);
     setVal('crMatSynopsis', mat.synopsis);
@@ -8616,11 +8907,11 @@ function openContentReview(id, type) {
     var crRound = mat.round || '';
     var crContract = mat.contract || '';
     toggleParentDisplay('crMatFirstDate', crRound === '二轮');
-    toggleParentDisplay('crMatProjectFile', crContract === '有制作合同');
-    toggleParentDisplay('crMatCopyrightFile', crContract === '有制作合同');
-    toggleParentDisplay('crMatAnimeNoContract', crContract === '无制作合同');
-    toggleParentDisplay('crMatPddDeclaration', crContract === '无制作合同');
-    toggleParentDisplay('crMatHuaweiCommitment', crContract === '无制作合同');
+    toggleParentDisplay('crMatProjectFile', crContract === '有');
+    toggleParentDisplay('crMatCopyrightFile', crContract === '有');
+    toggleParentDisplay('crMatAnimeNoContract', crContract === '无');
+    toggleParentDisplay('crMatPddDeclaration', crContract === '无');
+    toggleParentDisplay('crMatHuaweiCommitment', crContract === '无');
     // 主创团队新增字段：国内真人/国内漫剧 + 国内全渠道/字节系渠道时展示
     var crCrewExtra = isCrewExtraVisible(mat);
     toggleParentDisplay('crMatDirectorGender', crCrewExtra);

@@ -170,6 +170,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .eval-name-error { font-size: 12px; color: var(--danger); margin-top: 4px; min-height: 17px; line-height: 1.5; }
 .eval-name-input-error { border-color: var(--danger) !important; }
 .eval-name-input-error:focus { border-color: var(--danger) !important; }
+/* 问号 icon 与命名规范 tooltip */
+.eval-name-tip { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; margin-left: 5px; border-radius: 50%; background: #c0c4cc; color: #fff; font-size: 11px; font-weight: 600; line-height: 1; cursor: help; vertical-align: middle; }
+.eval-name-tip:hover { background: var(--primary); }
+.eval-name-tip-content { display: none; position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); width: 300px; padding: 10px 12px; background: #fff; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); font-size: 12px; font-weight: 400; color: var(--text-secondary); line-height: 1.9; text-align: left; white-space: normal; z-index: 200; }
+.eval-name-tip-content::after { content: ''; position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #fff; border-bottom: none; }
+.eval-name-tip-content::before { content: ''; position: absolute; left: 50%; bottom: -7px; transform: translateX(-50%); border: 7px solid transparent; border-top-color: var(--border); border-bottom: none; }
+.eval-name-tip:hover .eval-name-tip-content { display: block; }
 
 /* Review Cards */
 .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -3602,8 +3609,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
     </div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-item"><label><span class="required">*</span>合集名称</label><input type="text" id="evalSubmitName" placeholder="请输入合集名称" oninput="validateEvalNameLive('evalSubmitName')">
-          <div class="eval-name-hint">命名规范：禁止书名号《》；名称首尾禁止符号 ! : " # @ &amp; ( ) + / * ， 。 ? % 等，名称中间禁止符号 、 # @ &amp; ( ) + / 。 ? % 等；禁用敏感词汇；提交后仅审核问题可修改，其余场景不支持更名。</div>
+        <div class="form-item"><label><span class="required">*</span>合集名称<span class="eval-name-tip">?<span class="eval-name-tip-content">1. 禁止书名号《》；<br>2. 名称首尾禁止符号：! : " # @ &amp; ( ) + / * ， 。 ? %；<br>3. 名称中间禁止符号：、 # @ &amp; ( ) + / 。 ? %；<br>4. 禁用敏感词汇；<br>5. 提交后仅审核问题可修改，其余场景不支持更名。</span></span></label><input type="text" id="evalSubmitName" placeholder="请输入合集名称" oninput="validateEvalNameLive('evalSubmitName')">
           <div class="eval-name-error" id="evalSubmitNameError"></div>
         </div>
         <div class="form-item"><label><span class="required">*</span>集数</label><input type="text" inputmode="numeric" id="evalSubmitEpisodes" placeholder="请输入集数" oninput="filterIntInput(this)">
@@ -3632,8 +3638,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
         <span style="color:var(--danger);font-size:13px;">故事逻辑不清，请补充主线剧情说明后重新提交</span>
       </div>
       <div class="form-row">
-        <div class="form-item"><label>合集名称</label><input type="text" id="evalEditName" value="山海谣" oninput="validateEvalNameLive('evalEditName')">
-          <div class="eval-name-hint">命名规范同提交页：禁止书名号《》、首尾及中间禁用的符号、禁用敏感词汇。</div>
+        <div class="form-item"><label>合集名称<span class="eval-name-tip">?<span class="eval-name-tip-content">1. 禁止书名号《》；<br>2. 名称首尾禁止符号：! : " # @ &amp; ( ) + / * ， 。 ? %；<br>3. 名称中间禁止符号：、 # @ &amp; ( ) + / 。 ? %；<br>4. 禁用敏感词汇。</span></span></label><input type="text" id="evalEditName" value="山海谣" oninput="validateEvalNameLive('evalEditName')">
           <div class="eval-name-error" id="evalEditNameError"></div>
         </div>
         <div class="form-item"><label>集数</label><input type="text" inputmode="numeric" id="evalEditEpisodes" value="30" oninput="filterIntInput(this)">

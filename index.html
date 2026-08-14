@@ -3608,7 +3608,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
     </div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-item"><label><span class="required">*</span>合集名称<span class="eval-name-tip">?<span class="eval-name-tip-content">1. 禁止书名号《》；<br>2. 名称首尾禁止符号：! : " # @ &amp; ( ) + / * ， 。 ? %；<br>3. 名称中间禁止符号：、 # @ &amp; ( ) + / 。 ? %；<br>4. 禁用敏感词汇；<br>5. 提交后仅审核问题可修改，其余场景不支持更名。</span></span></label><input type="text" id="evalSubmitName" placeholder="请输入合集名称" oninput="validateEvalNameLive('evalSubmitName')">
+        <div class="form-item"><label><span class="required">*</span>合集名称<span class="eval-name-tip">?<span class="eval-name-tip-content">1. 禁止添加书名号；提交后仅审核问题可修改，其余场景不支持更名；<br>2. 首尾禁止符号：!、:、"、#、@、&amp;(、)、+、/、*、，、。、?、%；<br>3. 名称中间禁止符号：、、#、@、&amp;(、)、+、/、。、?、%；<br>4. 禁用敏感词汇：霸总、总裁、心机、网暴、中老年、跪、打脸、血腥、首富、富豪、百亿、千亿、万亿、禁欲、引诱、惹火、撩、诱人、把持不住、金莲、西门庆、在上、在下、女房客、一夜情、欲、一夜、不行、身体、娇软、出轨、美女上司、美女师姐、海王、强制爱、强宠、保姆豪门、恶婆婆、小妈、嫂子、小姨子、防老、仇、杀疯了、屠你全家、撕碎、灭门、狂虐、手撕、嘎嘎乱杀、天价、撩汉</span></span></label><input type="text" id="evalSubmitName" placeholder="请输入合集名称" oninput="validateEvalNameLive('evalSubmitName')">
           <div class="eval-name-error" id="evalSubmitNameError"></div>
         </div>
         <div class="form-item"><label><span class="required">*</span>集数</label><input type="text" inputmode="numeric" id="evalSubmitEpisodes" placeholder="请输入集数" oninput="filterIntInput(this)">
@@ -3637,7 +3637,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
         <span style="color:var(--danger);font-size:13px;">故事逻辑不清，请补充主线剧情说明后重新提交</span>
       </div>
       <div class="form-row">
-        <div class="form-item"><label>合集名称<span class="eval-name-tip">?<span class="eval-name-tip-content">1. 禁止书名号《》；<br>2. 名称首尾禁止符号：! : " # @ &amp; ( ) + / * ， 。 ? %；<br>3. 名称中间禁止符号：、 # @ &amp; ( ) + / 。 ? %；<br>4. 禁用敏感词汇。</span></span></label><input type="text" id="evalEditName" value="山海谣" oninput="validateEvalNameLive('evalEditName')">
+        <div class="form-item"><label>合集名称<span class="eval-name-tip">?<span class="eval-name-tip-content">1. 禁止添加书名号；提交后仅审核问题可修改，其余场景不支持更名；<br>2. 首尾禁止符号：!、:、"、#、@、&amp;(、)、+、/、*、，、。、?、%；<br>3. 名称中间禁止符号：、、#、@、&amp;(、)、+、/、。、?、%；<br>4. 禁用敏感词汇：霸总、总裁、心机、网暴、中老年、跪、打脸、血腥、首富、富豪、百亿、千亿、万亿、禁欲、引诱、惹火、撩、诱人、把持不住、金莲、西门庆、在上、在下、女房客、一夜情、欲、一夜、不行、身体、娇软、出轨、美女上司、美女师姐、海王、强制爱、强宠、保姆豪门、恶婆婆、小妈、嫂子、小姨子、防老、仇、杀疯了、屠你全家、撕碎、灭门、狂虐、手撕、嘎嘎乱杀、天价、撩汉</span></span></label><input type="text" id="evalEditName" value="山海谣" oninput="validateEvalNameLive('evalEditName')">
           <div class="eval-name-error" id="evalEditNameError"></div>
         </div>
         <div class="form-item"><label>集数</label><input type="text" inputmode="numeric" id="evalEditEpisodes" value="30" oninput="filterIntInput(this)">

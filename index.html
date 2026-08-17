@@ -620,7 +620,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <div class="form-item" data-col="L"><label>剧集集数</label><input type="number" id="step1EditCollCount" disabled style="background:#E8E8E8;color:#999;cursor:not-allowed;"></div>
 
                 <div class="form-item" data-col="C"><label>剧集类型 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">剧集所属类型分类</div>
                   <div class="opt-group" data-name="mat-剧集类型" id="step1MatTypeGroup">
                     <span class="opt-tag" data-val="国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）">国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）</span>
                     <span class="opt-tag" data-val="国内真人剧（真人实拍）">国内真人剧（真人实拍）</span>
@@ -630,7 +629,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <input type="hidden" id="step1EditCollType">
                 </div>
                 <div class="form-item" data-col="D"><label>发行轮次 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">剧集的发行轮次</div>
                   <div class="opt-group" data-name="mat-发行轮次" id="step1MatRoundGroup">
                     <span class="opt-tag" data-val="首发">首发</span>
                     <span class="opt-tag" data-val="二轮">二轮</span>
@@ -640,7 +638,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 
                 <div class="form-item" data-col="E"><label>全网首发时间 <span style="color:#e74c3c;">*</span></label>
                   <div class="form-tip">二轮发行时必填；格式要求：YYYY/MM/DD</div>
-                  <input type="datetime-local" class="form-item-input" id="step1EditCollFirstDate" style="width:100%;height:38px;border:1px solid var(--border);border-radius:6px;padding:0 10px;font-size:14px;">
+                  <input type="date" class="form-item-input" id="step1EditCollFirstDate" style="width:100%;height:38px;border:1px solid var(--border);border-radius:6px;padding:0 10px;font-size:14px;">
                 </div>
                 <div class="form-item" data-col="F"><label>发行渠道 <span style="color:#e74c3c;">*</span></label>
                   <div class="form-tip">选择该剧需要分发的渠道（可多选）</div>
@@ -708,7 +706,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 </div>
 
                 <div class="form-item" data-col="H"><label>漫剧类型</label>
-                  <div class="form-tip">漫剧细分类型；仅漫剧类型需要填写</div>
                   <div class="opt-group" data-name="mat-漫剧类型">
                     <span class="opt-tag" data-val="小说漫解">小说漫解</span>
                     <span class="opt-tag" data-val="仿真人动态漫">仿真人动态漫</span>
@@ -723,8 +720,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <input type="text" id="step1MatPartner" placeholder="请输入合作方名称">
                 </div>
                 <div class="form-item" data-col="K"><label>剧集首发时间 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">1.已确定档期：[确认时间]YYYY年MM月DD日HH时SS分，档期变更需在对接群@运营+对应商务同步更新；2.未敲定档期由平台自动排期：[预估时间]YYYY年MM月DD日HH时</div>
-                  <input type="datetime-local" id="step1MatFirstTime" style="width:100%;height:38px;border:1px solid var(--border);border-radius:6px;padding:0 10px;font-size:14px;">
+                  <div class="form-tip">1. 已确定档期：[确认时间] YYYY 年 MM 月 DD 日 HH 时SS分；<br>2. 未敲定档期由平台自动排期</div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <select id="step1MatFirstTimeConfirm" onchange="toggleFirstTimePicker()" style="width:130px;height:38px;border:1px solid var(--border);border-radius:6px;padding:0 10px;font-size:14px;background:#fff;flex-shrink:0;">
+                      <option value="">请选择</option>
+                      <option value="已确认">已确认</option>
+                      <option value="未确认">未确认</option>
+                    </select>
+                    <input type="datetime-local" id="step1MatFirstTime" style="flex:1;height:38px;border:1px solid var(--border);border-radius:6px;padding:0 10px;font-size:14px;display:none;">
+                  </div>
                 </div>
 
                 <div class="form-item" data-col="N"><label>剧集付费集数 <span style="color:#e74c3c;">*</span></label>
@@ -745,7 +749,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </div>
                 </div>
                 <div class="form-item" data-col="Q"><label>男女频 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">剧集面向性别</div>
                   <div class="opt-group" data-name="mat-男女频">
                     <span class="opt-tag" data-val="男频">男频</span>
                     <span class="opt-tag" data-val="女频">女频</span>
@@ -883,7 +886,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-row">
                 <div class="form-item" data-col="S"><label>广电备案号</label>
                   <div class="form-tip">示例：(总局或属地省份简称)网微剧审字(年份)第xxx号</div>
-                  <input type="text" id="step1MatRecordNo" placeholder="满足条件时必填">
+                  <input type="text" id="step1MatRecordNo" placeholder="请输入备案号">
                 </div>
                 <div class="form-item" data-col="M"><label>剧集制作成本 <span style="color:#e74c3c;">*</span></label>
                   <div class="input-suffix-wrap">
@@ -904,7 +907,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </div>
                 </div>
                 <div class="form-item" data-col="BJ"><label>真人短剧成本配置比例报告 <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('真人短剧成本配置比例报告')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 下载模版</a></label>
-                  <div class="form-tip">平台提供模板给供应商</div>
                   <div class="upload-zone" data-upload="step1RealCostReport">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -912,7 +914,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1RealCostReportList"></div>
                 </div>
                 <div class="form-item" data-col="BK"><label>动画短剧成本情况报告 <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('动画短剧成本情况报告')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 下载模版</a></label>
-                  <div class="form-tip">平台提供模板给供应商</div>
                   <div class="upload-zone" data-upload="step1AnimeCostReport">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -951,11 +952,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <textarea id="step1MatMaleIntro" rows="2" placeholder="请输入男主简介" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item full" data-col="AD"><label>男主饰演角色简介</label>
-                  <div class="form-tip">类似人物小传，100字以内，无特殊格式要求</div>
+                  <div class="form-tip">类似人物小传，100字以内</div>
                   <textarea id="step1MatMaleRoleIntro" rows="2" placeholder="非必填" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item full" data-col="AE"><label>男主照片 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">清晰正脸，能明显看出与剧中主演为同一人；无水印；无暴露着装（包括但不限于：①有明显露点痕迹、露出内衣内裤等 ②低俗擦边倾向地展示脚/腿/腹等、有明显性行为暗示）；无第三方水印</div>
+                  <div class="form-tip">清晰正脸，能明显看出与剧中主演为同一人，无暴露着装（包括但不限于：①有明显露点痕迹，露出内衣内裤等 ②低俗擦边倾向地展示脚/腿/腹等，有明显性行为暗示），非短剧剧照、非短剧定妆照。照片无水印、比例1:1</div>
                   <div class="upload-zone" data-upload="step1MalePhoto">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -964,7 +965,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1MalePhotoList"></div>
                 </div>
                 <div class="form-item full" data-col="AF"><label>男主演剧照</label>
-                  <div class="form-tip">剧内角色真实照片；画面清晰无拉伸、无广告边框水印；不涉及色情暴力等敏感元素，主体展示完整、居中大小适宜；人物正脸完整无遮挡，禁止合照、侧脸、背影等；背景简洁，避免亮度过高</div>
+                  <div class="form-tip">角色剧照为该演员在剧中所饰演角色的图片，需与演员和角色一一对应；<br>不涉及色情暴力等敏感元素，主体展示完整，居中大小适宜；人物正脸完整、无遮挡，禁止合照、侧脸、背影等难突出主体图片。<br>画面内容：面部无过多遮挡，如口罩或背面等；不涉及色情暴力等敏感元素，主体展示完整，居中大小适宜；人物正脸完整、无遮挡，禁止合照、侧脸、背影等难突出主体图片。<br>背景要求：背景简洁，尽量避免不相关人物、文字或其他元素；避免亮度过高的背景，如亮黄/亮绿/白/光线过曝等。画面清晰无拉伸、无广告边框水印</div>
                   <div class="upload-zone" data-upload="step1MaleStill">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -994,11 +995,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <textarea id="step1MatFemaleIntro" rows="2" placeholder="请输入女主简介" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item full" data-col="AJ"><label>女主饰演角色简介</label>
-                  <div class="form-tip">类似人物小传，100字以内，无特殊格式要求</div>
+                  <div class="form-tip">类似人物小传，100字以内</div>
                   <textarea id="step1MatFemaleRoleIntro" rows="2" placeholder="非必填" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item full" data-col="AK"><label>女主照片 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">清晰正脸，能明显看出与剧中主演为同一人；无水印；无暴露着装（包括但不限于：①有明显露点痕迹、露出内衣内裤等 ②低俗擦边倾向地展示脚/腿/腹等）</div>
+                  <div class="form-tip">清晰正脸，能明显看出与剧中主演为同一人，无暴露着装（包括但不限于：①有明显露点痕迹，露出内衣内裤等 ②低俗擦边倾向地展示脚/腿/腹等，有明显性行为暗示），非短剧剧照、非短剧定妆照。照片无水印、比例1:1</div>
                   <div class="upload-zone" data-upload="step1FemalePhoto">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1007,7 +1008,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1FemalePhotoList"></div>
                 </div>
                 <div class="form-item full" data-col="AL"><label>女主演剧照</label>
-                  <div class="form-tip">剧内角色真实照片；画面清晰无拉伸、无广告边框水印；不涉及色情暴力等敏感元素，主体展示完整、居中大小适宜；人物正脸完整无遮挡，禁止合照、侧脸、背影等；背景简洁，避免亮度过高</div>
+                  <div class="form-tip">单张剧照备注「演员姓名 - 饰演角色」剧内角色真实照片；<br>画面清晰无拉伸、无广告边框水印；<br>不涉及色情暴力等敏感元素，主体展示完整、居中大小适宜；人物正脸完整、无遮挡，禁止合照、侧脸、背影等难突出主体图片。画面内容：面部无过多遮挡，如口罩或背面等。<br>背景要求：背景简洁，尽量避免不相关人物、文字或其他元素；避免亮度过高的背景，如亮黄/亮绿/白/光线过曝等</div>
                   <div class="upload-zone" data-upload="step1FemaleStill">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1068,8 +1069,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                     <option value="女">女</option>
                   </select>
                 </div>
-                <div class="form-item" data-col="AU"><label>导演照片 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">1. 格式与大小：支持jpg、png格式，要求1:1（剪裁），单个文件大小限制50K~5M，推荐2M；<br>2. 人物主体展现完整、居中大小适宜，须展示人物正脸，避免侧面、背面、大合照或遮挡图</div>
+                <div class="form-item" data-col="AU"><label>导演照片</label>
+                  <div class="form-tip">1. 格式与大小：支持jpg、png格式，要求1:1（剪裁），单个文件大小限制50K~5M，推荐2M；<br>2. 人物主体展现完整、居中大小适宜，须展示人物正脸，避免侧面、背面、大合照或遮挡图；<br>3. 此项会外显示，请版权自行判断是否上传个人真实照片，如不上传，使用默认照片，后续无法更改</div>
                   <div class="upload-zone" data-upload="step1DirectorPhoto">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1090,7 +1091,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </select>
                 </div>
                 <div class="form-item" data-col="CD"><label>编剧照片</label>
-                  <div class="form-tip">1. 格式与大小：支持jpg、png格式，要求1:1（剪裁），单个文件大小限制50K~5M，推荐2M；<br>2. 人物主体展现完整、居中大小适宜，须展示人物正脸，避免侧面、背面、大合照或遮挡图</div>
+                  <div class="form-tip">1. 格式与大小：支持jpg、png格式，要求1:1（剪裁），单个文件大小限制50K~5M，推荐2M；<br>2. 人物主体展现完整、居中大小适宜，须展示人物正脸，避免侧面、背面、大合照或遮挡图；<br>3. 此项会外显示，请版权自行判断是否上传个人真实照片，如不上传，使用默认照片，后续无法更改</div>
                   <div class="upload-zone" data-upload="step1ScreenwriterPhoto">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1098,11 +1099,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1ScreenwriterPhotoList"></div>
                 </div>
                 <div class="form-item full" data-col="CE"><label>编剧简介</label>
-                  <div class="form-tip">1. 格式与大小：支持jpg、png格式，要求1:1（剪裁），单个文件大小限制50K~5M，推荐2M；<br>2. 人物主体展现完整、居中大小适宜，须展示人物正脸，避免侧面、背面、大合照或遮挡图</div>
+                  <div class="form-tip">1. 可填写10~100个字符；<br>2. 填写内容可参考：生日、星座、籍贯、身高、毕业院校、历史/代表作品、获奖信息、成就等（以上要素需至少满足3项或涵盖任一要素且超过10字）</div>
                   <textarea id="step1MatScreenwriterIntro" rows="2" placeholder="请输入编剧简介" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item" data-col="AW"><label>制片人真实姓名 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">法定身份证真实中文姓名；多位制片人用英文双引号"分隔</div>
+                  <div class="form-tip">法定身份证真实中文姓名；多位制片人用、 分隔</div>
                   <input type="text" id="step1EditCollProducer" placeholder="请输入制片人真实姓名">
                 </div>
               </div>
@@ -1129,7 +1130,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <input type="text" id="step1MatPreviewLink" placeholder="请输入网盘链接">
                 </div>
                 <div class="form-item full" data-col="BA"><label>高光素材视频 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">提供5个高光素材视频；美团强制提交，拼多多/腾讯/爱奇艺引流场景按需上传，提交网盘链接即可</div>
+                  <div class="form-tip">美团强制提交；拼多多 / 腾讯 / 爱奇艺引流场景按需上传；提交网盘链接即可</div>
                   <input type="text" id="step1HighlightVideo" placeholder="请输入网盘链接">
                 </div>
                 <div class="form-item full" data-col="BB"><label>横版剧集海报 <span style="color:#e74c3c;">*</span></label>
@@ -1160,8 +1161,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-tip">授权海外渠道必填，可提供百度网盘链接</div>
                   <input type="text" id="step1SrtFile" placeholder="请输入网盘链接">
                 </div>
-                <div class="form-item full" data-col="BI"><label>分销素材</label>
-                  <div class="form-tip">分销素材（海外小程序）；填写百度网盘</div>
+                <div class="form-item full" data-col="BI"><label>分销素材（海外小程序）</label>
+                  <div class="form-tip">填写百度网盘</div>
                   <input type="text" id="step1DistributionMaterial" placeholder="请输入百度网盘链接">
                 </div>
               </div>
@@ -1182,8 +1183,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                     <span class="opt-tag" data-val="无">无</span>
                   </div>
                 </div>
-                <div class="form-item full" data-col="BG"><label>4张片段剪辑工程文件 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">仅漫剧类型需要；平台提供图例参考</div>
+                <div class="form-item full" data-col="BG"><label>AI 创作通用佐证素材 <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('提示词记录或ai生成剧本截图示例')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 提示词记录或ai生成剧本截图示例</a><a href="javascript:void(0)" onclick="downloadTemplate('工程文件截图示例')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 工程文件截图示例</a></label>
+                  <div class="form-tip">1、4张提示词记录或ai生成剧本截图（充分展示提示词、文案等操作过程和对应生成结果）；<br>2、4张不同对应片段剪辑调整工程文件，图中需包含有【1、该短剧画面 2、完整合理分轨和剪辑点 3、明确的对应剧名 4、截图所示的对应集数】</div>
                   <div class="upload-zone" data-upload="step1ProjectFile">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1196,7 +1197,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                     3. 支持jpg、jpeg、png文件格式，单个文件大小不超过10MB
                   </div>
                 </div>
-                <div class="form-item full" data-col="BH"><label>物料截图文件 <span style="color:#e74c3c;">*</span></label>
+                <div class="form-item full" data-col="BH"><label>物料截图文件 <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('工程文件截图示例')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 工程文件截图示例</a><a href="javascript:void(0)" onclick="downloadTemplate('提示词记录或ai生成剧本截图')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 提示词记录或ai生成剧本截图</a></label>
                   <div class="form-tip">1.材料要求：真人剧集提供短剧工程文件，漫剧：工程文件和AI生成提示词；2.短剧工程文件：需提供4张带有制作分轨、剪辑点的工程文件截图和AI生成提示词的截图</div>
                   <div class="upload-zone" data-upload="step1MaterialScreenshot">
                     <div class="plus">+</div>
@@ -1205,7 +1206,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1MaterialScreenshotList"></div>
                 </div>
                 <div class="form-item full" data-col="BL"><label>片酬承诺书 <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('片酬承诺书')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 下载模版</a></label>
-                  <div class="form-tip">平台提供模板给供应商</div>
                   <div class="upload-zone" data-upload="step1SalaryCommitment">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1229,7 +1229,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1AnimeNoContractList"></div>
                 </div>
                 <div class="form-item" data-col="BR"><label>拼多多渠道权利声明 <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('拼多多渠道权利声明')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 下载模版</a></label>
-                  <div class="form-tip">严格按照上线剧名以及集数来</div>
                   <div class="upload-zone" data-upload="step1PddDeclaration">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1244,7 +1243,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1HuaweiCommitmentList"></div>
                 </div>
                 <div class="form-item" data-col="BM"><label>微信视频端成本配置文件 <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('微信视频端成本配置文件')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 下载模版</a></label>
-                  <div class="form-tip">平台提供模板给供应商</div>
                   <div class="upload-zone" data-upload="step1WechatCostFile">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1252,7 +1250,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1WechatCostFileList"></div>
                 </div>
                 <div class="form-item" data-col="BN"><label>河马专属权利声明 + 成本文件 <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('河马专属权利声明+成本文件')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 下载模版</a></label>
-                  <div class="form-tip">平台提供模板给供应商</div>
                   <div class="upload-zone" data-upload="step1HemaDeclaration">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1267,7 +1264,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1WechatDeclarationList"></div>
                 </div>
                 <div class="form-item" data-col="BU"><label>权利声明及不侵权承诺函（红果模版） <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('权利声明及不侵权承诺函（红果模版）')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 下载模版</a></label>
-                  <div class="form-tip">投流主体固定为杭州阅视网络技术有限公司，仅修改制作方信息；扫描PDF提交</div>
                   <div class="upload-zone" data-upload="step1HongguoDeclaration">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1288,7 +1284,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </div>
                   <div class="file-list" id="step1KuaishouAuthList"></div>
                 </div>
-                <div class="form-item" data-col="BX"><label>腾讯火龙漫剧（缺一不可） <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('腾讯火龙漫剧（缺一不可）')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 下载模版</a></label>
+                <div class="form-item" data-col="BX"><label>腾讯火龙漫剧（缺一不可） <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('AI创作声明-模板')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 AI创作声明-模板</a><a href="javascript:void(0)" onclick="downloadTemplate('权利声明及不侵权承诺')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 权利声明及不侵权承诺</a><a href="javascript:void(0)" onclick="downloadTemplate('火龙-成本配置模板')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 火龙-成本配置模板</a></label>
                   <div class="form-tip">提供3份模板链接</div>
                   <div class="upload-zone" data-upload="step1TencentAnime">
                     <div class="plus">+</div>
@@ -1655,7 +1651,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item"><label>AI具体集数</label><input type="text" id="detailMatAIEpisodes" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>净版无字幕成片</label><div id="detailMatCleanVideo" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>SRT 字幕文件</label><div id="detailMatSrtFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>分销素材</label><div id="detailMatDistributionMaterial" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>分销素材（海外小程序）</label><div id="detailMatDistributionMaterial" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
             </div>
           </div>
         </div>
@@ -1668,7 +1664,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           <div class="panel-body" style="padding:16px;">
             <div class="form-row">
               <div class="form-item"><label>制作合同</label><input type="text" id="detailMatContract" disabled style="background:#f5f5f5;color:#999;"></div>
-              <div class="form-item full"><label>4张片段剪辑工程文件</label><div id="detailMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>AI 创作通用佐证素材</label><div id="detailMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>物料截图文件</label><div id="detailMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>片酬承诺书</label><div id="detailMatSalaryCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>版权文件</label><div id="detailMatCopyrightFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -2823,7 +2819,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item"><label>AI具体集数</label><input type="text" id="pltDetailMatAIEpisodes" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>净版无字幕成片</label><div id="pltDetailMatCleanVideo" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>SRT 字幕文件</label><div id="pltDetailMatSrtFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>分销素材</label><div id="pltDetailMatDistributionMaterial" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>分销素材（海外小程序）</label><div id="pltDetailMatDistributionMaterial" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
             </div>
           </div>
         </div>
@@ -2836,7 +2832,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           <div class="panel-body" style="padding:16px;">
             <div class="form-row">
               <div class="form-item"><label>制作合同</label><input type="text" id="pltDetailMatContract" disabled style="background:#f5f5f5;color:#999;"></div>
-              <div class="form-item full"><label>4张片段剪辑工程文件</label><div id="pltDetailMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>AI 创作通用佐证素材</label><div id="pltDetailMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>物料截图文件</label><div id="pltDetailMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>片酬承诺书</label><div id="pltDetailMatSalaryCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>版权文件</label><div id="pltDetailMatCopyrightFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -2998,7 +2994,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-item"><label>AI具体集数</label><input type="text" id="pltViewMatAIEpisodes" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>净版无字幕成片</label><div id="pltViewMatCleanVideo" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>SRT 字幕文件</label><div id="pltViewMatSrtFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>分销素材</label><div id="pltViewMatDistributionMaterial" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>分销素材（海外小程序）</label><div id="pltViewMatDistributionMaterial" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                 </div>
               </div>
             </div>
@@ -3009,7 +3005,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="mat-section-body">
                 <div class="form-row">
                   <div class="form-item"><label>制作合同</label><input type="text" id="pltViewMatContract" disabled style="background:#f5f5f5;color:#999;"></div>
-                  <div class="form-item full"><label>4张片段剪辑工程文件</label><div id="pltViewMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>AI 创作通用佐证素材</label><div id="pltViewMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>物料截图文件</label><div id="pltViewMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>片酬承诺书</label><div id="pltViewMatSalaryCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>版权文件</label><div id="pltViewMatCopyrightFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -3198,7 +3194,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-item"><label>AI具体集数</label><input type="text" id="crMatAIEpisodes" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>净版无字幕成片</label><div id="crMatCleanVideo" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>SRT 字幕文件</label><div id="crMatSrtFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>分销素材</label><div id="crMatDistributionMaterial" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>分销素材（海外小程序）</label><div id="crMatDistributionMaterial" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                 </div>
               </div>
             </div>
@@ -3209,7 +3205,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="mat-section-body">
                 <div class="form-row">
                   <div class="form-item"><label>制作合同</label><input type="text" id="crMatContract" disabled style="background:#f5f5f5;color:#999;"></div>
-                  <div class="form-item full"><label>4张片段剪辑工程文件</label><div id="crMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>AI 创作通用佐证素材</label><div id="crMatProjectFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>物料截图文件</label><div id="crMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>片酬承诺书</label><div id="crMatSalaryCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>版权文件</label><div id="crMatCopyrightFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -4377,7 +4373,7 @@ function updateMatFieldVisibility() {
         if (labelEl) labelEl.innerHTML = '广电备案号';
         if (inputEl) {
           inputEl.value = '';
-          inputEl.placeholder = '满足条件时必填';
+          inputEl.placeholder = '请输入备案号';
         }
         return;
       }
@@ -4501,6 +4497,16 @@ function toggleAIGCCustomInput() {
     custom.placeholder = '选“自定义”时请输入AIGC工具名称';
     custom.value = '';
   }
+}
+
+// 剧集首发时间：是否确认时间 联动时间选择器显隐
+function toggleFirstTimePicker() {
+  var sel = document.getElementById('step1MatFirstTimeConfirm');
+  var picker = document.getElementById('step1MatFirstTime');
+  if (!sel || !picker) return;
+  var show = sel.value === '已确认';
+  picker.style.display = show ? '' : 'none';
+  if (!show) picker.value = '';
 }
 
 // upload-zone 交互初始化
@@ -4994,7 +5000,9 @@ function fillStep3Summary() {
   html += s3Item('对接商务', dash(val('step1MatBizContact')));
   html += s3Item('漫剧类型', dash(getOptTagVal('mat-漫剧类型')));
   html += s3Item('合作方名称', dash(val('step1MatPartner')));
-  html += s3Item('剧集首发时间', dash(val('step1MatFirstTime')));
+  var s3FirstConfirm = val('step1MatFirstTimeConfirm');
+  var s3FirstTime = s3FirstConfirm === '已确认' ? (val('step1MatFirstTime') || '未选择时间') : '未确认（平台自动排期）';
+  html += s3Item('剧集首发时间', dash(s3FirstConfirm ? s3FirstTime : ''));
   html += s3Item('剧集付费集数', dash(val('step1MatPaidEpisodes')));
   html += s3Item('转免时间', '默认付免同跑');
   var s3AvgDuration = val('step1EditCollAvgDuration');
@@ -5081,7 +5089,7 @@ function fillStep3Summary() {
   html += s3Item('AI具体集数', dash(val('step1MatAIEpisodes')));
   html += s3ItemFull('净版无字幕成片', dash(val('step1CleanVideo')));
   html += s3ItemFull('SRT 字幕文件', dash(val('step1SrtFile')));
-  html += s3ItemFull('分销素材', dash(val('step1DistributionMaterial')));
+  html += s3ItemFull('分销素材（海外小程序）', dash(val('step1DistributionMaterial')));
   html += '</div></div></div>';
 
   // 7. 合规文件
@@ -5089,7 +5097,7 @@ function fillStep3Summary() {
   var s3ContractType = getOptTagVal('mat-制作合同');
   html += s3Item('制作合同', dash(s3ContractType));
   if (s3ContractType === '有') {
-    html += s3ItemFull('4张片段剪辑工程文件', fileNames('step1ProjectFile'));
+    html += s3ItemFull('AI 创作通用佐证素材', fileNames('step1ProjectFile'));
   }
   html += s3ItemFull('物料截图文件', fileNames('step1MaterialScreenshot'));
   html += s3ItemFull('片酬承诺书', fileNames('step1SalaryCommitment'));

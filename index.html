@@ -756,7 +756,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </div>
                 </div>
 
-                <div class="form-item" data-col="R"><label>是否涉及投流（待定） <span style="color:#e74c3c;">*</span></label>
+                <div class="form-item" data-col="R"><label>是否涉及投流 <span style="color:#e74c3c;">*</span></label>
                   <div class="opt-group" data-name="mat-投流">
                     <span class="opt-tag" data-val="是">是</span>
                     <span class="opt-tag" data-val="否">否</span>
@@ -1121,10 +1121,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-tip">硬性素材标准（不达标无法上线、无渠道收益）：1.链接分享有效期设置365天；2.视频分辨率≥1080P:1920P、帧率≥24FPS、平均码率大于10MB；3.音频编码统一AAC；4.3分钟＞单集时长≥40秒，全集总集数≥30集，禁止重复填充片段凑时长；5.拼多多渠道预审强制要求此项，全集无水印</div>
                   <input type="text" id="step1AllEpisodes" placeholder="请输入网盘链接">
                 </div>
-                <div class="form-item full" data-col="AY"><label>红果链接 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">网盘文件夹需包含：全集成片、横版封面图、竖版封面图、无BGM版本（如有）；封面规范：1.画幅3:4、4:3、2:3，文件大小1-10MB，剧名放置画面上方；2.IP改编标注：若改编自番茄小说，封面需标注「改编自番茄小说《作品名》，作者：XXX」；成片单文件限制：单集视频≤300MB</div>
-                  <input type="text" id="step1MatHongguoLink" placeholder="请输入百度云盘链接">
-                </div>
                 <div class="form-item full" data-col="AZ"><label>试看链接 <span style="color:#e74c3c;">*</span></label>
                   <div class="form-tip">要求：提供一卡付费节点前试看素材网盘链接</div>
                   <input type="text" id="step1MatPreviewLink" placeholder="请输入网盘链接">
@@ -1190,12 +1186,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                     <div class="text">点击或拖拽文件到此上传</div>
                     <div class="sub">工程文件截图或源文件</div>
                   </div>
-                  <div class="hint-box">
-                    为满足作品发行至微信小程序/视频号/快手经营需要，请提供该短剧内容制作的剪辑工程文件：<br>
-                    1. 至少4张不同集的展示图片，至多5张，图中需包含有该短剧画面以及合理分轨和剪辑点<br>
-                    2. 需带有展示完整合作片名信息<br>
-                    3. 支持jpg、jpeg、png文件格式，单个文件大小不超过10MB
-                  </div>
                 </div>
                 <div class="form-item full" data-col="BH"><label>物料截图文件 <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('工程文件截图示例')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 工程文件截图示例</a><a href="javascript:void(0)" onclick="downloadTemplate('提示词记录或ai生成剧本截图')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 提示词记录或ai生成剧本截图</a></label>
                   <div class="form-tip">1.材料要求：真人剧集提供短剧工程文件，漫剧：工程文件和AI生成提示词；2.短剧工程文件：需提供4张带有制作分轨、剪辑点的工程文件截图和AI生成提示词的截图</div>
@@ -1221,7 +1211,17 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </div>
                   <div class="file-list" id="step1CopyrightFileList"></div>
                 </div>
-                <div class="form-item full" data-col="BQ"><label>漫剧无合同替代材料 <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('漫剧无合同替代材料')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 下载模版</a></label>
+                <div class="form-item full" data-col="BQ"><label>漫剧专项AI创作佐证材料 <span style="color:#e74c3c;">*</span></label>
+                  <div class="form-tip">仅提供全套授权合同即可，无需下述 2/3/4 材料；未提供授权合同则完整提交 4 类资料<br>
+                    1. 短剧版权授权合同（必备）；<br>
+                    2. AI 剧本提示词生成截图 4 张：完整展示提示词、生成文案与对应成片画面；<a href="javascript:void(0)" onclick="downloadTemplate('提示词记录或AI生成剧本截图示例')" style="color:var(--primary);text-decoration:none;">📎 提示词记录或AI生成剧本截图示例</a><br>
+                    3. 4张不同对应片段剪辑调整工程文件：画面包含剧集正片、完整音视频分轨剪辑轨道、明确的对应剧名、截图所示的对应集数；<a href="javascript:void(0)" onclick="downloadTemplate('工程文件截图示例')" style="color:var(--primary);text-decoration:none;">📎 工程文件截图示例</a><br>
+                    4. AI 工具商用权属协议截图（TT 渠道可免交）<a href="javascript:void(0)" onclick="downloadTemplate('所使用AI软件的权属协议示例')" style="color:var(--primary);text-decoration:none;">📎 所使用AI软件的权属协议示例</a><br>
+                    硬性要求：<br>
+                    ① 第 2、3 项两组 4 张截图必须选用完全一致的 4 个剧集集数，集数一一对应，所选集数需存在于样片网盘连接内；例：工程截图为 1、3、8、15 集，AI 提示词截图也需为1、3、8、15 集内容<br>
+                    ② 命名规则<br>
+                    a. 合并文档：【短剧名称-ai生成文件】、【短剧名称-剪辑工程文件】，文档内截图标注对应集数 <a href="javascript:void(0)" onclick="downloadTemplate('命名格式要求')" style="color:var(--primary);text-decoration:none;">📎 命名格式要求</a><br>
+                    b. 单张截图文件：短剧名称-文件信息-第 X 集</div>
                   <div class="upload-zone" data-upload="step1AnimeNoContract">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1285,7 +1285,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="file-list" id="step1KuaishouAuthList"></div>
                 </div>
                 <div class="form-item" data-col="BX"><label>腾讯火龙漫剧（缺一不可） <span style="color:#e74c3c;">*</span><a href="javascript:void(0)" onclick="downloadTemplate('AI创作声明-模板')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 AI创作声明-模板</a><a href="javascript:void(0)" onclick="downloadTemplate('权利声明及不侵权承诺')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 权利声明及不侵权承诺</a><a href="javascript:void(0)" onclick="downloadTemplate('火龙-成本配置模板')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 火龙-成本配置模板</a></label>
-                  <div class="form-tip">提供3份模板链接</div>
                   <div class="upload-zone" data-upload="step1TencentAnime">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
@@ -1305,7 +1304,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                       <option value="巨日禄">巨日禄</option>
                       <option value="自定义">自定义</option>
                     </select>
-                    <input type="text" id="step1MatAIGCToolCustom" placeholder="选“自定义”时请输入AIGC工具名称" style="flex:1;">
+                    <input type="text" id="step1MatAIGCToolCustom" placeholder="请输入自定义AIGC工具名称" style="flex:1;display:none;">
                   </div>
                 </div>
               </div>
@@ -1643,7 +1642,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           <div class="panel-body" style="padding:16px;">
             <div class="form-row">
               <div class="form-item full"><label>全集资源</label><div id="detailMatAllEpisodes" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>红果链接</label><input type="text" id="detailMatHongguoLink" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>试看链接</label><input type="text" id="detailMatPreviewLink" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>高光素材视频</label><div id="detailMatHighlightVideo" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>横版剧集海报</label><div id="detailMatHorizontalPoster" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -1668,7 +1666,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item full"><label>物料截图文件</label><div id="detailMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>片酬承诺书</label><div id="detailMatSalaryCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>版权文件</label><div id="detailMatCopyrightFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>漫剧无合同替代材料</label><div id="detailMatAnimeNoContract" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>漫剧专项AI创作佐证材料</label><div id="detailMatAnimeNoContract" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>拼多多渠道权利声明</label><div id="detailMatPddDeclaration" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>华为渠道承诺函</label><div id="detailMatHuaweiCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>微信视频端成本配置文件</label><div id="detailMatWechatCostFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -2811,7 +2809,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           <div class="panel-body" style="padding:16px;">
             <div class="form-row">
               <div class="form-item full"><label>全集资源</label><div id="pltDetailMatAllEpisodes" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>红果链接</label><input type="text" id="pltDetailMatHongguoLink" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>试看链接</label><input type="text" id="pltDetailMatPreviewLink" disabled style="background:#f5f5f5;color:#999;"></div>
               <div class="form-item full"><label>高光素材视频</label><div id="pltDetailMatHighlightVideo" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>横版剧集海报</label><div id="pltDetailMatHorizontalPoster" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -2836,7 +2833,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item full"><label>物料截图文件</label><div id="pltDetailMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>片酬承诺书</label><div id="pltDetailMatSalaryCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>版权文件</label><div id="pltDetailMatCopyrightFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-              <div class="form-item full"><label>漫剧无合同替代材料</label><div id="pltDetailMatAnimeNoContract" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+              <div class="form-item full"><label>漫剧专项AI创作佐证材料</label><div id="pltDetailMatAnimeNoContract" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>拼多多渠道权利声明</label><div id="pltDetailMatPddDeclaration" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>华为渠道承诺函</label><div id="pltDetailMatHuaweiCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
               <div class="form-item full"><label>微信视频端成本配置文件</label><div id="pltDetailMatWechatCostFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -2986,7 +2983,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="mat-section-body">
                 <div class="form-row">
                   <div class="form-item full"><label>全集资源</label><div id="pltViewMatAllEpisodes" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>红果链接</label><input type="text" id="pltViewMatHongguoLink" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>试看链接</label><input type="text" id="pltViewMatPreviewLink" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>高光素材视频</label><div id="pltViewMatHighlightVideo" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>横版剧集海报</label><div id="pltViewMatHorizontalPoster" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -3009,7 +3005,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-item full"><label>物料截图文件</label><div id="pltViewMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>片酬承诺书</label><div id="pltViewMatSalaryCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>版权文件</label><div id="pltViewMatCopyrightFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>漫剧无合同替代材料</label><div id="pltViewMatAnimeNoContract" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>漫剧专项AI创作佐证材料</label><div id="pltViewMatAnimeNoContract" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>拼多多渠道权利声明</label><div id="pltViewMatPddDeclaration" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>华为渠道承诺函</label><div id="pltViewMatHuaweiCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>微信视频端成本配置文件</label><div id="pltViewMatWechatCostFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -3186,7 +3182,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="mat-section-body">
                 <div class="form-row">
                   <div class="form-item full"><label>全集资源</label><div id="crMatAllEpisodes" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>红果链接</label><input type="text" id="crMatHongguoLink" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>试看链接</label><input type="text" id="crMatPreviewLink" disabled style="background:#f5f5f5;color:#999;"></div>
                   <div class="form-item full"><label>高光素材视频</label><div id="crMatHighlightVideo" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>横版剧集海报</label><div id="crMatHorizontalPoster" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -3209,7 +3204,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="form-item full"><label>物料截图文件</label><div id="crMatMaterialScreenshot" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>片酬承诺书</label><div id="crMatSalaryCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>版权文件</label><div id="crMatCopyrightFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
-                  <div class="form-item full"><label>漫剧无合同替代材料</label><div id="crMatAnimeNoContract" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
+                  <div class="form-item full"><label>漫剧专项AI创作佐证材料</label><div id="crMatAnimeNoContract" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>拼多多渠道权利声明</label><div id="crMatPddDeclaration" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>华为渠道承诺函</label><div id="crMatHuaweiCommitment" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
                   <div class="form-item full"><label>微信视频端成本配置文件</label><div id="crMatWechatCostFile" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传</div></div>
@@ -4347,7 +4342,7 @@ function updateMatFieldVisibility() {
         return;
       }
     }
-    // 漫剧无合同替代材料/拼多多渠道权利声明/华为渠道承诺函：仅"无"时显示
+    // 漫剧专项AI创作佐证材料/拼多多渠道权利声明/华为渠道承诺函：仅"无"时显示
     if (col === 'BQ' || col === 'BR' || col === 'BS') {
       if (contractType !== '无') {
         item.style.display = 'none';
@@ -4491,12 +4486,10 @@ function toggleAIGCCustomInput() {
   var sel = document.getElementById('step1MatAIGCTool');
   var custom = document.getElementById('step1MatAIGCToolCustom');
   if (!sel || !custom) return;
-  if (sel.value === '自定义') {
-    custom.placeholder = '请输入自定义AIGC工具名称';
-  } else {
-    custom.placeholder = '选“自定义”时请输入AIGC工具名称';
-    custom.value = '';
-  }
+  var show = sel.value === '自定义';
+  custom.style.display = show ? '' : 'none';
+  custom.placeholder = '请输入自定义AIGC工具名称';
+  if (!show) custom.value = '';
 }
 
 // 剧集首发时间：是否确认时间 联动时间选择器显隐
@@ -5081,7 +5074,6 @@ function fillStep3Summary() {
   // 5. 成片素材
   html += '<div class="mat-section-card" style="margin-bottom:12px;"><div class="mat-section-title"><div class="sec-icon" style="background:#FFF3E8;color:#FF9A45;">🎞️</div> 成片素材</div><div class="mat-section-body"><div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;">';
   html += s3ItemFull('全集资源', dash(val('step1AllEpisodes')));
-  html += s3ItemFull('红果链接', dash(val('step1MatHongguoLink')));
   html += s3ItemFull('试看链接', dash(val('step1MatPreviewLink')));
   html += s3ItemFull('高光素材视频', dash(val('step1HighlightVideo')));
   html += s3ItemFull('横版剧集海报', fileNames('step1HorizontalPoster'));
@@ -5105,7 +5097,7 @@ function fillStep3Summary() {
     html += s3ItemFull('版权文件', fileNames('step1CopyrightFile'));
   }
   if (s3ContractType === '无') {
-    html += s3ItemFull('漫剧无合同替代材料', fileNames('step1AnimeNoContract'));
+    html += s3ItemFull('漫剧专项AI创作佐证材料', fileNames('step1AnimeNoContract'));
     html += s3ItemFull('拼多多渠道权利声明', fileNames('step1PddDeclaration'));
     html += s3ItemFull('华为渠道承诺函', fileNames('step1HuaweiCommitment'));
   }
@@ -5440,7 +5432,6 @@ function renderPltDetailMaterial(id, item) {
   setVal('pltDetailMatScreenwriterIntro', mat.screenwriterIntro);
   // 5. 成片素材
   setFileDisplay('pltDetailMatAllEpisodes', mat.allEpisodes || (mat.authFile ? mat.authFile + ' (' + (mat.authFileSize || '') + ')' : ''));
-  setVal('pltDetailMatHongguoLink', mat.hongguoLink);
   setVal('pltDetailMatPreviewLink', mat.previewLink);
   setFileDisplay('pltDetailMatHighlightVideo', mat.highlightVideo);
   setFileDisplay('pltDetailMatHorizontalPoster', mat.horizontalPoster || (mat.posterImg ? mat.posterImg + ' (' + (mat.posterImgSize || '') + ')' : ''));
@@ -5556,7 +5547,6 @@ function renderSupDetailMaterial(collId, item) {
   setVal('detailMatScreenwriterIntro', mat.screenwriterIntro);
   // 5. 成片素材
   setFileDisplay('detailMatAllEpisodes', mat.allEpisodes || (mat.authFile ? mat.authFile + ' (' + (mat.authFileSize || '') + ')' : ''));
-  setVal('detailMatHongguoLink', mat.hongguoLink);
   setVal('detailMatPreviewLink', mat.previewLink);
   setFileDisplay('detailMatHighlightVideo', mat.highlightVideo);
   setFileDisplay('detailMatHorizontalPoster', mat.horizontalPoster || (mat.posterImg ? mat.posterImg + ' (' + (mat.posterImgSize || '') + ')' : ''));
@@ -5737,7 +5727,6 @@ function openPltVersionView() {
   setVal('pltViewMatScreenwriterIntro', mat.screenwriterIntro);
   // 5. 成片素材
   setFileDisplay('pltViewMatAllEpisodes', mat.allEpisodes || (mat.authFile ? mat.authFile + ' (' + (mat.authFileSize || '') + ')' : ''));
-  setVal('pltViewMatHongguoLink', mat.hongguoLink);
   setVal('pltViewMatPreviewLink', mat.previewLink);
   setFileDisplay('pltViewMatHighlightVideo', mat.highlightVideo);
   setFileDisplay('pltViewMatHorizontalPoster', mat.horizontalPoster || (mat.posterImg ? mat.posterImg + ' (' + (mat.posterImgSize || '') + ')' : ''));
@@ -8871,8 +8860,7 @@ function openContentReview(id, type) {
     setVal('crMatScreenwriterIntro', mat.screenwriterIntro);
     // 5. 成片素材
     setFileDisplay('crMatAllEpisodes', mat.allEpisodes || (mat.authFile ? mat.authFile + ' (' + (mat.authFileSize || '') + ')' : ''));
-    setVal('crMatHongguoLink', mat.hongguoLink);
-    setVal('crMatPreviewLink', mat.previewLink);
+      setVal('crMatPreviewLink', mat.previewLink);
     setFileDisplay('crMatHighlightVideo', mat.highlightVideo);
     setFileDisplay('crMatHorizontalPoster', mat.horizontalPoster || (mat.posterImg ? mat.posterImg + ' (' + (mat.posterImgSize || '') + ')' : ''));
     setFileDisplay('crMatVerticalPoster', mat.verticalPoster || (mat.posterSrc ? mat.posterSrc + ' (' + (mat.posterSrcSize || '') + ')' : ''));

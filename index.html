@@ -344,7 +344,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .mat-nav-list li a:hover { color: var(--primary); background: var(--primary-light); }
 .mat-nav-list li.active a { color: var(--primary); background: var(--primary-light); border-left-color: var(--primary); font-weight: 500; }
 
-.mat-section-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+.mat-section-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; }
 .mat-section-title { padding: 14px 20px; font-size: 15px; font-weight: 600; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 8px; }
 .mat-section-title .sec-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
 .mat-section-body { padding: 16px 20px; }
@@ -513,7 +513,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           <option value="">全部类型</option>
           <option>国内真人剧（真人实拍）</option>
           <option>国内漫剧（AI真人剧集、沙雕漫、3D、2D漫）</option>
-          <option>国内短剧</option>
           <option>海外本土真人剧（真人实拍）</option>
           <option>海外本土漫剧（AI真人剧集、沙雕漫、3D、2D漫）</option>
         </select>
@@ -667,7 +666,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                       <label><input type="checkbox" value="快手" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()"> 快手</label>
                       <label><input type="checkbox" value="全民K歌（全民短剧）" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()"> 全民K歌（全民短剧）</label>
                       <label><input type="checkbox" value="微信视频号" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()"> 微信视频号</label>
-                      <label><input type="checkbox" value="版权代授" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()"> 版权代授</label>
+                      <label><input type="checkbox" value="版权代售" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()"> 版权代售</label>
                       <label><input type="checkbox" value="海外全渠道" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()"> 海外全渠道</label>
                       <label><input type="checkbox" value="海外非独全渠道" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()"> 海外非独全渠道</label>
                       <label><input type="checkbox" value="海外YouTube" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()"> 海外YouTube</label>
@@ -677,7 +676,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                       <label><input type="checkbox" value="京东" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()"> 京东</label>
                       <label><input type="checkbox" value="七猫" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()"> 七猫</label>
                       <label><input type="checkbox" value="河马APP" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()"> 河马APP</label>
-                      <label><input type="checkbox" value="抖快微投流支持" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()"> 抖快微投流支持</label>
                     </div>
                   </div>
                 </div>
@@ -822,55 +820,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                       <label><input type="checkbox" value="仙侠" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 仙侠</label>
                       <label><input type="checkbox" value="武侠" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 武侠</label>
                       <label><input type="checkbox" value="神医" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 神医</label>
-                      <label><input type="checkbox" value="成功人士" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 成功人士</label>
                       <label><input type="checkbox" value="赘婿" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 赘婿</label>
                       <label><input type="checkbox" value="萌宝" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 萌宝</label>
                       <label><input type="checkbox" value="打脸虐渣" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 打脸虐渣</label>
                       <label><input type="checkbox" value="神豪" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 神豪</label>
-                      <label><input type="checkbox" value="马甲" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 马甲</label>
                       <label><input type="checkbox" value="末世" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 末世</label>
-                      <label><input type="checkbox" value="奶爸" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 奶爸</label>
-                      <label><input type="checkbox" value="团宠" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 团宠</label>
                       <label><input type="checkbox" value="系统" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 系统</label>
-                      <label><input type="checkbox" value="替身" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 替身</label>
-                      <label><input type="checkbox" value="言情" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 言情</label>
                       <label><input type="checkbox" value="大女主" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 大女主</label>
-                      <label><input type="checkbox" value="千金" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 千金</label>
-                      <label><input type="checkbox" value="异能" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 异能</label>
-                      <label><input type="checkbox" value="豪门" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 豪门</label>
-                      <label><input type="checkbox" value="心动拉扯" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 心动拉扯</label>
-                      <label><input type="checkbox" value="出轨" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 出轨</label>
-                      <label><input type="checkbox" value="商战" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 商战</label>
-                      <label><input type="checkbox" value="三角恋" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 三角恋</label>
-                      <label><input type="checkbox" value="年龄差" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 年龄差</label>
-                      <label><input type="checkbox" value="都市职场反渣商战爽剧" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 都市职场反渣商战爽剧</label>
-                      <label><input type="checkbox" value="犯罪/悬疑/大女主" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 犯罪/悬疑/大女主</label>
-                      <label><input type="checkbox" value="大女主 | 婚姻犯罪 | 悬疑 | 智斗复仇" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 大女主 | 婚姻犯罪 | 悬疑 | 智斗复仇</label>
-                      <label><input type="checkbox" value="逆袭/职场/大女主" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 逆袭/职场/大女主</label>
-                      <label><input type="checkbox" value="悬疑、职场、科幻" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 悬疑、职场、科幻</label>
-                      <label><input type="checkbox" value="女性悬疑/身份互换/豪门阴谋" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 女性悬疑/身份互换/豪门阴谋</label>
-                      <label><input type="checkbox" value="都市情感/家庭救赎/女性成长/社会治愈" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 都市情感/家庭救赎/女性成长/社会治愈</label>
-                      <label><input type="checkbox" value="亲情" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 亲情</label>
-                      <label><input type="checkbox" value="民间故事、漫剧" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 民间故事、漫剧</label>
-                      <label><input type="checkbox" value="大女主逆袭" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 大女主逆袭</label>
-                      <label><input type="checkbox" value="年代逆袭" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 年代逆袭</label>
-                      <label><input type="checkbox" value="家庭伦理" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 家庭伦理</label>
-                      <label><input type="checkbox" value="通用家庭伦理" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 通用家庭伦理</label>
-                      <label><input type="checkbox" value="女频年代逆袭" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 女频年代逆袭</label>
-                      <label><input type="checkbox" value="女频乡村逆袭" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 女频乡村逆袭</label>
-                      <label><input type="checkbox" value="逆袭、打脸" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 逆袭、打脸</label>
-                      <label><input type="checkbox" value="家庭、婚姻" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 家庭、婚姻</label>
-                      <label><input type="checkbox" value="传统民俗" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 传统民俗</label>
-                      <label><input type="checkbox" value="青春校园" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 青春校园</label>
-                      <label><input type="checkbox" value="女频家庭伦理" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 女频家庭伦理</label>
-                      <label><input type="checkbox" value="银发大女主" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 银发大女主</label>
-                      <label><input type="checkbox" value="农村大女主" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 农村大女主</label>
-                      <label><input type="checkbox" value="大女主爽剧" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 大女主爽剧</label>
-                      <label><input type="checkbox" value="爽剧萌宝" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 爽剧萌宝</label>
-                      <label><input type="checkbox" value="苦情萌宝" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 苦情萌宝</label>
-                      <label><input type="checkbox" value="甜宠轻喜" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 甜宠轻喜</label>
-                      <label><input type="checkbox" value="年代大女主" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 年代大女主</label>
-                    </div>
+                      <label><input type="checkbox" value="替身" onchange="updateMultiSelect('step1EditCollTagsDropdown')"> 替身</label>
+</div>
                   </div>
                 </div>
               </div>
@@ -884,15 +842,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             </div>
             <div class="mat-section-body">
               <div class="form-row">
-                <div class="form-item" data-col="S"><label>广电备案号</label>
-                  <div class="form-tip">示例：(总局或属地省份简称)网微剧审字(年份)第xxx号</div>
-                  <input type="text" id="step1MatRecordNo" placeholder="请输入备案号">
-                </div>
                 <div class="form-item" data-col="M"><label>剧集制作成本 <span style="color:#e74c3c;">*</span></label>
                   <div class="input-suffix-wrap">
                     <input type="text" id="step1MatCost" class="suffix-input" placeholder="请输入制作成本" inputmode="decimal" oninput="this.value=this.value.replace(/[^\d.]/g,'').replace(/(\..*)\./g,'$1');updateMatFieldVisibility()">
                     <span class="input-suffix">万</span>
                   </div>
+                </div>
+                <div class="form-item" data-col="S"><label>广电备案号</label>
+                  <div class="form-tip">示例：(总局或属地省份简称)网微剧审字(年份)第xxx号</div>
+                  <input type="text" id="step1MatRecordNo" placeholder="请输入备案号">
                 </div>
                 <div class="form-item" data-col="Y"><label>演员总片酬占比 <span style="color:#e74c3c;">*</span></label>
                   <div class="input-suffix-wrap">
@@ -1082,7 +1040,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </div>
                   <div class="file-list" id="step1DirectorPhotoList"></div>
                 </div>
-                <div class="form-item full" data-col="CB"><label>导演简介</label>
+                <div class="form-item full" data-col="CB"><label>导演简介 <span style="color:#e74c3c;">*</span></label>
                   <textarea id="step1MatDirectorIntro" rows="2" placeholder="1. 可填写10~100个字符&#10;2. 填写内容可参考：生日、星座、籍贯、身高、毕业院校、历史/代表作品、获奖信息、成就等（以上要素需至少满足3项或涵盖任一要素且超过10字）" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
                 <div class="form-item" data-col="AV"><label>编剧真实姓名 <span style="color:#e74c3c;">*</span></label>
@@ -1104,7 +1062,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   </div>
                   <div class="file-list" id="step1ScreenwriterPhotoList"></div>
                 </div>
-                <div class="form-item full" data-col="CE"><label>编剧简介</label>
+                <div class="form-item full" data-col="CE"><label>编剧简介 <span style="color:#e74c3c;">*</span></label>
                   <div class="form-tip">1. 可填写10~100个字符；<br>2. 填写内容可参考：生日、星座、籍贯、身高、毕业院校、历史/代表作品、获奖信息、成就等（以上要素需至少满足3项或涵盖任一要素且超过10字）</div>
                   <textarea id="step1MatScreenwriterIntro" rows="2" placeholder="请输入编剧简介" style="width:100%;border:1px solid var(--border);border-radius:6px;padding:10px;font-size:14px;resize:vertical;"></textarea>
                 </div>
@@ -1181,9 +1139,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             <div class="mat-section-body">
               <div class="form-row">
                 <div class="form-item" data-col="BO"><label>有无制作合同 <span style="color:#e74c3c;">*</span></label>
-                  <div class="form-tip">1.真人剧：除TT渠道外全部渠道必须提供；2.漫剧：上线支付宝渠道必须提供；3.如需先上线其他渠道可按照无制作合同情况处理：此类情况需提前同步对接商务备案，否则影响结算回款</div>
                   <div class="opt-group" data-name="mat-制作合同">
-                    <span class="opt-tag" data-val="有">有</span>
+                    <span class="opt-tag selected" data-val="有">有</span>
                     <span class="opt-tag" data-val="无">无</span>
                   </div>
                 </div>
@@ -1221,7 +1178,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <div class="upload-zone" data-upload="step1CopyrightFile">
                     <div class="plus">+</div>
                     <div class="text">点击或拖拽文件到此上传</div>
-                    <div class="sub">如需上多多提供拍照版PDF，上字节系提供扫描版，两者都上请提供双格式</div>
                   </div>
                   <div class="file-list" id="step1CopyrightFileList"></div>
                 </div>
@@ -3839,55 +3795,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <label><input type="checkbox" value="仙侠" onchange="updateMultiSelect('editCollTagsDropdown')"> 仙侠</label>
                 <label><input type="checkbox" value="武侠" onchange="updateMultiSelect('editCollTagsDropdown')"> 武侠</label>
                 <label><input type="checkbox" value="神医" onchange="updateMultiSelect('editCollTagsDropdown')"> 神医</label>
-                <label><input type="checkbox" value="成功人士" onchange="updateMultiSelect('editCollTagsDropdown')"> 成功人士</label>
                 <label><input type="checkbox" value="赘婿" onchange="updateMultiSelect('editCollTagsDropdown')"> 赘婿</label>
                 <label><input type="checkbox" value="萌宝" onchange="updateMultiSelect('editCollTagsDropdown')"> 萌宝</label>
                 <label><input type="checkbox" value="打脸虐渣" onchange="updateMultiSelect('editCollTagsDropdown')"> 打脸虐渣</label>
                 <label><input type="checkbox" value="神豪" onchange="updateMultiSelect('editCollTagsDropdown')"> 神豪</label>
-                <label><input type="checkbox" value="马甲" onchange="updateMultiSelect('editCollTagsDropdown')"> 马甲</label>
                 <label><input type="checkbox" value="末世" onchange="updateMultiSelect('editCollTagsDropdown')"> 末世</label>
-                <label><input type="checkbox" value="奶爸" onchange="updateMultiSelect('editCollTagsDropdown')"> 奶爸</label>
-                <label><input type="checkbox" value="团宠" onchange="updateMultiSelect('editCollTagsDropdown')"> 团宠</label>
                 <label><input type="checkbox" value="系统" onchange="updateMultiSelect('editCollTagsDropdown')"> 系统</label>
-                <label><input type="checkbox" value="替身" onchange="updateMultiSelect('editCollTagsDropdown')"> 替身</label>
-                <label><input type="checkbox" value="言情" onchange="updateMultiSelect('editCollTagsDropdown')"> 言情</label>
                 <label><input type="checkbox" value="大女主" onchange="updateMultiSelect('editCollTagsDropdown')"> 大女主</label>
-                <label><input type="checkbox" value="千金" onchange="updateMultiSelect('editCollTagsDropdown')"> 千金</label>
-                <label><input type="checkbox" value="异能" onchange="updateMultiSelect('editCollTagsDropdown')"> 异能</label>
-                <label><input type="checkbox" value="豪门" onchange="updateMultiSelect('editCollTagsDropdown')"> 豪门</label>
-                <label><input type="checkbox" value="心动拉扯" onchange="updateMultiSelect('editCollTagsDropdown')"> 心动拉扯</label>
-                <label><input type="checkbox" value="出轨" onchange="updateMultiSelect('editCollTagsDropdown')"> 出轨</label>
-                <label><input type="checkbox" value="商战" onchange="updateMultiSelect('editCollTagsDropdown')"> 商战</label>
-                <label><input type="checkbox" value="三角恋" onchange="updateMultiSelect('editCollTagsDropdown')"> 三角恋</label>
-                <label><input type="checkbox" value="年龄差" onchange="updateMultiSelect('editCollTagsDropdown')"> 年龄差</label>
-                <label><input type="checkbox" value="都市职场反渣商战爽剧" onchange="updateMultiSelect('editCollTagsDropdown')"> 都市职场反渣商战爽剧</label>
-                <label><input type="checkbox" value="犯罪/悬疑/大女主" onchange="updateMultiSelect('editCollTagsDropdown')"> 犯罪/悬疑/大女主</label>
-                <label><input type="checkbox" value="大女主 | 婚姻犯罪 | 悬疑 | 智斗复仇" onchange="updateMultiSelect('editCollTagsDropdown')"> 大女主 | 婚姻犯罪 | 悬疑 | 智斗复仇</label>
-                <label><input type="checkbox" value="逆袭/职场/大女主" onchange="updateMultiSelect('editCollTagsDropdown')"> 逆袭/职场/大女主</label>
-                <label><input type="checkbox" value="悬疑、职场、科幻" onchange="updateMultiSelect('editCollTagsDropdown')"> 悬疑、职场、科幻</label>
-                <label><input type="checkbox" value="女性悬疑/身份互换/豪门阴谋" onchange="updateMultiSelect('editCollTagsDropdown')"> 女性悬疑/身份互换/豪门阴谋</label>
-                <label><input type="checkbox" value="都市情感/家庭救赎/女性成长/社会治愈" onchange="updateMultiSelect('editCollTagsDropdown')"> 都市情感/家庭救赎/女性成长/社会治愈</label>
-                <label><input type="checkbox" value="亲情" onchange="updateMultiSelect('editCollTagsDropdown')"> 亲情</label>
-                <label><input type="checkbox" value="民间故事、漫剧" onchange="updateMultiSelect('editCollTagsDropdown')"> 民间故事、漫剧</label>
-                <label><input type="checkbox" value="大女主逆袭" onchange="updateMultiSelect('editCollTagsDropdown')"> 大女主逆袭</label>
-                <label><input type="checkbox" value="年代逆袭" onchange="updateMultiSelect('editCollTagsDropdown')"> 年代逆袭</label>
-                <label><input type="checkbox" value="家庭伦理" onchange="updateMultiSelect('editCollTagsDropdown')"> 家庭伦理</label>
-                <label><input type="checkbox" value="通用家庭伦理" onchange="updateMultiSelect('editCollTagsDropdown')"> 通用家庭伦理</label>
-                <label><input type="checkbox" value="女频年代逆袭" onchange="updateMultiSelect('editCollTagsDropdown')"> 女频年代逆袭</label>
-                <label><input type="checkbox" value="女频乡村逆袭" onchange="updateMultiSelect('editCollTagsDropdown')"> 女频乡村逆袭</label>
-                <label><input type="checkbox" value="逆袭、打脸" onchange="updateMultiSelect('editCollTagsDropdown')"> 逆袭、打脸</label>
-                <label><input type="checkbox" value="家庭、婚姻" onchange="updateMultiSelect('editCollTagsDropdown')"> 家庭、婚姻</label>
-                <label><input type="checkbox" value="传统民俗" onchange="updateMultiSelect('editCollTagsDropdown')"> 传统民俗</label>
-                <label><input type="checkbox" value="青春校园" onchange="updateMultiSelect('editCollTagsDropdown')"> 青春校园</label>
-                <label><input type="checkbox" value="女频家庭伦理" onchange="updateMultiSelect('editCollTagsDropdown')"> 女频家庭伦理</label>
-                <label><input type="checkbox" value="银发大女主" onchange="updateMultiSelect('editCollTagsDropdown')"> 银发大女主</label>
-                <label><input type="checkbox" value="农村大女主" onchange="updateMultiSelect('editCollTagsDropdown')"> 农村大女主</label>
-                <label><input type="checkbox" value="大女主爽剧" onchange="updateMultiSelect('editCollTagsDropdown')"> 大女主爽剧</label>
-                <label><input type="checkbox" value="爽剧萌宝" onchange="updateMultiSelect('editCollTagsDropdown')"> 爽剧萌宝</label>
-                <label><input type="checkbox" value="苦情萌宝" onchange="updateMultiSelect('editCollTagsDropdown')"> 苦情萌宝</label>
-                <label><input type="checkbox" value="甜宠轻喜" onchange="updateMultiSelect('editCollTagsDropdown')"> 甜宠轻喜</label>
-                <label><input type="checkbox" value="年代大女主" onchange="updateMultiSelect('editCollTagsDropdown')"> 年代大女主</label>
-              </div>
+                <label><input type="checkbox" value="替身" onchange="updateMultiSelect('editCollTagsDropdown')"> 替身</label>
+</div>
             </div>
           </div>
         </div>
@@ -3969,7 +3885,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <label><input type="checkbox" value="快手" onchange="updateMultiSelect('editCollChannelDropdown')"> 快手</label>
                 <label><input type="checkbox" value="全民K歌、全民短剧" onchange="updateMultiSelect('editCollChannelDropdown')"> 全民K歌、全民短剧</label>
                 <label><input type="checkbox" value="微信视频号" onchange="updateMultiSelect('editCollChannelDropdown')"> 微信视频号</label>
-                <label><input type="checkbox" value="版权代授" onchange="updateMultiSelect('editCollChannelDropdown')"> 版权代授</label>
+                <label><input type="checkbox" value="版权代售" onchange="updateMultiSelect('editCollChannelDropdown')"> 版权代售</label>
                 <label><input type="checkbox" value="海外全渠道" onchange="updateMultiSelect('editCollChannelDropdown')"> 海外全渠道</label>
                 <label><input type="checkbox" value="海外非独全渠道" onchange="updateMultiSelect('editCollChannelDropdown')"> 海外非独全渠道</label>
                 <label><input type="checkbox" value="海外Youtube" onchange="updateMultiSelect('editCollChannelDropdown')"> 海外Youtube</label>
@@ -3980,7 +3896,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <label><input type="checkbox" value="京东" onchange="updateMultiSelect('editCollChannelDropdown')"> 京东</label>
                 <label><input type="checkbox" value="七猫" onchange="updateMultiSelect('editCollChannelDropdown')"> 七猫</label>
                 <label><input type="checkbox" value="河马APP" onchange="updateMultiSelect('editCollChannelDropdown')"> 河马APP</label>
-                <label><input type="checkbox" value="抖快微投流支持" onchange="updateMultiSelect('editCollChannelDropdown')"> 抖快微投流支持</label>
               </div>
             </div>
           </div>
@@ -4242,7 +4157,7 @@ var MAT_CHANNEL_FIELDS = {
   "快手":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ","BW"],
   "全民K歌（全民短剧）":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "微信视频号":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BM","BO","BP","BQ","BT"],
-  "版权代授":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
+  "版权代售":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "海外全渠道":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "海外非独全渠道":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "海外YouTube":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
@@ -4251,8 +4166,7 @@ var MAT_CHANNEL_FIELDS = {
   "QQ浏览器":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "京东":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "七猫":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ","BN"],
-  "河马APP":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ","BN","BX"],
-  "抖快微投流支持":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"]
+  "河马APP":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ","BN","BX"]
 };
 
 function getMatSelectedDramaType() {
@@ -4273,6 +4187,22 @@ function getOptTagVal(groupName) {
   if (!group) return '';
   var sel = group.querySelector('.opt-tag.selected');
   return sel ? sel.getAttribute('data-val') : '';
+}
+
+// 制作合同字段是否隐藏：真人剧类型且发行渠道不含「海外Tiktok端原生」时隐藏
+function isMatContractHidden() {
+  var dramaType = getMatSelectedDramaType() || '';
+  var channels = getMatSelectedChannels();
+  var isRealDrama = dramaType.indexOf('真人剧（真人实拍）') > -1;
+  var hasTiktok = channels.indexOf('海外Tiktok端原生') > -1;
+  return isRealDrama && channels.length > 0 && !hasTiktok;
+}
+
+// 制作合同有效值：字段隐藏时按「有」处理（关联字段随之展示）
+function getMatContractType() {
+  var raw = getOptTagVal('mat-制作合同');
+  if (isMatContractHidden()) return '有';
+  return raw || '有';
 }
 
 // 通用：读取 step1 中 upload-zone 对应的 file-list 已上传文件名
@@ -4330,17 +4260,27 @@ function updateMatFieldVisibility() {
   var channelFields = getMatChannelFieldSet(channels);
   var hasChannelFilter = channels.length > 0;
   var round = getOptTagVal('mat-发行轮次');
-  var contractType = getOptTagVal('mat-制作合同');
+  var contractType = getMatContractType();
 
   var step1 = document.getElementById('editStep1');
   if (!step1) return;
 
   step1.querySelectorAll('.form-item[data-col]').forEach(function(item) {
     var col = item.getAttribute('data-col');
-    // 控制字段本身始终显示
-    if (col === 'C' || col === 'F' || col === 'BO') {
+    // 控制字段本身始终显示（制作合同除外：真人剧且非海外Tiktok端原生渠道时隐藏）
+    if (col === 'C' || col === 'F') {
       item.style.display = '';
       item.classList.remove('mat-field-hidden');
+      return;
+    }
+    if (col === 'BO') {
+      if (isMatContractHidden()) {
+        item.style.display = 'none';
+        item.classList.add('mat-field-hidden');
+      } else {
+        item.style.display = '';
+        item.classList.remove('mat-field-hidden');
+      }
       return;
     }
     // 全网首发时间：仅二轮时显示
@@ -5120,7 +5060,7 @@ function fillStep3Summary() {
 
   // 7. 合规文件
   html += '<div class="mat-section-card" style="margin-bottom:0;"><div class="mat-section-title"><div class="sec-icon" style="background:#FFECE8;color:#F53F3F;">📄</div> 合规文件</div><div class="mat-section-body"><div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;">';
-  var s3ContractType = getOptTagVal('mat-制作合同');
+  var s3ContractType = getMatContractType();
   html += s3Item('制作合同', dash(s3ContractType));
   if (s3ContractType === '有') {
     html += s3ItemFull('AI 创作通用佐证素材', fileNames('step1ProjectFile'));

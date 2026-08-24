@@ -80,7 +80,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .account-menu .menu-item:hover { background: var(--bg-hover, #f5f5f5); }
 .account-menu .menu-divider { height: 1px; background: var(--border); margin: 4px 0; }
 
-.main { margin-left: var(--sidebar-w); flex: 1; padding: 24px; }
+.main { margin-left: var(--sidebar-w); flex: 1; padding: 24px; min-width: 0; }
 .page-header { margin-bottom: 24px; }
 .page-header h3 { font-size: 22px; font-weight: 600; }
 .page-header .breadcrumb { font-size: 13px; color: var(--text-tertiary); margin-top: 4px; }
@@ -117,6 +117,19 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .data-table th { background: #FAFAFA; text-align: left; padding: 12px 16px; font-size: 13px; color: var(--text-secondary); font-weight: 500; border-bottom: 1px solid var(--border); }
 .data-table td { padding: 12px 16px; font-size: 14px; border-bottom: 1px solid var(--border); }
 .data-table tr:hover td { background: var(--primary-light); }
+
+/* 内容管理列表：小屏横向滚动 + 操作列固定右侧 */
+.table-scroll-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+.table-scroll-wrap .data-table { min-width: 1100px; }
+.table-scroll-wrap .data-table th:last-child,
+.table-scroll-wrap .data-table td:last-child {
+  position: sticky; right: 0; z-index: 5; background: #fff;
+  box-shadow: -6px 0 12px -8px rgba(0,0,0,0.18);
+}
+.table-scroll-wrap .data-table th:last-child { background: #FAFAFA; z-index: 6; }
+.table-scroll-wrap .data-table tr:hover td:last-child { background: var(--primary-light); }
+.table-scroll-wrap .data-table td.action-cell { display: table-cell; }
+.table-scroll-wrap .data-table td.action-cell .btn { margin: 2px 6px 2px 0; }
 
 /* Tags */
 .tag { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; }
@@ -548,6 +561,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
       <div class="panel">
         <div class="panel-header"><h4>合集列表</h4></div>
         <div class="panel-body">
+          <div class="table-scroll-wrap">
           <table class="data-table">
             <thead><tr><th>ID</th><th>合集名称</th><th>集数</th><th>发行渠道</th><th>剧集类型</th><th>发行轮次</th><th>物料审核状态</th><th>正片审核状态</th><th>渠道发行状态</th><th>创建时间</th><th>操作</th></tr></thead>
             <tbody>
@@ -568,6 +582,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 </td></tr>
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>
@@ -1135,6 +1150,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           <div class="mat-section-card" id="mat-sec-compliance">
             <div class="mat-section-title">
               <div class="sec-icon" style="background:#FFECE8;color:#F53F3F;">📄</div> 合规文件
+              <a href="javascript:void(0)" onclick="downloadTemplate('版权文件填写SOP')" style="margin-left:8px;font-size:13px;color:var(--primary);text-decoration:none;vertical-align:middle;">📎 版权文件填写SOP</a>
             </div>
             <div class="mat-section-body">
               <div class="form-row">
@@ -2427,6 +2443,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
       <div class="panel">
         <div class="panel-header"><h4 id="contentPanelTitle">全量合集列表</h4></div>
         <div class="panel-body">
+          <div class="table-scroll-wrap">
           <table class="data-table" id="contentTable">
             <thead id="contentTableHead">
               <tr>
@@ -2443,6 +2460,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             </thead>
             <tbody id="contentTbody"></tbody>
           </table>
+          </div>
           <div id="contentEmpty" style="text-align:center;padding:40px;color:var(--text-tertiary);font-size:14px;display:none;">暂无匹配记录</div>
         </div>
       </div>

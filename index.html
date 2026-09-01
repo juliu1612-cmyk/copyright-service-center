@@ -2485,6 +2485,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <th data-page-node-id="bmATXGAV4UwpTaAWiybI0p">供应商名称</th>
                 <th data-page-node-id="yjJEX0e9dmvFEHGvyYZ8xy">登录账号</th>
                 <th data-page-node-id="3cGItbxEuDDE7nGJFa1wna">创建时间</th>
+                <th data-page-node-id="3cGItbxEuDDE7nGJFa1wna">账号状态</th>
                 <th style="width:230px;" data-page-node-id="K3ml86F73D2yZiA2iF3f42">操作</th>
               </tr>
             </thead>
@@ -6935,8 +6936,8 @@ function savePassword() {
 
 // ===== 供应商管理 =====
 var supplierList = [
-  { id: 'S001', name: '供应商_A', account: 'supplier_a@example.com', createTime: '2026-06-01 10:30' },
-  { id: 'S002', name: '供应商_B', account: 'supplier_b@example.com', createTime: '2026-06-15 14:20' }
+  { id: 'S001', name: '供应商_A', account: 'supplier_a@example.com', createTime: '2026-06-01 10:30', status: 'frozen' },
+  { id: 'S002', name: '供应商_B', account: 'supplier_b@example.com', createTime: '2026-06-15 14:20', status: 'normal' }
 ];
 var supplierSeq = 3;
 
@@ -6952,14 +6953,22 @@ function renderSupplierTable() {
   empty.style.display = 'none';
   supplierList.forEach(function(s, i) {
     var tr = document.createElement('tr');
+    var frozen = s.status === 'frozen';
+    var statusHtml = frozen
+      ? '<span style="color:#F53F3F;">冻结</span>'
+      : '<span style="color:#00B42A;">正常</span>';
+    var freezeBtn = frozen
+      ? '<button class="btn btn-sm btn-outline" onclick="toggleSupplierFreeze(\'' + s.id + '\')">恢复</button>'
+      : '<button class="btn btn-sm btn-outline" onclick="toggleSupplierFreeze(\'' + s.id + '\')">冻结</button>';
     tr.innerHTML =
       '<td>' + (i + 1) + '</td>' +
       '<td>' + s.name + '</td>' +
       '<td>' + s.account + '</td>' +
       '<td>' + s.createTime + '</td>' +
+      '<td>' + statusHtml + '</td>' +
       '<td><button class="btn btn-sm btn-outline" onclick="openSupplierEditModal(\'' + s.id + '\')">编辑</button> ' +
       '<button class="btn btn-sm btn-outline" onclick="resetSupplierPassword(\'' + s.id + '\')">重置密码</button> ' +
-      '<button class="btn btn-sm btn-outline" onclick="deleteSupplier(\'' + s.id + '\')">删除</button></td>';
+      freezeBtn + '</td>';
     tbody.appendChild(tr);
   });
 }
@@ -9801,7 +9810,8 @@ function saveSupplier() {
     id: 'S' + String(supplierSeq).padStart(3, '0'),
     name: name,
     account: account,
-    createTime: timeStr
+    createTime: timeStr,
+    status: 'normal'
   });
   supplierSeq++;
   renderSupplierTable();
@@ -9809,10 +9819,20 @@ function saveSupplier() {
   alert('供应商「' + name + '」创建成功');
 }
 
-function deleteSupplier(id) {
-  if (!confirm('确定要删除该供应商吗？')) return;
-  supplierList = supplierList.filter(function(s) { return s.id !== id; });
-  renderSupplierTable();
+function toggleSupplierFreeze(id) {
+  var supplier = supplierList.filter(function(s) { return s.id === id; })[0];
+  if (!supplier) return;
+  if (supplier.status === 'frozen') {
+    if (!confirm('确定要恢复供应商「' + supplier.name + '」吗？')) return;
+    supplier.status = 'normal';
+    renderSupplierTable();
+    alert('供应商「' + supplier.name + '」已恢复');
+  } else {
+    if (!confirm('确定要冻结供应商「' + supplier.name + '」吗？冻结后该账号将无法登录。')) return;
+    supplier.status = 'frozen';
+    renderSupplierTable();
+    alert('供应商「' + supplier.name + '」已冻结');
+  }
 }
 
 function resetSupplierPassword(id) {

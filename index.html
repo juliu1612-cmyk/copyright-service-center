@@ -3679,30 +3679,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
   </div>
 </div>
 
-<!-- 内容质量评估-通过弹窗 -->
-<div id="qualityApproveModal" class="modal-overlay">
-  <div class="modal" style="max-width:460px;">
-    <div class="modal-header">
-      <h4>质量评估通过 — 填写审核意见</h4>
-      <button class="modal-close" onclick="closeModal('qualityApproveModal')">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">
-        通过合集 <span id="qualityApproveDramaName" style="font-weight:600;color:var(--text-primary);"></span>
-      </div>
-      <div class="form-item full">
-        <label>审核意见</label>
-        <textarea id="qualityApproveOpinion" rows="4" maxlength="200" placeholder="请输入审核意见（选填，通过后展示在列表「审核意见」字段）"></textarea>
-        <div style="font-size:12px;color:var(--text-tertiary);margin-top:8px;">审核意见为选填，填写后将展示在列表「审核意见」字段</div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closeModal('qualityApproveModal')">取消</button>
-      <button class="btn btn-success" onclick="confirmQualityApprove()">确认通过</button>
-    </div>
-  </div>
-</div>
-
 <!-- 内容质量评估-驳回弹窗 -->
 <div id="qualityRejectModal" class="modal-overlay">
   <div class="modal">
@@ -11286,15 +11262,14 @@ function openEvalDetail(id) {
 // 业务流程：供应商提交后先进入内容质量评估；质量评估通过后进入内容评估（A/B/C三组）流程；质量评估驳回则流程终止。
 // qualityEvalData 中 status: pending 待审核 / pass 通过（已进入内容评估）/ reject 驳回（流程终止）
 var qualityEvalData = [
-  { id: 'Q001', supplier: '供应商_B', dramaName: '都市夜话', episodeCount: 24, cardLink: 'https://example.com/card/urban-night', status: 'pass', opinion: '画面清晰度达标，一卡信息完整' },
-  { id: 'Q002', supplier: '供应商_A', dramaName: '星辰大海', episodeCount: 30, cardLink: 'https://example.com/card/star-sea', status: 'pass', opinion: '一卡素材规范，音画质量良好' },
-  { id: 'Q003', supplier: '供应商_A', dramaName: '山海谣', episodeCount: 36, cardLink: 'https://example.com/card/mountain-sea', status: 'pass', opinion: '分辨率达标，成片质量良好' },
+  { id: 'Q001', supplier: '供应商_B', dramaName: '都市夜话', episodeCount: 24, cardLink: 'https://example.com/card/urban-night', status: 'pass', opinion: '' },
+  { id: 'Q002', supplier: '供应商_A', dramaName: '星辰大海', episodeCount: 30, cardLink: 'https://example.com/card/star-sea', status: 'pass', opinion: '' },
+  { id: 'Q003', supplier: '供应商_A', dramaName: '山海谣', episodeCount: 36, cardLink: 'https://example.com/card/mountain-sea', status: 'pass', opinion: '' },
   { id: 'Q004', supplier: '供应商_C', dramaName: '暗夜追光', episodeCount: 20, cardLink: 'https://example.com/card/dark-chase', status: 'pending', opinion: '' },
   { id: 'Q005', supplier: '供应商_B', dramaName: '落笔成金', episodeCount: 28, cardLink: 'https://example.com/card/pen-gold', status: 'pending', opinion: '' },
   { id: 'Q006', supplier: '供应商_C', dramaName: '时来运转', episodeCount: 40, cardLink: 'https://example.com/card/fortune-turn', status: 'reject', opinion: '一卡封面图分辨率不足，需重新制作后再次提交' },
   { id: 'Q007', supplier: '供应商_A', dramaName: '雨落长安', episodeCount: 32, cardLink: 'https://example.com/card/rain-changan', status: 'pending', opinion: '' }
 ];
-var qualityApproveId = null;
 var qualityRejectId = null;
 var evalSeq = 3; // 内容评估记录 ID 序号（现有 E001-E003）
 
@@ -11373,40 +11348,32 @@ function qualityApprove(id) {
   var item = qualityEvalData.filter(function(q) { return q.id === id; })[0];
   if (!item) return;
   if (item.status !== 'pending') { alert('该记录已完成质量评估'); return; }
-  qualityApproveId = id;
-  document.getElementById('qualityApproveDramaName').textContent = '《' + item.dramaName + '》';
-  document.getElementById('qualityApproveOpinion').value = '';
-  openModal('qualityApproveModal');
-}
+  // 同意无需填写审核意见，确认后直接通过
+  if (confirm('确认通过《' + item.dramaName + '》的内容质量评估？')) {
+    item.status = 'pass';
+    item.opinion = '';
 
-function confirmQualityApprove() {
-  var item = qualityEvalData.filter(function(q) { return q.id === qualityApproveId; })[0];
-  if (!item) return;
-  var opinion = document.getElementById('qualityApproveOpinion').value.trim();
-  item.status = 'pass';
-  item.opinion = opinion;
-
-  // 质量评估通过后自动进入内容评估流程（若尚未进入）
-  var existed = evaluationData.some(function(e) { return e.dramaName === item.dramaName; });
-  if (!existed) {
-    evalSeq++;
-    evaluationData.push({
-      id: 'E' + String(evalSeq).padStart(3, '0'),
-      dramaName: item.dramaName,
-      supplier: item.supplier,
-      submitTime: qualityNowTime(),
-      episodeCount: item.episodeCount,
-      cardLink: item.cardLink,
-      reviewA: { status: 'pending', reviewer: '', time: '' },
-      reviewB: { status: 'pending', reviewer: '', time: '' },
-      reviewC: { status: 'pending', reviewer: '', time: '' },
-      history: [{ time: qualityNowTime(), reviewA: { text: '待审核' }, reviewB: { text: '待审核' }, reviewC: { text: '待审核' }, overall: '--' }]
-    });
-    renderEvalList();
+    // 质量评估通过后自动进入内容评估流程（若尚未进入）
+    var existed = evaluationData.some(function(e) { return e.dramaName === item.dramaName; });
+    if (!existed) {
+      evalSeq++;
+      evaluationData.push({
+        id: 'E' + String(evalSeq).padStart(3, '0'),
+        dramaName: item.dramaName,
+        supplier: item.supplier,
+        submitTime: qualityNowTime(),
+        episodeCount: item.episodeCount,
+        cardLink: item.cardLink,
+        reviewA: { status: 'pending', reviewer: '', time: '' },
+        reviewB: { status: 'pending', reviewer: '', time: '' },
+        reviewC: { status: 'pending', reviewer: '', time: '' },
+        history: [{ time: qualityNowTime(), reviewA: { text: '待审核' }, reviewB: { text: '待审核' }, reviewC: { text: '待审核' }, overall: '--' }]
+      });
+      renderEvalList();
+    }
+    renderQualityEvalList();
+    alert('已通过《' + item.dramaName + '》的内容质量评估，该合集已进入内容评估流程');
   }
-  closeModal('qualityApproveModal');
-  renderQualityEvalList();
-  alert('已通过《' + item.dramaName + '》的内容质量评估，该合集已进入内容评估流程');
 }
 
 function qualityReject(id) {

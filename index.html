@@ -2194,6 +2194,70 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
         <div class="breadcrumb" data-page-node-id="oPmnGlXHbVFBjAFeRQM5C3">业务功能 / 内容评估</div>
       </div>
 
+      <!-- 页面子 Tab：内容质量评估 / 内容评估 -->
+      <div class="detail-tab-bar" style="margin-top:2px;margin-bottom:12px;">
+        <div class="detail-tab active" onclick="switchPltEvalTab('plt-eval-quality', this)">内容质量评估</div>
+        <div class="detail-tab" onclick="switchPltEvalTab('plt-eval-content', this)">内容评估</div>
+      </div>
+
+      <!-- Tab 1: 内容质量评估（新增） -->
+      <div id="plt-eval-quality">
+        <!-- 筛选栏 -->
+        <div class="panel">
+          <div class="panel-body">
+            <div class="form-row form-row-4" style="margin-bottom:0;">
+              <div class="form-item">
+                <label>供应商名称</label>
+                <select id="qualityFilterSupplier" onchange="filterQualityEvalList()">
+                  <option value="">全部</option>
+                  <option value="供应商_A">供应商_A</option>
+                  <option value="供应商_B">供应商_B</option>
+                  <option value="供应商_C">供应商_C</option>
+                </select>
+              </div>
+              <div class="form-item">
+                <label>合集名称搜索</label>
+                <input type="text" id="qualityFilterDrama" placeholder="请输入合集名称关键词" oninput="filterQualityEvalList()">
+              </div>
+              <div class="form-item">
+                <label>状态</label>
+                <select id="qualityFilterStatus" onchange="filterQualityEvalList()">
+                  <option value="">全部</option>
+                  <option value="pending">待审核</option>
+                  <option value="pass">通过</option>
+                  <option value="reject">驳回</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 质量评估列表 -->
+        <div class="panel">
+          <div class="panel-header"><h4>质量评估列表</h4></div>
+          <div class="panel-body">
+            <table class="data-table" id="qualityEvalTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>供应商</th>
+                  <th>合集名称</th>
+                  <th>集数</th>
+                  <th>一卡链接</th>
+                  <th>状态</th>
+                  <th>审核意见</th>
+                  <th style="width:140px;">操作</th>
+                </tr>
+              </thead>
+              <tbody id="qualityEvalTbody"></tbody>
+            </table>
+            <div id="qualityEvalEmpty" style="text-align:center;padding:40px;color:var(--text-tertiary);font-size:14px;display:none;">暂无匹配的质量评估记录</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: 内容评估（现有功能） -->
+      <div id="plt-eval-content" style="display:none;">
       <!-- 筛选栏 -->
       <div class="panel" data-page-node-id="p0t45HH9O1aeL3kFetgXln">
         <div class="panel-body" data-page-node-id="L1RZVCjiM7GHTFs22qzHkc">
@@ -2263,6 +2327,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           </table>
           <div id="evalEmpty" style="text-align:center;padding:40px;color:var(--text-tertiary);font-size:14px;display:none;" data-page-node-id="X2ZJ2KaR5YxyurZ3w2ZbRP">暂无匹配的评估记录</div>
         </div>
+      </div>
       </div>
     </div>
 
@@ -3610,6 +3675,50 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
     <div class="modal-footer" data-page-node-id="GH0paQDwmvZluTmM0uOKJB">
       <button class="btn btn-outline" onclick="closeModal('evalRejectModal')" data-page-node-id="0KPWfViG6MHtTorvNWkiKU">取消</button>
       <button class="btn btn-danger" onclick="confirmReject()" data-page-node-id="lCHNq1IuhBE3OybGgnANMc">确认驳回</button>
+    </div>
+  </div>
+</div>
+
+<!-- 内容质量评估-通过弹窗 -->
+<div id="qualityApproveModal" class="modal-overlay">
+  <div class="modal" style="max-width:460px;">
+    <div class="modal-header">
+      <h4>质量评估通过 — 填写审核意见</h4>
+      <button class="modal-close" onclick="closeModal('qualityApproveModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">
+        通过合集 <span id="qualityApproveDramaName" style="font-weight:600;color:var(--text-primary);"></span>
+      </div>
+      <div class="form-item full">
+        <label>审核意见</label>
+        <textarea id="qualityApproveOpinion" rows="4" maxlength="200" placeholder="请输入审核意见（选填，通过后展示在列表「审核意见」字段）"></textarea>
+        <div style="font-size:12px;color:var(--text-tertiary);margin-top:8px;">审核意见为选填，填写后将展示在列表「审核意见」字段</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('qualityApproveModal')">取消</button>
+      <button class="btn btn-success" onclick="confirmQualityApprove()">确认通过</button>
+    </div>
+  </div>
+</div>
+
+<!-- 内容质量评估-驳回弹窗 -->
+<div id="qualityRejectModal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h4>质量评估驳回</h4>
+      <button class="modal-close" onclick="closeModal('qualityRejectModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-item full">
+        <label><span class="required">*</span>请填写驳回原因</label>
+        <textarea id="qualityRejectReason" rows="4" placeholder="请输入驳回原因"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('qualityRejectModal')">取消</button>
+      <button class="btn btn-danger" onclick="confirmQualityReject()">确认驳回</button>
     </div>
   </div>
 </div>
@@ -5681,7 +5790,7 @@ function switchPlatformPage(pageId, el) {
   document.querySelectorAll('#platformLayout .nav-item').forEach(i => i.classList.remove('active'));
   if (el) el.classList.add('active');
 
-  if (pageId === 'plt-evaluation') { renderEvalList(); }
+  if (pageId === 'plt-evaluation') { renderQualityEvalList(); renderEvalList(); }
   if (pageId === 'plt-content') { switchContentRole(); }
   if (pageId === 'plt-drama-data') { renderPltDramaData(); }
   if (pageId === 'plt-supplier-mgmt') { renderSupplierTable(); }
@@ -11173,7 +11282,169 @@ function openEvalDetail(id) {
   openModal('evalDetailModal');
 }
 
+// ===== 内容质量评估 =====
+// 业务流程：供应商提交后先进入内容质量评估；质量评估通过后进入内容评估（A/B/C三组）流程；质量评估驳回则流程终止。
+// qualityEvalData 中 status: pending 待审核 / pass 通过（已进入内容评估）/ reject 驳回（流程终止）
+var qualityEvalData = [
+  { id: 'Q001', supplier: '供应商_B', dramaName: '都市夜话', episodeCount: 24, cardLink: 'https://example.com/card/urban-night', status: 'pass', opinion: '画面清晰度达标，一卡信息完整' },
+  { id: 'Q002', supplier: '供应商_A', dramaName: '星辰大海', episodeCount: 30, cardLink: 'https://example.com/card/star-sea', status: 'pass', opinion: '一卡素材规范，音画质量良好' },
+  { id: 'Q003', supplier: '供应商_A', dramaName: '山海谣', episodeCount: 36, cardLink: 'https://example.com/card/mountain-sea', status: 'pass', opinion: '分辨率达标，成片质量良好' },
+  { id: 'Q004', supplier: '供应商_C', dramaName: '暗夜追光', episodeCount: 20, cardLink: 'https://example.com/card/dark-chase', status: 'pending', opinion: '' },
+  { id: 'Q005', supplier: '供应商_B', dramaName: '落笔成金', episodeCount: 28, cardLink: 'https://example.com/card/pen-gold', status: 'pending', opinion: '' },
+  { id: 'Q006', supplier: '供应商_C', dramaName: '时来运转', episodeCount: 40, cardLink: 'https://example.com/card/fortune-turn', status: 'reject', opinion: '一卡封面图分辨率不足，需重新制作后再次提交' },
+  { id: 'Q007', supplier: '供应商_A', dramaName: '雨落长安', episodeCount: 32, cardLink: 'https://example.com/card/rain-changan', status: 'pending', opinion: '' }
+];
+var qualityApproveId = null;
+var qualityRejectId = null;
+var evalSeq = 3; // 内容评估记录 ID 序号（现有 E001-E003）
+
+function qualityNowTime() {
+  var now = new Date();
+  return now.getFullYear() + '-' +
+    String(now.getMonth() + 1).padStart(2, '0') + '-' +
+    String(now.getDate()).padStart(2, '0') + ' ' +
+    String(now.getHours()).padStart(2, '0') + ':' +
+    String(now.getMinutes()).padStart(2, '0');
+}
+
+function getQualityFiltered() {
+  var supplierFilter = document.getElementById('qualityFilterSupplier').value;
+  var dramaFilter = document.getElementById('qualityFilterDrama').value.trim().toLowerCase();
+  var statusFilter = document.getElementById('qualityFilterStatus').value;
+  return qualityEvalData.filter(function(item) {
+    if (supplierFilter && item.supplier !== supplierFilter) return false;
+    if (dramaFilter && item.dramaName.toLowerCase().indexOf(dramaFilter) === -1) return false;
+    if (statusFilter && item.status !== statusFilter) return false;
+    return true;
+  });
+}
+
+function getQualityStatusTag(item) {
+  if (item.status === 'pass') return '<span class="tag tag-pass">通过</span>';
+  if (item.status === 'reject') return '<span class="tag tag-reject">驳回</span>';
+  return '<span class="tag tag-pending">待审核</span>';
+}
+
+function getQualityOpinionDisplay(item) {
+  if (item.status === 'reject' && item.opinion) {
+    return '<span style="color:#CF1322;" title="' + escapeOpinionHtml(item.opinion) + '">' + escapeOpinionHtml(truncateOpinion(item.opinion)) + '</span>';
+  }
+  if (item.status === 'pass' && item.opinion) {
+    return '<span style="color:var(--text-secondary);" title="' + escapeOpinionHtml(item.opinion) + '">' + escapeOpinionHtml(truncateOpinion(item.opinion)) + '</span>';
+  }
+  return '<span style="color:var(--text-tertiary);">--</span>';
+}
+
+function renderQualityEvalList() {
+  var tbody = document.getElementById('qualityEvalTbody');
+  var empty = document.getElementById('qualityEvalEmpty');
+  if (!tbody) return;
+  var filtered = getQualityFiltered();
+  tbody.innerHTML = '';
+  if (filtered.length === 0) {
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  filtered.forEach(function(item) {
+    var actionHtml = item.status === 'pending'
+      ? '<button class="btn btn-sm btn-success" onclick="qualityApprove(\'' + item.id + '\')">同意</button> ' +
+        '<button class="btn btn-sm btn-danger" onclick="qualityReject(\'' + item.id + '\')">驳回</button>'
+      : '<span style="color:var(--text-tertiary);">--</span>';
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td style="color:var(--text-secondary);font-size:12px;">' + item.id + '</td>' +
+      '<td>' + item.supplier + '</td>' +
+      '<td>' + item.dramaName + '</td>' +
+      '<td>' + (item.episodeCount || '--') + '集</td>' +
+      '<td><a href="' + (item.cardLink || '#') + '" target="_blank" style="color:var(--primary);text-decoration:none;">查看链接</a></td>' +
+      '<td>' + getQualityStatusTag(item) + '</td>' +
+      '<td>' + getQualityOpinionDisplay(item) + '</td>' +
+      '<td style="white-space:nowrap;">' + actionHtml + '</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+function filterQualityEvalList() {
+  renderQualityEvalList();
+}
+
+function qualityApprove(id) {
+  var item = qualityEvalData.filter(function(q) { return q.id === id; })[0];
+  if (!item) return;
+  if (item.status !== 'pending') { alert('该记录已完成质量评估'); return; }
+  qualityApproveId = id;
+  document.getElementById('qualityApproveDramaName').textContent = '《' + item.dramaName + '》';
+  document.getElementById('qualityApproveOpinion').value = '';
+  openModal('qualityApproveModal');
+}
+
+function confirmQualityApprove() {
+  var item = qualityEvalData.filter(function(q) { return q.id === qualityApproveId; })[0];
+  if (!item) return;
+  var opinion = document.getElementById('qualityApproveOpinion').value.trim();
+  item.status = 'pass';
+  item.opinion = opinion;
+
+  // 质量评估通过后自动进入内容评估流程（若尚未进入）
+  var existed = evaluationData.some(function(e) { return e.dramaName === item.dramaName; });
+  if (!existed) {
+    evalSeq++;
+    evaluationData.push({
+      id: 'E' + String(evalSeq).padStart(3, '0'),
+      dramaName: item.dramaName,
+      supplier: item.supplier,
+      submitTime: qualityNowTime(),
+      episodeCount: item.episodeCount,
+      cardLink: item.cardLink,
+      reviewA: { status: 'pending', reviewer: '', time: '' },
+      reviewB: { status: 'pending', reviewer: '', time: '' },
+      reviewC: { status: 'pending', reviewer: '', time: '' },
+      history: [{ time: qualityNowTime(), reviewA: { text: '待审核' }, reviewB: { text: '待审核' }, reviewC: { text: '待审核' }, overall: '--' }]
+    });
+    renderEvalList();
+  }
+  closeModal('qualityApproveModal');
+  renderQualityEvalList();
+  alert('已通过《' + item.dramaName + '》的内容质量评估，该合集已进入内容评估流程');
+}
+
+function qualityReject(id) {
+  var item = qualityEvalData.filter(function(q) { return q.id === id; })[0];
+  if (!item) return;
+  if (item.status !== 'pending') { alert('该记录已完成质量评估'); return; }
+  qualityRejectId = id;
+  document.getElementById('qualityRejectReason').value = '';
+  openModal('qualityRejectModal');
+}
+
+function confirmQualityReject() {
+  var reason = document.getElementById('qualityRejectReason').value.trim();
+  if (!reason) { alert('请填写驳回原因'); return; }
+  var item = qualityEvalData.filter(function(q) { return q.id === qualityRejectId; })[0];
+  if (!item) return;
+  item.status = 'reject';
+  item.opinion = reason; // 驳回原因写入「审核意见」列，流程终止，不再进入内容评估
+  closeModal('qualityRejectModal');
+  renderQualityEvalList();
+  alert('已驳回《' + item.dramaName + '》的内容质量评估，流程终止，原因：' + reason);
+}
+
+// 内容评估页面子 Tab 切换（内容质量评估 / 内容评估）
+function switchPltEvalTab(tabId, el) {
+  ['plt-eval-quality', 'plt-eval-content'].forEach(function(id) {
+    var node = document.getElementById(id);
+    if (node) node.style.display = (id === tabId) ? '' : 'none';
+  });
+  var tabs = document.querySelectorAll('#plt-evaluation .detail-tab-bar .detail-tab');
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+  if (el) el.classList.add('active');
+  if (tabId === 'plt-eval-quality') renderQualityEvalList();
+  if (tabId === 'plt-eval-content') renderEvalList();
+}
+
 // Initialize evaluation list on page load
+renderQualityEvalList();
 renderEvalList();
 </script>
 </body>

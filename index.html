@@ -484,23 +484,24 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           <option value="" data-page-node-id="jVLUL855ATuF5JSApBvBIa">全部状态</option>
           <option value="reviewing" data-page-node-id="5UGhmejVnHdgaqgTmOGzNH">审核中</option>
           <option value="pass" data-page-node-id="BZV1DyoUls1Hap9hbYYmRP">通过</option>
-          <option value="reject" data-page-node-id="y6C3hAIU0jvWkrelHLrqZo">拒绝</option>
+          <option value="reject" data-page-node-id="y6C3hAIU0jvWkrelHLrqZo">驳回</option>
         </select>
         <input class="search-input" id="evalDateFrom" type="date" style="width:155px;min-width:155px;" placeholder="开始日期" data-page-node-id="WrR3bWsXuXpb24K09QkHNM">
         <span style="line-height:36px;color:var(--text-tertiary);font-size:13px;flex-shrink:0;" data-page-node-id="RSOujKqUNNkx41TNinRPjw">至</span>
         <input class="search-input" id="evalDateTo" type="date" style="width:155px;min-width:155px;" placeholder="结束日期" data-page-node-id="MhwLwu5gldBgoCnQDOTPv0">
-        <button class="btn btn-sm btn-outline" onclick="filterEvalList()" data-page-node-id="nPX46YHPEg82GbbnWfuP6M">搜索</button>
+        <button class="btn btn-sm btn-outline" onclick="filterSupEvalList()" data-page-node-id="nPX46YHPEg82GbbnWfuP6M">搜索</button>
         <button class="btn btn-sm btn-outline" onclick="resetEvalFilter()" data-page-node-id="qM8PlaPECDXSEdwfsEmO0H">重置</button>
       </div>
       <div class="panel" data-page-node-id="MvMMqdO2tV1K5xVWAGLDsH">
         <div class="panel-header" data-page-node-id="ll1K8FH902mhO6276BNXVR"><h4 data-page-node-id="PjsKuKhte6Sntc1KgDU5D3">评估记录</h4></div>
         <div class="panel-body" data-page-node-id="LNd4hn0Ec9A49rlNFKRttZ">
           <table class="data-table" data-page-node-id="rW90TCYpUGkk8T9q4ju7HD">
-            <thead data-page-node-id="zUtnEcSENLDnPb3gv6mqkj"><tr data-page-node-id="M0St8Kg02teeN9rGxBbWfT"><th data-page-node-id="MZl0nhVXvPi9pvPKOyl1Zr">ID</th><th data-page-node-id="jSSGWCmKFKYDqEBrk3VUCy">合集名称</th><th data-page-node-id="EDCj3DKJpfdqKkSMDtn8mX">集数</th><th data-page-node-id="LjcXuuVIJ5LRo9j6C3TqQm">一卡链接</th><th data-page-node-id="qwm1dvHtt6Cimi1qvPUJyW">提交时间</th><th data-page-node-id="tWFBY35iGT9OFyVGGHnZnL">状态</th><th data-page-node-id="nR4wQvKpT8xZcJbY2fHdMe">审核意见</th><th data-page-node-id="gII1APmGDoccMKP9ZqK5WQ">操作</th></tr></thead>
+            <thead data-page-node-id="zUtnEcSENLDnPb3gv6mqkj"><tr data-page-node-id="M0St8Kg02teeN9rGxBbWfT"><th data-page-node-id="MZl0nhVXvPi9pvPKOyl1Zr">ID</th><th data-page-node-id="jSSGWCmKFKYDqEBrk3VUCy">合集名称</th><th data-page-node-id="EDCj3DKJpfdqKkSMDtn8mX">集数</th><th data-page-node-id="LjcXuuVIJ5LRo9j6C3TqQm">一卡链接</th><th data-page-node-id="qwm1dvHtt6Cimi1qvPUJyW">提交时间</th><th data-page-node-id="tWFBY35iGT9OFyVGGHnZnL">内容质量评估状态</th><th>内容评估状态</th><th data-page-node-id="nR4wQvKpT8xZcJbY2fHdMe">审核意见</th><th data-page-node-id="gII1APmGDoccMKP9ZqK5WQ">操作</th></tr></thead>
             <tbody id="supEvalTbody" data-page-node-id="R3w4XzGPhsIRiVuWzpjbYp">
-              <tr data-page-node-id="w0YkGoVhFykDaksDOJBSMJ"><td data-page-node-id="eZzqNKLJdiODHWAN9xLZkt">E001</td><td data-page-node-id="zXtzcTLciAZiuiyQkLjWJ0">星辰大海</td><td data-page-node-id="RVUQ0IR1WujsSX6OZLMBx9">24</td><td data-page-node-id="RVTyFHl0ekkaGhAdz86oUL"><a href="https://yika.example.com/drama/xcdh" target="_blank" style="color:var(--primary);" data-page-node-id="8lqGXRePNkau2oeHYTg7op">查看链接</a></td><td data-page-node-id="t0VLyaEyRFUDuWwG4oH1nN">2026-07-28 14:30</td><td data-page-node-id="9On71YXxrRGet4OnhPf2Xf"><span class="tag tag-reviewing" data-page-node-id="WaoRif1m5qK8FdsCt3iYQ4">审核中</span></td><td data-page-node-id="vK6wNpQzT3xRcJbY1fHdMe"><span style="color:var(--text-tertiary);" data-page-node-id="wJ8mQvKpT5xZcRbY2gHdNf">--</span></td><td data-page-node-id="6atZLZtJLfO8ymo9oGLsu3"><span style="color:var(--text-tertiary);" data-page-node-id="BaXCS6NAAxI8bwRQstNCKp">—</span></td></tr>
-              <tr data-page-node-id="ZQkel9WjCzu6BTRW8k2TNX"><td data-page-node-id="WUp2yrsL3jDFqhZOEbby91">E002</td><td data-page-node-id="x0RbzoFWMqzQDCfS4mA8Ki">暗夜追光</td><td data-page-node-id="WNq3jrjiCXFILCCNDDKiwe">12</td><td data-page-node-id="GMp5NCztK1hXkCnHBTYWcq"><a href="https://yika.example.com/drama/ayzg" target="_blank" style="color:var(--primary);" data-page-node-id="MVceyRTCEK8QFHb94O7vEo">查看链接</a></td><td data-page-node-id="hNaeoFP731eXVdMNmOYVQd">2026-07-20 10:15</td><td data-page-node-id="528UHn9cwbAkqm4Fi0EZDC"><span class="tag tag-pass" data-page-node-id="rMK8dod8B85COwCVgxipJb">通过</span></td><td data-page-node-id="xL9wQvKpT7yZcRbY3fHdNe"><span style="color:var(--text-secondary);" title="题材常规，叙事结构完整，人物设定鲜明" data-page-node-id="yM4nQvKpT6xZcRbY4gHdMf">题材常规，叙事结构完整，人物设定鲜明</span></td><td data-page-node-id="62TCp1NeLtaDZU1j3hy7gr"><span style="color:var(--text-tertiary);" data-page-node-id="feuFimZ1hnXQ4RUexaTNqc">—</span></td></tr>
-              <tr data-page-node-id="Z8Ox4LdNxbrZd1k2y64ToA"><td data-page-node-id="BHAVQp6ZkeI9I14z05inpu">E003</td><td data-page-node-id="gtc5CCN3FRQYcor6fV4oxc">山海谣</td><td data-page-node-id="Kl9YYczsk7IUX0kLjhbW2M">30</td><td data-page-node-id="H2EdtirllrtC7HuvllDhx7"><a href="https://yika.example.com/drama/shy" target="_blank" style="color:var(--primary);" data-page-node-id="d6z9sjY0TTWuGYWFXYtpkE">查看链接</a></td><td data-page-node-id="nfUy0corhZ9dSCSdBK8E87">2026-07-15 09:00</td><td data-page-node-id="kdwLG68k50GU2JAygepcaS"><span class="tag tag-reject" data-page-node-id="AkAfO4LOyvKzNPeLyFQ3rK">拒绝</span></td><td data-page-node-id="zN3wQvKpT9xZcRbY5fHdMg"><span style="color:#CF1322;" title="题材不符合平台导向，建议调整主线剧情" data-page-node-id="aP2mQvKpT8yZcRbY6gHdMh">题材不符合平台导向，建议调整主线剧情</span></td><td data-page-node-id="tfUz3CdS2AKGvBiQFcr1iK"><button class="btn btn-sm btn-outline" onclick="openModal('evalEditModal')" data-page-node-id="6GcGWqcQ8jribzFsupxjlF">修改</button></td></tr>
+              <tr data-page-node-id="w0YkGoVhFykDaksDOJBSMJ"><td data-page-node-id="eZzqNKLJdiODHWAN9xLZkt">E001</td><td data-page-node-id="zXtzcTLciAZiuiyQkLjWJ0">星辰大海</td><td data-page-node-id="RVUQ0IR1WujsSX6OZLMBx9">24</td><td data-page-node-id="RVTyFHl0ekkaGhAdz86oUL"><a href="https://yika.example.com/drama/xcdh" target="_blank" style="color:var(--primary);" data-page-node-id="8lqGXRePNkau2oeHYTg7op">查看链接</a></td><td data-page-node-id="t0VLyaEyRFUDuWwG4oH1nN">2026-07-28 14:30</td><td data-page-node-id="9On71YXxrRGet4OnhPf2Xf"><span class="tag tag-pass">通过</span></td><td><span class="tag tag-reviewing" data-page-node-id="WaoRif1m5qK8FdsCt3iYQ4">审核中</span></td><td data-page-node-id="vK6wNpQzT3xRcJbY1fHdMe"><span style="color:var(--text-tertiary);" data-page-node-id="wJ8mQvKpT5xZcRbY2gHdNf">--</span></td><td data-page-node-id="6atZLZtJLfO8ymo9oGLsu3"><span style="color:var(--text-tertiary);" data-page-node-id="BaXCS6NAAxI8bwRQstNCKp">—</span></td></tr>
+              <tr data-page-node-id="ZQkel9WjCzu6BTRW8k2TNX"><td data-page-node-id="WUp2yrsL3jDFqhZOEbby91">E002</td><td data-page-node-id="x0RbzoFWMqzQDCfS4mA8Ki">暗夜追光</td><td data-page-node-id="WNq3jrjiCXFILCCNDDKiwe">12</td><td data-page-node-id="GMp5NCztK1hXkCnHBTYWcq"><a href="https://yika.example.com/drama/ayzg" target="_blank" style="color:var(--primary);" data-page-node-id="MVceyRTCEK8QFHb94O7vEo">查看链接</a></td><td data-page-node-id="hNaeoFP731eXVdMNmOYVQd">2026-07-20 10:15</td><td data-page-node-id="528UHn9cwbAkqm4Fi0EZDC"><span class="tag tag-pass">通过</span></td><td><span class="tag tag-pass" data-page-node-id="rMK8dod8B85COwCVgxipJb">通过</span></td><td data-page-node-id="xL9wQvKpT7yZcRbY3fHdNe"><span style="color:var(--text-secondary);" title="题材常规，叙事结构完整，人物设定鲜明" data-page-node-id="yM4nQvKpT6xZcRbY4gHdMf">题材常规，叙事结构完整，人物设定鲜明</span></td><td data-page-node-id="62TCp1NeLtaDZU1j3hy7gr"><span style="color:var(--text-tertiary);" data-page-node-id="feuFimZ1hnXQ4RUexaTNqc">—</span></td></tr>
+              <tr data-page-node-id="Z8Ox4LdNxbrZd1k2y64ToA"><td data-page-node-id="BHAVQp6ZkeI9I14z05inpu">E003</td><td data-page-node-id="gtc5CCN3FRQYcor6fV4oxc">山海谣</td><td data-page-node-id="Kl9YYczsk7IUX0kLjhbW2M">30</td><td data-page-node-id="H2EdtirllrtC7HuvllDhx7"><a href="https://yika.example.com/drama/shy" target="_blank" style="color:var(--primary);" data-page-node-id="d6z9sjY0TTWuGYWFXYtpkE">查看链接</a></td><td data-page-node-id="nfUy0corhZ9dSCSdBK8E87">2026-07-15 09:00</td><td data-page-node-id="kdwLG68k50GU2JAygepcaS"><span class="tag tag-pass">通过</span></td><td><span class="tag tag-reject" data-page-node-id="AkAfO4LOyvKzNPeLyFQ3rK">驳回</span></td><td data-page-node-id="zN3wQvKpT9xZcRbY5fHdMg"><span style="color:#CF1322;" title="题材不符合平台导向，建议调整主线剧情" data-page-node-id="aP2mQvKpT8yZcRbY6gHdMh">题材不符合平台导向，建议调整主线剧情</span></td><td data-page-node-id="tfUz3CdS2AKGvBiQFcr1iK"><button class="btn btn-sm btn-outline" onclick="openModal('evalEditModal')" data-page-node-id="6GcGWqcQ8jribzFsupxjlF">修改</button></td></tr>
+              <tr><td>E004</td><td>时来运转</td><td>40</td><td><a href="https://yika.example.com/drama/slzy" target="_blank" style="color:var(--primary);">查看链接</a></td><td>2026-07-30 11:20</td><td><span class="tag tag-reject">驳回</span></td><td><span style="color:var(--text-tertiary);">--</span></td><td><span style="color:#CF1322;" title="一卡封面图分辨率不足，需重新制作后再次提交">一卡封面图分辨率不足，需重新制作后再次提交</span></td><td><button class="btn btn-sm btn-outline" disabled style="opacity:0.5;cursor:not-allowed;" title="内容质量评估被驳回，不支持修改">修改</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -6551,25 +6552,29 @@ function copyLink(e, url) {
   });
 }
 
-// Filter evaluation list
-function filterEvalList() {
+// Filter evaluation list（供应商端；与平台端 filterEvalList 区分，避免同名覆盖）
+function filterSupEvalList() {
   var nameVal = (document.getElementById('evalSearchName').value || '').toLowerCase();
   var statusVal = document.getElementById('evalSearchStatus').value;
   var dateFrom = document.getElementById('evalDateFrom').value;
   var dateTo = document.getElementById('evalDateTo').value;
   var rows = document.querySelectorAll('#sup-evaluation .data-table tbody tr');
+  function tagStatusOf(cell) {
+    var statusTag = cell.querySelector('.tag');
+    if (!statusTag) return '';
+    if (statusTag.classList.contains('tag-reviewing')) return 'reviewing';
+    if (statusTag.classList.contains('tag-pass')) return 'pass';
+    if (statusTag.classList.contains('tag-reject')) return 'reject';
+    return '';
+  }
   rows.forEach(function(row) {
     var name = row.cells[1].textContent.toLowerCase();
     var dateText = row.cells[4].textContent.trim().split(' ')[0];
-    var statusTag = row.cells[5].querySelector('.tag');
-    var status = '';
-    if (statusTag) {
-      if (statusTag.classList.contains('tag-reviewing')) status = 'reviewing';
-      else if (statusTag.classList.contains('tag-pass')) status = 'pass';
-      else if (statusTag.classList.contains('tag-reject')) status = 'reject';
-    }
+    // 状态列：cells[5] 内容质量评估状态 / cells[6] 内容评估状态，任一命中即保留
+    var qualityStatus = tagStatusOf(row.cells[5]);
+    var evalStatus = tagStatusOf(row.cells[6]);
     var matchName = !nameVal || name.indexOf(nameVal) !== -1;
-    var matchStatus = !statusVal || status === statusVal;
+    var matchStatus = !statusVal || qualityStatus === statusVal || evalStatus === statusVal;
     var matchDate = true;
     if (dateFrom && dateText < dateFrom) matchDate = false;
     if (dateTo && dateText > dateTo) matchDate = false;
@@ -6582,7 +6587,7 @@ function resetEvalFilter() {
   document.getElementById('evalSearchStatus').value = '';
   document.getElementById('evalDateFrom').value = '';
   document.getElementById('evalDateTo').value = '';
-  filterEvalList();
+  filterSupEvalList();
 }
 
 // ===== 合集名称命名校验 =====

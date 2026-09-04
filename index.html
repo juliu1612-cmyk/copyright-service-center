@@ -2631,6 +2631,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
       </div>
 
       <div class="action-bar" style="flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="openDdImportModal()">📥 导入数据</button>
         <input class="search-input" id="pltDdSearchId" placeholder="合集ID..." style="width:140px;">
         <input class="search-input" id="pltDdSearchName" placeholder="合集名称..." style="width:170px;">
         <select class="search-input" id="pltDdSearchChannel" style="width:150px;"></select>
@@ -3700,6 +3701,34 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
   </div>
 </div>
 
+<!-- 平台端短剧数据-导入弹窗 -->
+<div id="pltDdImportModal" class="modal-overlay">
+  <div class="modal" style="max-width:520px;">
+    <div class="modal-header">
+      <h4>导入短剧数据</h4>
+      <button class="modal-close" onclick="closeModal('pltDdImportModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;background:#F7F8FA;border-radius:6px;padding:10px 14px;line-height:1.9;">
+        1. 点击「下载模板」，按模板填写数据（字段：<b>ID、名称、播放量</b>）<br>
+        2. 选择 CSV 文件（UTF-8 编码，可由 Excel 另存为 CSV）自动导入<br>
+        3. 相同合集ID 的导入记录将更新播放量，否则新增（渠道 / 供应商显示为 -）
+      </div>
+      <div style="display:flex;gap:10px;margin-bottom:12px;">
+        <button class="btn btn-outline" onclick="downloadDdImportTemplate()">📄 下载模板</button>
+        <label style="position:relative;display:flex;align-items:center;justify-content:center;border:1px solid var(--primary);color:var(--primary);border-radius:6px;padding:8px 16px;font-size:14px;cursor:pointer;overflow:hidden;background:#fff;">
+          ⬆ 选择文件并导入
+          <input type="file" id="pltDdImportFile" accept=".csv" style="position:absolute;inset:0;opacity:0;cursor:pointer;" onchange="handleDdImportFile(this)">
+        </label>
+      </div>
+      <div id="pltDdImportResult" style="display:none;font-size:13px;"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('pltDdImportModal')">关闭</button>
+    </div>
+  </div>
+</div>
+
 <!-- 物料查看弹窗 -->
 <div id="materialViewerModal" class="modal-overlay" data-page-node-id="kYNADCusu0ijehfSY5smXv">
   <div class="modal" style="max-width:800px;" data-page-node-id="1xecb69bkj2OI1MSRJQ5gB">
@@ -4555,13 +4584,13 @@ function uniqueValuesBy(list, field) {
   return out;
 }
 
-// 初始化平台端筛选下拉（渠道/供应商从数据动态生成）
+// 初始化平台端筛选下拉（渠道/供应商从数据动态生成，排除导入记录的 - 占位值）
 function initPltDramaDataFilter() {
   var chSel = document.getElementById('pltDdSearchChannel');
   var supSel = document.getElementById('pltDdSearchSupplier');
   if (!chSel || !supSel) return;
-  var channels = uniqueValuesBy(supDramaData, 'channel');
-  var suppliers = uniqueValuesBy(supDramaData, 'sup');
+  var channels = uniqueValuesBy(supDramaData, 'channel').filter(function(c) { return c !== '-'; });
+  var suppliers = uniqueValuesBy(supDramaData, 'sup').filter(function(s) { return s !== '-'; });
   chSel.innerHTML = '<option value="">全部渠道</option>' + channels.map(function(c) { return '<option>' + c + '</option>'; }).join('');
   supSel.innerHTML = '<option value="">全部供应商</option>' + suppliers.map(function(s) { return '<option>' + s + '</option>'; }).join('');
 }
@@ -4607,6 +4636,139 @@ function resetPltDramaDataFilter() {
   document.getElementById('pltDdSearchChannel').value = '';
   document.getElementById('pltDdSearchSupplier').value = '';
   renderPltDramaData();
+}
+
+// ===== 平台端短剧数据：表格导入 =====
+function openDdImportModal() {
+  var box = document.getElementById('pltDdImportResult');
+  box.style.display = 'none';
+  box.innerHTML = '';
+  document.getElementById('pltDdImportFile').value = '';
+  openModal('pltDdImportModal');
+}
+
+function downloadDdImportTemplate() {
+  var csv = '\uFEFF' + 'ID,名称,播放量\r\nC101,示例剧集一,123456\r\nC102,示例剧集二,654321\r\n';
+  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = '短剧数据导入模板.csv';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function() {
+    URL.revokeObjectURL(url);
+    if (a.parentNode) a.parentNode.removeChild(a);
+  }, 0);
+}
+
+// 简易 CSV 行拆分（支持双引号包裹、逗号转义）
+function splitCsvLine(line) {
+  var out = [], cur = '', inQ = false;
+  for (var i = 0; i < line.length; i++) {
+    var ch = line.charAt(i);
+    if (inQ) {
+      if (ch === '"') {
+        if (line.charAt(i + 1) === '"') { cur += '"'; i++; }
+        else inQ = false;
+      } else cur += ch;
+    } else {
+      if (ch === '"') inQ = true;
+      else if (ch === ',') { out.push(cur); cur = ''; }
+      else cur += ch;
+    }
+  }
+  out.push(cur);
+  return out;
+}
+
+// 解析导入 CSV 文本 → { rows: [{id,name,plays}], errors: [{line,msg}] }
+function parseDdImportCsv(text) {
+  var rows = [], errors = [];
+  if (!text || !text.trim()) return { rows: rows, errors: [{ line: 0, msg: '文件内容为空' }] };
+  if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+  var lines = text.split(/\r?\n/).filter(function(l) { return l.trim() !== ''; });
+  if (lines.length < 2) return { rows: rows, errors: [{ line: 0, msg: '表格无数据行（需表头 + 至少一行数据）' }] };
+  // 表头识别（兼容：ID/合集ID、名称/合集名称、播放量/累计播放量）
+  var headers = splitCsvLine(lines[0]).map(function(h) { return h.trim(); });
+  var colId = -1, colName = -1, colPlays = -1;
+  headers.forEach(function(h, i) {
+    if (h === 'ID' || h === '合集ID') colId = i;
+    else if (h === '名称' || h === '合集名称') colName = i;
+    else if (h === '播放量' || h === '累计播放量') colPlays = i;
+  });
+  if (colId < 0 || colName < 0 || colPlays < 0) {
+    return { rows: rows, errors: [{ line: 1, msg: '表头需包含 ID、名称、播放量 三个字段' }] };
+  }
+  lines.forEach(function(line, idx) {
+    if (idx === 0) return;
+    var lineNo = idx + 1;
+    var cells = splitCsvLine(line);
+    var id = (cells[colId] || '').trim();
+    var name = (cells[colName] || '').trim();
+    var playsRaw = (cells[colPlays] || '').trim().replace(/,/g, '');
+    if (!id) { errors.push({ line: lineNo, msg: 'ID 不能为空' }); return; }
+    if (!name) { errors.push({ line: lineNo, msg: '名称不能为空' }); return; }
+    if (!/^\d+$/.test(playsRaw)) { errors.push({ line: lineNo, msg: '播放量需为非负整数（实际：' + (playsRaw || '空') + '）' }); return; }
+    rows.push({ id: id, name: name, plays: parseInt(playsRaw, 10) });
+  });
+  return { rows: rows, errors: errors };
+}
+
+// 导入 upsert：channel='-' 的导入记录按合集ID 更新，否则新增
+function applyDdImportRows(rows) {
+  var added = 0, updated = 0;
+  rows.forEach(function(r) {
+    var target = supDramaData.filter(function(d) { return d.id === r.id && d.channel === '-'; })[0];
+    if (target) {
+      target.name = r.name;
+      target.plays = r.plays;
+      updated++;
+    } else {
+      supDramaData.push({ id: r.id, name: r.name, channel: '-', plays: r.plays, sup: '-' });
+      added++;
+    }
+  });
+  return { added: added, updated: updated };
+}
+
+function handleDdImportFile(input) {
+  if (!input.files || input.files.length === 0) return;
+  var file = input.files[0];
+  var name = file.name || '';
+  var ext = (name.lastIndexOf('.') > -1) ? name.slice(name.lastIndexOf('.')).toLowerCase() : '';
+  if (ext !== '.csv') {
+    alert('仅支持 CSV 格式文件（可由 Excel 另存为 CSV），请重新选择');
+    input.value = '';
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var text = String(e.target.result || '');
+    var parsed = parseDdImportCsv(text);
+    var resultBox = document.getElementById('pltDdImportResult');
+    resultBox.style.display = 'block';
+    var html = '';
+    if (parsed.rows.length > 0) {
+      var stat = applyDdImportRows(parsed.rows);
+      renderPltDramaData();
+      initPltDramaDataFilter();
+      html += '<div style="color:var(--success);font-weight:600;margin-bottom:6px;">✅ 导入完成：新增 ' + stat.added + ' 条，更新 ' + stat.updated + ' 条' + (parsed.errors.length ? '，失败 ' + parsed.errors.length + ' 条' : '') + '</div>';
+    } else {
+      html += '<div style="color:var(--danger);font-weight:600;margin-bottom:6px;">❌ 导入失败：0 条成功' + (parsed.errors.length ? '，失败 ' + parsed.errors.length + ' 条' : '') + '</div>';
+    }
+    if (parsed.errors.length > 0) {
+      html += '<div style="max-height:140px;overflow-y:auto;border:1px solid var(--border);border-radius:6px;padding:8px 12px;">';
+      parsed.errors.slice(0, 20).forEach(function(er) {
+        html += '<div style="color:#CF1322;font-size:12px;line-height:1.8;">第 ' + er.line + ' 行：' + escapeOpinionHtml(er.msg) + '</div>';
+      });
+      if (parsed.errors.length > 20) html += '<div style="color:var(--text-tertiary);font-size:12px;">… 共 ' + parsed.errors.length + ' 条错误</div>';
+      html += '</div>';
+    }
+    resultBox.innerHTML = html;
+    input.value = '';
+  };
+  reader.readAsText(file, 'UTF-8');
 }
 
 // 脚本加载时初始化一次平台端筛选下拉（渠道/供应商）

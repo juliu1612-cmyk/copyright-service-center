@@ -138,6 +138,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .tag-pass { background: #E8FFEA; color: var(--success); }
 .tag-reject { background: #FFECE8; color: var(--danger); }
 .tag-online { background: #E8FFEA; color: var(--success); }
+/* 时间轴审核意见展示（蓝色系，区别于红色驳回原因） */
+.eval-timeline-body .group-opinion { font-size: 12px; color: #1D5BA6; line-height: 1.6; }
 
 /* 剧集查看弹窗 */
 .ep-active, .ep-active:hover { background: var(--primary) !important; color: #fff !important; }
@@ -446,6 +448,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
       <div class="nav-item" data-page="sup-content" onclick="switchSupplierPage('sup-content', this)" data-page-node-id="kjaAeZC3l71mrDTyrJwhDp">
         <span class="icon" data-page-node-id="MRHn24jK7lltRSFZuavTtN">📁</span> 内容管理
       </div>
+      <div class="nav-item" data-page="sup-drama-data" onclick="switchSupplierPage('sup-drama-data', this)">
+        <span class="icon">📊</span> 短剧数据
+      </div>
 
       <div class="nav-section" style="margin-top:12px;" data-page-node-id="xDWBB7kON4vwr9A9eaDzn5">系统设置</div>
       <div class="nav-item" data-page="sup-profile" onclick="switchSupplierPage('sup-profile', this)" data-page-node-id="I6VeAHPpGJeIo28cfDGIov">
@@ -491,11 +496,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
         <div class="panel-header" data-page-node-id="ll1K8FH902mhO6276BNXVR"><h4 data-page-node-id="PjsKuKhte6Sntc1KgDU5D3">评估记录</h4></div>
         <div class="panel-body" data-page-node-id="LNd4hn0Ec9A49rlNFKRttZ">
           <table class="data-table" data-page-node-id="rW90TCYpUGkk8T9q4ju7HD">
-            <thead data-page-node-id="zUtnEcSENLDnPb3gv6mqkj"><tr data-page-node-id="M0St8Kg02teeN9rGxBbWfT"><th data-page-node-id="MZl0nhVXvPi9pvPKOyl1Zr">ID</th><th data-page-node-id="jSSGWCmKFKYDqEBrk3VUCy">合集名称</th><th data-page-node-id="EDCj3DKJpfdqKkSMDtn8mX">集数</th><th data-page-node-id="LjcXuuVIJ5LRo9j6C3TqQm">一卡链接</th><th data-page-node-id="qwm1dvHtt6Cimi1qvPUJyW">提交时间</th><th data-page-node-id="tWFBY35iGT9OFyVGGHnZnL">状态</th><th data-page-node-id="gII1APmGDoccMKP9ZqK5WQ">操作</th></tr></thead>
+            <thead data-page-node-id="zUtnEcSENLDnPb3gv6mqkj"><tr data-page-node-id="M0St8Kg02teeN9rGxBbWfT"><th data-page-node-id="MZl0nhVXvPi9pvPKOyl1Zr">ID</th><th data-page-node-id="jSSGWCmKFKYDqEBrk3VUCy">合集名称</th><th data-page-node-id="EDCj3DKJpfdqKkSMDtn8mX">集数</th><th data-page-node-id="LjcXuuVIJ5LRo9j6C3TqQm">一卡链接</th><th data-page-node-id="qwm1dvHtt6Cimi1qvPUJyW">提交时间</th><th data-page-node-id="tWFBY35iGT9OFyVGGHnZnL">状态</th><th data-page-node-id="nR4wQvKpT8xZcJbY2fHdMe">审核意见</th><th data-page-node-id="gII1APmGDoccMKP9ZqK5WQ">操作</th></tr></thead>
             <tbody id="supEvalTbody" data-page-node-id="R3w4XzGPhsIRiVuWzpjbYp">
-              <tr data-page-node-id="w0YkGoVhFykDaksDOJBSMJ"><td data-page-node-id="eZzqNKLJdiODHWAN9xLZkt">E001</td><td data-page-node-id="zXtzcTLciAZiuiyQkLjWJ0">星辰大海</td><td data-page-node-id="RVUQ0IR1WujsSX6OZLMBx9">24</td><td data-page-node-id="RVTyFHl0ekkaGhAdz86oUL"><a href="https://yika.example.com/drama/xcdh" target="_blank" style="color:var(--primary);" data-page-node-id="8lqGXRePNkau2oeHYTg7op">查看链接</a></td><td data-page-node-id="t0VLyaEyRFUDuWwG4oH1nN">2026-07-28 14:30</td><td data-page-node-id="9On71YXxrRGet4OnhPf2Xf"><span class="tag tag-reviewing" data-page-node-id="WaoRif1m5qK8FdsCt3iYQ4">审核中</span></td><td data-page-node-id="6atZLZtJLfO8ymo9oGLsu3"><span style="color:var(--text-tertiary);" data-page-node-id="BaXCS6NAAxI8bwRQstNCKp">—</span></td></tr>
-              <tr data-page-node-id="ZQkel9WjCzu6BTRW8k2TNX"><td data-page-node-id="WUp2yrsL3jDFqhZOEbby91">E002</td><td data-page-node-id="x0RbzoFWMqzQDCfS4mA8Ki">暗夜追光</td><td data-page-node-id="WNq3jrjiCXFILCCNDDKiwe">12</td><td data-page-node-id="GMp5NCztK1hXkCnHBTYWcq"><a href="https://yika.example.com/drama/ayzg" target="_blank" style="color:var(--primary);" data-page-node-id="MVceyRTCEK8QFHb94O7vEo">查看链接</a></td><td data-page-node-id="hNaeoFP731eXVdMNmOYVQd">2026-07-20 10:15</td><td data-page-node-id="528UHn9cwbAkqm4Fi0EZDC"><span class="tag tag-pass" data-page-node-id="rMK8dod8B85COwCVgxipJb">通过</span></td><td data-page-node-id="62TCp1NeLtaDZU1j3hy7gr"><span style="color:var(--text-tertiary);" data-page-node-id="feuFimZ1hnXQ4RUexaTNqc">—</span></td></tr>
-              <tr data-page-node-id="Z8Ox4LdNxbrZd1k2y64ToA"><td data-page-node-id="BHAVQp6ZkeI9I14z05inpu">E003</td><td data-page-node-id="gtc5CCN3FRQYcor6fV4oxc">山海谣</td><td data-page-node-id="Kl9YYczsk7IUX0kLjhbW2M">30</td><td data-page-node-id="H2EdtirllrtC7HuvllDhx7"><a href="https://yika.example.com/drama/shy" target="_blank" style="color:var(--primary);" data-page-node-id="d6z9sjY0TTWuGYWFXYtpkE">查看链接</a></td><td data-page-node-id="nfUy0corhZ9dSCSdBK8E87">2026-07-15 09:00</td><td data-page-node-id="kdwLG68k50GU2JAygepcaS"><span class="tag tag-reject" data-page-node-id="AkAfO4LOyvKzNPeLyFQ3rK">拒绝</span></td><td data-page-node-id="tfUz3CdS2AKGvBiQFcr1iK"><button class="btn btn-sm btn-outline" onclick="openModal('evalEditModal')" data-page-node-id="6GcGWqcQ8jribzFsupxjlF">修改</button></td></tr>
+              <tr data-page-node-id="w0YkGoVhFykDaksDOJBSMJ"><td data-page-node-id="eZzqNKLJdiODHWAN9xLZkt">E001</td><td data-page-node-id="zXtzcTLciAZiuiyQkLjWJ0">星辰大海</td><td data-page-node-id="RVUQ0IR1WujsSX6OZLMBx9">24</td><td data-page-node-id="RVTyFHl0ekkaGhAdz86oUL"><a href="https://yika.example.com/drama/xcdh" target="_blank" style="color:var(--primary);" data-page-node-id="8lqGXRePNkau2oeHYTg7op">查看链接</a></td><td data-page-node-id="t0VLyaEyRFUDuWwG4oH1nN">2026-07-28 14:30</td><td data-page-node-id="9On71YXxrRGet4OnhPf2Xf"><span class="tag tag-reviewing" data-page-node-id="WaoRif1m5qK8FdsCt3iYQ4">审核中</span></td><td data-page-node-id="vK6wNpQzT3xRcJbY1fHdMe"><span style="color:var(--text-tertiary);" data-page-node-id="wJ8mQvKpT5xZcRbY2gHdNf">--</span></td><td data-page-node-id="6atZLZtJLfO8ymo9oGLsu3"><span style="color:var(--text-tertiary);" data-page-node-id="BaXCS6NAAxI8bwRQstNCKp">—</span></td></tr>
+              <tr data-page-node-id="ZQkel9WjCzu6BTRW8k2TNX"><td data-page-node-id="WUp2yrsL3jDFqhZOEbby91">E002</td><td data-page-node-id="x0RbzoFWMqzQDCfS4mA8Ki">暗夜追光</td><td data-page-node-id="WNq3jrjiCXFILCCNDDKiwe">12</td><td data-page-node-id="GMp5NCztK1hXkCnHBTYWcq"><a href="https://yika.example.com/drama/ayzg" target="_blank" style="color:var(--primary);" data-page-node-id="MVceyRTCEK8QFHb94O7vEo">查看链接</a></td><td data-page-node-id="hNaeoFP731eXVdMNmOYVQd">2026-07-20 10:15</td><td data-page-node-id="528UHn9cwbAkqm4Fi0EZDC"><span class="tag tag-pass" data-page-node-id="rMK8dod8B85COwCVgxipJb">通过</span></td><td data-page-node-id="xL9wQvKpT7yZcRbY3fHdNe"><span style="color:var(--text-secondary);" title="题材常规，叙事结构完整，人物设定鲜明" data-page-node-id="yM4nQvKpT6xZcRbY4gHdMf">题材常规，叙事结构完整，人物设定鲜明</span></td><td data-page-node-id="62TCp1NeLtaDZU1j3hy7gr"><span style="color:var(--text-tertiary);" data-page-node-id="feuFimZ1hnXQ4RUexaTNqc">—</span></td></tr>
+              <tr data-page-node-id="Z8Ox4LdNxbrZd1k2y64ToA"><td data-page-node-id="BHAVQp6ZkeI9I14z05inpu">E003</td><td data-page-node-id="gtc5CCN3FRQYcor6fV4oxc">山海谣</td><td data-page-node-id="Kl9YYczsk7IUX0kLjhbW2M">30</td><td data-page-node-id="H2EdtirllrtC7HuvllDhx7"><a href="https://yika.example.com/drama/shy" target="_blank" style="color:var(--primary);" data-page-node-id="d6z9sjY0TTWuGYWFXYtpkE">查看链接</a></td><td data-page-node-id="nfUy0corhZ9dSCSdBK8E87">2026-07-15 09:00</td><td data-page-node-id="kdwLG68k50GU2JAygepcaS"><span class="tag tag-reject" data-page-node-id="AkAfO4LOyvKzNPeLyFQ3rK">拒绝</span></td><td data-page-node-id="zN3wQvKpT9xZcRbY5fHdMg"><span style="color:#CF1322;" title="题材不符合平台导向，建议调整主线剧情" data-page-node-id="aP2mQvKpT8yZcRbY6gHdMh">题材不符合平台导向，建议调整主线剧情</span></td><td data-page-node-id="tfUz3CdS2AKGvBiQFcr1iK"><button class="btn btn-sm btn-outline" onclick="openModal('evalEditModal')" data-page-node-id="6GcGWqcQ8jribzFsupxjlF">修改</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -582,6 +587,51 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 </td></tr>
             </tbody>
           </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Supplier: 短剧数据 -->
+    <div id="sup-drama-data" class="page">
+      <div class="page-header">
+        <h3>短剧数据</h3>
+        <div class="breadcrumb">业务功能 / 短剧数据</div>
+      </div>
+
+      <div class="action-bar" style="flex-wrap:wrap;">
+        <input class="search-input" id="dramaDataSearchId" placeholder="合集ID..." style="width:140px;">
+        <input class="search-input" id="dramaDataSearchName" placeholder="合集名称..." style="width:170px;">
+        <select class="search-input" id="dramaDataSearchChannel" style="width:150px;">
+          <option value="">全部渠道</option>
+          <option>红果短剧</option>
+          <option>抖音端原生</option>
+          <option>腾讯视频</option>
+          <option>爱奇艺</option>
+          <option>优酷视频</option>
+          <option>芒果TV</option>
+          <option>快手</option>
+          <option>拼多多</option>
+          <option>微信小程序</option>
+        </select>
+        <button class="btn btn-sm btn-outline" onclick="filterDramaData()">搜索</button>
+        <button class="btn btn-sm btn-outline" onclick="resetDramaDataFilter()">重置</button>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header"><h4>播放数据列表</h4></div>
+        <div class="panel-body">
+          <div class="table-scroll-wrap">
+            <table class="data-table" style="min-width:760px;">
+              <thead><tr>
+                <th style="width:110px;">合集ID</th>
+                <th>合集名称</th>
+                <th style="width:180px;">渠道</th>
+                <th style="width:180px;">累计播放量</th>
+              </tr></thead>
+              <tbody id="dramaDataTbody"></tbody>
+            </table>
+            <div id="dramaDataEmpty" style="text-align:center;padding:40px;color:var(--text-tertiary);font-size:14px;display:none;">暂无数据</div>
           </div>
         </div>
       </div>
@@ -687,9 +737,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                       <label data-page-node-id="ynDBIACeHBb24sEhpBAD5R"><input type="checkbox" value="海外YouTube" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()" data-page-node-id="GpaBf3yYlDLzlk51q8UbQB"> 海外YouTube</label>
                       <label data-page-node-id="J0lcogFv1GVxvIFbltiQo0"><input type="checkbox" value="海外Tiktok端原生" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()" data-page-node-id="CbrqrqereEMYwhV3tixcwI"> 海外Tiktok端原生</label>
                       <label data-page-node-id="xGGSpuI35Hhp5tCJQC5i27"><input type="checkbox" value="海外自有产品" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()" data-page-node-id="rEj8XafWGo1ZldtEgJ4UDp"> 海外自有产品</label>
-                      <label data-page-node-id="WEpUsLzcAoXm1SqybYzS4N"><input type="checkbox" value="QQ浏览器" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()" data-page-node-id="PP22Xudf7XDDF5mo5C6GGM"> QQ浏览器</label>
-                      <label data-page-node-id="RmqCO7i9JEpydAn6FXvA0H"><input type="checkbox" value="京东" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()" data-page-node-id="CHzEFsYAA97M2J2NUCPx9f"> 京东</label>
-                      <label data-page-node-id="D4LdBMU9tBHvYlnDpVIlAo"><input type="checkbox" value="七猫" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()" data-page-node-id="fgoYoZrW2lswupcjuUefPX"> 七猫</label>
+                      <label data-page-node-id="OverseasTTMiniStep1"><input type="checkbox" value="海外TT小程序" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()" data-page-node-id="OverseasTTMiniStep1Node"> 海外TT小程序</label>
+                      <label data-page-node-id="BaijiahaoStep1"><input type="checkbox" value="百家号" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()" data-page-node-id="BaijiahaoStep1Node"> 百家号</label>
                       <label data-page-node-id="fjFCdh7n2gEofnngX0FEia"><input type="checkbox" value="河马APP" onchange="updateMultiSelect('step1EditCollChannelDropdown');updateMatFieldVisibility()" data-page-node-id="TrbwHgDxkolOolDmWDHBbW"> 河马APP</label>
                     </div>
                   </div>
@@ -1487,6 +1536,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <span class="ep-version-info-label" data-page-node-id="56wAdjURUk0AZ2B2NmnNoO">发布状态</span>
                   <span class="ep-version-info-value" id="epCardHongguoPubState" data-page-node-id="ShIvktZ9WlBBfmjf5KuEu6">-</span>
                 </div>
+                <div class="ep-version-info-row" data-page-node-id="LaunHg9f7k2vB8qR3sT1cXp">
+                  <span class="ep-version-info-label" data-page-node-id="LaunHgLb7k2vB8qR3sT1cXp">上线时间</span>
+                  <span class="ep-version-info-value" id="epCardHongguoLaunchTime" data-page-node-id="LaunHgVb7k2vB8qR3sT1cXp">-</span>
+                </div>
               </div>
             </div>
             <div class="ep-version-card-footer" data-page-node-id="i1VlP98vcsgjhUbsFHsSXp">
@@ -1509,6 +1562,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <div class="ep-version-info-row" data-page-node-id="NI2HUNsGFaLVNE7vWwgXgI">
                   <span class="ep-version-info-label" data-page-node-id="DR018NsH4ObUSkTAygOch8">发布状态</span>
                   <span class="ep-version-info-value" id="epCardDouyinPubState" data-page-node-id="BezmwVRytNENBBwvb5uo4c">-</span>
+                </div>
+                <div class="ep-version-info-row" data-page-node-id="LaunDy8g1j5nC4wQ7zL2mVxR">
+                  <span class="ep-version-info-label" data-page-node-id="LaunDyLb1j5nC4wQ7zL2mVxR">上线时间</span>
+                  <span class="ep-version-info-value" id="epCardDouyinLaunchTime" data-page-node-id="LaunDyVb1j5nC4wQ7zL2mVxR">-</span>
                 </div>
               </div>
             </div>
@@ -1911,6 +1968,25 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
   min-width: 0;
   word-break: break-all;
 }
+.content-id-text { display: inline-block; vertical-align: middle; }
+.content-id-edit-icon {
+  display: inline-block;
+  margin-left: 6px;
+  cursor: pointer;
+  opacity: 0.6;
+  font-size: 13px;
+  vertical-align: middle;
+  user-select: none;
+}
+.content-id-edit-icon:hover { opacity: 1; }
+.content-id-input {
+  width: 140px;
+  padding: 3px 8px;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  font-size: 13px;
+  outline: none;
+}
 .ep-version-card-footer {
   padding: 12px 18px;
   border-top: 1px solid var(--border);
@@ -2032,14 +2108,19 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 }
 .content-role-bar .content-role-label { font-weight: 600; font-size: 14px; margin-right: 8px; }
 .content-role-bar select { padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; }
-.eval-timeline-time { font-size: 12px; color: var(--text-tertiary); margin-bottom: 6px; }
+.eval-timeline-time { font-size: 12px; color: var(--text-tertiary); margin-bottom: 10px; }
 .eval-timeline-body { font-size: 13px; }
-.eval-timeline-body .group-row { margin-bottom: 4px; display: flex; gap: 10px; align-items: flex-start; }
-.eval-timeline-body .group-label { color: var(--text-secondary); min-width: 56px; font-size: 12px; padding-top: 1px; flex-shrink: 0; }
-.eval-timeline-body .group-content { display: flex; flex-direction: column; gap: 2px; flex: 1; }
-.eval-timeline-body .group-result { font-size: 13px; }
-.eval-timeline-body .group-time { font-size: 12px; color: var(--text-tertiary); }
-.eval-timeline-body .group-reason { font-size: 12px; color: var(--danger); flex-shrink: 0; max-width: 220px; text-align: right; line-height: 1.5; padding-top: 1px; }
+.eval-timeline-body .group-block { margin-bottom: 14px; }
+.eval-timeline-body .group-block:last-child { margin-bottom: 0; }
+.eval-timeline-body .group-header { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
+.eval-timeline-body .group-label { color: var(--text-secondary); font-size: 12px; flex-shrink: 0; }
+.eval-timeline-body .group-result { font-size: 13px; color: var(--text-primary); }
+.eval-timeline-body .group-time { font-size: 12px; color: var(--text-tertiary); margin-bottom: 4px; }
+.eval-timeline-body .group-opinion { font-size: 12px; color: #1D5BA6; line-height: 1.6; }
+.eval-timeline-body .group-reason { font-size: 12px; color: var(--danger); line-height: 1.6; }
+.eval-timeline-body .overall-row { display: flex; align-items: baseline; gap: 6px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border); }
+.eval-timeline-body .overall-label { color: var(--text-secondary); font-size: 12px; font-weight: 600; }
+.eval-timeline-body .overall-value { font-size: 13px; font-weight: 600; }
 
 /* 审核记录弹窗 */
 .rh-tab { padding: 12px 20px; font-size: 14px; cursor: pointer; color: var(--text-secondary); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.2s; }
@@ -2080,6 +2161,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
       <div class="nav-item" data-page="plt-content" onclick="switchPlatformPage('plt-content', this)" data-page-node-id="2JcddELuwzFtCCHRVjmQx5">
         <span class="icon" data-page-node-id="li8LdkV1017GxuOLdMMouu">📁</span> 内容管理
         <span class="badge" data-page-node-id="f0Pzs2Cj8qxxZI4NHxDQlJ">7</span>
+      </div>
+      <div class="nav-item" data-page="plt-drama-data" onclick="switchPlatformPage('plt-drama-data', this)">
+        <span class="icon">📊</span> 短剧数据
       </div>
 
       <div class="nav-section" data-page-node-id="MKd5Wdv2T0kIEJHJA9fAmY">系统设置</div>
@@ -2150,20 +2234,27 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 
       <!-- 评估列表 -->
       <div class="panel" data-page-node-id="dscrcmH47R54hn9BXDwycf">
-        <div class="panel-header" data-page-node-id="Iyk5e4LEVgBgLgBMFaGf6P"><h4 data-page-node-id="aBlpfhjNn84FAIp5gudUPA">评估列表</h4></div>
+        <div class="panel-header" data-page-node-id="Iyk5e4LEVgBgLgBMFaGf6P"><h4 data-page-node-id="aBlpfhjNn84FAIp5gudUPA">评估列表</h4>
+          <div style="display:flex;align-items:center;gap:10px;" data-page-node-id="qY8r2NfBvS3xKpLmT5wEh1">
+            <span id="evalBatchCount" style="font-size:12px;color:var(--text-tertiary);" data-page-node-id="wR5kQmXzB8tVnJcY3fP2aL">已选 0 条</span>
+            <button class="btn btn-sm btn-outline" id="evalDownloadBtn" onclick="downloadEvalSelected()" data-page-node-id="tH7bVnCkM9pQsRfW4xJzDe">📥 批量下载</button>
+          </div>
+        </div>
         <div class="panel-body" data-page-node-id="pkExXzxTUXjBf4mHjxDosp">
           <table class="data-table" id="evalTable" data-page-node-id="WnWkQ3AmVTW1e7z8bH4FRD">
             <thead data-page-node-id="EyyAg8oDSbQRtIyhXmO0Nn">
               <tr data-page-node-id="IB0ywCcg1S7muALGgFWvHw">
+                <th style="width:36px;" data-page-node-id="bM3cP8vKtR6nWqY1zFxAeG"><input type="checkbox" id="evalCheckAll" onchange="toggleEvalCheckAll()" style="accent-color:var(--primary);width:14px;height:14px;cursor:pointer;" title="全选当前列表"></th>
                 <th data-page-node-id="o54ZKP3XC2X8dkd10NAyp1">ID</th>
                 <th data-page-node-id="Ef68CoEBCQsuKkVaG6aqbn">供应商</th>
                 <th data-page-node-id="3j1x831NdisowZshjwHKB3">剧集名称</th>
                 <th data-page-node-id="AtZiG5tKs34jXGBtg9tiKm">集数</th>
                 <th data-page-node-id="igYvhgw2p1RwrGjycKoXEn">一卡链接</th>
-                <th data-page-node-id="6mtANdjwGBhFMHj3ghYyW6">审核A组</th>
-                <th data-page-node-id="J34ZyHE3Yr97Qit280av99">审核B组</th>
-                <th data-page-node-id="YWbJnP508o0pgKP7frDg10">审核C组</th>
+                <th data-page-node-id="6mtANdjwGBhFMHj3ghYyW6">审核组评估</th>
+                <th data-page-node-id="J34ZyHE3Yr97Qit280av99">红果评估</th>
+                <th data-page-node-id="YWbJnP508o0pgKP7frDg10">运营评估</th>
                 <th data-page-node-id="AAIJ86VDz5wlrIvMk6iUJd">综合结果</th>
+                <th data-page-node-id="mR5wNvKpT8xQcJbY3fZdHe">审核意见</th>
                 <th data-page-node-id="tlWWKfNyubtHYEnJbanF96">最近提交时间</th>
                 <th data-page-node-id="XvkHc7r5En75POGyU7HUCZ">操作</th>
               </tr>
@@ -2466,6 +2557,42 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
       </div>
     </div>
 
+    <!-- Platform: 短剧数据 -->
+    <div id="plt-drama-data" class="page">
+      <div class="page-header">
+        <h3>短剧数据</h3>
+        <div class="breadcrumb">业务功能 / 短剧数据</div>
+      </div>
+
+      <div class="action-bar" style="flex-wrap:wrap;">
+        <input class="search-input" id="pltDdSearchId" placeholder="合集ID..." style="width:140px;">
+        <input class="search-input" id="pltDdSearchName" placeholder="合集名称..." style="width:170px;">
+        <select class="search-input" id="pltDdSearchChannel" style="width:150px;"></select>
+        <select class="search-input" id="pltDdSearchSupplier" style="width:160px;"></select>
+        <button class="btn btn-sm btn-outline" onclick="filterPltDramaData()">搜索</button>
+        <button class="btn btn-sm btn-outline" onclick="resetPltDramaDataFilter()">重置</button>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header"><h4>播放数据列表</h4></div>
+        <div class="panel-body">
+          <div class="table-scroll-wrap">
+            <table class="data-table" style="min-width:860px;">
+              <thead><tr>
+                <th style="width:110px;">合集ID</th>
+                <th>合集名称</th>
+                <th style="width:180px;">渠道</th>
+                <th style="width:180px;">供应商</th>
+                <th style="width:180px;">累计播放量</th>
+              </tr></thead>
+              <tbody id="pltDdTbody"></tbody>
+            </table>
+            <div id="pltDdEmpty" style="text-align:center;padding:40px;color:var(--text-tertiary);font-size:14px;display:none;">暂无数据</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Platform: 供应商管理 -->
     <div id="plt-supplier-mgmt" class="page" data-page-node-id="oaXZI5D9dfveyjf8x6gbUs">
       <div class="page-header" data-page-node-id="ZWimJ8lC5sxWJ4TIt887wa">
@@ -2525,6 +2652,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <th data-page-node-id="0EnBZHx7Kx0U3XCzrDHQ0j">用户</th>
                 <th data-page-node-id="10pIgxmyUc5cetyt1r5Dix">关联角色</th>
                 <th data-page-node-id="P0AHXbqzJC5pMmGIyiOTZl">关联渠道</th>
+                <th data-page-node-id="rOl3e4M5i6n7a8l9i0a1s2F">化名</th>
                 <th data-page-node-id="kF4nYxOGx2Qt82hHCnFiAu">创建时间</th>
                 <th style="width:170px;" data-page-node-id="sfoRBXiC4HMzgrCsZ06Udu">操作</th>
               </tr>
@@ -2595,6 +2723,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
         <div class="detail-tab" onclick="switchPltDetailTab('plt-detail-tab-crew',this)" data-page-node-id="1IpI7Ru9BdeUzIKbb5R7Zm">主创团队</div>
         <div class="detail-tab" onclick="switchPltDetailTab('plt-detail-tab-material',this)" data-page-node-id="U2PMFnq0r4g8UTeT0INvEn">成片素材</div>
         <div class="detail-tab" onclick="switchPltDetailTab('plt-detail-tab-compliance',this)" data-page-node-id="wvHuJEp6HVbUOndfBcEVPV">合规文件</div>
+        <div class="detail-tab" onclick="switchPltDetailTab('plt-detail-tab-auth',this)" data-page-node-id="wvHuJEp6HVbUOndfBcEVPA">授权书</div>
       </div>
 
       <!-- Tab: 剧集管理 -->
@@ -2619,6 +2748,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <div class="ep-version-info-row" data-page-node-id="mTJiEe3r2NJIYE0G8FsXJn">
                   <span class="ep-version-info-label" data-page-node-id="syKDd0dxm6BFNbcRPA5fXN">发布状态</span>
                   <span class="ep-version-info-value" id="pltEpCardHongguoPubState" data-page-node-id="MqYMtPIAoFHPuPk3Q8cKk3">-</span>
+                </div>
+                <div class="ep-version-info-row" data-page-node-id="QmT9Xk3pLzCJvWgHYn7oRe">
+                  <span class="ep-version-info-label" data-page-node-id="DfNzYk4sWvUAxB5mPq8LcE">上线时间</span>
+                  <span class="ep-version-info-value" id="pltEpCardHongguoLaunchTime" data-page-node-id="RnXvBs4wZtMKeYjUcH7pFd">-</span>
+                </div>
+                <div class="ep-version-info-row" data-page-node-id="KpWg8Qn5xRzTJmY3vBcLHa">
+                  <span class="ep-version-info-label" data-page-node-id="XyZvMn9pQrStUwA4bKcJDe">渠道内容ID</span>
+                  <span class="ep-version-info-value" id="pltEpCardHongguoContentId" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpA">-</span>
                 </div>
               </div>
             </div>
@@ -2649,6 +2786,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <div class="ep-version-info-row" data-page-node-id="MqK0wmTFvQIEcj6DzrSiLH">
                   <span class="ep-version-info-label" data-page-node-id="fb8JTLiMBeVY8AYcz1BPOL">发布状态</span>
                   <span class="ep-version-info-value" id="pltEpCardDouyinPubState" data-page-node-id="VP6WOF7uTJoBSbdIGKF7dx">-</span>
+                </div>
+                <div class="ep-version-info-row" data-page-node-id="YcLp9Qr5zTvXHmBn3wKjEf">
+                  <span class="ep-version-info-label" data-page-node-id="MnGvDs8aJkPqWzTc4xRbLy">上线时间</span>
+                  <span class="ep-version-info-value" id="pltEpCardDouyinLaunchTime" data-page-node-id="HsKdJq7wRmYpXvBz9tNcFa">-</span>
+                </div>
+                <div class="ep-version-info-row" data-page-node-id="ZwRj6Xv9pQnLkTs3yHcBdm">
+                  <span class="ep-version-info-label" data-page-node-id="AfEwQc5sLrVyTmHk8jPnGd">渠道内容ID</span>
+                  <span class="ep-version-info-value" id="pltEpCardDouyinContentId" data-page-node-id="UxJqMb4pDnZvKwYs7tLcRa">-</span>
                 </div>
               </div>
             </div>
@@ -2819,6 +2964,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
               <div class="form-item full" data-page-node-id="iOzg5QRDxqwqcTaI4PB2mP"><label data-page-node-id="PIpmgoikBv5suiUEFp2tky">腾讯火龙漫剧配套文件</label><div id="pltDetailMatTencentAnime" style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);" data-page-node-id="LjTeyjs2JDaGIVRXM6kXGA">未上传</div></div>
               <div class="form-item full" data-page-node-id="EIl5psC3PZnloF7XE9mzaO"><label data-page-node-id="ZZPjJgfA4mcQbthEEQQ6WH">关联 AIGC 工具</label><input type="text" id="pltDetailMatAIGCTool" disabled style="background:#f5f5f5;color:#999;" data-page-node-id="ENi7oahokJH32B37QKpWuG"></div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: 授权书 -->
+      <div id="plt-detail-tab-auth" style="display:none;" data-page-node-id="HfIZ5tLINOokmuhdYlziWG">
+        <div class="panel" data-page-node-id="ZxPvRSdu7yCUIGBeLwlDdg">
+          <div class="panel-header" data-page-node-id="D8Bq8f2ER8k8b1cQxrckFs"><h4 data-page-node-id="Rjl5eQhSTFq0zGkUBjPutv">授权书</h4></div>
+          <div class="panel-body" style="padding:16px;" data-page-node-id="HctYRXD0Bwc9oYpk1Np7us">
+            <div id="pltDetailAuthBookList" data-page-node-id="HctYRXD0Bwc9oYpk1Np7ut"></div>
           </div>
         </div>
       </div>
@@ -3243,8 +3398,20 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           <div id="contentReviewEpisodeSection" style="display:block;" data-page-node-id="j2isNABvMfrWhY8FNCBgBB">
             <div style="display:flex;height:340px;border:1px solid var(--border);border-radius:8px;overflow:hidden;" data-page-node-id="SCctSceM7Jbe7MiyHYxVK4">
               <!-- 左侧剧集列表 -->
-              <div style="width:260px;border-right:1px solid var(--border);overflow-y:auto;background:#F7F8FA;" data-page-node-id="A6pprTIzgxZ65m4ZQbaE8d">
-                <div id="crEpisodeListContainer" style="padding:8px;" data-page-node-id="IJTD0M7K5BYfjR3mbkXqwg"></div>
+              <div style="width:268px;border-right:1px solid var(--border);display:flex;flex-direction:column;background:#F7F8FA;" data-page-node-id="A6pprTIzgxZ65m4ZQbaE8d">
+                <div id="crEpBatchBar" style="padding:8px 10px;border-bottom:1px solid var(--border);background:#fff;flex-shrink:0;">
+                  <div id="crEpBatchContent">
+                  <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-secondary);cursor:pointer;user-select:none;">
+                    <input type="checkbox" id="crEpCheckAll" onclick="toggleEpBatchAll()" style="accent-color:var(--primary);width:14px;height:14px;"> <span style="font-weight:600;">全选</span><span style="color:var(--text-tertiary);">（仅未通过集）</span>
+                  </label>
+                  <div style="display:flex;gap:6px;margin-top:8px;">
+                    <button class="btn btn-sm btn-success" id="crEpBatchPassBtn" style="flex:1;padding:3px 0;" onclick="batchReviewEpisodes('pass')">批量通过</button>
+                    <button class="btn btn-sm btn-danger" id="crEpBatchRejectBtn" style="flex:1;padding:3px 0;" onclick="batchReviewEpisodes('reject')">批量驳回</button>
+                  </div>
+                  <div id="crEpBatchCount" style="font-size:11px;color:var(--text-tertiary);margin-top:6px;">已选 0 集 / 可选 0 集</div>
+                  </div>
+                </div>
+                <div id="crEpisodeListContainer" style="flex:1;overflow-y:auto;padding:8px;" data-page-node-id="IJTD0M7K5BYfjR3mbkXqwg"></div>
               </div>
               <!-- 右侧视频播放区 -->
               <div style="flex:1;display:flex;flex-direction:column;background:#000;" data-page-node-id="JTPWpdT3XjXJmYSf6vxPbc">
@@ -3262,7 +3429,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <span id="crCurrentEpStatus" style="font-size:12px;flex-shrink:0;" data-page-node-id="GtsC4iFJjYcF0YZG84eJJF"></span>
                 <div id="crCurrentEpRejectInfo" style="display:none;margin-left:8px;padding:4px 10px;background:#FFF1F0;border:1px solid #FFCCC7;border-radius:4px;font-size:12px;color:#CF1322;line-height:1.5;flex:1;min-width:0;" data-page-node-id="udPL7DHk3BUOuX6Ae5XAmD"></div>
               </div>
-              <div style="display:flex;gap:8px;flex-shrink:0;" data-page-node-id="tptR9AYnXvt1vkN0KHcdPr">
+              <div style="display:flex;gap:8px;flex-shrink:0;align-items:center;" data-page-node-id="tptR9AYnXvt1vkN0KHcdPr">
+                <label id="crEpReviewAllWrap" style="display:none;align-items:center;gap:5px;font-size:12px;color:var(--text-secondary);cursor:pointer;user-select:none;padding:4px 8px;border:1px solid var(--border);border-radius:4px;background:#fff;margin-right:4px;" data-page-node-id="crEpReviewAllWrap">
+                  <input type="checkbox" id="crEpReviewAllCheck" onclick="toggleEpBatchAll()" style="accent-color:var(--primary);width:14px;height:14px;cursor:pointer;"> <span style="font-weight:600;">全选</span>
+                </label>
                 <button class="btn btn-sm btn-success" id="crEpPassBtn" onclick="reviewCurrentEpisode('pass')" data-page-node-id="E12L3KbjweBxEQTllOng74">通过</button>
                 <button class="btn btn-sm btn-danger" id="crEpRejectBtn" onclick="reviewCurrentEpisode('reject')" data-page-node-id="JDC0bU4SlAT3bYEsbLYhPv">驳回</button>
               </div>
@@ -3278,6 +3448,18 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
             <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px;" data-page-node-id="8CdXwbT25W4CgTeroVBQUl">
               <button class="btn btn-sm btn-outline" onclick="cancelEpReject()" data-page-node-id="U42qvnxtvU4wjjVbuRRIVf">取消</button>
               <button class="btn btn-sm btn-danger" onclick="confirmEpReject()" data-page-node-id="ca2fvHYtCObGtiZiKryf0I">确认驳回</button>
+            </div>
+          </div>
+
+          <!-- 正片审核：批量驳回原因 -->
+          <div id="crEpBatchRejectWrap" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);" data-page-node-id="7aP2bXcQ3kL9mNvR5tYw0u">
+            <div class="form-item full" style="margin-bottom:0;" data-page-node-id="8bQ3cYdR4mOwP6sU7vZx1w">
+              <label data-page-node-id="9cR4dZeS5nPxQ7tV8wAy2x"><span class="required" data-page-node-id="0dS5eAfT6oQyR8uW9xBz3y">*</span>批量驳回原因 — <span id="crEpBatchRejectLabel" style="font-weight:600;" data-page-node-id="1eT6fBgU7pRzS9vX0yCa4z">已选 0 集</span></label>
+              <textarea id="crEpBatchRejectReason" rows="2" placeholder="请输入统一的驳回原因，将应用到选中的所有剧集"></textarea>
+            </div>
+            <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px;" data-page-node-id="2fU7gChV8qSaT0wY1zDb5A">
+              <button class="btn btn-sm btn-outline" onclick="cancelEpBatchReject()" data-page-node-id="3gV8hDiW9rTbU1xZ2aEc6B">取消</button>
+              <button class="btn btn-sm btn-danger" onclick="confirmEpBatchReject()" data-page-node-id="4hW9iEjX0sUcV2yA3bFd7C">确认批量驳回</button>
             </div>
           </div>
 
@@ -3342,6 +3524,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
           </select>
         </div>
       </div>
+      <div class="form-row" id="roleAliasRow" style="display:none;" data-page-node-id="rAl1asRo2w3e4t5y6u7i8o">
+        <div class="form-item" data-page-node-id="aL1ia2sFo3r4b5i6z7n8a9">
+          <label data-page-node-id="lAb4e5l6A7l8i9a0s1F2i3">化名</label>
+          <input type="text" id="roleEditAlias" maxlength="20" placeholder="请输入对外展示的化名（选填）" data-page-node-id="iN1p2u3t4A5l6i7a8s9F0i1">
+          <div style="font-size:12px;color:var(--text-tertiary);margin-top:6px;" data-page-node-id="hIn4t5A6l7i8a9s0F1i2e3">化名为选填，用于对外沟通时展示，替代真实姓名</div>
+        </div>
+      </div>
     </div>
     <div class="modal-footer" data-page-node-id="OqpWyYIwxQZdlxdjSlD5Np">
       <button class="btn btn-outline" onclick="closeModal('roleEditModal')" data-page-node-id="aGKBARDVYA6Fry01r6TSfG">取消</button>
@@ -3382,6 +3571,30 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 </div>
 
 <!-- 驳回原因弹窗 -->
+<!-- 评估通过-审核意见弹窗 -->
+<div id="evalApproveModal" class="modal-overlay" data-page-node-id="rK4wMzPqT7xNvJcY2bHaEf">
+  <div class="modal" style="max-width:460px;" data-page-node-id="pV8nQcLwF3sRtYmX1zBkGe">
+    <div class="modal-header" data-page-node-id="jN6bVdKwP9qRcTyU3xSmAh">
+      <h4 data-page-node-id="wT5cXmZnB8QsVhU2yJdKf">审核通过 — 填写审核意见</h4>
+      <button class="modal-close" onclick="closeModal('evalApproveModal')" data-page-node-id="kM7qWsXnC4pTfVbJ6yNhRg">&times;</button>
+    </div>
+    <div class="modal-body" data-page-node-id="qY3nRcVwK8mTsXpJ5fLbHd">
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;" data-page-node-id="tB9wKxCm7vNqRfZj4hPyUe">
+        <span id="evalApproveGroupLabel" style="font-weight:600;color:var(--text-primary);" data-page-node-id="vC5mZwNk9rQsTpXb3fJdYe"></span>
+        通过 <span id="evalApproveDramaName" style="font-weight:600;" data-page-node-id="xR7pQdJn4tVcWfBm2hLzKg"></span>
+      </div>
+      <div class="form-item full" data-page-node-id="yN8wKfLm5qXrVdTp7cJgBh">
+        <label data-page-node-id="zQ6vJhPn3wSxTcYb9mKrDf">审核意见</label>
+        <textarea id="evalApproveOpinion" rows="4" maxlength="200" placeholder="请输入审核意见（选填，通过后展示在列表与审核记录中）" data-page-node-id="bK2nVdFm7wQsXrTp5cLhJg"></textarea>
+        <div style="font-size:12px;color:var(--text-tertiary);margin-top:8px;" data-page-node-id="iN5mVdLn9rXwTfCp4bMgKh">审核意见为选填，填写后将展示在列表「审核意见」字段与审核记录中；红果评估、运营评估通过时无需填写意见</div>
+      </div>
+    </div>
+    <div class="modal-footer" data-page-node-id="jM2wKcTn7vQxRfZp8cLhBg">
+      <button class="btn btn-outline" onclick="closeModal('evalApproveModal')" data-page-node-id="kQ9nWbVm3tXvRdSp6fNrJh">取消</button>
+      <button class="btn btn-success" onclick="confirmApproveEval()" data-page-node-id="lP4mXfKn8wQtRcZp5hLzKg">确认通过</button>
+    </div>
+  </div>
+</div>
 <div id="evalRejectModal" class="modal-overlay" data-page-node-id="tz5UtxPNwIAGvIOhDaLrc2">
   <div class="modal" data-page-node-id="VRC8p61JoWK1A8LHyIE5D0">
     <div class="modal-header" data-page-node-id="hGyRQ081nQoQMcFaxmON1d">
@@ -3629,6 +3842,70 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
     <div class="modal-footer" data-page-node-id="ZKuVT1JxMwI00SZ5fILs8M">
       <button class="btn btn-outline" onclick="closeModal('channelStatusModal')" data-page-node-id="jSjAm7B70iIPrtNDvZaFSw">取消</button>
       <button class="btn btn-primary" onclick="confirmChannelStatusSetting()" data-page-node-id="ZkANZDfQEVmM1A6kZ0y2O8">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 平台端-商务角色：编辑商务信息弹窗（对接商务 + 授权书多文件上传） -->
+<div id="bizEditModal" class="modal-overlay">
+  <div class="modal" style="max-width:520px;">
+    <div class="modal-header">
+      <h4 id="bizEditModalTitle">编辑商务信息</h4>
+      <button class="modal-close" onclick="closeModal('bizEditModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-item full">
+        <label>合集</label>
+        <input type="text" id="bizEditDramaName" disabled>
+      </div>
+      <div class="form-item full">
+        <label>对接商务</label>
+        <select id="bizEditContact" style="height:36px;border:1px solid var(--border);border-radius:6px;padding:0 12px;font-size:14px;background:#fff;cursor:pointer;">
+          <option value="">请选择对接商务</option>
+        </select>
+      </div>
+      <div class="form-item full">
+        <label>授权书 <span style="font-weight:400;color:var(--text-tertiary);font-size:12px;">（支持 Word / PDF，可多选，单个不超过 10M）</span></label>
+        <div id="bizAuthUploadWrap">
+          <label style="position:relative;display:block;border:2px dashed var(--border);border-radius:8px;padding:20px;text-align:center;color:var(--text-tertiary);font-size:13px;cursor:pointer;overflow:hidden;margin:0;">
+            📎 点击上传授权书（Word / PDF，可多选）
+            <input type="file" id="bizAuthFileInput" multiple accept=".doc,.docx,.pdf" style="position:absolute;inset:0;opacity:0;cursor:pointer;" onchange="handleBizAuthFileSelect(this)">
+          </label>
+        </div>
+        <div id="bizAuthFileList" style="margin-top:8px;display:flex;flex-direction:column;gap:6px;"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('bizEditModal')">取消</button>
+      <button class="btn btn-primary" onclick="confirmBizEdit()">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- 版本上线确认弹窗 -->
+<div id="versionOnlineModal" class="modal-overlay" data-page-node-id="XvLqNc7sFmYdTzB5xRjKpA">
+  <div class="modal" style="max-width:480px;" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpB">
+    <div class="modal-header" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpC">
+      <h4 data-page-node-id="WvLqNc7sFmYdTzB5xRjKpD">渠道上线确认</h4>
+      <button class="modal-close" onclick="closeModal('versionOnlineModal')" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpE">&times;</button>
+    </div>
+    <div class="modal-body" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpF">
+      <div class="form-item full" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpG">
+        <label data-page-node-id="WvLqNc7sFmYdTzB5xRjKpH">版本</label>
+        <input type="text" id="versionOnlineModalVersion" disabled data-page-node-id="WvLqNc7sFmYdTzB5xRjKpI">
+      </div>
+      <div class="form-item full" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpJ">
+        <label data-page-node-id="WvLqNc7sFmYdTzB5xRjKpK"><span class="required" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpL">*</span>上线时间</label>
+        <input type="date" id="versionOnlineLaunchTime" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpM">
+      </div>
+      <div class="form-item full" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpN">
+        <label data-page-node-id="WvLqNc7sFmYdTzB5xRjKpO">渠道内容ID</label>
+        <input type="text" id="versionOnlineContentId" placeholder="请输入渠道内容ID（选填）" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpQ">
+      </div>
+    </div>
+    <div class="modal-footer" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpR">
+      <button class="btn btn-outline" onclick="closeModal('versionOnlineModal')" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpS">取消</button>
+      <button class="btn btn-primary" onclick="confirmVersionOnline()" data-page-node-id="WvLqNc7sFmYdTzB5xRjKpT">确认上线</button>
     </div>
   </div>
 </div>
@@ -3885,9 +4162,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                 <label data-page-node-id="u63IkSTmMrj3CxzpOAPpDt"><input type="checkbox" value="海外TikTok端原生" onchange="updateMultiSelect('editCollChannelDropdown')" data-page-node-id="9nMWLR8UHkHs6iClo1FvsA"> 海外TikTok端原生</label>
                 <label data-page-node-id="uPVIljKYMHIDiJQ0rvhN2R"><input type="checkbox" value="海外自有产品" onchange="updateMultiSelect('editCollChannelDropdown')" data-page-node-id="St0g2zcH05GJTQxME0WtBx"> 海外自有产品</label>
                 <label data-page-node-id="bN0FCVdjPvvOfLacqd2Yxw"><input type="checkbox" value="海外渠道" onchange="updateMultiSelect('editCollChannelDropdown')" data-page-node-id="WrAWNVKYHbhiv0ARBigOuR"> 海外渠道</label>
-                <label data-page-node-id="1OWsUNb6HqH3xhWNP6DCj4"><input type="checkbox" value="QQ浏览器" onchange="updateMultiSelect('editCollChannelDropdown')" data-page-node-id="8NIkRxg6q4NSkqSGSeyYN0"> QQ浏览器</label>
-                <label data-page-node-id="uJqujAetVrj6byEda5DSJv"><input type="checkbox" value="京东" onchange="updateMultiSelect('editCollChannelDropdown')" data-page-node-id="xQkFbVj0j2LCrOkUJ4uNmj"> 京东</label>
-                <label data-page-node-id="Kg9IxBsu6CzoXbBw5BTkyG"><input type="checkbox" value="七猫" onchange="updateMultiSelect('editCollChannelDropdown')" data-page-node-id="a9ocpQ1ETDUlmYnxbRIe1l"> 七猫</label>
+                <label data-page-node-id="OverseasTTMiniEdit"><input type="checkbox" value="海外TT小程序" onchange="updateMultiSelect('editCollChannelDropdown')" data-page-node-id="OverseasTTMiniEditNode"> 海外TT小程序</label>
+                <label data-page-node-id="BaijiahaoEdit"><input type="checkbox" value="百家号" onchange="updateMultiSelect('editCollChannelDropdown')" data-page-node-id="BaijiahaoEditNode"> 百家号</label>
                 <label data-page-node-id="YhMdKXC0O78fhcYSwLhBIj"><input type="checkbox" value="河马APP" onchange="updateMultiSelect('editCollChannelDropdown')" data-page-node-id="qYAFtNPkuJy8ET19KXvZt4"> 河马APP</label>
               </div>
             </div>
@@ -4099,7 +4375,157 @@ function switchSupplierPage(pageId, el) {
     URL.revokeObjectURL(currentPosterUrl);
     currentPosterUrl = null;
   }
+  // 进入短剧数据页时渲染列表（读取当前筛选条件）
+  if (pageId === 'sup-drama-data') {
+    renderDramaDataTable();
+  }
 }
+
+// ===== 短剧数据（供应商端/平台端共用，平台端含供应商维度）=====
+// 每行 = 某合集在某渠道的累计播放量；sup 为所属供应商（平台端展示/筛选用）
+var supDramaData = [
+  { id: 'C001', name: '星辰大海', channel: '红果短剧', plays: 352000000, sup: '供应商_A' },
+  { id: 'C001', name: '星辰大海', channel: '抖音端原生', plays: 198000000, sup: '供应商_A' },
+  { id: 'C001', name: '星辰大海', channel: '腾讯视频', plays: 56000000, sup: '供应商_A' },
+  { id: 'C002', name: '暗夜追光', channel: '红果短剧', plays: 289000000, sup: '供应商_A' },
+  { id: 'C002', name: '暗夜追光', channel: '爱奇艺', plays: 72000000, sup: '供应商_A' },
+  { id: 'C002', name: '暗夜追光', channel: '优酷视频', plays: 43000000, sup: '供应商_A' },
+  { id: 'C003', name: '山海谣', channel: '优酷视频', plays: 152000000, sup: '供应商_B' },
+  { id: 'C003', name: '山海谣', channel: '芒果TV', plays: 68000000, sup: '供应商_B' },
+  { id: 'C003', name: '山海谣', channel: '快手', plays: 34000000, sup: '供应商_B' },
+  { id: 'C004', name: '风云变', channel: '芒果TV', plays: 96000000, sup: '供应商_B' },
+  { id: 'C004', name: '风云变', channel: '腾讯视频', plays: 28000000, sup: '供应商_B' },
+  { id: 'C005', name: '逆风飞翔', channel: '爱奇艺', plays: 45000000, sup: '供应商_C' },
+  { id: 'C005', name: '逆风飞翔', channel: '微信小程序', plays: 12000000, sup: '供应商_C' },
+  { id: 'C005', name: '逆风飞翔', channel: '拼多多', plays: 8000000, sup: '供应商_C' }
+];
+
+// 累计播放量格式化：≥1亿 → x.xx亿；≥1万 → x.x万；否则原样
+function formatPlayCount(n) {
+  if (n >= 100000000) {
+    var yi = n / 100000000;
+    return (Math.round(yi * 100) / 100) + '亿';
+  }
+  if (n >= 10000) {
+    var wan = n / 10000;
+    return (Math.round(wan * 10) / 10) + '万';
+  }
+  return String(n);
+}
+
+function getDramaDataFilter() {
+  var qId = (document.getElementById('dramaDataSearchId').value || '').trim().toLowerCase();
+  var qName = (document.getElementById('dramaDataSearchName').value || '').trim().toLowerCase();
+  var qCh = document.getElementById('dramaDataSearchChannel').value || '';
+  return { qId: qId, qName: qName, qCh: qCh };
+}
+
+function renderDramaDataTable() {
+  var tbody = document.getElementById('dramaDataTbody');
+  var empty = document.getElementById('dramaDataEmpty');
+  if (!tbody) return;
+  var f = getDramaDataFilter();
+  var list = supDramaData.filter(function(d) {
+    if (f.qId && d.id.toLowerCase().indexOf(f.qId) < 0) return false;
+    if (f.qName && d.name.toLowerCase().indexOf(f.qName) < 0) return false;
+    if (f.qCh && d.channel !== f.qCh) return false;
+    return true;
+  });
+  tbody.innerHTML = '';
+  if (list.length === 0) {
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  list.forEach(function(d, i) {
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + d.id + '</td>' +
+      '<td>' + d.name + '</td>' +
+      '<td>' + d.channel + '</td>' +
+      '<td style="font-weight:600;">' + formatPlayCount(d.plays) + '</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+function filterDramaData() { renderDramaDataTable(); }
+
+function resetDramaDataFilter() {
+  document.getElementById('dramaDataSearchId').value = '';
+  document.getElementById('dramaDataSearchName').value = '';
+  document.getElementById('dramaDataSearchChannel').value = '';
+  renderDramaDataTable();
+}
+
+// ===== 平台端：短剧数据 =====
+// 去重取值工具：按字段从数据中取唯一值列表（保持出现顺序）
+function uniqueValuesBy(list, field) {
+  var seen = {};
+  var out = [];
+  list.forEach(function(d) {
+    var v = d[field];
+    if (v && !seen[v]) { seen[v] = 1; out.push(v); }
+  });
+  return out;
+}
+
+// 初始化平台端筛选下拉（渠道/供应商从数据动态生成）
+function initPltDramaDataFilter() {
+  var chSel = document.getElementById('pltDdSearchChannel');
+  var supSel = document.getElementById('pltDdSearchSupplier');
+  if (!chSel || !supSel) return;
+  var channels = uniqueValuesBy(supDramaData, 'channel');
+  var suppliers = uniqueValuesBy(supDramaData, 'sup');
+  chSel.innerHTML = '<option value="">全部渠道</option>' + channels.map(function(c) { return '<option>' + c + '</option>'; }).join('');
+  supSel.innerHTML = '<option value="">全部供应商</option>' + suppliers.map(function(s) { return '<option>' + s + '</option>'; }).join('');
+}
+
+function renderPltDramaData() {
+  var tbody = document.getElementById('pltDdTbody');
+  var empty = document.getElementById('pltDdEmpty');
+  if (!tbody) return;
+  var qId = (document.getElementById('pltDdSearchId').value || '').trim().toLowerCase();
+  var qName = (document.getElementById('pltDdSearchName').value || '').trim().toLowerCase();
+  var qCh = document.getElementById('pltDdSearchChannel').value || '';
+  var qSup = document.getElementById('pltDdSearchSupplier').value || '';
+  var list = supDramaData.filter(function(d) {
+    if (qId && d.id.toLowerCase().indexOf(qId) < 0) return false;
+    if (qName && d.name.toLowerCase().indexOf(qName) < 0) return false;
+    if (qCh && d.channel !== qCh) return false;
+    if (qSup && d.sup !== qSup) return false;
+    return true;
+  });
+  tbody.innerHTML = '';
+  if (list.length === 0) {
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  list.forEach(function(d) {
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + d.id + '</td>' +
+      '<td>' + d.name + '</td>' +
+      '<td>' + d.channel + '</td>' +
+      '<td>' + (d.sup || '-') + '</td>' +
+      '<td style="font-weight:600;">' + formatPlayCount(d.plays) + '</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+function filterPltDramaData() { renderPltDramaData(); }
+
+function resetPltDramaDataFilter() {
+  document.getElementById('pltDdSearchId').value = '';
+  document.getElementById('pltDdSearchName').value = '';
+  document.getElementById('pltDdSearchChannel').value = '';
+  document.getElementById('pltDdSearchSupplier').value = '';
+  renderPltDramaData();
+}
+
+// 脚本加载时初始化一次平台端筛选下拉（渠道/供应商）
+initPltDramaDataFilter();
+
 
 // ===== 三步编辑合集页面 交互逻辑 =====
 var currentEditStep = 1;
@@ -4143,6 +4569,7 @@ var MAT_CHANNEL_FIELDS = {
   "支付宝":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ","BV"],
   "咪咕":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "搜狐":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
+  "百家号":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "UC浏览器":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "小米":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "淘宝":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
@@ -4156,9 +4583,7 @@ var MAT_CHANNEL_FIELDS = {
   "海外YouTube":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "海外Tiktok端原生":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
   "海外自有产品":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
-  "QQ浏览器":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
-  "京东":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ"],
-  "七猫":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ","BN"],
+  "海外TT小程序":["C","D","E","F","G","H","I","J","K","L","N","O","Q","V","X","AA","AG","AX","AZ","BB","BC","BE","BF","BO","BP","BQ"],
   "河马APP":["C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","S","T","V","X","Y","Z","AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AM","AN","AP","AQ","AS","AT","AV","AW","AX","BB","BC","BD","BG","BJ","BK","BL","BO","BP","BQ","BN","BX"]
 };
 
@@ -4182,12 +4607,12 @@ function getOptTagVal(groupName) {
   return sel ? sel.getAttribute('data-val') : '';
 }
 
-// 制作合同字段是否隐藏：真人剧类型且发行渠道不含「海外Tiktok端原生」时隐藏
+// 制作合同字段是否隐藏：真人剧类型且发行渠道不含「海外Tiktok端原生/海外TT小程序」时隐藏
 function isMatContractHidden() {
   var dramaType = getMatSelectedDramaType() || '';
   var channels = getMatSelectedChannels();
   var isRealDrama = dramaType.indexOf('真人剧（真人实拍）') > -1;
-  var hasTiktok = channels.indexOf('海外Tiktok端原生') > -1;
+  var hasTiktok = channels.indexOf('海外Tiktok端原生') > -1 || channels.indexOf('海外TT小程序') > -1;
   return isRealDrama && channels.length > 0 && !hasTiktok;
 }
 
@@ -4240,7 +4665,7 @@ function getMatCostNum() {
 
 // 备案号展示/必填条件：国内漫剧>30w 或 国内真人>100w
 function isRecordNoRequired() {
-  var dramaType = getMatSelectedDramaType();
+  var dramaType = getMatSelectedDramaType() || '';
   var cost = getMatCostNum();
   if (dramaType.indexOf('国内漫剧') === 0 && cost > 30) return true;
   if (dramaType.indexOf('国内真人') === 0 && cost > 100) return true;
@@ -5258,6 +5683,7 @@ function switchPlatformPage(pageId, el) {
 
   if (pageId === 'plt-evaluation') { renderEvalList(); }
   if (pageId === 'plt-content') { switchContentRole(); }
+  if (pageId === 'plt-drama-data') { renderPltDramaData(); }
   if (pageId === 'plt-supplier-mgmt') { renderSupplierTable(); }
   if (pageId === 'plt-role-mgmt') { initRoleSearchRoleDropdown(); initRoleSearchUserDropdown(); initRoleSearchChannelDropdown(); renderRoleTable(); }
   if (pageId === 'plt-collection-detail') {
@@ -5269,7 +5695,7 @@ function switchPlatformPage(pageId, el) {
 var pltDetailTargetId = '';
 
 function switchPltDetailTab(tabId, el) {
-  var tabIds = ['plt-detail-tab-episodes', 'plt-detail-tab-basic', 'plt-detail-tab-script', 'plt-detail-tab-record', 'plt-detail-tab-role', 'plt-detail-tab-crew', 'plt-detail-tab-material', 'plt-detail-tab-compliance'];
+  var tabIds = ['plt-detail-tab-episodes', 'plt-detail-tab-basic', 'plt-detail-tab-script', 'plt-detail-tab-record', 'plt-detail-tab-role', 'plt-detail-tab-crew', 'plt-detail-tab-material', 'plt-detail-tab-compliance', 'plt-detail-tab-auth'];
   tabIds.forEach(function(id) {
     var node = document.getElementById(id);
     if (node) node.style.display = (id === tabId) ? '' : 'none';
@@ -5324,9 +5750,9 @@ function openPlatformDetail(id) {
   var pltDyOps = (item.channelOps && (item.channelOps['抖音'] || item.channelOps['抖音端原生'])) || '';
   document.getElementById('pltEpCardDouyinChannelOps').textContent = pltDyOps || '-';
 
-  // 渲染版本发布状态 + 操作按钮
-  renderVersionPublishState(id, '红果版本', 'pltEpCardHongguoPubState', 'pltEpCardHongguoOpsBtns');
-  renderVersionPublishState(id, '抖音版本', 'pltEpCardDouyinPubState', 'pltEpCardDouyinOpsBtns');
+  // 渲染版本发布状态 + 操作按钮 + 上线信息
+  renderVersionPublishState(id, '红果版本', 'pltEpCardHongguoPubState', 'pltEpCardHongguoOpsBtns', 'pltEpCardHongguoLaunchTime', 'pltEpCardHongguoContentId');
+  renderVersionPublishState(id, '抖音版本', 'pltEpCardDouyinPubState', 'pltEpCardDouyinOpsBtns', 'pltEpCardDouyinLaunchTime', 'pltEpCardDouyinContentId');
 
   // 渲染物料信息7个tab
   renderPltDetailMaterial(id, item);
@@ -5435,6 +5861,9 @@ function renderPltDetailMaterial(id, item) {
   toggleParentDisplay('pltDetailMatAnimeNoContract', mat.contract === '无');
   toggleParentDisplay('pltDetailMatPddDeclaration', mat.contract === '无');
   toggleParentDisplay('pltDetailMatHuaweiCommitment', mat.contract === '无');
+  // 8. 授权书（商务上传）
+  renderPltAuthBooks(item.bizAuthFiles || []);
+
   // 主创团队新增字段：国内真人/国内漫剧 + 国内全渠道/字节系渠道时展示
   var pltDetailCrewExtra = isCrewExtraVisible(mat);
   toggleParentDisplay('pltDetailMatDirectorGender', pltDetailCrewExtra);
@@ -5442,6 +5871,94 @@ function renderPltDetailMaterial(id, item) {
   toggleParentDisplay('pltDetailMatScreenwriterGender', pltDetailCrewExtra);
   toggleParentDisplay('pltDetailMatScreenwriterPhoto', pltDetailCrewExtra);
   toggleParentDisplay('pltDetailMatScreenwriterIntro', pltDetailCrewExtra);
+}
+
+// 平台端授权书 Tab 渲染与预览/下载
+function renderPltAuthBooks(files) {
+  var box = document.getElementById('pltDetailAuthBookList');
+  if (!box) return;
+  if (!files || files.length === 0) {
+    box.innerHTML = '<div style="padding:10px 14px;background:#f5f5f5;border-radius:6px;font-size:13px;color:var(--text-secondary);">未上传授权书</div>';
+    return;
+  }
+  var html = '<div style="display:flex;flex-direction:column;gap:10px;">';
+  files.forEach(function(f, idx) {
+    var name = escapeHtml(f.name || '未命名文件');
+    var size = escapeHtml(f.size || '');
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#F7F8FA;border:1px solid var(--border);border-radius:8px;font-size:13px;">' +
+      '<div style="display:flex;align-items:center;gap:10px;min-width:0;">' +
+      '<span style="font-size:18px;flex-shrink:0;">📄</span>' +
+      '<div style="min-width:0;">' +
+      '<div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500;">' + name + '</div>' +
+      (size ? '<div style="color:var(--text-tertiary);font-size:12px;margin-top:2px;">' + size + '</div>' : '') +
+      '</div></div>' +
+      '<div style="display:flex;gap:8px;flex-shrink:0;">' +
+      '<button class="btn btn-sm btn-outline" onclick="previewPltAuthFile(' + idx + ')" style="width:auto;padding:4px 12px;">预览</button>' +
+      '<button class="btn btn-sm btn-primary" onclick="downloadPltAuthFile(' + idx + ')" style="width:auto;padding:4px 12px;">下载</button>' +
+      '</div></div>';
+  });
+  html += '</div>';
+  box.innerHTML = html;
+}
+
+function previewPltAuthFile(idx) {
+  var item = findContentById(pltDetailTargetId);
+  if (!item) return;
+  var files = item.bizAuthFiles || [];
+  if (idx < 0 || idx >= files.length) return;
+  var f = files[idx];
+  var name = f.name || '未命名文件';
+  var size = f.size || '-';
+  var ext = (name.lastIndexOf('.') > -1) ? name.slice(name.lastIndexOf('.')).toLowerCase() : '';
+  var isPdf = ext === '.pdf';
+  var previewHtml = '<html><head><meta charset="utf-8"><title>预览：' + escapeHtml(name) + '</title>' +
+    '<style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;padding:40px;background:#f5f5f5;margin:0;}' +
+    '.wrap{max-width:800px;margin:0 auto;background:#fff;border-radius:8px;padding:32px;box-shadow:0 2px 8px rgba(0,0,0,0.06);}' +
+    'h2{margin:0 0 12px;font-size:20px;}.meta{color:#666;font-size:14px;margin-bottom:20px;}.placeholder{padding:60px 20px;text-align:center;color:#999;border:1px dashed #ddd;border-radius:6px;background:#fafafa;}</style></head>' +
+    '<body><div class="wrap"><h2>📄 ' + escapeHtml(name) + '</h2>' +
+    '<div class="meta">文件大小：' + escapeHtml(size) + '</div>' +
+    '<div class="placeholder">' + (isPdf ? 'PDF 在线预览占位（真实环境将加载 PDF 预览服务）' : 'Word 文档在线预览占位（真实环境将调用 Office 在线预览服务）') + '</div>' +
+    '<p style="color:#999;font-size:12px;margin-top:20px;">提示：当前为原型模拟预览，下载后可查看文件内容。</p>' +
+    '</div></body></html>';
+  var win = window.open('', '_blank');
+  if (win) {
+    win.document.open();
+    win.document.write(previewHtml);
+    win.document.close();
+  } else {
+    alert('预览窗口被浏览器拦截，请允许弹窗后重试');
+  }
+}
+
+function downloadPltAuthFile(idx) {
+  var item = findContentById(pltDetailTargetId);
+  if (!item) return;
+  var files = item.bizAuthFiles || [];
+  if (idx < 0 || idx >= files.length) return;
+  var f = files[idx];
+  var name = f.name || '授权书文件';
+  var size = f.size || '-';
+  var ext = (name.lastIndexOf('.') > -1) ? name.slice(name.lastIndexOf('.')).toLowerCase() : '';
+  var isPdf = ext === '.pdf';
+  var blob;
+  if (isPdf) {
+    // 最小 PDF 占位内容，保证下载后文件可被识别为 PDF
+    var pdfContent = '%PDF-1.4\n1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj\n2 0 obj<</Type/Pages/Kids[3 0 R]/Count 1>>endobj\n3 0 obj<</Type/Page/MediaBox[0 0 612 792]>>endobj\ntrailer<</Size 4/Root 1 0 R>>\n%%EOF\n';
+    blob = new Blob([pdfContent], {type: 'application/pdf'});
+  } else {
+    var textContent = '授权书文件：' + name + '\n文件大小：' + size + '\n\n此为原型环境的模拟下载内容。真实环境中将提供对应 Word / PDF 文件。\n';
+    blob = new Blob([textContent], {type: 'application/msword'});
+  }
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function() {
+    URL.revokeObjectURL(url);
+    if (a.parentNode) a.parentNode.removeChild(a);
+  }, 0);
 }
 
 // ===== 供应商端合集详情页：物料信息（7区块）渲染 =====
@@ -5560,10 +6077,12 @@ function renderSupDetailMaterial(collId, item) {
 }
 
 // 渲染版本发布状态和操作按钮
-function renderVersionPublishState(collId, versionName, pubStateId, opsBtnsId) {
+function renderVersionPublishState(collId, versionName, pubStateId, opsBtnsId, launchTimeId, contentIdId) {
   var data = versionPublishStatus[collId] && versionPublishStatus[collId][versionName];
   var status = data ? data.status : '未发布';
   var reason = data ? data.reason : '';
+  var launchTime = data ? data.launchTime : '';
+  var contentId = data ? data.contentId : '';
   var pubStateEl = document.getElementById(pubStateId);
   var opsBtnsEl = document.getElementById(opsBtnsId);
 
@@ -5576,6 +6095,26 @@ function renderVersionPublishState(collId, versionName, pubStateId, opsBtnsId) {
     pubStateEl.innerHTML = '<span style="color:var(--text-tertiary);">未发布</span>';
   }
 
+  // 上线时间 / 渠道内容ID 展示
+  if (launchTimeId) {
+    var ltEl = document.getElementById(launchTimeId);
+    if (ltEl) ltEl.textContent = launchTime || '-';
+  }
+  if (contentIdId) {
+    var cidEl = document.getElementById(contentIdId);
+    if (cidEl) {
+      var isChannelOps = (currentContentRole === 'channel_ops');
+      var editable = isChannelOps && status === '已上线';
+      var displayText = contentId || '-';
+      var versionName = contentIdId.indexOf('Hongguo') > -1 ? '红果版本' : '抖音版本';
+      var html = '<span class="content-id-text">' + displayText + '</span>';
+      if (editable) {
+        html += '<span class="content-id-edit-icon" onclick="editContentId(\'' + contentIdId + '\',\'' + versionName + '\')" title="编辑渠道内容ID">✏️</span>';
+      }
+      cidEl.innerHTML = html;
+    }
+  }
+
   // 操作按钮仅渠道运营可见，且操作后不可修改
   var isChannelOps = (currentContentRole === 'channel_ops');
   if (isChannelOps && status === '未发布') {
@@ -5585,16 +6124,82 @@ function renderVersionPublishState(collId, versionName, pubStateId, opsBtnsId) {
   }
 }
 
-// 版本"已上线"二次确认
+// 打开版本"上线确认"弹窗
 function setVersionOnline(versionName) {
-  if (!confirm('确认将该版本标记为"已上线"吗？确认后不可修改。')) return;
-  var id = pltDetailTargetId;
+  versionOnlineTarget = { id: pltDetailTargetId, version: versionName };
+  document.getElementById('versionOnlineModalVersion').value = versionName;
+
+  // 默认上线时间为当天
+  var today = new Date();
+  var y = today.getFullYear();
+  var m = String(today.getMonth() + 1).padStart(2, '0');
+  var d = String(today.getDate()).padStart(2, '0');
+  document.getElementById('versionOnlineLaunchTime').value = y + '-' + m + '-' + d;
+  document.getElementById('versionOnlineContentId').value = '';
+
+  openModal('versionOnlineModal');
+}
+
+// 确认版本上线
+function confirmVersionOnline() {
+  var launchTime = document.getElementById('versionOnlineLaunchTime').value;
+  var contentId = document.getElementById('versionOnlineContentId').value.trim();
+
+  if (!launchTime) { alert('请选择上线时间'); return; }
+  // 渠道内容ID 改为选填
+
+  var id = versionOnlineTarget.id;
+  var versionName = versionOnlineTarget.version;
+  if (!id || !versionName) { closeModal('versionOnlineModal'); return; }
+
   if (!versionPublishStatus[id]) versionPublishStatus[id] = {};
-  versionPublishStatus[id][versionName] = { status: '已上线', reason: '' };
+  if (!versionPublishStatus[id][versionName]) versionPublishStatus[id][versionName] = { status: '未发布', reason: '', launchTime: '', contentId: '' };
+  versionPublishStatus[id][versionName].status = '已上线';
+  versionPublishStatus[id][versionName].launchTime = launchTime;
+  versionPublishStatus[id][versionName].contentId = contentId;
+
+  closeModal('versionOnlineModal');
+
   // 更新UI
   var pubStateId = versionName === '红果版本' ? 'pltEpCardHongguoPubState' : 'pltEpCardDouyinPubState';
   var opsBtnsId = versionName === '红果版本' ? 'pltEpCardHongguoOpsBtns' : 'pltEpCardDouyinOpsBtns';
-  renderVersionPublishState(id, versionName, pubStateId, opsBtnsId);
+  var launchTimeId = versionName === '红果版本' ? 'pltEpCardHongguoLaunchTime' : 'pltEpCardDouyinLaunchTime';
+  var contentIdId = versionName === '红果版本' ? 'pltEpCardHongguoContentId' : 'pltEpCardDouyinContentId';
+  renderVersionPublishState(id, versionName, pubStateId, opsBtnsId, launchTimeId, contentIdId);
+}
+
+// 行内编辑渠道内容ID
+function editContentId(contentIdId, versionName) {
+  var cidEl = document.getElementById(contentIdId);
+  if (!cidEl) return;
+  var data = versionPublishStatus[pltDetailTargetId] && versionPublishStatus[pltDetailTargetId][versionName];
+  var currentVal = data ? (data.contentId || '') : '';
+  cidEl.innerHTML = '<input type="text" class="content-id-input" id="' + contentIdId + 'Input" value="' + currentVal.replace(/"/g, '&quot;') + '" ' +
+    'onblur="saveContentId(\'' + contentIdId + '\',\'' + versionName + '\')" ' +
+    'onkeydown="if(event.key===\'Enter\'){this.blur();}if(event.key===\'Escape\'){cancelEditContentId(\'' + contentIdId + '\',\'' + versionName + '\');}" />';
+  var input = document.getElementById(contentIdId + 'Input');
+  if (input) { input.focus(); input.select(); }
+}
+
+function saveContentId(contentIdId, versionName) {
+  var input = document.getElementById(contentIdId + 'Input');
+  if (!input) return;
+  var newVal = input.value.trim();
+  var id = pltDetailTargetId;
+  if (id && versionPublishStatus[id] && versionPublishStatus[id][versionName]) {
+    versionPublishStatus[id][versionName].contentId = newVal;
+  }
+  var pubStateId = versionName === '红果版本' ? 'pltEpCardHongguoPubState' : 'pltEpCardDouyinPubState';
+  var opsBtnsId = versionName === '红果版本' ? 'pltEpCardHongguoOpsBtns' : 'pltEpCardDouyinOpsBtns';
+  var launchTimeId = versionName === '红果版本' ? 'pltEpCardHongguoLaunchTime' : 'pltEpCardDouyinLaunchTime';
+  renderVersionPublishState(id, versionName, pubStateId, opsBtnsId, launchTimeId, contentIdId);
+}
+
+function cancelEditContentId(contentIdId, versionName) {
+  var pubStateId = versionName === '红果版本' ? 'pltEpCardHongguoPubState' : 'pltEpCardDouyinPubState';
+  var opsBtnsId = versionName === '红果版本' ? 'pltEpCardHongguoOpsBtns' : 'pltEpCardDouyinOpsBtns';
+  var launchTimeId = versionName === '红果版本' ? 'pltEpCardHongguoLaunchTime' : 'pltEpCardDouyinLaunchTime';
+  renderVersionPublishState(pltDetailTargetId, versionName, pubStateId, opsBtnsId, launchTimeId, contentIdId);
 }
 
 // 打开版本驳回弹窗
@@ -5614,12 +6219,18 @@ function confirmVersionReject() {
   var id = versionRejectTarget.id;
   var versionName = versionRejectTarget.version;
   if (!versionPublishStatus[id]) versionPublishStatus[id] = {};
-  versionPublishStatus[id][versionName] = { status: '已驳回', reason: reason };
+  if (!versionPublishStatus[id][versionName]) {
+    versionPublishStatus[id][versionName] = { status: '未发布', reason: '', launchTime: '', contentId: '' };
+  }
+  versionPublishStatus[id][versionName].status = '已驳回';
+  versionPublishStatus[id][versionName].reason = reason;
   closeModal('versionRejectModal');
   // 更新UI
   var pubStateId = versionName === '红果版本' ? 'pltEpCardHongguoPubState' : 'pltEpCardDouyinPubState';
   var opsBtnsId = versionName === '红果版本' ? 'pltEpCardHongguoOpsBtns' : 'pltEpCardDouyinOpsBtns';
-  renderVersionPublishState(id, versionName, pubStateId, opsBtnsId);
+  var launchTimeId = versionName === '红果版本' ? 'pltEpCardHongguoLaunchTime' : 'pltEpCardDouyinLaunchTime';
+  var contentIdId = versionName === '红果版本' ? 'pltEpCardHongguoContentId' : 'pltEpCardDouyinContentId';
+  renderVersionPublishState(id, versionName, pubStateId, opsBtnsId, launchTimeId, contentIdId);
 }
 
 function openPltVersionView() {
@@ -6494,9 +7105,19 @@ function openCollectionDetail(name, count, channel, type, round, resell, produce
     dyBtn.removeAttribute('onclick');
     dyBtn.classList.add('btn-disabled');
   }
+  // ====== 版本发布状态 + 上线时间（与平台端同源：versionPublishStatus） ======
+  var supPubMap = (typeof versionPublishStatus !== 'undefined' && versionPublishStatus[collId]) ? versionPublishStatus[collId] : {};
+  var supHgPub = supPubMap['红果版本'] || {};
+  var supDyPub = supPubMap['抖音版本'] || {};
+  function supPubStateHtml(st) {
+    if (st === '已上线') return '<span style="color:var(--success);font-weight:600;">已上线</span>';
+    if (st === '已驳回') return '<span style="color:var(--danger);font-weight:600;">已驳回</span>';
+    return '未发布';
+  }
   // 红果版本
   document.getElementById('epCardHongguoName').textContent = name;
-  document.getElementById('epCardHongguoPubState').textContent = '未发布';
+  document.getElementById('epCardHongguoPubState').innerHTML = supPubStateHtml(supHgPub.status || '未发布');
+  document.getElementById('epCardHongguoLaunchTime').textContent = supHgPub.launchTime || '-';
   var hgThumb = document.getElementById('epCardHongguoThumb');
   if (saved.posterImgFile) {
     hgThumb.innerHTML = '<img src="' + currentPosterUrl + '" alt=""><span class="ep-version-thumb-text">' + (name || '').slice(0, 2) + '</span>';
@@ -6505,7 +7126,8 @@ function openCollectionDetail(name, count, channel, type, round, resell, produce
   }
   // 抖音版本
   document.getElementById('epCardDouyinName').textContent = name;
-  document.getElementById('epCardDouyinPubState').textContent = '未发布';
+  document.getElementById('epCardDouyinPubState').innerHTML = supPubStateHtml(supDyPub.status || '未发布');
+  document.getElementById('epCardDouyinLaunchTime').textContent = supDyPub.launchTime || '-';
   var dyThumb = document.getElementById('epCardDouyinThumb');
   if (saved.posterImgFile) {
     dyThumb.innerHTML = '<img src="' + currentPosterUrl + '" alt=""><span class="ep-version-thumb-text">' + (name || '').slice(0, 2) + '</span>';
@@ -6994,8 +7616,8 @@ var roleList = [
   { id: 'R009', userId: 'U012', role: 'channel_ops', channel: '红果短剧', createTime: '2026-06-12 11:05' },
   { id: 'R009b', userId: 'U012', role: 'channel_ops', channel: '抖音端原生', createTime: '2026-06-12 11:05' },
   { id: 'R009c', userId: 'U012', role: 'channel_ops', channel: 'TT端原生', createTime: '2026-06-12 11:05' },
-  { id: 'R010', userId: 'U013', role: 'biz', channel: '', createTime: '2026-06-15 09:00' },
-  { id: 'R010b', userId: 'U014', role: 'biz', channel: '', createTime: '2026-06-15 09:10' }
+  { id: 'R010', userId: 'U013', role: 'biz', channel: '', alias: '小陈', createTime: '2026-06-15 09:00' },
+  { id: 'R010b', userId: 'U014', role: 'biz', channel: '', alias: '小林', createTime: '2026-06-15 09:10' }
 ];
 var roleSeq = 10;
 
@@ -7079,6 +7701,7 @@ function renderRoleTable() {
       '<td>' + userName + '</td>' +
       '<td>' + roleName + '</td>' +
       '<td>' + channelName + '</td>' +
+      '<td>' + (r.alias ? escapeOpinionHtml(r.alias) : '<span style="color:var(--text-tertiary);">-</span>') + '</td>' +
       '<td>' + (r.createTime || '-') + '</td>' +
       '<td>' +
         '<button class="btn btn-sm btn-outline" onclick="openRoleEditModal(\'' + r.id + '\')">编辑</button> ' +
@@ -7139,6 +7762,9 @@ function toggleRoleChannelField() {
   if (!row) return;
   var show = (role === 'channel_lead' || role === 'channel_ops');
   row.style.display = show ? '' : 'none';
+  // 商务角色显示化名字段
+  var aliasRow = document.getElementById('roleAliasRow');
+  if (aliasRow) aliasRow.style.display = (role === 'biz') ? '' : 'none';
 }
 
 function openRoleEditModal(id) {
@@ -7152,6 +7778,8 @@ function openRoleEditModal(id) {
   document.getElementById('roleEditUser').value = '';
   document.getElementById('roleEditRole').value = '';
   document.getElementById('roleEditChannel').value = '';
+  var aliasInput = document.getElementById('roleEditAlias');
+  if (aliasInput) aliasInput.value = '';
 
   if (isEdit) {
     var role = roleList.find(function(r) { return r.id === id; });
@@ -7159,6 +7787,7 @@ function openRoleEditModal(id) {
     document.getElementById('roleEditUser').value = role.userId || '';
     document.getElementById('roleEditRole').value = role.role || '';
     document.getElementById('roleEditChannel').value = role.channel || '';
+    if (aliasInput) aliasInput.value = (role.role === 'biz' && role.alias) ? role.alias : '';
   }
 
   toggleRoleChannelField();
@@ -7170,6 +7799,8 @@ function saveRole() {
   var userId = document.getElementById('roleEditUser').value;
   var role = document.getElementById('roleEditRole').value;
   var channel = document.getElementById('roleEditChannel').value;
+  var aliasInput = document.getElementById('roleEditAlias');
+  var alias = aliasInput ? aliasInput.value.trim() : '';
 
   if (!userId) { alert('请选择用户'); return; }
   if (!role) { alert('请选择关联角色'); return; }
@@ -7178,6 +7809,10 @@ function saveRole() {
   if (role !== 'channel_lead' && role !== 'channel_ops') {
     channel = '';
   }
+  // 非商务角色清空化名
+  if (role !== 'biz') {
+    alias = '';
+  }
 
   if (id) {
     var r = roleList.find(function(x) { return x.id === id; });
@@ -7185,6 +7820,7 @@ function saveRole() {
     r.userId = userId;
     r.role = role;
     r.channel = channel;
+    r.alias = alias;
   } else {
     roleSeq++;
     var now = new Date();
@@ -7195,6 +7831,7 @@ function saveRole() {
       userId: userId,
       role: role,
       channel: channel,
+      alias: alias,
       createTime: createTime
     });
   }
@@ -7267,6 +7904,10 @@ var contentData = [
       '芒果TV': '渠道内容不符合平台调性，请修改后再提交上线申请'
     },
     bizContact: '陈商务',
+    bizAuthFiles: [
+      { name: '暗夜追光_版权授权书.pdf', size: '2.4MB' },
+      { name: '暗夜追光_补充说明.docx', size: '1.1MB' }
+    ],
   },
   {
     id: 'C003', dramaName: '山海谣', supplier: '供应商_A', episodeCount: 36,
@@ -7292,6 +7933,9 @@ var contentData = [
     channelLead: '赵渠道', channelOps: { '腾讯视频': '孙运营', '爱奇艺': '孙运营' }, overallStatus: '已上线', launchTime: '2026-07-25',
     channelLaunchStatus: { '腾讯视频': '已上线', '爱奇艺': '已上线' },
     bizContact: '林商务',
+    bizAuthFiles: [
+      { name: '都市夜话_版权授权书.pdf', size: '1.8MB' }
+    ],
   },
   {
     id: 'C006', dramaName: '冰与火之歌', supplier: '供应商_B', episodeCount: 30,
@@ -7388,18 +8032,21 @@ var channelRejectNotices = {
 
 // 版本发布状态（按合集 ID 映射，每个版本一条记录）
 // status: '未发布' | '已上线' | '已驳回'
+// launchTime: 上线时间（YYYY-MM-DD）
+// contentId: 渠道内容ID
 var versionPublishStatus = {
   'C001': {
-    '红果版本': { status: '未发布', reason: '' },
-    '抖音版本': { status: '未发布', reason: '' }
+    '红果版本': { status: '未发布', reason: '', launchTime: '', contentId: '' },
+    '抖音版本': { status: '未发布', reason: '', launchTime: '', contentId: '' }
   },
   'C002': {
-    '红果版本': { status: '已上线', reason: '' },
-    '抖音版本': { status: '已驳回', reason: '版本内容不符合平台规范，请修改后重新提交' }
+    '红果版本': { status: '已上线', reason: '', launchTime: '2026-07-18', contentId: 'HG20260718001' },
+    '抖音版本': { status: '已驳回', reason: '版本内容不符合平台规范，请修改后重新提交', launchTime: '', contentId: '' }
   }
 };
 
-// 当前驳回操作的目标版本
+// 当前上线/驳回操作的目标版本
+var versionOnlineTarget = { id: '', version: '' };
 var versionRejectTarget = { id: '', version: '' };
 
 // 审核历史记录（按合集 ID 映射）
@@ -8426,11 +9073,110 @@ function buildRoleActions(item, role) {
   if (role === 'channel_ops') {
     // 渠道状态设置已移至合集详情页版本卡片中
   }
+  if (role === 'biz') {
+    // 商务角色：可编辑"对接商务"并上传授权书
+    actions.push('<button class="btn btn-sm btn-outline" onclick="openBizEdit(\'' + item.id + '\')">编辑</button>');
+  }
 
   // 所有角色显示「审核记录」按钮
   actions.push('<button class="btn btn-sm btn-outline" onclick="openContentReviewHistory(\'' + item.id + '\')">审核记录</button>');
 
   return actions.join(' ');
+}
+
+// ---- 商务角色：编辑商务信息（对接商务 + 授权书多文件上传） ----
+var bizEditTargetId = '';
+var bizAuthFiles = []; // 弹窗内授权书缓存: [{name, size}]
+
+function openBizEdit(id) {
+  var item = findContentById(id);
+  if (!item) return;
+  bizEditTargetId = id;
+  document.getElementById('bizEditModalTitle').textContent = '编辑商务信息 — ' + item.dramaName;
+  document.getElementById('bizEditDramaName').value = item.dramaName + '（' + (item.supplier || '') + '）';
+  // 对接商务：从角色列表中动态生成可选项
+  var contactSel = document.getElementById('bizEditContact');
+  contactSel.innerHTML = '<option value="">请选择对接商务</option>';
+  roleList.filter(function(r) { return r.role === 'biz'; }).forEach(function(r) {
+    var user = roleUserPool.find(function(u) { return u.id === r.userId; });
+    if (user) {
+      contactSel.innerHTML += '<option value="' + escapeHtml(user.name) + '">' + escapeHtml(user.name) + '</option>';
+    }
+  });
+  contactSel.value = item.bizContact || '';
+  // 初始展示已上传的授权书（从 item 快照）
+  bizAuthFiles = (item.bizAuthFiles || []).map(function(f) { return { name: f.name, size: f.size }; });
+  renderBizAuthFileList();
+  openModal('bizEditModal');
+}
+
+function formatFileSize(bytes) {
+  if (!bytes && bytes !== 0) return '';
+  if (bytes < 1024) return bytes + 'B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + 'KB';
+  return (bytes / (1024 * 1024)).toFixed(1) + 'MB';
+}
+
+function handleBizAuthFileSelect(input) {
+  if (!input.files || input.files.length === 0) return;
+  var MAX_SIZE = 10 * 1024 * 1024; // 10M
+  var allowedExt = ['.doc', '.docx', '.pdf'];
+  for (var i = 0; i < input.files.length; i++) {
+    var file = input.files[i];
+    var name = file.name || '';
+    var ext = (name.lastIndexOf('.') > -1) ? name.slice(name.lastIndexOf('.')).toLowerCase() : '';
+    if (allowedExt.indexOf(ext) === -1) {
+      alert('仅支持 Word / PDF 格式：' + name);
+      continue;
+    }
+    if (file.size > MAX_SIZE) {
+      alert('文件「' + name + '」超过 10M 限制，请重新选择');
+      continue;
+    }
+    // 避免重复添加同名文件
+    var dup = bizAuthFiles.some(function(f) { return f.name === name; });
+    if (dup) {
+      alert('文件「' + name + '」已在列表中');
+      continue;
+    }
+    bizAuthFiles.push({ name: name, size: formatFileSize(file.size) });
+  }
+  input.value = '';
+  renderBizAuthFileList();
+}
+
+function removeBizAuthFile(idx) {
+  bizAuthFiles.splice(idx, 1);
+  renderBizAuthFileList();
+}
+
+function renderBizAuthFileList() {
+  var box = document.getElementById('bizAuthFileList');
+  if (!box) return;
+  if (bizAuthFiles.length === 0) {
+    box.innerHTML = '<div style="color:var(--text-tertiary);font-size:12px;padding:4px 0;">暂未上传授权书</div>';
+    return;
+  }
+  var html = '';
+  bizAuthFiles.forEach(function(f, i) {
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#F7F8FA;border:1px solid var(--border);border-radius:6px;font-size:13px;">' +
+      '<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:10px;">📄 ' + f.name + (f.size ? ' <span style="color:var(--text-tertiary);font-size:12px;">(' + f.size + ')</span>' : '') + '</span>' +
+      '<span class="file-remove" onclick="removeBizAuthFile(' + i + ')" style="color:var(--danger);cursor:pointer;font-size:12px;flex-shrink:0;background:none;border:none;width:auto;height:auto;border-radius:0;">删除</span>' +
+      '</div>';
+  });
+  box.innerHTML = html;
+}
+
+function confirmBizEdit() {
+  var item = findContentById(bizEditTargetId);
+  if (!item) return;
+  var contactInput = document.getElementById('bizEditContact');
+  var contact = (contactInput.value || '').trim();
+  if (!contact) { alert('请输入对接商务'); return; }
+  item.bizContact = contact;
+  item.bizAuthFiles = bizAuthFiles.map(function(f) { return { name: f.name, size: f.size }; });
+  closeModal('bizEditModal');
+  renderContentTable();
 }
 
 // ---- 审核记录查看 ----
@@ -8604,6 +9350,7 @@ var reviewTargetId = '';
 var reviewTargetType = '';
 var crCurrentEpIndex = 0; // 正片审核：当前选中的剧集索引
 var epReviewLocked = false; // 正片审核：非"审核中"状态时锁定操作
+var epBatchSelected = {}; // 正片审核：批量勾选的剧集索引集合（{ 索引: true }）
 
 // episodeReviewData 结构：{ collectionId: { epIndex: { status: 'pending'|'passed'|'rejected', reason: '' } } }
 function getEpReview(collectionId, epIndex) {
@@ -8811,6 +9558,8 @@ function openContentReview(id, type) {
     setTimeout(initCrMatScrollSpy, 50);
   } else {
     // 正片审核专属 UI
+    crCurrentEpIndex = 0;
+    epBatchSelected = {};
     var epDoneBtn = document.getElementById('crEpDoneBtn');
     var epCanOperate = (item.episodeStatus === '审核中');
     epReviewLocked = !epCanOperate;
@@ -8960,20 +9709,29 @@ function renderEpisodeList(collectionId) {
           '</div>';
       }
       return '<div onclick="crPlayEpisode(\'' + collectionId + '\',' + i + ')" ' +
-        'style="padding:10px 12px;cursor:pointer;border-radius:6px;margin-bottom:4px;' + (rv.status === 'rejected' ? 'border-left:3px solid var(--danger);' : '') + 'transition:background 0.2s;"' +
+        'style="padding:8px 10px;cursor:pointer;border-radius:6px;margin-bottom:4px;' + (rv.status === 'rejected' ? 'border-left:3px solid var(--danger);' : '') + 'transition:background 0.2s;"' +
         'onmouseenter="if(!this.classList.contains(\'cr-ep-active\'))this.style.background=\'#E5E6EB\'" ' +
         'onmouseleave="if(!this.classList.contains(\'cr-ep-active\'))this.style.background=\'\'" ' +
-        'class="' + (i === 0 ? 'cr-ep-active' : '') + '">' +
-        '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">' +
-        '<div style="min-width:0;flex:1;"><div style="font-weight:600;font-size:13px;">' + e.ep + '</div>' +
-        '<div style="font-size:12px;opacity:0.7;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + e.title + '</div></div>' +
+        'class="' + (i === crCurrentEpIndex ? 'cr-ep-active' : '') + '">' +
+        '<div style="display:flex;align-items:flex-start;gap:8px;">' +
+        '<input type="checkbox" ' + (rv.status === 'passed' ? 'disabled ' : '') + (epBatchSelected[i] ? 'checked ' : '') +
+        'onclick="event.stopPropagation()" onchange="toggleEpBatch(\'' + collectionId + '\',' + i + ',this)" ' +
+        'title="' + (rv.status === 'passed' ? '已通过集无需审核' : '勾选后可批量审核') + '" ' +
+        'style="flex-shrink:0;width:14px;height:14px;margin-top:2px;accent-color:var(--primary);cursor:' + (rv.status === 'passed' ? 'not-allowed' : 'pointer') + ';">' +
+        '<div style="min-width:0;flex:1;">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">' +
+        '<span style="font-weight:600;font-size:13px;flex-shrink:0;">' + e.ep + '</span>' +
         badge +
+        '</div>' +
+        '<div style="font-size:12px;opacity:0.7;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px;">' + e.title + '</div>' +
+        '</div>' +
         '</div>' +
         rejectInfo +
         '</div>';
     }).join('');
   }
   updateEpProgress(collectionId);
+  updateEpBatchBar();
 }
 
 function updateEpProgress(collectionId) {
@@ -9024,6 +9782,151 @@ function confirmEpReject() {
   crPlayEpisode(reviewTargetId, crCurrentEpIndex);
 }
 
+// ---- 批量审核（勾选多集一次性通过/驳回）----
+// 可批量操作范围：待审核/已驳回的剧集（已通过集不可再操作）
+function getEpSelectableIndexes() {
+  var episodes = contentEpisodes[reviewTargetId] || [];
+  var arr = [];
+  for (var i = 0; i < episodes.length; i++) {
+    if (getEpReview(reviewTargetId, i).status !== 'passed') arr.push(i);
+  }
+  return arr;
+}
+
+function getEpBatchSelectedIndexes() {
+  var out = [];
+  for (var k in epBatchSelected) {
+    if (epBatchSelected[k]) out.push(parseInt(k, 10));
+  }
+  out.sort(function(a, b) { return a - b; });
+  return out;
+}
+
+// 刷新批量工具条：内容渲染、已选 + 可选计数、全选按钮状态
+function updateEpBatchBar() {
+  var bar = document.getElementById('crEpBatchBar');
+  if (!bar) return;
+  var content = document.getElementById('crEpBatchContent');
+  if (!content) return;
+  var episodes = contentEpisodes[reviewTargetId] || [];
+  // 无剧集 → 提示
+  if (episodes.length === 0) {
+    content.innerHTML = '<div style="font-size:12px;color:var(--text-tertiary);text-align:center;padding:6px 0;">暂无剧集数据</div>';
+    return;
+  }
+  // 已锁定（非"审核中"状态） → 提示
+  if (epReviewLocked) {
+    content.innerHTML = '<div style="font-size:12px;color:var(--text-tertiary);text-align:center;padding:6px 0;">当前合集非"审核中"状态，批量审核不可用</div>';
+    return;
+  }
+  // 正常状态：渲染完整批量工具条
+  if (!document.getElementById('crEpCheckAll')) {
+    content.innerHTML =
+      '<label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-secondary);cursor:pointer;user-select:none;">' +
+        '<input type="checkbox" id="crEpCheckAll" onclick="toggleEpBatchAll()" style="accent-color:var(--primary);width:14px;height:14px;"> ' +
+        '<span style="font-weight:600;">全选</span><span style="color:var(--text-tertiary);">（仅未通过集）</span>' +
+      '</label>' +
+      '<div style="display:flex;gap:6px;margin-top:8px;">' +
+        '<button class="btn btn-sm btn-success" id="crEpBatchPassBtn" style="flex:1;padding:3px 0;" onclick="batchReviewEpisodes(\'pass\')">批量通过</button>' +
+        '<button class="btn btn-sm btn-danger" id="crEpBatchRejectBtn" style="flex:1;padding:3px 0;" onclick="batchReviewEpisodes(\'reject\')">批量驳回</button>' +
+      '</div>' +
+      '<div id="crEpBatchCount" style="font-size:11px;color:var(--text-tertiary);margin-top:6px;">已选 0 集 / 可选 0 集</div>';
+  }
+  var sel = getEpBatchSelectedIndexes();
+  var selectable = getEpSelectableIndexes();
+  var cnt = document.getElementById('crEpBatchCount');
+  if (cnt) cnt.textContent = '已选 ' + sel.length + ' 集 / 可选 ' + selectable.length + ' 集';
+  var all = document.getElementById('crEpCheckAll');
+  if (all) {
+    all.checked = selectable.length > 0 && sel.length === selectable.length;
+    all.indeterminate = sel.length > 0 && sel.length < selectable.length;
+    all.disabled = selectable.length === 0;
+  }
+  // 同步当前剧集栏的二级全选入口
+  var reviewAllWrap = document.getElementById('crEpReviewAllWrap');
+  var reviewAllCb = document.getElementById('crEpReviewAllCheck');
+  if (reviewAllWrap && reviewAllCb) {
+    reviewAllWrap.style.display = (episodes.length > 0) ? 'inline-flex' : 'none';
+    reviewAllCb.checked = selectable.length > 0 && sel.length === selectable.length;
+    reviewAllCb.indeterminate = sel.length > 0 && sel.length < selectable.length;
+    reviewAllCb.disabled = selectable.length === 0;
+  }
+}
+
+// 勾选/取消单集（由列表行内复选框触发，已阻止冒泡不影响播放）
+function toggleEpBatch(collectionId, index, el) {
+  if (epReviewLocked) { el.checked = false; return; }
+  var rv = getEpReview(collectionId, index);
+  if (rv.status === 'passed') { el.checked = false; return; }
+  if (el.checked) {
+    epBatchSelected[index] = true;
+  } else {
+    delete epBatchSelected[index];
+  }
+  updateEpBatchBar();
+}
+
+// 全选/取消全选（仅可选集：未通过）
+function toggleEpBatchAll() {
+  if (epReviewLocked) return;
+  var all = document.getElementById('crEpCheckAll');
+  if (all && all.checked) {
+    var selectable = getEpSelectableIndexes();
+    epBatchSelected = {};
+    for (var i = 0; i < selectable.length; i++) epBatchSelected[selectable[i]] = true;
+  } else {
+    epBatchSelected = {};
+  }
+  renderEpisodeList(reviewTargetId);
+}
+
+// 批量操作入口：pass=批量通过  reject=弹出批量驳回面板
+function batchReviewEpisodes(action) {
+  if (epReviewLocked) return;
+  var idxs = getEpBatchSelectedIndexes();
+  if (idxs.length === 0) { alert('请先勾选需要审核的剧集'); return; }
+  if (action === 'pass') {
+    if (!confirm('确定批量通过选中的 ' + idxs.length + ' 集吗？')) return;
+    idxs.forEach(function(i) {
+      var rv = getEpReview(reviewTargetId, i);
+      rv.status = 'passed';
+      rv.reason = '';
+    });
+    epBatchSelected = {};
+    renderEpisodeList(reviewTargetId);
+    crPlayEpisode(reviewTargetId, crCurrentEpIndex);
+  } else if (action === 'reject') {
+    document.getElementById('crEpBatchRejectLabel').textContent = '已选 ' + idxs.length + ' 集';
+    document.getElementById('crEpBatchRejectReason').value = '';
+    document.getElementById('crEpBatchRejectWrap').style.display = 'block';
+    document.getElementById('crEpProgressWrap').style.display = 'none';
+  }
+}
+
+function cancelEpBatchReject() {
+  document.getElementById('crEpBatchRejectWrap').style.display = 'none';
+  document.getElementById('crEpBatchRejectReason').value = '';
+  document.getElementById('crEpProgressWrap').style.display = 'flex';
+}
+
+function confirmEpBatchReject() {
+  var reason = document.getElementById('crEpBatchRejectReason').value.trim();
+  if (!reason) { alert('请填写驳回原因'); return; }
+  var idxs = getEpBatchSelectedIndexes();
+  if (idxs.length === 0) { alert('请先勾选需要驳回的剧集'); return; }
+  idxs.forEach(function(i) {
+    var rv = getEpReview(reviewTargetId, i);
+    rv.status = 'rejected';
+    rv.reason = reason;
+  });
+  epBatchSelected = {};
+  document.getElementById('crEpBatchRejectWrap').style.display = 'none';
+  document.getElementById('crEpBatchRejectReason').value = '';
+  document.getElementById('crEpProgressWrap').style.display = 'flex';
+  renderEpisodeList(reviewTargetId);
+  crPlayEpisode(reviewTargetId, crCurrentEpIndex);
+}
+
 function finishEpisodeReview() {
   var item = findContentById(reviewTargetId);
   var episodes = contentEpisodes[reviewTargetId] || [];
@@ -9058,6 +9961,12 @@ function finishEpisodeReview() {
 }
 
 function cancelOrCloseReview() {
+  // 正片批量驳回原因填写 → 返回正常
+  var epBatchWrap = document.getElementById('crEpBatchRejectWrap');
+  if (epBatchWrap && epBatchWrap.style.display === 'block') {
+    cancelEpBatchReject();
+    return;
+  }
   // 正片逐集驳回原因填写 → 返回正常
   var epWrap = document.getElementById('crEpRejectReasonWrap');
   if (epWrap && epWrap.style.display === 'block') {
@@ -9852,44 +10761,44 @@ var evaluationData = [
   {
     id: 'E001', dramaName: '都市夜话', supplier: '供应商_B', submitTime: '2026-07-29 10:00',
     episodeCount: 24, cardLink: 'https://example.com/card/urban-night',
-    reviewA: { status: 'pass', reviewer: '张审核', time: '2026-07-29 14:30' },
+    reviewA: { status: 'pass', reviewer: '张审核', time: '2026-07-29 14:30', opinion: '题材常规，剧情节奏流畅，人物设定完整' },
     reviewB: { status: 'pending', reviewer: '', time: '' },
     reviewC: { status: 'pending', reviewer: '', time: '' },
     history: [
       { time: '2026-07-29 10:00', reviewA: { text: '待审核' }, reviewB: { text: '待审核' }, reviewC: { text: '待审核' }, overall: '--' },
-      { time: '2026-07-29 14:30', reviewA: { text: '张审核—通过' }, reviewB: { text: '待审核' }, reviewC: { text: '待审核' }, overall: '--' }
+      { time: '2026-07-29 14:30', reviewA: { text: '张审核—通过', opinion: '题材常规，剧情节奏流畅，人物设定完整' }, reviewB: { text: '待审核' }, reviewC: { text: '待审核' }, overall: '--' }
     ]
   },
   {
     id: 'E002', dramaName: '星辰大海', supplier: '供应商_A', submitTime: '2026-07-28 09:00',
     episodeCount: 30, cardLink: 'https://example.com/card/star-sea',
-    reviewA: { status: 'pass', reviewer: '张审核', time: '2026-07-28 11:00' },
+    reviewA: { status: 'pass', reviewer: '张审核', time: '2026-07-28 11:00', opinion: '题材常规，叙事结构完整，人物设定鲜明' },
     reviewB: { status: 'pass', reviewer: '李评估', time: '2026-07-28 15:00' },
     reviewC: { status: 'pass', reviewer: '王合规', time: '2026-07-29 10:00' },
     history: [
       { time: '2026-07-28 09:00', reviewA: { text: '待审核' }, reviewB: { text: '待审核' }, reviewC: { text: '待审核' }, overall: '--' },
-      { time: '2026-07-28 11:00', reviewA: { text: '张审核—通过' }, reviewB: { text: '待审核' }, reviewC: { text: '待审核' }, overall: '--' },
-      { time: '2026-07-28 15:00', reviewA: { text: '张审核—通过' }, reviewB: { text: '李评估—通过' }, reviewC: { text: '待审核' }, overall: '--' },
-      { time: '2026-07-29 10:00', reviewA: { text: '张审核—通过' }, reviewB: { text: '李评估—通过' }, reviewC: { text: '王合规—通过' }, overall: '通过' }
+      { time: '2026-07-28 11:00', reviewA: { text: '张审核—通过', opinion: '题材常规，叙事结构完整，人物设定鲜明' }, reviewB: { text: '待审核' }, reviewC: { text: '待审核' }, overall: '--' },
+      { time: '2026-07-28 15:00', reviewA: { text: '张审核—通过', opinion: '题材常规，叙事结构完整，人物设定鲜明' }, reviewB: { text: '李评估—通过' }, reviewC: { text: '待审核' }, overall: '--' },
+      { time: '2026-07-29 10:00', reviewA: { text: '张审核—通过', opinion: '题材常规，叙事结构完整，人物设定鲜明' }, reviewB: { text: '李评估—通过' }, reviewC: { text: '王合规—通过' }, overall: '通过' }
     ]
   },
   {
     id: 'E003', dramaName: '山海谣', supplier: '供应商_A', submitTime: '2026-07-15 08:30',
     episodeCount: 36, cardLink: 'https://example.com/card/mountain-sea',
-    reviewA: { status: 'pass', reviewer: '张审核', time: '2026-07-15 16:00' },
+    reviewA: { status: 'pass', reviewer: '张审核', time: '2026-07-15 16:00', opinion: '题材有一定创新性，主线清晰，完成度较高' },
     reviewB: { status: 'pass', reviewer: '李评估', time: '2026-07-16 10:00' },
     reviewC: { status: 'reject', reviewer: '王合规', time: '2026-07-17 14:00', reason: '题材不符合平台导向，建议调整主线剧情' },
     history: [
       { time: '2026-07-15 08:30', reviewA: { text: '待审核' }, reviewB: { text: '待审核' }, reviewC: { text: '待审核' }, overall: '--' },
-      { time: '2026-07-15 16:00', reviewA: { text: '张审核—通过' }, reviewB: { text: '待审核' }, reviewC: { text: '待审核' }, overall: '--' },
-      { time: '2026-07-16 10:00', reviewA: { text: '张审核—通过' }, reviewB: { text: '李评估—通过' }, reviewC: { text: '待审核' }, overall: '--' },
-      { time: '2026-07-17 14:00', reviewA: { text: '张审核—通过' }, reviewB: { text: '李评估—通过' }, reviewC: { text: '王合规—驳回', status: 'reject', reason: '题材不符合平台导向，建议调整主线剧情' }, overall: '驳回' }
+      { time: '2026-07-15 16:00', reviewA: { text: '张审核—通过', opinion: '题材有一定创新性，主线清晰，完成度较高' }, reviewB: { text: '待审核' }, reviewC: { text: '待审核' }, overall: '--' },
+      { time: '2026-07-16 10:00', reviewA: { text: '张审核—通过', opinion: '题材有一定创新性，主线清晰，完成度较高' }, reviewB: { text: '李评估—通过' }, reviewC: { text: '待审核' }, overall: '--' },
+      { time: '2026-07-17 14:00', reviewA: { text: '张审核—通过', opinion: '题材有一定创新性，主线清晰，完成度较高' }, reviewB: { text: '李评估—通过' }, reviewC: { text: '王合规—驳回', status: 'reject', reason: '题材不符合平台导向，建议调整主线剧情' }, overall: '驳回' }
     ]
   }
 ];
 
 var reviewerNames = { A: '张审核', B: '李评估', C: '王合规' };
-var groupNames = { A: '审核A组', B: '审核B组', C: '审核C组' };
+var groupNames = { A: '审核组评估', B: '红果评估', C: '运营评估' };
 
 function getStatusDisplay(review) {
   if (review.status === 'pass') return '<span class="eval-status-pass">' + review.reviewer + '—通过</span>';
@@ -9919,32 +10828,74 @@ function hasActions(item) {
   return status === 'pending';
 }
 
+// ===== 审核意见 =====
+// 意见 HTML 转义（防注入/防破坏标签结构）
+function escapeOpinionHtml(t) {
+  return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// 列表展示用截断（超长省略，完整内容放 title 提示）
+function truncateOpinion(t) {
+  return t.length > 20 ? t.slice(0, 20) + '…' : t;
+}
+
+// 列表「审核意见」展示规则：
+// 任一组驳回 → 展示驳回意见（红）；三组全部通过 → 展示审核组评估填写的审核意见；否则 --
+function getOpinionDisplay(item) {
+  var overall = getOverallStatus(item);
+  if (overall === 'reject') {
+    var reason = '';
+    ['A', 'B', 'C'].forEach(function(g) {
+      var r = item['review' + g];
+      if (r.status === 'reject' && r.reason && !reason) reason = r.reason;
+    });
+    if (reason) return '<span style="color:#CF1322;" title="' + escapeOpinionHtml(reason) + '">' + escapeOpinionHtml(truncateOpinion(reason)) + '</span>';
+    return '<span style="color:var(--text-tertiary);">--</span>';
+  }
+  if (overall === 'pass') {
+    var op = item.reviewA && item.reviewA.opinion;
+    if (op) return '<span style="color:var(--text-secondary);" title="' + escapeOpinionHtml(op) + '">' + escapeOpinionHtml(truncateOpinion(op)) + '</span>';
+  }
+  return '<span style="color:var(--text-tertiary);">--</span>';
+}
+
+// 构造一条历史记录（通过/驳回共用）
+function buildHistoryEntry(item, timeStr) {
+  var hEntry = { time: timeStr, overall: '' };
+  ['A', 'B', 'C'].forEach(function(g) {
+    var r = item['review' + g];
+    if (r.status === 'pass') {
+      hEntry['review' + g] = { text: r.reviewer + '—通过' };
+      if (r.opinion) hEntry['review' + g].opinion = r.opinion;
+    }
+    else if (r.status === 'reject') hEntry['review' + g] = { text: r.reviewer + '—驳回', status: 'reject', reason: r.reason || '' };
+    else hEntry['review' + g] = { text: '待审核' };
+  });
+  hEntry.overall = calcOverallText(item);
+  return hEntry;
+}
+
 function renderEvalList() {
   var tbody = document.getElementById('evalTbody');
   var empty = document.getElementById('evalEmpty');
   if (!tbody) return;
 
-  var supplierFilter = document.getElementById('evalFilterSupplier').value;
-  var dramaFilter = document.getElementById('evalFilterDrama').value.trim().toLowerCase();
-  var overallFilter = document.getElementById('evalFilterOverall').value;
-  var dateFrom = document.getElementById('evalFilterDateFrom').value;
-  var dateTo = document.getElementById('evalFilterDateTo').value;
-
-  var filtered = evaluationData.filter(function(item) {
-    if (supplierFilter && item.supplier !== supplierFilter) return false;
-    if (dramaFilter && item.dramaName.toLowerCase().indexOf(dramaFilter) === -1) return false;
-    if (overallFilter && getOverallStatus(item) !== overallFilter) return false;
-    if (dateFrom && item.submitTime < dateFrom) return false;
-    if (dateTo && item.submitTime > dateTo + ' 23:59') return false;
-    return true;
-  });
+  var filtered = getEvalFiltered();
 
   tbody.innerHTML = '';
   if (filtered.length === 0) {
     empty.style.display = 'block';
+    updateEvalBatchBar(filtered);
     return;
   }
   empty.style.display = 'none';
+
+  // 过滤结果变化后，清除不在当前列表中的勾选
+  var visibleIds = {};
+  filtered.forEach(function(item) { visibleIds[item.id] = true; });
+  Object.keys(evalSelected).forEach(function(k) {
+    if (!visibleIds[k]) delete evalSelected[k];
+  });
 
   filtered.forEach(function(item) {
     var actionHtml =
@@ -9954,6 +10905,7 @@ function renderEvalList() {
 
     var tr = document.createElement('tr');
     tr.innerHTML =
+      '<td><input type="checkbox" ' + (evalSelected[item.id] ? 'checked' : '') + ' onchange="toggleEvalCheck(\'' + item.id + '\', this)" style="accent-color:var(--primary);width:14px;height:14px;cursor:pointer;"></td>' +
       '<td style="color:var(--text-secondary);font-size:12px;">' + item.id + '</td>' +
       '<td>' + item.supplier + '</td>' +
       '<td>' + item.dramaName + '</td>' +
@@ -9963,19 +10915,148 @@ function renderEvalList() {
       '<td>' + getStatusDisplay(item.reviewB) + '</td>' +
       '<td>' + getStatusDisplay(item.reviewC) + '</td>' +
       '<td>' + getOverallResult(item) + '</td>' +
+      '<td>' + getOpinionDisplay(item) + '</td>' +
       '<td>' + item.submitTime + '</td>' +
       '<td style="white-space:nowrap;">' + actionHtml + '</td>';
     tbody.appendChild(tr);
   });
+
+  updateEvalBatchBar(filtered);
+}
+
+// ===== 内容评估批量下载 =====
+var evalSelected = {}; // {评估ID: true}
+
+function getEvalFiltered() {
+  var supplierFilter = document.getElementById('evalFilterSupplier').value;
+  var dramaFilter = document.getElementById('evalFilterDrama').value.trim().toLowerCase();
+  var overallFilter = document.getElementById('evalFilterOverall').value;
+  var dateFrom = document.getElementById('evalFilterDateFrom').value;
+  var dateTo = document.getElementById('evalFilterDateTo').value;
+  return evaluationData.filter(function(item) {
+    if (supplierFilter && item.supplier !== supplierFilter) return false;
+    if (dramaFilter && item.dramaName.toLowerCase().indexOf(dramaFilter) === -1) return false;
+    if (overallFilter && getOverallStatus(item) !== overallFilter) return false;
+    if (dateFrom && item.submitTime < dateFrom) return false;
+    if (dateTo && item.submitTime > dateTo + ' 23:59') return false;
+    return true;
+  });
+}
+
+function toggleEvalCheck(id, checkbox) {
+  if (checkbox.checked) {
+    evalSelected[id] = true;
+  } else {
+    delete evalSelected[id];
+  }
+  updateEvalBatchBar(getEvalFiltered());
+}
+
+function toggleEvalCheckAll() {
+  var all = document.getElementById('evalCheckAll');
+  var filtered = getEvalFiltered();
+  if (all.checked) {
+    filtered.forEach(function(item) { evalSelected[item.id] = true; });
+  } else {
+    filtered.forEach(function(item) { delete evalSelected[item.id]; });
+  }
+  renderEvalList();
+}
+
+function updateEvalBatchBar(filtered) {
+  var all = document.getElementById('evalCheckAll');
+  var cnt = document.getElementById('evalBatchCount');
+  if (!all || !cnt) return;
+  var visibleIds = {};
+  (filtered || []).forEach(function(item) { visibleIds[item.id] = true; });
+  var visibleSelected = 0;
+  Object.keys(evalSelected).forEach(function(k) {
+    if (visibleIds[k]) visibleSelected++;
+  });
+  cnt.textContent = '已选 ' + visibleSelected + ' 条';
+  var visible = filtered || [];
+  all.checked = visible.length > 0 && visibleSelected === visible.length;
+  all.indeterminate = visibleSelected > 0 && visibleSelected < visible.length;
+}
+
+function downloadEvalSelected() {
+  var ids = Object.keys(evalSelected);
+  if (ids.length === 0) {
+    alert('请先勾选需要下载的评估记录');
+    return;
+  }
+  var items = evaluationData.filter(function(e) { return evalSelected[e.id]; });
+  // CSV 表头：ID、供应商名称、剧集名称、集数、链接
+  var rows = [['ID', '供应商名称', '剧集名称', '集数', '链接']];
+  items.forEach(function(item) {
+    rows.push([
+      item.id || '',
+      item.supplier || '',
+      item.dramaName || '',
+      (item.episodeCount || 0) + '集',
+      item.cardLink || ''
+    ]);
+  });
+  // CSV 转义：含逗号/引号/换行的字段用双引号包裹
+  var csvLines = rows.map(function(row) {
+    return row.map(function(cell) {
+      var s = String(cell);
+      if (/[",\n\r]/.test(s)) s = '"' + s.replace(/"/g, '""') + '"';
+      return s;
+    }).join(',');
+  });
+  var csv = '\uFEFF' + csvLines.join('\r\n'); // BOM 保证 Excel 中文不乱码
+  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  var now = new Date();
+  var ts = now.getFullYear() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0') + '_' + String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0') + String(now.getSeconds()).padStart(2, '0');
+  var filename = '内容评估_' + ts + '.csv';
+  var link = document.createElement('a');
+  if (link.download !== undefined) {
+    var url = URL.createObjectURL(blob);
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+  } else {
+    // 兜底：不支持 download 属性时用 data URI
+    link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+    link.download = filename;
+    link.click();
+  }
+  alert('已下载 ' + items.length + ' 条评估记录（' + filename + '），包含 ID、供应商名称、剧集名称、集数、链接');
 }
 
 function filterEvalList() {
   renderEvalList();
 }
 
+var currentApproveId = null;
+
 function approveEval(id) {
   var item = evaluationData.filter(function(e) { return e.id === id; })[0];
   if (!item) return;
+
+  // 审核组评估（A组）：弹窗填写审核意见后提交
+  if (currentReviewerGroup === 'A') {
+    currentApproveId = id;
+    document.getElementById('evalApproveOpinion').value = '';
+    document.getElementById('evalApproveGroupLabel').textContent = groupNames.A;
+    document.getElementById('evalApproveDramaName').textContent = '《' + item.dramaName + '》';
+    openModal('evalApproveModal');
+    return;
+  }
+
+  // 红果评估 / 运营评估（B/C组）：确认提示后直接通过，无需填写意见
+  if (confirm(groupNames[currentReviewerGroup] + ' 确认通过《' + item.dramaName + '》？')) {
+    applyEvalPass(item, '');
+    alert(groupNames[currentReviewerGroup] + '已通过《' + item.dramaName + '》');
+  }
+}
+
+// 通过公共逻辑（opinion 仅审核组评估填写，可为空）
+function applyEvalPass(item, opinion) {
   var grp = currentReviewerGroup;
   var now = new Date();
   var timeStr = now.getFullYear() + '-' +
@@ -9984,21 +11065,22 @@ function approveEval(id) {
     String(now.getHours()).padStart(2, '0') + ':' +
     String(now.getMinutes()).padStart(2, '0');
 
-  item['review' + grp] = { status: 'pass', reviewer: reviewerNames[grp], time: timeStr };
-
-  // Add history entry
-  var hEntry = { time: timeStr, overall: '' };
-  ['A', 'B', 'C'].forEach(function(g) {
-    var r = item['review' + g];
-    if (r.status === 'pass') hEntry['review' + g] = { text: r.reviewer + '—通过' };
-    else if (r.status === 'reject') hEntry['review' + g] = { text: r.reviewer + '—驳回', status: 'reject', reason: r.reason || '' };
-    else hEntry['review' + g] = { text: '待审核' };
-  });
-  hEntry.overall = calcOverallText(item);
-  item.history.push(hEntry);
-
+  var entry = { status: 'pass', reviewer: reviewerNames[grp], time: timeStr };
+  if (opinion) entry.opinion = opinion;
+  item['review' + grp] = entry;
+  item.history.push(buildHistoryEntry(item, timeStr));
   renderEvalList();
-  alert('审核A组已通过《' + item.dramaName + '》');
+}
+
+function confirmApproveEval() {
+  var opinion = document.getElementById('evalApproveOpinion').value.trim();
+
+  var item = evaluationData.filter(function(e) { return e.id === currentApproveId; })[0];
+  if (!item) return;
+
+  applyEvalPass(item, opinion);
+  closeModal('evalApproveModal');
+  alert(groupNames.A + '已通过《' + item.dramaName + '》' + (opinion ? '，审核意见：' + opinion : ''));
 }
 
 function openRejectModal(id) {
@@ -10022,20 +11104,11 @@ function confirmReject() {
     String(now.getMinutes()).padStart(2, '0');
 
   item['review' + grp] = { status: 'reject', reviewer: reviewerNames[grp], time: timeStr, reason: reason };
-
-  var hEntry = { time: timeStr, overall: '' };
-  ['A', 'B', 'C'].forEach(function(g) {
-    var r = item['review' + g];
-    if (r.status === 'pass') hEntry['review' + g] = { text: r.reviewer + '—通过' };
-    else if (r.status === 'reject') hEntry['review' + g] = { text: r.reviewer + '—驳回', status: 'reject', reason: r.reason || '' };
-    else hEntry['review' + g] = { text: '待审核' };
-  });
-  hEntry.overall = calcOverallText(item);
-  item.history.push(hEntry);
+  item.history.push(buildHistoryEntry(item, timeStr));
 
   closeModal('evalRejectModal');
   renderEvalList();
-  alert('审核A组已驳回《' + item.dramaName + '》，原因：' + reason);
+  alert(groupNames[grp] + '已驳回《' + item.dramaName + '》，原因：' + reason);
 }
 
 function calcOverallText(item) {
@@ -10075,16 +11148,24 @@ function openEvalDetail(id) {
       var changed = !prev || prev.text !== r.text;
       var isAction = changed && r.text.indexOf('待审核') === -1;
       var hasReason = r.status === 'reject' && r.reason;
-      html += '<div class="group-row">';
-      html += '<span class="group-label">审核' + g + '组</span>';
-      html += '<div class="group-content">';
+      html += '<div class="group-block">';
+      html += '<div class="group-header">';
+      html += '<span class="group-label">' + groupNames[g] + '：</span>';
       html += '<span class="group-result">' + r.text + '</span>';
-      if (isAction) html += '<span class="group-time">' + h.time + '</span>';
       html += '</div>';
-      if (hasReason) html += '<span class="group-reason">' + r.reason + '</span>';
+      if (isAction) html += '<div class="group-time">' + h.time + '</div>';
+      if (r.opinion) html += '<div class="group-opinion" title="' + escapeOpinionHtml(r.opinion) + '">意见：' + escapeOpinionHtml(r.opinion) + '</div>';
+      if (hasReason) html += '<div class="group-reason">' + escapeOpinionHtml(r.reason) + '</div>';
       html += '</div>';
     });
-    html += '<div class="group-row" style="margin-top:4px;"><span class="group-label" style="font-weight:600;">综合结果</span><span style="font-weight:600;">' + h.overall + '</span></div>';
+    html += '<div class="overall-row"><span class="overall-label">综合结果</span><span class="overall-value">' + h.overall + '</span></div>';
+    // 全部审核通过时，综合结果下展示审核组评估填写的审核意见
+    if (h.overall === '通过') {
+      var finalOpinion = h.reviewA && h.reviewA.opinion;
+      if (finalOpinion) {
+        html += '<div class="overall-row" style="margin-top:4px;border-top:none;padding-top:0;"><span class="overall-label">审核意见</span><span style="color:var(--text-secondary);font-size:13px;">' + escapeOpinionHtml(finalOpinion) + '</span></div>';
+      }
+    }
     html += '</div></div>';
   });
   html += '</div>';

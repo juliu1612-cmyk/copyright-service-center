@@ -7484,18 +7484,19 @@ function showAuditNoticeIfNeeded(name, matStatus, epStatus, collId) {
   var html = '<div style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">你提交的短剧《' + name + '》审核结果如下：</div>';
   html += '<ul style="margin:0;padding-left:18px;font-size:14px;color:var(--text-primary);line-height:2;">';
   if (matReason) {
-    html += '<li>物料审核不通过<div style="color:#E34D59;font-size:12px;margin-left:2px;margin-bottom:6px;">' + richViewHtml(matReason) + '</div><button class="btn btn-sm btn-primary" style="width:auto;padding:4px 16px;" onclick="goToEditFromAuditNotice(\'material\')">前往修改</button></li>';
+    // 弹窗内不展示物料驳回原因（原因在物料编辑页顶部横幅展示），按钮改为「查看原因修改」跳转编辑页
+    html += '<li>物料审核不通过<button class="btn btn-sm btn-primary" style="width:auto;padding:4px 16px;margin-left:10px;" onclick="goToEditFromAuditNotice(\'material\')">查看原因修改</button></li>';
   } else {
     html += '<li>物料初审核通过</li>';
   }
   if (epReason) {
-    html += '<li>正片审核不通过<div style="color:#E34D59;font-size:12px;margin-left:2px;margin-bottom:6px;">' + richViewHtml(epReason) + '</div><button class="btn btn-sm btn-primary" style="width:auto;padding:4px 16px;" onclick="goToEditFromAuditNotice(\'episode\')">前往修改</button></li>';
+    html += '<li>正片审核不通过<div style="color:#E34D59;font-size:12px;margin-left:2px;margin-bottom:6px;">' + richViewHtml(epReason) + '</div><button class="btn btn-sm btn-primary" style="width:auto;padding:4px 16px;" onclick="goToEditFromAuditNotice(\'episode\')">查看原因修改</button></li>';
   } else {
     html += '<li>正片初审核通过</li>';
   }
   // 渠道驳回通知
   channelNotices.forEach(function(notice) {
-    html += '<li>渠道「' + notice.channel + '」上线被驳回<div style="color:#E34D59;font-size:12px;margin-left:2px;margin-bottom:6px;">' + notice.reason + '</div><button class="btn btn-sm btn-primary" style="width:auto;padding:4px 16px;" onclick="goToEditFromAuditNotice()">前往修改</button></li>';
+    html += '<li>渠道「' + notice.channel + '」上线被驳回<div style="color:#E34D59;font-size:12px;margin-left:2px;margin-bottom:6px;">' + notice.reason + '</div><button class="btn btn-sm btn-primary" style="width:auto;padding:4px 16px;" onclick="goToEditFromAuditNotice()">查看原因修改</button></li>';
   });
   html += '</ul>';
 

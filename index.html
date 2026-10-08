@@ -678,6 +678,17 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
         <button class="btn btn-outline" onclick="exitCollectionEditPage()" data-page-node-id="9KgvEpAFCIWeduSTOlzNf2">← 返回列表</button>
       </div>
 
+      <!-- ===== 审核驳回原因（被驳回的合集进入编辑页时展示，支持富文本图文） ===== -->
+      <div id="editRejectBanner" style="display:none;margin-bottom:16px;padding:14px 16px;background:#FFF2F0;border:1px solid #FFCCC7;border-radius:8px;" data-page-node-id="editRejectBannerRoot">
+        <div style="display:flex;align-items:flex-start;gap:8px;" data-page-node-id="editRejectBannerInner">
+          <span style="font-size:16px;line-height:1.5;" data-page-node-id="editRejectBannerIcon">⚠️</span>
+          <div style="flex:1;min-width:0;" data-page-node-id="editRejectBannerBody">
+            <div style="font-size:13px;font-weight:600;color:#E34D59;margin-bottom:6px;" data-page-node-id="editRejectBannerTitle">审核驳回原因 <span style="font-weight:400;color:#999;font-size:12px;">（请根据以下原因修改后重新提交）</span></div>
+            <div id="editRejectBannerContent" data-page-node-id="editRejectBannerContent"></div>
+          </div>
+        </div>
+      </div>
+
       <!-- 步骤条 -->
       <div class="flow-steps" id="editCollSteps" data-page-node-id="ASv19Fmw3IIMX70z9vXJpz">
         <div class="flow-step step-active" data-step="1" data-page-node-id="tFtJFS2R50CEOzFFgPzEDM">
@@ -1495,17 +1506,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
         </div>
         <div style="display:flex;align-items:center;gap:10px;" data-page-node-id="TMabYV4FtEZU2y0MpRkiWp">
           <button class="btn btn-outline" onclick="switchSupplierPage('sup-content', document.querySelector('[data-page=sup-content]'))" data-page-node-id="himUCjab2NkSLtXko92ZJw">← 返回列表</button>
-        </div>
-      </div>
-
-      <!-- ===== 驳回原因顶部提示（物料/正片驳回时展示，支持富文本图文） ===== -->
-      <div id="supRejectReasonBanner" style="display:none;margin-bottom:16px;padding:14px 16px;background:#FFF2F0;border:1px solid #FFCCC7;border-radius:8px;" data-page-node-id="supRejectBannerRoot">
-        <div style="display:flex;align-items:flex-start;gap:8px;" data-page-node-id="supRejectBannerInner">
-          <span style="font-size:16px;line-height:1.5;" data-page-node-id="supRejectBannerIcon">⚠️</span>
-          <div style="flex:1;min-width:0;" data-page-node-id="supRejectBannerBody">
-            <div style="font-size:13px;font-weight:600;color:#E34D59;margin-bottom:6px;" data-page-node-id="supRejectBannerTitle">审核驳回原因</div>
-            <div id="supRejectReasonContent" data-page-node-id="supRejectBannerContent"></div>
-          </div>
         </div>
       </div>
 
@@ -5350,6 +5350,8 @@ function openCollectionEditPage(name, count, channel, type, round, resell, produ
   currentEditMode = editMode || 'full';
   currentVersionChannel = versionChannel || '';
   currentVersionLabel = (currentVersionChannel && versionLabel) ? versionLabel : '';
+  // 编辑页顶部驳回原因横幅（被驳回的合集编辑时展示）
+  renderEditRejectBanner();
   // 切换到编辑页面
   switchSupplierPage('sup-edit-collection', document.querySelector('[data-page=sup-content]'));
   // 根据模式更新标题
@@ -7380,23 +7382,23 @@ function openCollectionDetail(name, count, channel, type, round, resell, produce
   var promiseCount = saved.count || count;
   document.getElementById('detailPromiseCount').textContent = promiseCount ? (promiseCount + ' 集') : '-';
   document.getElementById('detailCreateTime').textContent = saved.createTime || '2026-07-15 10:30:00';
-  function auditTagHtml(status, reason) {
+  function auditTagHtml(status, reason, type) {
     var cls = 'ep-audit-tag';
     var label;
-    // status 参数可能携带富文本驳回原因（列表透传），此时状态标签统一显示「拒绝」，富文本只在顶部横幅渲染
+    // status 参数可能携带富文本驳回原因（列表透传），此时状态标签统一显示「拒绝」
     if (reason) { cls += ' tag-reject'; label = '拒绝'; }
     else if (status === '审核通过' || status === '通过') { cls += ' tag-pass'; label = status; }
     else if (status === '审核中') { cls += ' tag-pending'; label = status; }
     else if (status === '拒绝') { cls += ' tag-reject'; label = '拒绝'; }
     else { cls += ' tag-pending'; label = status || '待审核'; }
-    // 驳回原因为富文本（可能含图片/字体样式），不再内联拼接，改为「查看驳回原因」跳转到顶部展示区
-    var reasonHtml = reason ? '<a href="javascript:void(0)" onclick="scrollToSupRejectBanner()" style="color:#E34D59;font-size:12px;margin-left:6px;text-decoration:underline;">查看驳回原因</a>' : '';
+    // 驳回原因在「编辑合集」页顶部展示，点击跳转对应编辑页（物料/正片）
+    var reasonHtml = reason ? '<a href="javascript:void(0)" onclick="goToEditFromAuditNotice(\'' + (type || 'material') + '\')" style="color:#E34D59;font-size:12px;margin-left:6px;text-decoration:underline;">查看驳回原因</a>' : '';
     return '<span class="' + cls + '">' + label + '</span>' + reasonHtml;
   }
-  document.getElementById('detailAuditMat').innerHTML = auditTagHtml(matStatus, matReason);
-  document.getElementById('detailAuditEp').innerHTML = auditTagHtml(epStatus, epReason);
-  // 顶部驳回原因横幅（富文本渲染）
-  renderSupRejectBanner(matReason, epReason);
+  document.getElementById('detailAuditMat').innerHTML = auditTagHtml(matStatus, matReason, 'material');
+  document.getElementById('detailAuditEp').innerHTML = auditTagHtml(epStatus, epReason, 'episode');
+  // 记录当前合集的驳回原因（物料编辑页顶部横幅数据源）
+  currentRejectReasons = { material: matReason || '', episode: epReason || '' };
 
   // ====== 剧集管理 Tab：版本卡片（用现有数据填充，字段保持不变） ======
   // 判断物料和正片是否全部通过
@@ -7559,36 +7561,30 @@ function extractRejectReason(status) {
   return status;
 }
 
-// ===== 供应商端：详情页顶部驳回原因展示（支持富文本图文） =====
-function renderSupRejectBanner(matReason, epReason) {
-  var banner = document.getElementById('supRejectReasonBanner');
-  var container = document.getElementById('supRejectReasonContent');
+// ===== 供应商端：物料编辑页顶部驳回原因展示（支持富文本图文） =====
+// 当前合集的驳回原因（进入详情页时记录，编辑页渲染）
+var currentRejectReasons = { material: '', episode: '' };
+
+function renderEditRejectBanner() {
+  var banner = document.getElementById('editRejectBanner');
+  var container = document.getElementById('editRejectBannerContent');
   if (!banner || !container) return;
+  var matReason = currentRejectReasons.material;
+  var epReason = currentRejectReasons.episode;
+  if (!matReason && !epReason) { banner.style.display = 'none'; container.innerHTML = ''; return; }
   var html = '';
-  var hasMat = !!matReason;
-  var hasEp = !!epReason;
-  if (!hasMat && !hasEp) { banner.style.display = 'none'; container.innerHTML = ''; return; }
-  if (hasMat) {
-    html += '<div style="margin-bottom:' + (hasEp ? '10px' : '0') + ';">' +
-            '<div style="font-size:12px;color:#E34D59;font-weight:600;margin-bottom:4px;">物料驳回原因' +
-            '<button class="btn btn-sm btn-primary" style="width:auto;padding:2px 10px;font-size:11px;margin-left:8px;" onclick="goToEditFromAuditNotice(\'material\')">前往修改</button></div>' +
+  if (matReason) {
+    html += '<div style="margin-bottom:' + (epReason ? '12px' : '0') + ';">' +
+            '<div style="font-size:12px;color:#E34D59;font-weight:600;margin-bottom:4px;">物料驳回原因</div>' +
             richViewHtml(matReason) + '</div>';
   }
-  if (hasEp) {
+  if (epReason) {
     html += '<div>' +
-            '<div style="font-size:12px;color:#E34D59;font-weight:600;margin-bottom:4px;">正片驳回原因' +
-            '<button class="btn btn-sm btn-primary" style="width:auto;padding:2px 10px;font-size:11px;margin-left:8px;" onclick="goToEditFromAuditNotice(\'episode\')">前往修改</button></div>' +
+            '<div style="font-size:12px;color:#E34D59;font-weight:600;margin-bottom:4px;">正片驳回原因</div>' +
             richViewHtml(epReason) + '</div>';
   }
   container.innerHTML = html;
   banner.style.display = 'block';
-}
-function scrollToSupRejectBanner() {
-  var banner = document.getElementById('supRejectReasonBanner');
-  if (!banner || banner.style.display === 'none') return;
-  var rect = banner.getBoundingClientRect();
-  var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  window.scrollTo({ top: rect.top + scrollTop - 80, behavior: 'smooth' });
 }
 function loadEpisodeList(name, count) {
   currentCollName = name;

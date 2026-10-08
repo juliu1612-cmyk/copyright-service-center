@@ -119,7 +119,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .form-item .rich-toolbar input.rich-tb-color { width: 30px; height: 26px; padding: 0; border: 1px solid var(--border); border-radius: 4px; }
 .rich-body { min-height: 110px; max-height: 260px; overflow-y: auto; padding: 10px 12px; font-size: 14px; line-height: 1.7; color: var(--text-primary); outline: none; }
 .rich-body:empty::before { content: attr(data-placeholder); color: var(--text-tertiary); }
-.rich-body img { max-width: 100%; border-radius: 4px; margin: 4px 0; display: block; }
+.rich-body img { max-width: 100%; border-radius: 4px; margin: 4px 0; display: block; cursor: default; outline: 2px solid transparent; outline-offset: 2px; }
+.rich-body img.rich-img-active { outline-color: var(--primary); }
+/* 图片拖动改大小手柄 */
+.rich-img-resize-handle { position: fixed; width: 12px; height: 12px; background: var(--primary); border: 2px solid #fff; border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,0.35); cursor: nwse-resize; z-index: 10000; display: none; }
 .rich-body ul, .rich-body ol { margin: 4px 0; padding-left: 22px; }
 .rich-body p { margin: 0 0 6px; }
 /* 富文本内容展示区（供应商端只读渲染） */
@@ -3478,9 +3481,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
                   <button type="button" class="rich-tb-btn" title="清除格式" onclick="richExec('contentReviewReason','removeFormat')" data-page-node-id="richTbClear">清除格式</button>
                   <input type="file" id="richImageInput_contentReviewReason" accept="image/*" style="display:none;" onchange="insertRichImage(this,'contentReviewReason')" data-page-node-id="richFileCR">
                 </div>
-                <div id="contentReviewReason" class="rich-body" contenteditable="true" data-placeholder="请输入驳回原因，支持字体样式设置与插入截图（最多 5 张）" data-page-node-id="richBodyCR"></div>
+                <div id="contentReviewReason" class="rich-body" contenteditable="true" data-placeholder="请输入驳回原因，支持字体样式设置与插入截图（最多 5 张，插入后拖动图片右下角可调整大小）" data-page-node-id="richBodyCR"></div>
               </div>
-              <div class="form-tip" data-page-node-id="richTipCR">支持加粗 / 斜体 / 下划线 / 字号 / 字体颜色 / 高亮 / 列表，可插入截图标注问题位置，供应商端将原样展示</div>
+              <div class="form-tip" data-page-node-id="richTipCR">支持加粗 / 斜体 / 下划线 / 字号 / 字体颜色 / 高亮 / 列表；插入图片后单击图片选中、拖动右下角手柄可调整大小（等比缩放），供应商端将原样展示</div>
             </div>
           </div>
           <div data-page-node-id="TI2VgBENrEOCEZlC1oJIww">
@@ -10413,6 +10416,70 @@ function triggerRichImage(id) {
   var input = document.getElementById('richImageInput_' + id);
   if (input) input.click();
 }
+
+// ===== 富文本图片：拖动调整大小 =====
+var richActiveImg = null;      // 当前选中（可缩放）的图片
+var richResizeHandle = null;   // 缩放手柄元素
+var richResizing = null;       // 缩放中的状态
+
+function getRichResizeHandle() {
+  if (richResizeHandle) return richResizeHandle;
+  richResizeHandle = document.createElement('div');
+  richResizeHandle.id = 'richImgResizeHandle';
+  richResizeHandle.className = 'rich-img-resize-handle';
+  richResizeHandle.title = '拖动调整图片大小';
+  richResizeHandle.addEventListener('mousedown', richStartResize);
+  document.body.appendChild(richResizeHandle);
+  return richResizeHandle;
+}
+function richSelectImage(img) {
+  if (!img) return;
+  if (richActiveImg && richActiveImg !== img) richActiveImg.classList.remove('rich-img-active');
+  richActiveImg = img;
+  img.classList.add('rich-img-active');
+  richPositionHandle();
+}
+function richClearImageSelection() {
+  if (richActiveImg) { richActiveImg.classList.remove('rich-img-active'); richActiveImg = null; }
+  var h = getRichResizeHandle();
+  h.style.display = 'none';
+}
+function richPositionHandle() {
+  var h = getRichResizeHandle();
+  if (!richActiveImg || !document.body.contains(richActiveImg)) { richClearImageSelection(); return; }
+  var r = richActiveImg.getBoundingClientRect();
+  h.style.display = 'block';
+  h.style.left = (r.right - 7) + 'px';
+  h.style.top = (r.bottom - 7) + 'px';
+}
+function richStartResize(e) {
+  if (!richActiveImg) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var img = richActiveImg;
+  var body = img.closest ? img.closest('.rich-body') : null;
+  var maxW = body ? (body.clientWidth - 8) : 800;
+  richResizing = { img: img, startX: e.clientX, startW: img.getBoundingClientRect().width, maxW: maxW };
+  document.addEventListener('mousemove', richResizeMove);
+  document.addEventListener('mouseup', richResizeEnd);
+}
+function richResizeMove(e) {
+  if (!richResizing) return;
+  var dx = e.clientX - richResizing.startX;
+  var w = Math.round(Math.max(60, Math.min(richResizing.maxW, richResizing.startW + dx)));
+  richResizing.img.style.width = w + 'px';
+  richResizing.img.style.height = 'auto';
+  richPositionHandle();
+}
+function richResizeEnd() {
+  richResizing = null;
+  document.removeEventListener('mousemove', richResizeMove);
+  document.removeEventListener('mouseup', richResizeEnd);
+}
+// 内容被整体替换时清掉选中态
+function richClearOnReset(id) {
+  if (richActiveImg) richClearImageSelection();
+}
 // 插入图片（转 Base64 内联，避免外链失效）
 function insertRichImage(fileInput, id) {
   var file = fileInput.files && fileInput.files[0];
@@ -10426,8 +10493,15 @@ function insertRichImage(fileInput, id) {
   reader.onload = function(e) {
     el.focus();
     try {
-      document.execCommand('insertHTML', false, '<img src="' + e.target.result + '" alt="驳回说明截图" style="max-width:100%;">');
+      // 默认宽度 300px，插入后自动选中并显示缩放手柄（拖动右下角可改大小，等比缩放）
+      document.execCommand('insertHTML', false,
+        '<img class="rich-img-new" src="' + e.target.result + '" alt="驳回说明截图" style="width:300px;max-width:100%;height:auto;">');
     } catch (err) {}
+    var inserted = el.querySelector('img.rich-img-new');
+    if (inserted) {
+      inserted.classList.remove('rich-img-new');
+      setTimeout(function() { richSelectImage(inserted); }, 0);
+    }
   };
   reader.readAsDataURL(file);
   fileInput.value = '';
@@ -10451,6 +10525,8 @@ function isRichEmpty(id) {
 function setRichHtml(id, html) {
   var el = document.getElementById(id);
   if (el) el.innerHTML = html || '';
+  // 内容重置后清除图片选中态与缩放手柄
+  if (typeof richClearImageSelection === 'function') richClearImageSelection();
 }
 function escapeRichText(s) {
   return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -10469,16 +10545,30 @@ function sanitizeRichHtml(html) {
 function richViewHtml(html) {
   return '<div class="rich-view">' + sanitizeRichHtml(html) + '</div>';
 }
-// 图片点击放大预览
+// 图片点击：编辑区选中（可缩放）/ 展示区放大预览
 document.addEventListener('click', function(e) {
-  var img = e.target.closest ? e.target.closest('.rich-view img') : null;
-  if (!img) return;
-  var mask = document.createElement('div');
-  mask.className = 'rich-img-preview';
-  mask.innerHTML = '<img src="' + img.getAttribute('src') + '">';
-  mask.onclick = function() { document.body.removeChild(mask); };
-  document.body.appendChild(mask);
+  if (!e.target || !e.target.closest) return;
+  // 编辑区图片：选中并显示缩放手柄
+  var editImg = e.target.closest('.rich-body img');
+  if (editImg) { richSelectImage(editImg); return; }
+  // 缩放手柄自身：不清除选中
+  if (e.target.closest('.rich-img-resize-handle')) return;
+  // 展示区图片：放大预览
+  var viewImg = e.target.closest('.rich-view img');
+  if (viewImg) {
+    var mask = document.createElement('div');
+    mask.className = 'rich-img-preview';
+    mask.innerHTML = '<img src="' + viewImg.getAttribute('src') + '">';
+    mask.onclick = function() { document.body.removeChild(mask); };
+    document.body.appendChild(mask);
+    return;
+  }
+  // 点击其他位置：清除选中态
+  richClearImageSelection();
 });
+// 页面滚动/窗口变化时跟随图片重新定位手柄
+window.addEventListener('scroll', function() { if (richActiveImg) richPositionHandle(); }, true);
+window.addEventListener('resize', function() { if (richActiveImg) richPositionHandle(); });
 
 function showRejectReason() {
   document.getElementById('contentReviewReasonWrap').style.display = 'block';
